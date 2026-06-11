@@ -1,0 +1,24 @@
+# Turnaround Tuesday (Monday Weakness, Tuesday Bounce)
+- Agent: C (Strategy sites & quant blogs)
+- Sources:
+  - https://quantifiedstrategies.substack.com/p/turnaround-tuesday-strategy-backtest (stats tiers public; exact filters paywalled)
+  - https://www.quantitativo.com/p/turnaround-tuesdays-on-steroids (full rules + stats, free)
+  - https://quantifiableedges.com/a-simple-turnaround-tuesday-study/ (corroborating study, chart only)
+  - https://www.quantifiedstrategies.com/turnaround-tuesday/ (bot-walled on direct fetch; rules recovered via search snippets)
+- Thesis: A persistent day-of-week anomaly: weakness into Monday tends to reverse on Tuesday. Plausible drivers: weekend risk aversion / retail selling on Monday, institutional dip-buying early in the week, and option-hedging flows. Documented for ~30 years of data by multiple independent sites.
+- Entry rules:
+  - Quantified Strategies version (recovered via snippets): today is Monday; close < Friday's close; IBS = (C−L)/(H−L) < 0.5; buy at Monday's close
+  - Quantitativo version: today is Tuesday or Wednesday; yesterday's close < close of 2 days ago; close of 2 days ago < close of 3 days ago (i.e., two consecutive down closes into Tue/Wed); buy at the open
+- Exit rules:
+  - Sell at the close when close > yesterday's high; OR time stop: 4 trading days after entry (QS version)
+  - Quantitativo: exit when close > yesterday's high (no fixed time stop stated)
+- Indicators & parameters: calendar day-of-week; IBS < 0.5; 2 consecutive lower closes; exit trigger close > prior high; 4-day time stop
+- Claimed performance:
+  - QS on SPY (period not disclosed publicly): basic version 212 trades, avg 0.3%/trade, 56% win, CAGR 1.8% at 2.5% exposure; with filters avg 0.33%, 57% win, CAGR 2.7%; extended holding avg 0.45%, 60% win, CAGR 6.5%; filters + flexible exits avg 0.46%, 69% win, CAGR 7%
+  - Quantitativo on TQQQ (synthetic pre-2010 data built from QQQ, Mar 1999–2024/25): CAGR 29.1%, Sharpe 1.74, win 71.4%, max DD 45%, avg DD 7.2%, ~15 trades/yr, 16% exposure, 2 negative years in 25+
+  - Quantifiable Edges (SPX, 2-day pullback into Tuesday below the 200MA): "numbers appear quite bullish", equity curve accelerating — chart only, no table published
+- Evidence quality: 4 (three independent shops publish consistent results; one gives full rules + full stats free, but the best QS variant's filters are paywalled)
+- Long-only fit: yes
+- 2-15 day fit: yes (1–4 day holds — at the short end of the window)
+- Codability: yes — daily OHLCV + calendar only. TQQQ variant uses a leveraged ETF; the signal itself ports to SPY/QQQ or a liquid stock basket
+- Notes: Tested on index ETFs, not single stocks — Quantitativo explicitly suggests porting to a basket of stocks to dilute drawdowns; that port is the thing to test for this pipeline. Edge per trade on unleveraged SPY is small (0.3–0.46%), so costs matter. QE finds the effect strongest BELOW the 200MA (bear-market rebounds), which inverts the usual trend-filter intuition — test both regimes. Day-of-week effects have a history of decaying after publication; check post-2015 subsample.

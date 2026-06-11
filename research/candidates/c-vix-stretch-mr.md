@@ -1,0 +1,20 @@
+# VIX Stretch Mean Reversion (Connors/Alvarez "VIX Stretches")
+- Agent: C (Strategy sites & quant blogs)
+- Sources:
+  - https://easycators.com/thinkscript/vix-stretches-trading-strategy-for-the-spy-or-spx-from-short-term-trading-strategies-that-work-by-connors-alvarez/ (rules + book stats; vendor page implementing the book strategy)
+  - https://www.quantifiedstrategies.com/vix-trading-strategy/ (bot-walled on direct fetch; corroborates the VIX-stretch concept with 4 backtested VIX strategies)
+- Thesis: When implied volatility (VIX) is stretched well above its short-term average for several days while the long-term equity trend is still up, fear is overdone relative to trend; buying that fear has historically produced quick rebounds. Uses the options market as the oversold sensor instead of price itself — which makes it a useful diversifier next to price-based mean reversion.
+- Entry rules:
+  - SPY close > 200-day SMA (primary uptrend)
+  - VIX closes more than 5% above its 10-day SMA for 3 consecutive days
+  - Both true → buy at the close
+- Exit rules:
+  - Sell at the close when RSI(2) of SPY closes above 65
+  - No stop loss in the book version (vendor implementation offers optional stops)
+- Indicators & parameters: VIX vs SMA(VIX,10) stretch ≥ 5% for 3 days; SMA(SPY,200); exit RSI(2) > 65
+- Claimed performance: From Connors & Alvarez, "Short Term Trading Strategies That Work" (2009), as republished by Easycators: 33 trades, 84.85% win rate, 363.9 SPX points gained, average holding time "under 5 days". Book test period not stated on the page (the book's tests generally run ~1995–2008). No CAGR/drawdown published.
+- Evidence quality: 3 (exact mechanical rules from a published book by quant authors; stats are from the book via a third-party page, small sample, dated test window)
+- Long-only fit: yes
+- 2-15 day fit: yes (avg hold < 5 days)
+- Codability: yes — daily OHLCV plus daily VIX close (freely available from CBOE/FRED)
+- Notes: Only 33 trades in the original test — treat the 85% win rate as fragile. The structure (volatility-stretch filter + trend filter + strength exit) is the valuable part; it can overlay any stock mean-reversion entry as a regime filter, which is exactly the "mean-reversion with VIX filter" idea on the investigate list. Variants to test: stretch 5/10/15%, 2–5 day persistence, applying the VIX gate to the Alvarez 3-lower-lows stock system. Beware VIX regime shifts (post-2018 vol products, 2020+); re-test out of sample.

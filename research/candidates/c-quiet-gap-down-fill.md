@@ -1,0 +1,21 @@
+# Quiet Gap-Down Fill in Stocks (Low-Volume Full Gap Down, Multi-Day Hold)
+- Agent: C (Strategy sites & quant blogs)
+- Sources:
+  - https://www.quantifiedstrategies.com/gap-down-strategy-in-stocks-going-long/ (bot-walled on direct fetch; rules and stats recovered via search snippets — flagged below)
+  - https://www.quantifiedstrategies.com/gap-trading-strategies/ (companion overview)
+- Thesis: A full gap down (today's high below yesterday's low) on LOW volume signals a liquidity vacuum rather than genuine bad news — sellers hit thin overnight books with no informational follow-through. The market's upward drift plus gap-fill tendency ("bearish gaps are most likely easier filled because of the upward bias in the stock market" — QS) pulls price back toward the gap over the following days.
+- Entry rules:
+  - Stock gaps fully down: today's HIGH < yesterday's LOW
+  - Today's volume < average volume over the last 50 days (filters out news-driven gaps, which "will likely lead to more selloff")
+  - Base version enters after a further drop from the open (limit-style entry); a simpler tested variant enters at the OPEN of the gap day
+  - Max 10 concurrent positions; on days with more signals than slots, positions are picked randomly
+- Exit rules:
+  - Profit target: exit at the target price when reached (if the stock gaps up beyond the target, exit at the OPEN) — target is the gap-fill level per the article's framing; exact definition (yesterday's low vs close) was not visible in snippets
+  - Time stop: 15 trading days, exit at the CLOSE
+- Indicators & parameters: full-gap definition (H_t < L_{t-1}); 50-day average volume filter; 10-position cap; 15-day time stop
+- Claimed performance: Per Quantified Strategies (universe described as "stocks"; exact universe/period not visible in snippets): 2,804 trades, ~11% annual returns with max 10 positions and profits NOT reinvested; the enter-at-open variant returned ~12% annually. Win rate / drawdown not captured. A related QS gap-fill study: "110 fills and 98 winners, with an average per fill of 0.19%". All numbers snippet-recovered.
+- Evidence quality: 3 (mechanical entry filter and exit structure published with trade counts, but universe, test period, target definition, and drawdown were not recoverable past the bot wall)
+- Long-only fit: yes
+- 2-15 day fit: yes (gap fills typically within days; hard 15-day time stop bounds the hold)
+- Codability: partly — gap condition, volume filter, and time stop are pure daily OHLCV; the "drop from open" entry and intraday target-touch exit need limit-fill assumptions (fill if low ≤ limit / high ≥ target). The open-entry variant is fully daily-bar codable
+- Notes: The low-volume condition is the differentiator vs naive knife-catching — QuantRocket's independent study (https://www.quantrocket.com/blog/buy-or-sell-down-gaps/) similarly found buying down-gaps works when the gap is small/trend-intact, though theirs used intraday exits. Alvarez found the opposite for big gaps: skipping stocks that gapped down >10% recently improves mean-reversion systems — consistent with this strategy's volume filter excluding news gaps. Must pin down the exact target rule and universe before trusting the 11–12% figure; treat this card as a setup worth re-deriving rather than a finished spec.

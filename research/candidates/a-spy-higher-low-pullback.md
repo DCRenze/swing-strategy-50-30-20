@@ -1,0 +1,20 @@
+# SPY Higher-Low Pullback (Trend Filter + Buy-Stop Entry)
+- Agent: A (Reddit & social)
+- Sources: https://www.reddit.com/r/swingtrading/comments/1njs7fd/a_simple_framework_for_rulebased_swing_trading/
+- Thesis: In an objectively-defined SPY uptrend, multi-day pullbacks that form a higher low resolve upward; entering on a buy-stop above the pullback candle's high means the trade only triggers once the bounce has already started, filtering out falling knives. Long-only, end-of-day-only system posted by u/stocks_system_trader (Sep 2025, r/swingtrading, 53 upvotes, detailed Q&A in comments).
+- Entry rules:
+  - Regime filter: SPY daily trend must be bullish — price above an ATR trailing stop line (OP's choice) or above the 50-day SMA (OP says either works); no entries otherwise
+  - Setup: market makes a new high, then pulls back "for a few days" forming a higher low (vs the prior swing low)
+  - All decisions after the close; entry is a buy-stop for the next day at the high of the pullback candle
+  - If not triggered, presumably re-evaluate nightly (OP: "set and forget" buy-stop)
+- Exit rules:
+  - Stop loss: low of the pullback candle ("the exact price where the setup is clearly broken")
+  - First profit target: 1:1 risk/reward from entry
+  - (Management beyond 1R not fully specified — partial exit at 1R implied)
+- Indicators & parameters: ATR trailing stop or SMA(50) regime filter; pullback = a few days down after a new high; entry/stop = high/low of the pullback candle; target 1R
+- Claimed performance: "I backtested this simple philosophy on SPY from 2020-2025. The results on over 100 trades were surprisingly consistent, with a win rate around 70%." No CAGR/drawdown/Sharpe published. Unverified self-report.
+- Evidence quality: 2 (rules are mostly explicit and the OP answered implementation questions concretely, but the backtest is claims-only, the pullback definition is fuzzy, and the OP runs a paid website — a commenter found it charging $29/month — so promotion bias is high)
+- Long-only fit: yes
+- 2-15 day fit: yes (multi-day pullback + bounce; holds of days to ~2 weeks)
+- Codability: partly — everything is daily OHLCV, but "new high then higher low after a few days" needs a concrete definition (e.g., 20-day high within last 10 days, then >=3 consecutive lower closes/lows holding above the last swing low). A commenter (u/ZeroExpiration) noted defining pivots without hindsight is the hard part — that concern applies to our implementation too.
+- Notes: This is the cleanest reddit statement of the ubiquitous "buy the dip in an uptrend via stop-order above a pullback bar" pattern; dozens of threads describe looser versions (e.g., pullback to 20 EMA). It is structurally close to the already-carded RSI2/pullback family but with a breakout-confirmation entry (buy-stop above prior high) and structural stop instead of oscillator entry/exit — different enough to test. 2020-2025 SPY was a strongly rising market: the 70% win rate claim should be expected to degrade in flat/down regimes, and the regime filter is doing a lot of work. Test variants: trigger window (1 vs 3 days for the buy-stop), 1R-exit vs trail, applying to QQQ and liquid large caps.

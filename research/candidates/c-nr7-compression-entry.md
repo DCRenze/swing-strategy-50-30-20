@@ -1,0 +1,20 @@
+# NR7 Narrow-Range Compression Entry
+- Agent: C (Strategy sites & quant blogs)
+- Sources:
+  - https://www.quantifiedstrategies.com/nr7-trading-strategy/ (bot-walled on direct fetch; rules and stats recovered via search snippets — flagged below)
+  - https://quantifiedstrategies.substack.com/p/nr7-trading-strategy-the-narrow-range-b35 (fetched; confirms SPY since 1993 inception, $100k compounding; improved variant paywalled)
+  - https://thepatternsite.com/nr7.html (Bulkowski's independent pattern statistics)
+- Thesis: Toby Crabel's (1990) observation that volatility cycles between contraction and expansion: the narrowest daily range of the last 7 sessions marks compression, and the subsequent expansion has a directional upward bias in equity indices. This is the simplest mechanized "quiet before the move" / consolidation entry on daily bars.
+- Entry rules:
+  - Today's range (High − Low) is the narrowest of the last 7 trading days
+  - Buy at today's close
+- Exit rules:
+  - Sell at the close when today's close > yesterday's high
+  - No stop loss or time stop disclosed in the free version
+- Indicators & parameters: 7-day range lookback; exit trigger close > prior high
+- Claimed performance: Quantified Strategies on SPY (since 1993): 899 trades, average gain per trade 0.27%, CAGR 7.8%, time invested 35%, max drawdown 25%. QS's own verdict: "reasonably good numbers but not worth trading... the average gain per trade is a little too low." Bulkowski (different methodology, individual stocks): NR7 with upward breakout in a bull market "won 57% of the time" across ~7,600 winning trades. All numbers snippet-recovered, not full-page verified.
+- Evidence quality: 3 (rules fully mechanical and published; headline stats from snippets; the publisher itself rates the raw edge as marginal)
+- Long-only fit: yes (this long-at-close version; Crabel's original was a both-ways intraday breakout)
+- 2-15 day fit: partial (exit often triggers in 1–4 days; some holds are 1 day)
+- Codability: yes — daily OHLCV only
+- Notes: Included despite the thin raw edge because it is the cleanest daily-bar volatility-compression primitive — the building block for mechanized VCP-style setups. Variants worth testing before discarding: NR7 + close > 200MA trend filter, NR7 combined with inside day (NR7+ID), NR4 vs NR7, requiring the NR7 day near 20-day highs (compression at highs = breakout candidate vs compression after declines = mean reversion), and volume contraction on the NR7 day. Note QS sells an "improved" paywalled version claiming one parameter change helps materially — unverified.

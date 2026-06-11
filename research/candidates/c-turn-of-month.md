@@ -1,0 +1,18 @@
+# Turn-of-Month Effect (Buy 5th-Last Trading Day, Sell 3rd of New Month)
+- Agent: C (Strategy sites & quant blogs)
+- Sources:
+  - https://www.quantifiedstrategies.com/end-of-month-strategy-in-sp-500/ (bot-walled on direct fetch; rules and stats recovered via search snippets — flagged below)
+  - https://www.quantifiedstrategies.com/turn-of-the-month-trading-strategy/ (companion page, same effect)
+- Thesis: The turn-of-month anomaly: equities earn nearly all of their return in a window around month-end, plausibly driven by recurring institutional flows — 401(k)/payroll contributions, pension rebalancing, fund window dressing, and bond coupon/dividend reinvestment. Documented academically since Lakonishok & Smidt (1988) and still present in long backtests.
+- Entry rules:
+  - Buy the S&P 500 (SPY) at the close of the 5th-to-last trading day of the calendar month
+- Exit rules:
+  - Sell at the close of the 3rd trading day of the new month (≈7 trading days held)
+  - No stop loss; the time exit IS the rule
+- Indicators & parameters: pure calendar; window = last 5 trading days of month + first 3 of next
+- Claimed performance: S&P 500, 1960–spring 2021 (per Quantified Strategies): CAGR 7.2% vs 7.1% for buy-and-hold, while invested only 33% of the time; win rate 62%; average winner 2.1% vs average loser 1.84%; profit factor 2; max drawdown 27% (vs 55% buy-and-hold). All numbers snippet-recovered from the bot-walled page.
+- Evidence quality: 4 (61-year backtest with full stat line and exact mechanical rules; corroborated by decades of academic literature; minus one point because stats were recovered via snippets)
+- Long-only fit: yes
+- 2-15 day fit: yes (fixed ~7 trading day hold)
+- Codability: yes — calendar plus daily closes; trivially codable
+- Notes: Matches buy-and-hold return with one-third the exposure — the edge is risk-adjusted, not raw alpha; useful as a portfolio sleeve or as a timing overlay (e.g., only take mean-reversion entries with extra size during the turn-of-month window). The anomaly is among the most-published in finance, so monitor for decay; QS finds it also holds in other indices (e.g., NIFTY 50 post). Variants: enter 4th-to-last day, exit 1st vs 3rd day of new month, skip months below 200MA. On single stocks, the effect concentrates in large caps that pension flows buy — a stock-basket port should test S&P 100 names.

@@ -1,0 +1,22 @@
+# 3 Lower Lows + ATR-Stretch Limit Buy (Alvarez Mean Reversion)
+- Agent: C (Strategy sites & quant blogs)
+- Sources: https://alvarezquanttrading.com/blog/simple-ideas-for-a-mean-reversion-strategy-with-good-results/
+- Thesis: A liquid large-cap stock that is in a long-term uptrend but has fallen for several consecutive days is short-term oversold; demanding a further intraday stretch (limit order below the close) buys the panic flush and captures the snap-back bounce. Classic Connors-school stock mean reversion, tested by Cesar Alvarez (ex-Connors Research director of research).
+- Entry rules:
+  - Stock is a member of the Russell 1000
+  - Liquidity: 21-day average dollar volume > $10M, and close > $1
+  - Close > 100-day simple moving average (long-term trend filter)
+  - Close < 5-day simple moving average (short-term weakness)
+  - 3 consecutive lower lows (on the lows, not closes)
+  - If setup is true, place a limit buy for the NEXT day at [today's close − 0.5 × ATR(10)], good for one day only
+  - Max 10 concurrent positions at 10% of equity each; when more signals than slots, selection is random (Alvarez ran 500 Monte Carlo runs over the random choices)
+- Exit rules:
+  - When close > previous day's close (first up close), sell on the next open
+  - No stop loss, no profit target, no explicit time stop (typical hold is a few days)
+- Indicators & parameters: SMA(100), SMA(5), ATR(10), stretch multiplier 0.5, 3 lower lows, 10 positions × 10%
+- Claimed performance: Russell 1000, 1/1/2004–6/30/2014: CAGR 22.35% (average of 500 Monte Carlo runs), max drawdown 21.02%, 7,183 trades, ~70% exposure. S&P 500 universe gave lower CAGR (fewer signals / lower exposure); Russell 3000 gave higher CAGR. Win rate not stated in the post.
+- Evidence quality: 5 (full mechanical rules + published stats + Monte Carlo handling of signal selection, from a credible independent tester using AmiBroker with documented liquidity filters)
+- Long-only fit: yes
+- 2-15 day fit: yes (typical 3–7 day holds)
+- Codability: yes — all daily OHLCV; needs historical Russell 1000 membership for a faithful test and an assumption about limit-order fills (fill if next day's low ≤ limit price)
+- Notes: Limit-entry strategies are sensitive to fill assumptions and skew toward falling knives by construction; backtest ends mid-2014, so out-of-sample behavior since must be verified. Alvarez elsewhere showed skipping stocks that recently gapped down >10% improves this family of strategies (https://alvarezquanttrading.com/blog/avoiding-gap-trades/). Variants worth testing: RSI(2)<5 instead of 3 lower lows, stretch multiplier 0.25–1.0, 5%-below-close limit (his other posts use that), 100-day vs 200-day trend filter.

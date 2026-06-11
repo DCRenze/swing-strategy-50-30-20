@@ -1,0 +1,25 @@
+# ConnorsRSI Pullback with Stretch Limit Entry
+- Agent: C (Strategy sites & quant blogs)
+- Sources:
+  - https://www.qmatix.com/ConnorsRSI-Pullbacks-Guidebook.pdf (Connors Research "An Introduction to ConnorsRSI" guidebook)
+  - https://alvarezquanttrading.com/wp-content/uploads/2016/05/ConnorsRSIGuidebook.pdf (same guidebook mirrored by Alvarez)
+  - https://alvarezquanttrading.com/blog/connorsrsi-analysis/ (independent component-level test by Cesar Alvarez)
+  - https://tradingmarkets.com/recent/read-chapter-1-sp-500-trading-with-connorsrsi-1585419
+- Thesis: ConnorsRSI is a composite short-term oversold oscillator (price RSI + streak RSI + return percent-rank). Deep composite oversold readings in a stock that is also stretched intraday mark capitulation; entering with a limit order even further below the close buys liquidity panics in high-momentum names (ADX filter requires a trending stock).
+- Entry rules (guidebook "ConnorsRSI Pullbacks"):
+  - Price > $5; 21-day average volume ≥ 250,000 shares
+  - ADX(10) > 30 (stock is trending)
+  - Today's low is at least W% below yesterday's close, W ∈ {2, 4, 6, 8}
+  - Today's close is in the bottom X% of the day's range, X ∈ {10, 25}
+  - ConnorsRSI(3,2,100) < Y, Y ∈ {5, 10, 15}
+  - If all true, submit next-day limit buy Z% below today's close, Z ∈ {4, 6, 8, 10}; fill only if price trades down to limit
+- Exit rules:
+  - Exit at the close on the day ConnorsRSI(3,2,100) closes above N, N ∈ {50, 60, 70, 80}
+  - No stop loss in the published variants
+- Indicators & parameters: ConnorsRSI(3,2,100) = average of [RSI(3) of closes, RSI(2) of the up/down streak length, 100-day PercentRank of today's 1-day return]; ADX(10); parameter grid W/X/Y/Z/N as above
+- Claimed performance: Guidebook (per chapter excerpts and search-snippet recovery — note: stats not re-verified from full PDF text): "a large percentage of the strategy variations show winning trade rates over 80%", "18 variations showing average P/L % of over 10%", "over 12 showing winning trade rates of 80% or more". Alvarez's independent analysis (S&P 500 members, $5+ price, $1M+ avg dollar volume, 1/1/2006–12/31/2015, next-open entry, fixed 5/10/21-day holds): of 360 oversold/overbought variations, "241 of those have p-values under 5%"; he also found that requiring both stock and index above MA200 left "really no edge" for this signal.
+- Evidence quality: 4 (full mechanical rule grid published by Connors Research; vendor stats are in-sample and promotional, but an independent ex-employee test corroborates a statistically significant short-term edge on the indicator)
+- Long-only fit: yes
+- 2-15 day fit: yes (CRSI typically crosses the exit threshold within 3–10 trading days)
+- Codability: yes — all daily OHLCV; streak RSI and percent-rank are easy to compute; limit fills need the same low ≤ limit assumption as other stretch-entry systems
+- Notes: Guidebook numbers are average P/L per trade conditional on fill — limit entries fill on the worst days, so live slippage/fill-rate matters a lot. Materially different from the plain RSI(2) pullback card: composite indicator, ADX trend requirement, intraday weakness conditions, and stretch limit entry. Alvarez's finding that the MA200 filter kills the edge in 2006–2015 contradicts the Connors-school default — test both. Avg P/L claims ">10%" look implausibly high for 3–10 day holds; treat as best-variant cherry-pick until reproduced.

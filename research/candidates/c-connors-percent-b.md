@@ -1,0 +1,19 @@
+# Larry Connors %b Strategy (3 Days of %b < 0.2 Above the 200MA)
+- Agent: C (Strategy sites & quant blogs)
+- Sources:
+  - https://www.quantifiedstrategies.com/larry-connors-b-strategy-bollinger-band/ (bot-walled on direct fetch; rules and stats recovered via search snippets — flagged below)
+- Thesis: Bollinger %b measures where the close sits relative to the bands. Three consecutive days pinned near/below the lower band while the long-term trend is up indicates persistent short-term overselling in an uptrend — a higher-conviction version of a single oversold reading — and tends to snap back within days.
+- Entry rules:
+  - Close > 200-day simple moving average
+  - %b (Bollinger Bands 5-day lookback, 2 standard deviations) < 0.2 for 3 consecutive days
+  - Both true → buy at the close
+- Exit rules:
+  - Sell at the close when %b closes above 0.8
+  - No stop loss disclosed
+- Indicators & parameters: Bollinger Bands(5, 2.0); %b = (Close − LowerBand) / (UpperBand − LowerBand); entry threshold 0.2 × 3 days; exit threshold 0.8; SMA(200) trend filter
+- Claimed performance: Per Quantified Strategies' backtest (instrument not visible in snippets — almost certainly SPY given their house style; test period not captured): 677 trades, win rate 75%, average gain per trade 0.76%, profit factor 1.9, CAGR 4.84%, max drawdown 16%, exposure ~17%. Strategy attributed by QS to Larry Connors' book "High Probability Trading" chapter 5 (likely "High Probability ETF Trading", Connors & Alvarez 2009 — title ambiguous in snippet).
+- Evidence quality: 3 (exact rules + a full stat line published, but recovered via snippets; instrument and period unverified)
+- Long-only fit: yes
+- 2-15 day fit: yes (3-day setup, exit usually within ~2–10 days when %b crosses 0.8)
+- Codability: yes — pure daily OHLCV
+- Notes: 677 trades is a decent sample. Low CAGR is an exposure artifact (17% invested), not a weak edge — 0.76%/trade at 75% win is solid for an index ETF. Original book version was designed for ETFs; the stock-basket port (e.g., S&P 500 members above their own 200MA) is the variant this pipeline should test. Materially different from the plain RSI(2) card via the 3-consecutive-day persistence requirement and band-relative (volatility-normalized) oversold definition. Watch for overlap with the IBS card — %b(5) and IBS correlate but are not the same.

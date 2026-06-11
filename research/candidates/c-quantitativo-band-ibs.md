@@ -1,0 +1,22 @@
+# Range-Stretch Lower Band + IBS Reversion with Trend Stop (Quantitativo "2.11 Sharpe")
+- Agent: C (Strategy sites & quant blogs)
+- Sources:
+  - https://www.quantitativo.com/p/a-mean-reversion-strategy-with-211 (full rules + stats, free)
+  - https://www.quantitativo.com/p/robustness-of-the-211-sharpe-mean (robustness / volatility-regime analysis)
+- Thesis: Combines two independent oversold measures: price must drop a multiple of its average daily range below its recent high (band stretch), AND the day must close near its low (IBS). Requiring both filters out shallow dips and isolates genuine multi-day washouts, which mean-revert hard in equity indices. A long-term SMA "disaster stop" removes the worst left-tail trades.
+- Entry rules:
+  - Compute rolling mean of (High − Low) over the last 25 days
+  - Lower band = (rolling 10-day high) − 2.5 × that 25-day mean range
+  - IBS = (Close − Low) / (High − Low)
+  - Go long at the close when: close < lower band AND IBS < 0.3
+- Exit rules:
+  - Sell at the close when close > yesterday's high
+  - Dynamic stop variant (the 2.11-Sharpe version): also exit if price < 300-day SMA
+  - No fixed time stop stated
+- Indicators & parameters: 25-day mean range, 10-day rolling high, 2.5× multiplier, IBS < 0.3, exit close > prior high, SMA(300) regime stop
+- Claimed performance: QQQ, 1993–2024: base version Sharpe 1.83, 14.6% annual return, max DD −24.7%, exposure 20.0%, avg DD −2.8%; with the 300-SMA dynamic stop: Sharpe 2.11, 13.0% annual, max DD −20.3%, drawdowns 155 vs 177. Robustness post (events bucketed by 14-day Normalized ATR quintile): highest-vol quintile shows ~1.1% expected return per trade with 56% winners, >5× the lowest-vol bucket.
+- Evidence quality: 5 (complete rules, long test window, multiple variants, and a separate published robustness study; free and reproducible)
+- Long-only fit: yes
+- 2-15 day fit: yes (exit on first strength; holds typically 1–8 days)
+- Codability: yes — pure daily OHLCV
+- Notes: Tested on QQQ (index ETF), not single stocks — the port to a liquid stock universe is the open question. The rules originate from a Quantified Strategies pay strategy that Quantitativo reimplemented and published openly. Overlaps the already-covered plain-IBS card but is materially different: IBS here is a confirmation on top of an ATR-style band stretch, plus the SMA(300) regime stop, which is the main Sharpe improvement. The robustness post's finding (edge concentrates in high-volatility regimes) suggests a NATR filter as a variant. Quantitativo uses no transaction costs in some posts — check their assumptions when reproducing.

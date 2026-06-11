@@ -1,0 +1,19 @@
+# ADX-25 Cross Trend Entry (ATR Bracket Exit)
+- Agent: A (Reddit & social)
+- Sources: https://www.reddit.com/r/algotrading/comments/1irhrcw/backtest_results_for_an_adx_trading_strategy/
+- Thesis: When ADX(14) crosses above 25, a new strong trend is being confirmed; in a long-biased index, entering long on that confirmation and holding with a wide asymmetric bracket (small ATR stop, large ATR target) harvests trend continuation. Posted by u/Russ_CW (Feb 2025, r/algotrading, 122 upvotes) with code on GitHub — part of a well-regarded series of fully-disclosed backtests.
+- Entry rules:
+  - ADX(14) crosses above 25 (the original +DI/-DI cross condition was dropped — it backtested "pretty terrible")
+  - Enter long at the open of the next candle after the signal
+  - Optional confirmation filter: price above 200 EMA (reduced trades, improved drawdown)
+- Exit rules:
+  - Stop loss: 1.5 x ATR below entry
+  - Take profit: 3.5 x the stop distance (3.5:1 reward-to-risk, i.e. 5.25 x ATR)
+  - No time stop specified
+- Indicators & parameters: ADX(14) threshold 25; ATR stop 1.5x; TP ratio 3.5:1; optional EMA(200) filter; RSI(14) filter tested and REJECTED (hurt results)
+- Claimed performance: "Really good results" on 2 years of hourly S&P 500 data after optimization (equity-curve screenshots; no precise stats in post text); author: "I ran the test on the daily timeframe from 2000 to start of this year and got similar results, it just didn't generate enough trades so the annualised return is low." Low win rate, high R:R profile. Code: https://github.com/russs123/backtests
+- Evidence quality: 2 (full rules + open code, but headline results are from only 2 years of hourly data, SL/TP were grid-optimized on that sample, no out-of-sample test at posting time, and top comments — "sounds like you overfitted", "classic overfitting" — were heavily upvoted)
+- Long-only fit: yes (long side as posted; author tested shorts separately elsewhere)
+- 2-15 day fit: partial — on hourly data holds are ~days; on daily data the same ATR bracket implies multi-day-to-multi-week holds; needs a time stop (e.g., 15 days) added to fit our window
+- Codability: yes on daily OHLCV (ADX, ATR, EMA all standard); note the headline backtest was hourly, so expect different behavior on daily bars and verify trade frequency is adequate
+- Notes: Weakest card of this batch — included because it is a complete, coded, community-vetted spec and trend-strength filters keep recurring across threads (Linda Raschke's "Holy Grail" — ADX > 30 and rising, buy pullback to 20 EMA — was the seed of a 159-upvote r/Daytrading thread https://www.reddit.com/r/Daytrading/comments/1ffhuo4/what_is_your_favorite_stupidly_simple_strategy/). Red flags: ADX-only entry without a directional condition is incoherent in principle (ADX also rises in downtrends — the 200 EMA filter is what rescues it); an experienced commenter who forward-tested ADX variants later reported "I've suspended using ADX... it too is lagging." If tested, prefer the Holy-Grail-style variant (ADX(14) > 30 and rising + pullback touching 20 EMA + entry above prior high, stop under pullback low) which at least has trend + direction + entry trigger; treat the posted ADX-cross version as the null hypothesis.

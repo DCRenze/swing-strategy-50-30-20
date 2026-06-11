@@ -1,0 +1,21 @@
+# 20-Day MA Pullback in Long-Term Uptrend (RSI-5 Timing)
+- Agent: C (Strategy sites & quant blogs)
+- Sources:
+  - https://www.quantifiedstrategies.com/pullback-trading-strategy/ (bot-walled on direct fetch; rules and stats recovered via search snippets — flagged below)
+  - https://quantifiedstrategies.substack.com/p/a-long-term-pullback-trading-strategy (listed in search results as the substack mirror; returned 404 on fetch attempt)
+- Thesis: The canonical "buy the dip in an uptrend": when the long-term trend is up (above 200-day MA), short-term pullbacks below the 20-day MA in the S&P 500 have mean-reverted reliably since the mid-1980s. The 200-day filter keeps the system out of 2000–03 / 2008-style regimes where dips keep dipping.
+- Entry rules:
+  - Close > 200-day simple moving average
+  - Close < 20-day simple moving average
+  - RSI(5) < 45
+  - All true → buy at the close
+- Exit rules:
+  - Sell at the close when RSI(5) > 65
+  - No stop loss or time stop disclosed
+- Indicators & parameters: SMA(200), SMA(20), RSI(5) with 45 entry / 65 exit thresholds
+- Claimed performance: On SPY (test period not captured in snippets): CAGR 8.3%, win rate 82%, max drawdown 30% (hit during COVID crash), "risk-adjusted return" (CAGR divided by exposure) 27% — implying roughly ~30% time in market. Note: every number here comes from search snippets of the bot-walled page, not a full page fetch.
+- Evidence quality: 3 (exact rules + headline stats published, but I could not verify the full table, trade count, or test period directly)
+- Long-only fit: yes
+- 2-15 day fit: yes (RSI(5) round trips from <45 to >65 typically take days-to-2-weeks; verify hold distribution in backtest)
+- Codability: yes — three indicators on daily closes
+- Notes: Tested on the index ETF; porting to individual stocks needs a position-selection rule. The 82% win rate with no stop means the strategy holds through drawdowns until RSI recovers — the 30% max DD shows the tail risk. Closely related to (but mechanically distinct from) the RSI(2)-below-SMA200 card: different oscillator length, explicit 20-day MA pullback requirement, and symmetric RSI exit. Variants worth testing: RSI(5) entry 30–50 sweep, exit 60–70 sweep, and requiring N consecutive closes below SMA(20).

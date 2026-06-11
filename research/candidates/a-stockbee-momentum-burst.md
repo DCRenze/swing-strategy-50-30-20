@@ -1,0 +1,21 @@
+# Stockbee Momentum Burst (4% Breakout, 3-5 Day Hold)
+- Agent: A (Reddit & social)
+- Sources: https://stockbee.blogspot.com/2014/01/how-to-identify-good-momentum-burst-and.html
+  https://www.reddit.com/r/qullamaggie/comments/1cpk4aa/backtestingpracticing_kks_breakout_strategy/ (community recommendation of the setup for small accounts)
+- Thesis: Pradeep Bonde's (Stockbee) core claim: "stocks move in momentum bursts of 3-5 days" of 8-40% magnitude, and the burst is identifiable on day 1 by a >=4% range-expansion candle on increased volume coming out of a quiet consolidation. Swing traders harvest just the burst and exit before mean reversion sets in. One of the longest-running setups in retail trading social media (Stockbee blog/Twitter since ~2007; r/stockbee exists; constantly referenced in r/qullamaggie and trader Twitter).
+- Entry rules:
+  - Core scan (low/mid-priced stocks): today's close >= 1.04 x yesterday's close (4%+ move) AND volume > yesterday's volume AND volume > 100k shares
+  - Higher-priced stocks (> ~$40): close - open >= $0.90 ("$ breakout" variant) AND volume > 100k
+  - Quality filters: day before the breakout was a narrow-range or negative day; 3-20 days of consolidation precedes the breakout; breakout day closes at/near its high; stock is NOT already extended (first or second breakout of the trend preferred); low float (<25M) is a bonus
+  - Buy on the breakout day (Bonde enters intraday as the 4% move develops; end-of-day entry at close is the codable version)
+- Exit rules:
+  - Sell into strength on day 3-5 of the burst
+  - Hard time stop: exit by day 5 regardless
+  - Optional: exit partial day 2-3, trail rest; stop loss at breakout-day low
+- Indicators & parameters: 4% daily change trigger; volume > prior day and > 100k; consolidation 3-20 days; hold 3-5 days; $0.90 c-o variant for >$40 stocks
+- Claimed performance: Bonde: "stocks move in 8 to 40% bursts" (5-25 dollars for >$40 stocks); ~"500 to 1000 such setups a year" on the bullish and bearish side combined; "you can make millions of dollars over your trading life time" — no published win rate or backtest. He has claimed (on the blog over the years) triple-digit annual returns trading this; unverified. r/qullamaggie commenter (May 2024): "If you have a small account or looking to go faster, work on strategies with faster churn (Momentum burst of 3-5 days)".
+- Evidence quality: 3 (exact scan thresholds published by originator and stable for 15+ years; multi-community corroboration that people trade it; zero published systematic backtest from the source)
+- Long-only fit: yes
+- 2-15 day fit: yes (3-5 day holds by design — the shortest-duration card in this beat)
+- Codability: yes — fully expressible on daily OHLCV (4% close-over-close + volume conditions + range/consolidation filters + 3-5 day time exit). Float filter needs reference data but is optional.
+- Notes: The selection skill Bonde emphasizes ("go through 5000 to 10000 old setups") is a warning that the raw scan fires far more often than the curated trades — expect the naive backtest to be much worse than claims. 4% movers skew to small caps: survivorship bias in any current-constituent universe, plus slippage will eat a large share of an 8% average burst. Worth testing with: market regime filter (Stockbee uses his own market-breadth model), "not extended" quantified as e.g. <2 prior 4% days in last 5, and entry at close vs next open (next-open entry loses a chunk of day-1 move — sensitivity test needed). Bearish-side variant exists but is out of scope (long-only).

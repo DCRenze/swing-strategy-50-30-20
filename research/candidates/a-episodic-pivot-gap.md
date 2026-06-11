@@ -1,0 +1,22 @@
+# Episodic Pivot (EP) — Catalyst Gap-Up Continuation
+- Agent: A (Reddit & social)
+- Sources: https://www.reddit.com/r/wallstreetbetsOGs/comments/q5xtno/trade_like_a_professional_part_2_episodic_pivots/
+  https://www.reddit.com/r/qullamaggie/comments/qgg00i/episodic_pivots_setup_explained/
+- Thesis: A surprise fundamental catalyst (usually a blowout earnings report) on a neglected stock causes a huge gap on record volume; investors underreact (the same behavioral mechanism as PEAD), so the day-1 gap is the *start* of a multi-day/multi-week move, not the end. Term coined by Pradeep Bonde (Stockbee); heavily evangelized by Qullamaggie and the r/qullamaggie community, who as of 2024 prefer EPs over plain breakouts.
+- Entry rules:
+  - Stock gaps up on a confirmed catalyst (earnings, guidance — not rumors/buyouts); minimum gap ~+8% (Bonde's threshold)
+  - Volume surge: premarket volume heavy; on track for >=3x average daily volume by close (10x+ is better; "highest volume day in stock's history" is ideal)
+  - Quality filters: strong positive fundamental change (big EPS/revenue surprise, raised guidance); low float preferred (<25M good, <10M excellent; >100M float = choppier); "neglected" stocks (months of sideways/down price action, little coverage) are the best performers
+  - Entry trigger: buy the break of the opening range high (1-min, 5-min, or 60-min ORH) near market open
+  - Avoid: rumor-driven gaps; biotech FDA gaps only with reduced size
+- Exit rules:
+  - Initial stop: low of day (LOD); cap risk at ~0.5% of account — reduce size if LOD is far; re-entry allowed if stopped and price reclaims high of day on volume
+  - Trail: close position when price closes below the 10-day SMA (fast movers) or 20-day SMA (slower movers); "loose" interpretation (allow marginal closes at the line) recommended
+  - No profit target; partials into strength optional
+- Indicators & parameters: gap >= 8%; relative volume >= 3x; float < 25M preferred; SMA(10)/SMA(20) trailing exits; opening-range high entry
+- Claimed performance: Post shows 5 worked examples from mid-2021 with trailing-10SMA returns of ~24% (AMBA), ~30-55% (DOCS), ~85% (TASK), ~70% (UPST), ~27% (TEAM) — cherry-picked examples, not a backtest. Author cites academic PEAD literature (SSRN review, 2020) as the underlying edge. A commenter (u/calebsurfs): "I have been doing pretty well playing gaps up... in and out in 1-10 days."
+- Evidence quality: 3 (rules are explicit and consistent across multiple practitioners/communities; performance claims are curated examples; the underlying drift effect is academically documented)
+- Long-only fit: yes
+- 2-15 day fit: yes (typical community-stated duration 2-20 trading days; trail can extend further)
+- Codability: partly — gap %, relative volume, and MA-trail exits are daily OHLCV; float and "catalyst = earnings" need reference/fundamental data (earnings dates are easy to get); opening-range-high entry and LOD stop need intraday data. Daily approximation: require open >= prior close +8%, buy at close (or next open) if close > open and volume >= 3x 50-day average, stop at day low.
+- Notes: OVERLAP WARNING — this is the practitioner/trading-community implementation of the long PEAD leg already carded by another agent; the materially different parts are (a) day-1 entry on the gap itself rather than drift entry, (b) volume/float/neglect filters, (c) MA-trail exit instead of fixed horizon. Worth testing as a PEAD variant rather than standalone if signals overlap heavily. Skepticism: examples are from the best EP regime ever (2020-21); low-float names carry severe slippage/liquidity issues for any real-size backtest; "strong fundamentals" filter is semi-discretionary. The r/qullamaggie community consistently reports EPs aged better than flag breakouts post-2021.
