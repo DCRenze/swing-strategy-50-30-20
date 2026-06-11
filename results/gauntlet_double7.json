@@ -1,0 +1,119 @@
+{
+  "strategy": "double7",
+  "windows": {
+    "full": {
+      "strategy": "double7[7,high7]",
+      "start": "2005-06-01",
+      "end": "2026-06-11",
+      "cagr": 0.074,
+      "sharpe": 0.57,
+      "max_dd": -0.2485,
+      "exposure": 0.716,
+      "trades": 4955,
+      "win_rate": 0.677,
+      "avg_ret": 0.00338,
+      "profit_factor": 1.23,
+      "avg_hold_days": 7.8,
+      "bench_cagr": 0.1102,
+      "bench_sharpe": 0.64,
+      "bench_max_dd": -0.5519
+    },
+    "is": {
+      "strategy": "double7[7,high7]",
+      "start": "2005-06-01",
+      "end": "2022-12-30",
+      "cagr": 0.0696,
+      "sharpe": 0.55,
+      "max_dd": -0.2485,
+      "exposure": 0.696,
+      "trades": 4022,
+      "win_rate": 0.679,
+      "avg_ret": 0.00331,
+      "profit_factor": 1.23,
+      "avg_hold_days": 7.8,
+      "bench_cagr": 0.089,
+      "bench_sharpe": 0.53,
+      "bench_max_dd": -0.5519
+    },
+    "oos": {
+      "strategy": "double7[7,high7]",
+      "start": "2023-01-03",
+      "end": "2026-06-11",
+      "cagr": 0.0977,
+      "sharpe": 0.68,
+      "max_dd": -0.1575,
+      "exposure": 0.816,
+      "trades": 931,
+      "win_rate": 0.667,
+      "avg_ret": 0.00376,
+      "profit_factor": 1.23,
+      "avg_hold_days": 7.7,
+      "bench_cagr": 0.2269,
+      "bench_sharpe": 1.43,
+      "bench_max_dd": -0.1876
+    }
+  },
+  "variants": {
+    "lb5": {
+      "cagr": 0.0732,
+      "sharpe": 0.57,
+      "max_dd": -0.2786,
+      "trades": 5292,
+      "win_rate": 0.68,
+      "avg_ret": 0.00261,
+      "profit_factor": 1.22,
+      "exposure": 0.664
+    },
+    "lb10": {
+      "cagr": 0.0853,
+      "sharpe": 0.65,
+      "max_dd": -0.2571,
+      "trades": 3215,
+      "win_rate": 0.663,
+      "avg_ret": 0.00498,
+      "profit_factor": 1.29,
+      "exposure": 0.709
+    },
+    "exit_sma5": {
+      "cagr": 0.0499,
+      "sharpe": 0.44,
+      "max_dd": -0.3777,
+      "trades": 7133,
+      "win_rate": 0.661,
+      "avg_ret": 0.00139,
+      "profit_factor": 1.14,
+      "exposure": 0.606
+    }
+  },
+  "regimes": {
+    "2020_crash_recovery": {
+      "return": 0.1382,
+      "max_dd": -0.1948,
+      "sharpe": 0.77
+    },
+    "2022_bear": {
+      "return": -0.1178,
+      "max_dd": -0.1374,
+      "sharpe": -1.26
+    },
+    "2023_25_chop": {
+      "return": 0.3182,
+      "max_dd": -0.1575,
+      "sharpe": 0.68
+    }
+  },
+  "baseline_name": "double7[7,high7]",
+  "mc_drawdown": {
+    "p50": -0.3304,
+    "p95": -0.2217,
+    "p99": -0.1938
+  },
+  "pass_bar": {
+    "oos_pf_gt_1.3": false,
+    "oos_maxdd_lt_25pct": true,
+    "full_trades_gte_100": true,
+    "oos_sharpe_beats_spy": false
+  },
+  "pass_all": false,
+  "runtime_s": 6.9
+}

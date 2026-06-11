@@ -170,7 +170,7 @@ def gauntlet_one(panel, bench, strategy: str) -> dict:
         out["regimes"][label] = slice_equity(full_res.equity, s, e)
 
     if len(full_res.trades) >= 20:
-        dds = monte_carlo_drawdown(full_res.trades["ret"].to_numpy())
+        dds = monte_carlo_drawdown(full_res.equity.pct_change().dropna().to_numpy())
         out["mc_drawdown"] = {
             "p50": round(float(np.percentile(dds, 50)), 4),
             "p95": round(float(np.percentile(dds, 95)), 4),

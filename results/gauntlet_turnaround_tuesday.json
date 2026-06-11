@@ -1,0 +1,139 @@
+{
+  "strategy": "turnaround_tuesday",
+  "windows": {
+    "full": {
+      "strategy": "turnaround_tuesday[ibs0.5,4d]",
+      "start": "2005-06-01",
+      "end": "2026-06-11",
+      "cagr": 0.0927,
+      "sharpe": 0.58,
+      "max_dd": -0.3575,
+      "exposure": 0.55,
+      "trades": 9468,
+      "win_rate": 0.585,
+      "avg_ret": 0.00234,
+      "profit_factor": 1.17,
+      "avg_hold_days": 3.1,
+      "bench_cagr": 0.1102,
+      "bench_sharpe": 0.64,
+      "bench_max_dd": -0.5519
+    },
+    "is": {
+      "strategy": "turnaround_tuesday[ibs0.5,4d]",
+      "start": "2005-06-01",
+      "end": "2022-12-30",
+      "cagr": 0.0886,
+      "sharpe": 0.55,
+      "max_dd": -0.3575,
+      "exposure": 0.552,
+      "trades": 7949,
+      "win_rate": 0.586,
+      "avg_ret": 0.00228,
+      "profit_factor": 1.16,
+      "avg_hold_days": 3.1,
+      "bench_cagr": 0.089,
+      "bench_sharpe": 0.53,
+      "bench_max_dd": -0.5519
+    },
+    "oos": {
+      "strategy": "turnaround_tuesday[ibs0.5,4d]",
+      "start": "2023-01-03",
+      "end": "2026-06-11",
+      "cagr": 0.1146,
+      "sharpe": 0.82,
+      "max_dd": -0.1622,
+      "exposure": 0.541,
+      "trades": 1519,
+      "win_rate": 0.579,
+      "avg_ret": 0.00269,
+      "profit_factor": 1.19,
+      "avg_hold_days": 3.1,
+      "bench_cagr": 0.2269,
+      "bench_sharpe": 1.43,
+      "bench_max_dd": -0.1876
+    }
+  },
+  "variants": {
+    "ibs0.3": {
+      "cagr": 0.0847,
+      "sharpe": 0.53,
+      "max_dd": -0.3575,
+      "trades": 7854,
+      "win_rate": 0.585,
+      "avg_ret": 0.00222,
+      "profit_factor": 1.16,
+      "exposure": 0.546
+    },
+    "ts3": {
+      "cagr": 0.0582,
+      "sharpe": 0.4,
+      "max_dd": -0.3158,
+      "trades": 8251,
+      "win_rate": 0.556,
+      "avg_ret": 0.00155,
+      "profit_factor": 1.12,
+      "exposure": 0.477
+    },
+    "ts5": {
+      "cagr": 0.0404,
+      "sharpe": 0.34,
+      "max_dd": -0.3363,
+      "trades": 6011,
+      "win_rate": 0.603,
+      "avg_ret": 0.0015,
+      "profit_factor": 1.1,
+      "exposure": 0.471
+    },
+    "bull_only": {
+      "cagr": 0.0075,
+      "sharpe": 0.12,
+      "max_dd": -0.3252,
+      "trades": 6024,
+      "win_rate": 0.572,
+      "avg_ret": 0.00043,
+      "profit_factor": 1.03,
+      "exposure": 0.424
+    },
+    "bear_only": {
+      "cagr": 0.0749,
+      "sharpe": 0.56,
+      "max_dd": -0.3575,
+      "trades": 1945,
+      "win_rate": 0.624,
+      "avg_ret": 0.00753,
+      "profit_factor": 1.4,
+      "exposure": 0.13
+    }
+  },
+  "regimes": {
+    "2020_crash_recovery": {
+      "return": 0.0503,
+      "max_dd": -0.236,
+      "sharpe": 0.32
+    },
+    "2022_bear": {
+      "return": 0.0476,
+      "max_dd": -0.2241,
+      "sharpe": 0.32
+    },
+    "2023_25_chop": {
+      "return": 0.4988,
+      "max_dd": -0.1622,
+      "sharpe": 1.01
+    }
+  },
+  "baseline_name": "turnaround_tuesday[ibs0.5,4d]",
+  "mc_drawdown": {
+    "p50": -0.3988,
+    "p95": -0.2717,
+    "p99": -0.2368
+  },
+  "pass_bar": {
+    "oos_pf_gt_1.3": false,
+    "oos_maxdd_lt_25pct": true,
+    "full_trades_gte_100": true,
+    "oos_sharpe_beats_spy": false
+  },
+  "pass_all": false,
+  "runtime_s": 4.4
+}

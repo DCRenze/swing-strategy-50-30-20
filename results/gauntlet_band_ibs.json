@@ -1,0 +1,139 @@
+{
+  "strategy": "band_ibs",
+  "windows": {
+    "full": {
+      "strategy": "band_ibs[basket,x2.5,ibs0.3,ds300]",
+      "start": "2005-06-01",
+      "end": "2026-06-11",
+      "cagr": 0.1084,
+      "sharpe": 0.54,
+      "max_dd": -0.4101,
+      "exposure": 0.634,
+      "trades": 17745,
+      "win_rate": 0.533,
+      "avg_ret": 0.00156,
+      "profit_factor": 1.12,
+      "avg_hold_days": 1.9,
+      "bench_cagr": 0.1102,
+      "bench_sharpe": 0.64,
+      "bench_max_dd": -0.5519
+    },
+    "is": {
+      "strategy": "band_ibs[basket,x2.5,ibs0.3,ds300]",
+      "start": "2005-06-01",
+      "end": "2022-12-30",
+      "cagr": 0.1248,
+      "sharpe": 0.59,
+      "max_dd": -0.4101,
+      "exposure": 0.638,
+      "trades": 14572,
+      "win_rate": 0.538,
+      "avg_ret": 0.00179,
+      "profit_factor": 1.13,
+      "avg_hold_days": 2.0,
+      "bench_cagr": 0.089,
+      "bench_sharpe": 0.53,
+      "bench_max_dd": -0.5519
+    },
+    "oos": {
+      "strategy": "band_ibs[basket,x2.5,ibs0.3,ds300]",
+      "start": "2023-01-03",
+      "end": "2026-06-11",
+      "cagr": 0.0302,
+      "sharpe": 0.25,
+      "max_dd": -0.2561,
+      "exposure": 0.613,
+      "trades": 3173,
+      "win_rate": 0.51,
+      "avg_ret": 0.00053,
+      "profit_factor": 1.04,
+      "avg_hold_days": 1.7,
+      "bench_cagr": 0.2269,
+      "bench_sharpe": 1.43,
+      "bench_max_dd": -0.1876
+    }
+  },
+  "variants": {
+    "mult2.0": {
+      "cagr": 0.1126,
+      "sharpe": 0.55,
+      "max_dd": -0.5142,
+      "trades": 14767,
+      "win_rate": 0.539,
+      "avg_ret": 0.00164,
+      "profit_factor": 1.12,
+      "exposure": 0.647
+    },
+    "mult3.0": {
+      "cagr": 0.1107,
+      "sharpe": 0.55,
+      "max_dd": -0.4195,
+      "trades": 14110,
+      "win_rate": 0.536,
+      "avg_ret": 0.00167,
+      "profit_factor": 1.12,
+      "exposure": 0.615
+    },
+    "ibs0.25": {
+      "cagr": 0.1186,
+      "sharpe": 0.58,
+      "max_dd": -0.4122,
+      "trades": 14306,
+      "win_rate": 0.539,
+      "avg_ret": 0.00175,
+      "profit_factor": 1.13,
+      "exposure": 0.635
+    },
+    "ibs0.4": {
+      "cagr": 0.0979,
+      "sharpe": 0.5,
+      "max_dd": -0.4993,
+      "trades": 14958,
+      "win_rate": 0.537,
+      "avg_ret": 0.00144,
+      "profit_factor": 1.11,
+      "exposure": 0.639
+    },
+    "no_disaster": {
+      "cagr": 0.1117,
+      "sharpe": 0.55,
+      "max_dd": -0.6693,
+      "trades": 8491,
+      "win_rate": 0.634,
+      "avg_ret": 0.00278,
+      "profit_factor": 1.18,
+      "exposure": 0.772
+    }
+  },
+  "regimes": {
+    "2020_crash_recovery": {
+      "return": 1.313,
+      "max_dd": -0.3672,
+      "sharpe": 1.9
+    },
+    "2022_bear": {
+      "return": -0.1154,
+      "max_dd": -0.2585,
+      "sharpe": -0.28
+    },
+    "2023_25_chop": {
+      "return": 0.1251,
+      "max_dd": -0.2284,
+      "sharpe": 0.29
+    }
+  },
+  "baseline_name": "band_ibs[basket,x2.5,ibs0.3,ds300]",
+  "mc_drawdown": {
+    "p50": -0.5134,
+    "p95": -0.3583,
+    "p99": -0.3184
+  },
+  "pass_bar": {
+    "oos_pf_gt_1.3": false,
+    "oos_maxdd_lt_25pct": false,
+    "full_trades_gte_100": true,
+    "oos_sharpe_beats_spy": false
+  },
+  "pass_all": false,
+  "runtime_s": 8.5
+}

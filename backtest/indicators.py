@@ -58,13 +58,24 @@ def liquidity_mask(
     return (panel["raw_close"] > min_price) & (dv > min_dollar_vol)
 
 
-def monte_carlo_drawdown(trade_returns: np.ndarray, n_paths: int = 2000, seed: int = 7):
-    """Bootstrap trade sequences; return distribution of max drawdowns (on compounded equity)."""
+def monte_carlo_drawdown(
+    daily_returns: np.ndarray, n_paths: int = 2000, block: int = 5, seed: int = 7
+):
+    """Block-bootstrap the portfolio's daily returns; return max-drawdown distribution.
+
+    Uses daily portfolio returns (not per-trade returns) so position sizing and
+    overlap are preserved; 5-day blocks retain short-horizon autocorrelation.
+    """
     rng = np.random.default_rng(seed)
-    n = len(trade_returns)
+    r = np.asarray(daily_returns)
+    r = r[np.isfinite(r)]
+    n = len(r)
+    n_blocks = -(-n // block)
+    starts_max = max(n - block, 1)
     dds = np.empty(n_paths)
     for i in range(n_paths):
-        seq = rng.choice(trade_returns, size=n, replace=True)
+        starts = rng.integers(0, starts_max, size=n_blocks)
+        seq = np.concatenate([r[s : s + block] for s in starts])[:n]
         eq = np.cumprod(1.0 + seq)
         peak = np.maximum.accumulate(eq)
         dds[i] = ((eq - peak) / peak).min()

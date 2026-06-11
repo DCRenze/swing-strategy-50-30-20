@@ -1,0 +1,119 @@
+{
+  "strategy": "turn_of_month",
+  "windows": {
+    "full": {
+      "strategy": "turn_of_month[-5,+3,top100]",
+      "start": "2005-06-01",
+      "end": "2026-06-11",
+      "cagr": 0.1011,
+      "sharpe": 0.69,
+      "max_dd": -0.2575,
+      "exposure": 0.332,
+      "trades": 2511,
+      "win_rate": 0.574,
+      "avg_ret": 0.00885,
+      "profit_factor": 1.55,
+      "avg_hold_days": 7.0,
+      "bench_cagr": 0.1102,
+      "bench_sharpe": 0.64,
+      "bench_max_dd": -0.5519
+    },
+    "is": {
+      "strategy": "turn_of_month[-5,+3,top100]",
+      "start": "2005-06-01",
+      "end": "2022-12-30",
+      "cagr": 0.0967,
+      "sharpe": 0.66,
+      "max_dd": -0.2283,
+      "exposure": 0.333,
+      "trades": 2100,
+      "win_rate": 0.581,
+      "avg_ret": 0.00848,
+      "profit_factor": 1.55,
+      "avg_hold_days": 7.0,
+      "bench_cagr": 0.089,
+      "bench_sharpe": 0.53,
+      "bench_max_dd": -0.5519
+    },
+    "oos": {
+      "strategy": "turn_of_month[-5,+3,top100]",
+      "start": "2023-01-03",
+      "end": "2026-06-11",
+      "cagr": 0.1315,
+      "sharpe": 0.89,
+      "max_dd": -0.2575,
+      "exposure": 0.325,
+      "trades": 401,
+      "win_rate": 0.544,
+      "avg_ret": 0.01167,
+      "profit_factor": 1.63,
+      "avg_hold_days": 7.0,
+      "bench_cagr": 0.2269,
+      "bench_sharpe": 1.43,
+      "bench_max_dd": -0.1876
+    }
+  },
+  "variants": {
+    "entry4": {
+      "cagr": 0.0763,
+      "sharpe": 0.58,
+      "max_dd": -0.2788,
+      "trades": 2100,
+      "win_rate": 0.569,
+      "avg_ret": 0.00671,
+      "profit_factor": 1.43,
+      "exposure": 0.285
+    },
+    "exit1": {
+      "cagr": 0.0744,
+      "sharpe": 0.59,
+      "max_dd": -0.1974,
+      "trades": 2100,
+      "win_rate": 0.567,
+      "avg_ret": 0.00655,
+      "profit_factor": 1.5,
+      "exposure": 0.238
+    },
+    "top50": {
+      "cagr": 0.0967,
+      "sharpe": 0.66,
+      "max_dd": -0.2283,
+      "trades": 2100,
+      "win_rate": 0.581,
+      "avg_ret": 0.00848,
+      "profit_factor": 1.55,
+      "exposure": 0.333
+    }
+  },
+  "regimes": {
+    "2020_crash_recovery": {
+      "return": 0.3859,
+      "max_dd": -0.1043,
+      "sharpe": 1.61
+    },
+    "2022_bear": {
+      "return": -0.0987,
+      "max_dd": -0.2283,
+      "sharpe": -0.31
+    },
+    "2023_25_chop": {
+      "return": 0.4928,
+      "max_dd": -0.2575,
+      "sharpe": 0.95
+    }
+  },
+  "baseline_name": "turn_of_month[-5,+3,top100]",
+  "mc_drawdown": {
+    "p50": -0.3006,
+    "p95": -0.2092,
+    "p99": -0.184
+  },
+  "pass_bar": {
+    "oos_pf_gt_1.3": true,
+    "oos_maxdd_lt_25pct": false,
+    "full_trades_gte_100": true,
+    "oos_sharpe_beats_spy": false
+  },
+  "pass_all": false,
+  "runtime_s": 3.4
+}
