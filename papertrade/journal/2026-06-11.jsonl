@@ -1,0 +1,12 @@
+{"ts": "2026-06-11T06:32:15", "kind": "run_start", "mode": "evening", "equity": 100000.0, "dry_run": true}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "GOOGL", "side": "buy", "qty": 14, "order_type": "limit", "tif": "day", "limit_price": 345.29, "client_order_id": "A-GOOGL-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "AMZN", "side": "buy", "qty": 21, "order_type": "limit", "tif": "day", "limit_price": 231.98, "client_order_id": "A-AMZN-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "HPE", "side": "buy", "qty": 115, "order_type": "limit", "tif": "day", "limit_price": 43.43, "client_order_id": "A-HPE-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "F", "side": "buy", "qty": 363, "order_type": "limit", "tif": "day", "limit_price": 13.76, "client_order_id": "A-F-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "NET", "side": "buy", "qty": 23, "order_type": "limit", "tif": "day", "limit_price": 208.54, "client_order_id": "A-NET-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "AKAM", "side": "buy", "qty": 40, "order_type": "limit", "tif": "day", "limit_price": 123.39, "client_order_id": "A-AKAM-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "DAL", "side": "buy", "qty": 66, "order_type": "limit", "tif": "day", "limit_price": 75.41, "client_order_id": "A-DAL-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "NSC", "side": "buy", "qty": 16, "order_type": "limit", "tif": "day", "limit_price": 304.6, "client_order_id": "A-NSC-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "ROKU", "side": "buy", "qty": 44, "order_type": "limit", "tif": "day", "limit_price": 112.33, "client_order_id": "A-ROKU-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "dry_run_order", "sleeve": "A", "ticker": "HST", "side": "buy", "qty": 209, "order_type": "limit", "tif": "day", "limit_price": 23.86, "client_order_id": "A-HST-20260611-buy"}
+{"ts": "2026-06-11T06:33:04", "kind": "run_end", "mode": "evening"}
