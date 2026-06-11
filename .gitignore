@@ -1,0 +1,15 @@
+# Secrets
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Cached market data (large, regenerable)
+data/*.parquet
+data/*.csv
+
+# OS noise
+Thumbs.db
+desktop.ini
