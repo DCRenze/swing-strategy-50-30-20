@@ -1,0 +1,79 @@
+name: Near-Close Trade Run
+
+# Runs before market close every trading day (Mon-Fri).
+# Handles: Sleeve B MOC entries/exits (turn-of-month) + Sleeve C MOC entries/exits
+# (Turnaround Tuesday — only active on Mondays when SPY < 200dma).
+# The runner no-ops gracefully on days nothing applies.
+#
+# SCHEDULE NOTE: GitHub Actions cron runs in UTC. This is set for EDT (UTC-4, ~Mar-Nov).
+# When clocks fall back (EST, UTC-5, ~Nov-Mar), change the cron to: '35 20 * * 1-5'
+# EDT schedule: 19:35 UTC = 3:35 PM ET  (25 min before close — enough for MOC orders)
+# EST schedule: 20:35 UTC = 3:35 PM ET
+#
+# REQUIRED GITHUB SECRETS (Settings → Secrets and variables → Actions → New repository secret):
+#   ALPACA_API_KEY     — your Alpaca paper-trading API key (starts with PK...)
+#   ALPACA_SECRET_KEY  — your Alpaca paper-trading secret key
+
+on:
+  schedule:
+    - cron: '35 19 * * 1-5'  # 3:35 PM EDT (UTC-4) — update to '35 20 * * 1-5' in November
+  workflow_dispatch:           # allows manual trigger from the Actions tab
+
+permissions:
+  contents: write              # needed to commit journal + state back to the repo
+
+concurrency:
+  group: trade-run             # prevent overlap with evening run
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore cached market data
+        uses: actions/cache@v4
+        with:
+          path: data/
+          key: market-data-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            market-data-${{ runner.os }}-
+
+      - name: Rebuild universe (S&P 500 + Russell 1000)
+        run: python -m backtest.universe
+
+      - name: Write .env from secrets
+        run: |
+          echo "ALPACA_API_KEY=${{ secrets.ALPACA_API_KEY }}" > .env
+          echo "ALPACA_SECRET_KEY=${{ secrets.ALPACA_SECRET_KEY }}" >> .env
+
+      - name: Run near-close trade
+        run: python -m papertrade.run_daily nearclose
+
+      - name: Remove .env
+        if: always()
+        run: rm -f .env
+
+      - name: Commit state and journal back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
+          git add papertrade/state.json papertrade/journal/
+          git diff --staged --quiet && echo "Nothing to commit" || \
+            git commit -m "Near-close run $(date -u +%Y-%m-%d)" && git push
