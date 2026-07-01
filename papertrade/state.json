@@ -1,4 +1,53 @@
 {
-  "positions": {},
-  "hwm": 100219.32
+  "positions": {
+    "JAZZ": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "ACHC": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "CRL": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "GEV": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "RRX": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "CAT": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "NUE": {
+      "sleeve": "A",
+      "entry_date": "2026-07-01"
+    },
+    "TLN": {
+      "sleeve": "A",
+      "entry_date": "2026-07-01"
+    },
+    "MKSI": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "TER": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "JBHT": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "HAYW": {
+      "sleeve": "H",
+      "entry_date": "2026-07-01"
+    }
+  },
+  "hwm": 100432.77
 }
