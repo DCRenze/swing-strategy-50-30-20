@@ -1,0 +1,33 @@
+{"ts": "2026-06-30T12:36:07", "kind": "run_start", "mode": "nearclose", "equity": 100219.32, "dry_run": false}
+{"ts": "2026-06-30T12:36:52", "kind": "run_end", "mode": "nearclose"}
+{"ts": "2026-06-30T13:45:40", "kind": "run_start", "mode": "evening", "equity": 100219.32, "dry_run": false}
+{"ts": "2026-06-30T13:46:23", "kind": "order_submitted", "sleeve": "A", "ticker": "JPM", "side": "buy", "qty": 15, "order_type": "limit", "tif": "day", "limit_price": 321.94, "client_order_id": "A-JPM-20260630-buy"}
+{"ts": "2026-06-30T13:46:23", "kind": "order_submitted", "sleeve": "A", "ticker": "RCL", "side": "buy", "qty": 16, "order_type": "limit", "tif": "day", "limit_price": 307.25, "client_order_id": "A-RCL-20260630-buy"}
+{"ts": "2026-06-30T13:46:24", "kind": "order_submitted", "sleeve": "A", "ticker": "ROST", "side": "buy", "qty": 24, "order_type": "limit", "tif": "day", "limit_price": 207.69, "client_order_id": "A-ROST-20260630-buy"}
+{"ts": "2026-06-30T13:46:24", "kind": "order_submitted", "sleeve": "A", "ticker": "GM", "side": "buy", "qty": 66, "order_type": "limit", "tif": "day", "limit_price": 75.31, "client_order_id": "A-GM-20260630-buy"}
+{"ts": "2026-06-30T13:46:24", "kind": "order_submitted", "sleeve": "A", "ticker": "MMM", "side": "buy", "qty": 31, "order_type": "limit", "tif": "day", "limit_price": 158.68, "client_order_id": "A-MMM-20260630-buy"}
+{"ts": "2026-06-30T13:46:24", "kind": "order_submitted", "sleeve": "A", "ticker": "EOG", "side": "buy", "qty": 39, "order_type": "limit", "tif": "day", "limit_price": 127.03, "client_order_id": "A-EOG-20260630-buy"}
+{"ts": "2026-06-30T13:46:24", "kind": "order_submitted", "sleeve": "A", "ticker": "ODFL", "side": "buy", "qty": 23, "order_type": "limit", "tif": "day", "limit_price": 210.5, "client_order_id": "A-ODFL-20260630-buy"}
+{"ts": "2026-06-30T13:46:24", "kind": "order_submitted", "sleeve": "A", "ticker": "NUE", "side": "buy", "qty": 23, "order_type": "limit", "tif": "day", "limit_price": 216.16, "client_order_id": "A-NUE-20260630-buy"}
+{"ts": "2026-06-30T13:46:24", "kind": "order_submitted", "sleeve": "A", "ticker": "IBKR", "side": "buy", "qty": 59, "order_type": "limit", "tif": "day", "limit_price": 84.58, "client_order_id": "A-IBKR-20260630-buy"}
+{"ts": "2026-06-30T13:46:24", "kind": "order_submitted", "sleeve": "A", "ticker": "TLN", "side": "buy", "qty": 13, "order_type": "limit", "tif": "day", "limit_price": 367.34, "client_order_id": "A-TLN-20260630-buy"}
+{"ts": "2026-06-30T13:46:24", "kind": "run_end", "mode": "evening"}
+{"ts": "2026-06-30T19:05:14", "kind": "run_start", "mode": "morning", "equity": 100000.0, "hwm": 100000.0, "drawdown": 0.0, "dry_run": true}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "JPM", "side": "buy", "qty": 18.6371, "order_type": "limit", "limit_price": 321.94, "client_order_id": "A-JPM-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "RCL", "side": "buy", "qty": 19.5278, "order_type": "limit", "limit_price": 307.25, "client_order_id": "A-RCL-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "ROST", "side": "buy", "qty": 28.8895, "order_type": "limit", "limit_price": 207.69, "client_order_id": "A-ROST-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "GM", "side": "buy", "qty": 79.6664, "order_type": "limit", "limit_price": 75.31, "client_order_id": "A-GM-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "MMM", "side": "buy", "qty": 37.8108, "order_type": "limit", "limit_price": 158.68, "client_order_id": "A-MMM-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "EOG", "side": "buy", "qty": 47.2334, "order_type": "limit", "limit_price": 127.03, "client_order_id": "A-EOG-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "ODFL", "side": "buy", "qty": 28.5034, "order_type": "limit", "limit_price": 210.5, "client_order_id": "A-ODFL-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "NUE", "side": "buy", "qty": 27.7577, "order_type": "limit", "limit_price": 216.16, "client_order_id": "A-NUE-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "IBKR", "side": "buy", "qty": 70.9351, "order_type": "limit", "limit_price": 84.58, "client_order_id": "A-IBKR-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "A", "ticker": "TLN", "side": "buy", "qty": 16.3337, "order_type": "limit", "limit_price": 367.34, "client_order_id": "A-TLN-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "H", "ticker": "MKSI", "side": "buy", "qty": 8.9928, "order_type": "market", "limit_price": null, "client_order_id": "H-MKSI-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "H", "ticker": "TER", "side": "buy", "qty": 8.2672, "order_type": "market", "limit_price": null, "client_order_id": "H-TER-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "H", "ticker": "ACHC", "side": "buy", "qty": 135.4555, "order_type": "market", "limit_price": null, "client_order_id": "H-ACHC-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "H", "ticker": "CAT", "side": "buy", "qty": 3.7562, "order_type": "market", "limit_price": null, "client_order_id": "H-CAT-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "H", "ticker": "RRX", "side": "buy", "qty": 16.7933, "order_type": "market", "limit_price": null, "client_order_id": "H-RRX-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "H", "ticker": "JBHT", "side": "buy", "qty": 13.8203, "order_type": "market", "limit_price": null, "client_order_id": "H-JBHT-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "dry_run_order", "sleeve": "H", "ticker": "HAYW", "side": "buy", "qty": 231.0803, "order_type": "market", "limit_price": null, "client_order_id": "H-HAYW-20260630-buy"}
+{"ts": "2026-06-30T19:05:15", "kind": "run_end", "mode": "morning"}

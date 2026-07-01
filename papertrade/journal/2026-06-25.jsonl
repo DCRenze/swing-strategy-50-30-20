@@ -1,0 +1,23 @@
+{"ts": "2026-06-25T12:35:48", "kind": "position_closed", "ticker": "AVGO", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-25T12:35:48", "kind": "position_closed", "ticker": "AMD", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-25T12:35:48", "kind": "position_closed", "ticker": "AAPL", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-25T12:35:48", "kind": "position_closed", "ticker": "INTC", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-25T12:35:48", "kind": "position_closed", "ticker": "MSFT", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-25T12:35:48", "kind": "position_closed", "ticker": "TSLA", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-25T12:35:48", "kind": "position_closed", "ticker": "SNDK", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-25T12:35:48", "kind": "position_closed", "ticker": "MRVL", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-25T12:35:48", "kind": "position_closed", "ticker": "MU", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-25T12:35:48", "kind": "run_start", "mode": "nearclose", "equity": 100219.35, "dry_run": false}
+{"ts": "2026-06-25T12:36:29", "kind": "run_end", "mode": "nearclose"}
+{"ts": "2026-06-25T13:45:19", "kind": "run_start", "mode": "evening", "equity": 100219.35, "dry_run": false}
+{"ts": "2026-06-25T13:46:28", "kind": "order_submitted", "sleeve": "A", "ticker": "NVDA", "side": "buy", "qty": 26, "order_type": "limit", "tif": "day", "limit_price": 190.18, "client_order_id": "A-NVDA-20260625-buy"}
+{"ts": "2026-06-25T13:46:28", "kind": "order_submitted", "sleeve": "A", "ticker": "AAPL", "side": "buy", "qty": 18, "order_type": "limit", "tif": "day", "limit_price": 268.91, "client_order_id": "A-AAPL-20260625-buy"}
+{"ts": "2026-06-25T13:46:28", "kind": "order_submitted", "sleeve": "A", "ticker": "INTC", "side": "buy", "qty": 40, "order_type": "limit", "tif": "day", "limit_price": 124.9, "client_order_id": "A-INTC-20260625-buy"}
+{"ts": "2026-06-25T13:46:28", "kind": "order_submitted", "sleeve": "A", "ticker": "RKLB", "side": "buy", "qty": 68, "order_type": "limit", "tif": "day", "limit_price": 73.34, "client_order_id": "A-RKLB-20260625-buy"}
+{"ts": "2026-06-25T13:46:29", "kind": "order_submitted", "sleeve": "A", "ticker": "GS", "side": "buy", "qty": 4, "order_type": "limit", "tif": "day", "limit_price": 1040.01, "client_order_id": "A-GS-20260625-buy"}
+{"ts": "2026-06-25T13:46:29", "kind": "order_submitted", "sleeve": "A", "ticker": "MPWR", "side": "buy", "qty": 3, "order_type": "limit", "tif": "day", "limit_price": 1358.02, "client_order_id": "A-MPWR-20260625-buy"}
+{"ts": "2026-06-25T13:46:29", "kind": "order_submitted", "sleeve": "A", "ticker": "CDNS", "side": "buy", "qty": 14, "order_type": "limit", "tif": "day", "limit_price": 357.03, "client_order_id": "A-CDNS-20260625-buy"}
+{"ts": "2026-06-25T13:46:29", "kind": "order_submitted", "sleeve": "A", "ticker": "ROKU", "side": "buy", "qty": 38, "order_type": "limit", "tif": "day", "limit_price": 131.09, "client_order_id": "A-ROKU-20260625-buy"}
+{"ts": "2026-06-25T13:46:29", "kind": "order_submitted", "sleeve": "A", "ticker": "ROST", "side": "buy", "qty": 23, "order_type": "limit", "tif": "day", "limit_price": 209.86, "client_order_id": "A-ROST-20260625-buy"}
+{"ts": "2026-06-25T13:46:29", "kind": "order_submitted", "sleeve": "A", "ticker": "FSLR", "side": "buy", "qty": 21, "order_type": "limit", "tif": "day", "limit_price": 237.06, "client_order_id": "A-FSLR-20260625-buy"}
+{"ts": "2026-06-25T13:46:29", "kind": "run_end", "mode": "evening"}

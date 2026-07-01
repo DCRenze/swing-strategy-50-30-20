@@ -1,0 +1,15 @@
+{"ts": "2026-06-23T12:35:43", "kind": "run_start", "mode": "nearclose", "equity": 99198.93, "dry_run": false}
+{"ts": "2026-06-23T12:36:25", "kind": "run_end", "mode": "nearclose"}
+{"ts": "2026-06-23T13:45:11", "kind": "run_start", "mode": "evening", "equity": 99198.93, "dry_run": false}
+{"ts": "2026-06-23T13:45:54", "kind": "order_submitted", "sleeve": "A", "ticker": "GOOGL", "side": "buy", "qty": 14, "order_type": "limit", "tif": "day", "limit_price": 336.97, "client_order_id": "A-GOOGL-20260623-buy"}
+{"ts": "2026-06-23T13:45:54", "kind": "order_submitted", "sleeve": "A", "ticker": "LITE", "side": "buy", "qty": 6, "order_type": "limit", "tif": "day", "limit_price": 768.59, "client_order_id": "A-LITE-20260623-buy"}
+{"ts": "2026-06-23T13:45:55", "kind": "order_submitted", "sleeve": "A", "ticker": "RKLB", "side": "buy", "qty": 56, "order_type": "limit", "tif": "day", "limit_price": 87.46, "client_order_id": "A-RKLB-20260623-buy"}
+{"ts": "2026-06-23T13:45:55", "kind": "order_submitted", "sleeve": "A", "ticker": "GS", "side": "buy", "qty": 4, "order_type": "limit", "tif": "day", "limit_price": 1069.64, "client_order_id": "A-GS-20260623-buy"}
+{"ts": "2026-06-23T13:45:55", "kind": "order_submitted", "sleeve": "A", "ticker": "SATS", "side": "buy", "qty": 51, "order_type": "limit", "tif": "day", "limit_price": 96.97, "client_order_id": "A-SATS-20260623-buy"}
+{"ts": "2026-06-23T13:45:55", "kind": "order_submitted", "sleeve": "A", "ticker": "CDNS", "side": "buy", "qty": 13, "order_type": "limit", "tif": "day", "limit_price": 367.27, "client_order_id": "A-CDNS-20260623-buy"}
+{"ts": "2026-06-23T13:45:55", "kind": "order_submitted", "sleeve": "A", "ticker": "AXP", "side": "buy", "qty": 14, "order_type": "limit", "tif": "day", "limit_price": 332.15, "client_order_id": "A-AXP-20260623-buy"}
+{"ts": "2026-06-23T13:45:55", "kind": "order_submitted", "sleeve": "A", "ticker": "ROKU", "side": "buy", "qty": 37, "order_type": "limit", "tif": "day", "limit_price": 130.94, "client_order_id": "A-ROKU-20260623-buy"}
+{"ts": "2026-06-23T13:45:55", "kind": "order_submitted", "sleeve": "A", "ticker": "SLB", "side": "buy", "qty": 106, "order_type": "limit", "tif": "day", "limit_price": 46.37, "client_order_id": "A-SLB-20260623-buy"}
+{"ts": "2026-06-23T13:45:55", "kind": "order_submitted", "sleeve": "A", "ticker": "HLT", "side": "buy", "qty": 14, "order_type": "limit", "tif": "day", "limit_price": 337.63, "client_order_id": "A-HLT-20260623-buy"}
+{"ts": "2026-06-23T13:45:55", "kind": "action_needed", "msg": "TOMORROW is the turn-of-month ENTRY day - run nearclose mode before 3:45pm ET"}
+{"ts": "2026-06-23T13:45:55", "kind": "run_end", "mode": "evening"}

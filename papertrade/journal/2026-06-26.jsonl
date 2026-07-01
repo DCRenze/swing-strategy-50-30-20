@@ -1,0 +1,14 @@
+{"ts": "2026-06-26T12:35:56", "kind": "run_start", "mode": "nearclose", "equity": 100219.32, "dry_run": false}
+{"ts": "2026-06-26T12:37:00", "kind": "run_end", "mode": "nearclose"}
+{"ts": "2026-06-26T13:45:30", "kind": "run_start", "mode": "evening", "equity": 100219.32, "dry_run": false}
+{"ts": "2026-06-26T13:46:53", "kind": "order_submitted", "sleeve": "A", "ticker": "NVDA", "side": "buy", "qty": 26, "order_type": "limit", "tif": "day", "limit_price": 187.18, "client_order_id": "A-NVDA-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "order_submitted", "sleeve": "A", "ticker": "GS", "side": "buy", "qty": 5, "order_type": "limit", "tif": "day", "limit_price": 993.16, "client_order_id": "A-GS-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "order_submitted", "sleeve": "A", "ticker": "MPWR", "side": "buy", "qty": 4, "order_type": "limit", "tif": "day", "limit_price": 1230.8, "client_order_id": "A-MPWR-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "order_submitted", "sleeve": "A", "ticker": "COP", "side": "buy", "qty": 48, "order_type": "limit", "tif": "day", "limit_price": 103.62, "client_order_id": "A-COP-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "order_submitted", "sleeve": "A", "ticker": "ROST", "side": "buy", "qty": 24, "order_type": "limit", "tif": "day", "limit_price": 208.08, "client_order_id": "A-ROST-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "order_submitted", "sleeve": "A", "ticker": "FSLR", "side": "buy", "qty": 21, "order_type": "limit", "tif": "day", "limit_price": 227.77, "client_order_id": "A-FSLR-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "order_submitted", "sleeve": "A", "ticker": "MTSI", "side": "buy", "qty": 14, "order_type": "limit", "tif": "day", "limit_price": 351.16, "client_order_id": "A-MTSI-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "order_submitted", "sleeve": "A", "ticker": "EQIX", "side": "buy", "qty": 4, "order_type": "limit", "tif": "day", "limit_price": 1071.65, "client_order_id": "A-EQIX-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "order_submitted", "sleeve": "A", "ticker": "AKAM", "side": "buy", "qty": 46, "order_type": "limit", "tif": "day", "limit_price": 108.27, "client_order_id": "A-AKAM-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "order_submitted", "sleeve": "A", "ticker": "FANG", "side": "buy", "qty": 28, "order_type": "limit", "tif": "day", "limit_price": 175.7, "client_order_id": "A-FANG-20260626-buy"}
+{"ts": "2026-06-26T13:46:54", "kind": "run_end", "mode": "evening"}

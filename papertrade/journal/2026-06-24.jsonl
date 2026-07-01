@@ -1,0 +1,34 @@
+{"ts": "2026-06-24T12:35:56", "kind": "run_start", "mode": "nearclose", "equity": 99198.93, "dry_run": false}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "MU", "side": "buy", "qty": 2, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-MU-20260624-buy"}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "NVDA", "side": "buy", "qty": 15, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-NVDA-20260624-buy"}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "MRVL", "side": "buy", "qty": 10, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-MRVL-20260624-buy"}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "SNDK", "side": "buy", "qty": 1, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-SNDK-20260624-buy"}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "TSLA", "side": "buy", "qty": 7, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-TSLA-20260624-buy"}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "MSFT", "side": "buy", "qty": 8, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-MSFT-20260624-buy"}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "INTC", "side": "buy", "qty": 22, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-INTC-20260624-buy"}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "AAPL", "side": "buy", "qty": 10, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-AAPL-20260624-buy"}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "AMD", "side": "buy", "qty": 5, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-AMD-20260624-buy"}
+{"ts": "2026-06-24T12:36:39", "kind": "order_submitted", "sleeve": "B", "ticker": "AVGO", "side": "buy", "qty": 7, "order_type": "market", "tif": "cls", "limit_price": null, "client_order_id": "B-AVGO-20260624-buy"}
+{"ts": "2026-06-24T12:36:40", "kind": "run_end", "mode": "nearclose"}
+{"ts": "2026-06-24T13:45:26", "kind": "position_adopted", "ticker": "AVGO", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-24T13:45:26", "kind": "position_adopted", "ticker": "AMD", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-24T13:45:26", "kind": "position_adopted", "ticker": "AAPL", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-24T13:45:26", "kind": "position_adopted", "ticker": "INTC", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-24T13:45:26", "kind": "position_adopted", "ticker": "MSFT", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-24T13:45:26", "kind": "position_adopted", "ticker": "TSLA", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-24T13:45:26", "kind": "position_adopted", "ticker": "SNDK", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-24T13:45:26", "kind": "position_adopted", "ticker": "MRVL", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-24T13:45:26", "kind": "position_adopted", "ticker": "MU", "sleeve": "B", "entry_date": "2026-06-24"}
+{"ts": "2026-06-24T13:45:26", "kind": "run_start", "mode": "evening", "equity": 100099.94, "dry_run": false}
+{"ts": "2026-06-24T13:46:09", "kind": "order_error", "error": "{\"code\":40310000,\"existing_order_id\":\"39e14be2-fb72-4283-bd00-2d7721ab86b3\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}", "sleeve": "A", "ticker": "MRVL", "side": "buy", "qty": 19, "order_type": "limit", "tif": "day", "limit_price": 255.05, "client_order_id": "A-MRVL-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "order_submitted", "sleeve": "A", "ticker": "WDC", "side": "buy", "qty": 8, "order_type": "limit", "tif": "day", "limit_price": 602.55, "client_order_id": "A-WDC-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "order_submitted", "sleeve": "A", "ticker": "LITE", "side": "buy", "qty": 6, "order_type": "limit", "tif": "day", "limit_price": 784.4, "client_order_id": "A-LITE-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "order_submitted", "sleeve": "A", "ticker": "RKLB", "side": "buy", "qty": 64, "order_type": "limit", "tif": "day", "limit_price": 77.74, "client_order_id": "A-RKLB-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "order_submitted", "sleeve": "A", "ticker": "GS", "side": "buy", "qty": 4, "order_type": "limit", "tif": "day", "limit_price": 1052.64, "client_order_id": "A-GS-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "order_submitted", "sleeve": "A", "ticker": "MPWR", "side": "buy", "qty": 3, "order_type": "limit", "tif": "day", "limit_price": 1357.21, "client_order_id": "A-MPWR-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "order_submitted", "sleeve": "A", "ticker": "CDNS", "side": "buy", "qty": 13, "order_type": "limit", "tif": "day", "limit_price": 361.19, "client_order_id": "A-CDNS-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "order_submitted", "sleeve": "A", "ticker": "ROKU", "side": "buy", "qty": 37, "order_type": "limit", "tif": "day", "limit_price": 132.04, "client_order_id": "A-ROKU-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "order_submitted", "sleeve": "A", "ticker": "SLB", "side": "buy", "qty": 110, "order_type": "limit", "tif": "day", "limit_price": 45.19, "client_order_id": "A-SLB-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "order_submitted", "sleeve": "A", "ticker": "CASY", "side": "buy", "qty": 6, "order_type": "limit", "tif": "day", "limit_price": 774.73, "client_order_id": "A-CASY-20260624-buy"}
+{"ts": "2026-06-24T13:46:10", "kind": "action_needed", "msg": "B positions open (['AVGO', 'AMD', 'AAPL', 'INTC', 'MSFT', 'TSLA', 'SNDK', 'MRVL', 'MU']) - exit MOC on trading day 1 of new month (run nearclose)"}
+{"ts": "2026-06-24T13:46:10", "kind": "run_end", "mode": "evening"}

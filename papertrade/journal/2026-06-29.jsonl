@@ -1,0 +1,14 @@
+{"ts": "2026-06-29T12:36:24", "kind": "run_start", "mode": "nearclose", "equity": 100219.32, "dry_run": false}
+{"ts": "2026-06-29T12:37:07", "kind": "run_end", "mode": "nearclose"}
+{"ts": "2026-06-29T13:45:56", "kind": "run_start", "mode": "evening", "equity": 100219.32, "dry_run": false}
+{"ts": "2026-06-29T13:46:41", "kind": "order_submitted", "sleeve": "A", "ticker": "NVDA", "side": "buy", "qty": 26, "order_type": "limit", "tif": "day", "limit_price": 189.68, "client_order_id": "A-NVDA-20260629-buy"}
+{"ts": "2026-06-29T13:46:41", "kind": "order_submitted", "sleeve": "A", "ticker": "AVGO", "side": "buy", "qty": 13, "order_type": "limit", "tif": "day", "limit_price": 358.23, "client_order_id": "A-AVGO-20260629-buy"}
+{"ts": "2026-06-29T13:46:41", "kind": "order_submitted", "sleeve": "A", "ticker": "DELL", "side": "buy", "qty": 12, "order_type": "limit", "tif": "day", "limit_price": 391.0, "client_order_id": "A-DELL-20260629-buy"}
+{"ts": "2026-06-29T13:46:41", "kind": "order_submitted", "sleeve": "A", "ticker": "HPE", "side": "buy", "qty": 118, "order_type": "limit", "tif": "day", "limit_price": 42.15, "client_order_id": "A-HPE-20260629-buy"}
+{"ts": "2026-06-29T13:46:41", "kind": "order_submitted", "sleeve": "A", "ticker": "MPWR", "side": "buy", "qty": 4, "order_type": "limit", "tif": "day", "limit_price": 1233.56, "client_order_id": "A-MPWR-20260629-buy"}
+{"ts": "2026-06-29T13:46:41", "kind": "order_submitted", "sleeve": "A", "ticker": "ROST", "side": "buy", "qty": 24, "order_type": "limit", "tif": "day", "limit_price": 203.68, "client_order_id": "A-ROST-20260629-buy"}
+{"ts": "2026-06-29T13:46:41", "kind": "order_submitted", "sleeve": "A", "ticker": "GM", "side": "buy", "qty": 66, "order_type": "limit", "tif": "day", "limit_price": 75.5, "client_order_id": "A-GM-20260629-buy"}
+{"ts": "2026-06-29T13:46:42", "kind": "order_submitted", "sleeve": "A", "ticker": "MTSI", "side": "buy", "qty": 14, "order_type": "limit", "tif": "day", "limit_price": 354.31, "client_order_id": "A-MTSI-20260629-buy"}
+{"ts": "2026-06-29T13:46:42", "kind": "order_submitted", "sleeve": "A", "ticker": "MDLZ", "side": "buy", "qty": 84, "order_type": "limit", "tif": "day", "limit_price": 59.03, "client_order_id": "A-MDLZ-20260629-buy"}
+{"ts": "2026-06-29T13:46:42", "kind": "order_submitted", "sleeve": "A", "ticker": "HPQ", "side": "buy", "qty": 229, "order_type": "limit", "tif": "day", "limit_price": 21.85, "client_order_id": "A-HPQ-20260629-buy"}
+{"ts": "2026-06-29T13:46:42", "kind": "run_end", "mode": "evening"}
