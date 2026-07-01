@@ -12,5 +12,6 @@ Windows: full 2005-06-01+, IS ends 2022-12-31, OOS starts 2023-01-01. Slippage 5
 | high52_breakout | 1.49 | 1.19 | -0.236 | 1.43 | 3248 | 0.0912 | -0.4524 | -0.2984 | fail |
 | turnaround_tuesday | 1.19 | 0.82 | -0.1622 | 1.43 | 9468 | 0.0927 | -0.3575 | -0.2717 | fail |
 | turn_of_month | 1.63 | 0.89 | -0.2575 | 1.43 | 2511 | 0.1011 | -0.2575 | -0.2092 | fail |
+| range_reversion | 1.07 | 0.33 | -0.2795 | 1.43 | 11399 | 0.0616 | -0.2951 | -0.2453 | fail |
 
 Per-strategy details: `gauntlet_<strategy>.json` (windows, variants, regimes, pass bar).

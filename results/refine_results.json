@@ -179,7 +179,7 @@
       "full_sharpe": -0.03
     }
   },
-  "ensemble": {
+  "ensemble_legacy": {
     "components": {
       "3ll_refined": 0.5,
       "tom_exit1": 0.3,
@@ -204,5 +204,30 @@
       "spy_sharpe": 0.64
     },
     "mc_dd_p95": -0.1193
+  },
+  "ensemble": {
+    "components": {
+      "3ll_refined": 0.6,
+      "h52_fast_regime": 0.4
+    },
+    "is": {
+      "cagr": 0.1295,
+      "sharpe": 0.95,
+      "max_dd": -0.2487,
+      "spy_sharpe": 0.53
+    },
+    "oos": {
+      "cagr": 0.1735,
+      "sharpe": 1.16,
+      "max_dd": -0.1631,
+      "spy_sharpe": 1.43
+    },
+    "full": {
+      "cagr": 0.1364,
+      "sharpe": 0.99,
+      "max_dd": -0.2487,
+      "spy_sharpe": 0.64
+    },
+    "mc_dd_p95": -0.1683
   }
 }

@@ -50,6 +50,28 @@ def dollar_volume(raw_close, volume, n: int = 20):
     return (raw_close * volume).rolling(n, min_periods=n).mean()
 
 
+def bollinger(close: pd.DataFrame | pd.Series, n: int = 20, k: float = 2.0):
+    """Bollinger bands: (mid, upper, lower) around an n-day SMA, +/- k std devs.
+
+    Population std (ddof=0) matches the Connors/Bollinger convention.
+    """
+    mid = close.rolling(n, min_periods=n).mean()
+    sd = close.rolling(n, min_periods=n).std(ddof=0)
+    return mid, mid + k * sd, mid - k * sd
+
+
+def efficiency_ratio(close: pd.DataFrame | pd.Series, n: int = 20):
+    """Kaufman efficiency ratio: |net move over n| / sum of |daily moves| over n.
+
+    ~1.0 = a clean directional trend; ~0.0 = choppy/ranging (lots of motion,
+    little net progress). A low-ER gate isolates the sideways regime this
+    mean-reversion sleeve is built for.
+    """
+    net = close.diff(n).abs()
+    path = close.diff().abs().rolling(n, min_periods=n).sum()
+    return (net / path).where(path > 0, 0.0)
+
+
 def liquidity_mask(
     panel: dict, min_price: float = 5.0, min_dollar_vol: float = 20e6
 ) -> pd.DataFrame:

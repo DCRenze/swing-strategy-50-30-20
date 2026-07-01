@@ -10,6 +10,8 @@ Slippage 5.0 bps/side. IS ends 2022-12-31; OOS starts 2023-01-01.
 | tt_bear | 0.56 | 1.4 | 0.81 | 1.88 | -0.0417 | 0.0688 | 0.55 | -0.1947 |
 | h52_fast_regime | 0.33 | 1.16 | 0.98 | 1.37 | -0.1986 | 0.0754 | 0.45 | -0.2834 |
 
-**Ensemble** (3ll_refined 50%, tom_exit1 30%, tt_bear 20%): IS Sharpe 1.18, OOS Sharpe 1.08, full CAGR 0.1232, full MaxDD -0.1653, MC p95 DD -0.1193
+**Deployed ensemble** (3ll_refined 60%, h52_fast_regime 40%): IS Sharpe 0.95, OOS Sharpe 1.16, full CAGR 0.1364, full MaxDD -0.2487, MC p95 DD -0.1683
+
+**Legacy ensemble (for comparison)** (3ll_refined 50%, tom_exit1 30%, tt_bear 20%): IS Sharpe 1.18, OOS Sharpe 1.08, full CAGR 0.1232, full MaxDD -0.1653, MC p95 DD -0.1193
 
 Slippage sensitivity (3ll_refined, full window): 0bps: CAGR 0.235, Sharpe 1.48, 5bps: CAGR 0.167, Sharpe 1.1, 10bps: CAGR 0.1027, Sharpe 0.72, 20bps: CAGR -0.0154, Sharpe -0.03

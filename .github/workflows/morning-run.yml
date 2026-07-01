@@ -1,27 +1,31 @@
-name: Evening Trade Run
+name: Morning Trade Run
 
-# Runs after market close every trading day (Mon-Fri).
-# Handles: Sleeve A exits + new limit entries, Sleeve B calendar flags, Sleeve C regime check.
+# Runs once every trading day (Mon-Fri) shortly after the open.
+# Handles the full A/H 60/40 ensemble: Sleeve A limit entries + exits and Sleeve H
+# momentum entries + exits, plus the account drawdown circuit breaker. Signals are
+# computed from yesterday's completed bar and executed at today's open (fractional
+# DAY orders), matching the backtest timing.
 #
 # SCHEDULE NOTE: GitHub Actions cron runs in UTC. This is set for EDT (UTC-4, ~Mar-Nov).
-# When clocks fall back (EST, UTC-5, ~Nov-Mar), change the cron to: '0 22 * * 1-5'
-# EDT schedule: 21:00 UTC = 5:00 PM ET
-# EST schedule: 22:00 UTC = 5:00 PM ET
+# When clocks fall back (EST, UTC-5, ~Nov-Mar), change the cron to: '35 14 * * 1-5'
+# EDT: 13:35 UTC = 9:35 AM ET   |   EST: 14:35 UTC = 9:35 AM ET
+# NOTE: scheduled runs can start several minutes late; momentum market orders may
+# therefore fill a little off the 9:30 open (see PLAYBOOK §6).
 #
-# REQUIRED GITHUB SECRETS (Settings → Secrets and variables → Actions → New repository secret):
-#   ALPACA_API_KEY     — your Alpaca paper-trading API key (starts with PK...)
-#   ALPACA_SECRET_KEY  — your Alpaca paper-trading secret key
+# REQUIRED GITHUB SECRETS (Settings → Secrets and variables → Actions):
+#   ALPACA_API_KEY     — Alpaca paper-trading API key (starts with PK...)
+#   ALPACA_SECRET_KEY  — Alpaca paper-trading secret key
 
 on:
   schedule:
-    - cron: '0 21 * * 1-5'   # 5:00 PM EDT (UTC-4) — update to '0 22 * * 1-5' in November
+    - cron: '35 13 * * 1-5'   # 9:35 AM EDT (UTC-4) — update to '35 14 * * 1-5' in November
   workflow_dispatch:           # allows manual trigger from the Actions tab
 
 permissions:
   contents: write              # needed to commit journal + state back to the repo
 
 concurrency:
-  group: trade-run             # prevent overlap with near-close run
+  group: trade-run
   cancel-in-progress: false
 
 jobs:
@@ -60,8 +64,8 @@ jobs:
           echo "ALPACA_API_KEY=${{ secrets.ALPACA_API_KEY }}" > .env
           echo "ALPACA_SECRET_KEY=${{ secrets.ALPACA_SECRET_KEY }}" >> .env
 
-      - name: Run evening trade
-        run: python -m papertrade.run_daily evening
+      - name: Run morning trade
+        run: python -m papertrade.run_daily morning
 
       - name: Remove .env
         if: always()
@@ -74,4 +78,4 @@ jobs:
           git pull --rebase origin main
           git add papertrade/state.json papertrade/journal/
           git diff --staged --quiet && echo "Nothing to commit" || \
-            git commit -m "Evening run $(date -u +%Y-%m-%d)" && git push
+            git commit -m "Morning run $(date -u +%Y-%m-%d)" && git push

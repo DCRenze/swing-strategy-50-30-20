@@ -1,21 +1,32 @@
-"""Alpaca paper-trading runner for the validated 50/30/20 ensemble.
+"""Alpaca paper-trading runner for the 60/40 A/H ensemble (fractional shares).
 
-Implements the PLAYBOOK.md two-checkpoint procedure against the Alpaca PAPER
-endpoint. Keys come from .env in the project root (never committed):
+Single daily checkpoint, run shortly after the open (~9:35 am ET). Signals are
+computed from yesterday's completed daily bar and acted on at today's open, which
+matches the backtest's timing exactly. Fractional shares let a small ($1-2k)
+account hold the full 20-position book, so every order is a DAY order (market or
+limit) - the only order types Alpaca allows fractional quantities on.
 
-    ALPACA_API_KEY=...
+    ALPACA_API_KEY=...        # in .env at the project root (never committed)
     ALPACA_SECRET_KEY=...
 
 Usage (venv python, from project root):
-  python -m papertrade.run_daily evening              # after ~4:30 pm ET, daily
-  python -m papertrade.run_daily nearclose            # 3:30-3:45 pm ET, flagged days
-  python -m papertrade.run_daily evening --dry-run    # print orders, submit nothing
+  python -m papertrade.run_daily morning              # ~9:35 am ET, every trading day
+  python -m papertrade.run_daily morning --dry-run    # compute + print orders, submit nothing
   python -m papertrade.run_daily status               # account + tracked positions
 
-Position state: Alpaca is the source of truth for what is held; sleeve
-attribution and entry dates live in papertrade/state.json, keyed by client
-order IDs of the form  <SLEEVE>-<TICKER>-<YYYYMMDD>.
-Every decision (order, skip, warning) is journaled to papertrade/journal/.
+Sleeves:
+  A three_lower_lows (60%) - limit DAY buys at close-0.75*ATR; sell at open on
+                             first up-close or 15-day time stop. No stop loss.
+  H momentum         (40%) - 52-week-high breakouts, market DAY buys at the open
+                             when SPY>SMA(100); 5% stop loss or 15-day time stop.
+
+Risk: an account high-water-mark lives in state.json. Drawdown <= -15% halts
+Sleeve A entries (the knife-catcher); <= -20% halts all new entries. Exits always
+run. Per-position cap and max 10 positions/sleeve come from the screener.
+
+Position state: Alpaca is the source of truth for holdings; sleeve attribution and
+entry dates live in papertrade/state.json, keyed by client order IDs of the form
+<SLEEVE>-<TICKER>-<YYYYMMDD>-<side>. Every decision is journaled to journal/.
 """
 
 from __future__ import annotations
@@ -42,7 +53,11 @@ from playbook import screener as scr  # noqa: E402
 STATE_PATH = Path(__file__).resolve().parent / "state.json"
 JOURNAL_DIR = Path(__file__).resolve().parent / "journal"
 
-SLEEVE_TIME_STOPS = {"A": scr.A_TIME_STOP, "C": scr.C_TIME_STOP}
+SLEEVE_TIME_STOPS = {"A": scr.A_TIME_STOP, "H": scr.H_HOLD_DAYS}
+
+DRAWDOWN_HALT_A = -0.15    # halt Sleeve A (mean-reversion) new entries
+DRAWDOWN_HALT_ALL = -0.20  # halt all new entries
+MIN_NOTIONAL = 1.0         # Alpaca fractional minimum order value ($1)
 
 
 def get_clients():
@@ -59,7 +74,7 @@ def get_clients():
 def load_state() -> dict:
     if STATE_PATH.exists():
         return json.loads(STATE_PATH.read_text())
-    return {"positions": {}}  # ticker -> {sleeve, entry_date}
+    return {"positions": {}, "hwm": 0.0}  # ticker -> {sleeve, entry_date}; hwm = high-water mark
 
 
 def save_state(state: dict) -> None:
@@ -87,21 +102,21 @@ def trading_days_between(start: str, end: str) -> int:
 
 
 def submit_order(client, journal: Journal, dry: bool, *, sleeve: str, ticker: str,
-                 side: str, qty: int, order_type: str, tif: str,
-                 limit_price: float | None = None) -> None:
+                 side: str, qty: float, order_type: str, limit_price: float | None = None) -> None:
     from alpaca.trading.enums import OrderSide, TimeInForce
     from alpaca.trading.requests import LimitOrderRequest, MarketOrderRequest
 
+    qty = round(float(qty), 4)
     coid = f"{sleeve}-{ticker}-{dt.date.today():%Y%m%d}-{side}"
     info = dict(sleeve=sleeve, ticker=ticker, side=side, qty=qty,
-                order_type=order_type, tif=tif, limit_price=limit_price, client_order_id=coid)
+                order_type=order_type, limit_price=limit_price, client_order_id=coid)
     if dry:
         journal.log("dry_run_order", **info)
         return
-    tif_map = {"day": TimeInForce.DAY, "opg": TimeInForce.OPG, "cls": TimeInForce.CLS}
+    # every order is a fractional-capable DAY order
     common = dict(symbol=ticker, qty=qty,
                   side=OrderSide.BUY if side == "buy" else OrderSide.SELL,
-                  time_in_force=tif_map[tif], client_order_id=coid)
+                  time_in_force=TimeInForce.DAY, client_order_id=coid)
     try:
         if order_type == "limit":
             req = LimitOrderRequest(limit_price=round(limit_price, 2), **common)
@@ -114,14 +129,16 @@ def submit_order(client, journal: Journal, dry: bool, *, sleeve: str, ticker: st
 
 
 def reconcile(client, state: dict, journal: Journal) -> dict:
-    """Sync state.json with Alpaca: drop entries for positions no longer held,
-    adopt fills from our client order IDs."""
-    held = {p.symbol: int(float(p.qty)) for p in client.get_all_positions()}
+    """Sync state.json with Alpaca: drop closed positions, adopt fills from our
+    client order IDs. Returns {symbol: {qty, avg_entry_price}} for held names."""
+    held = {
+        p.symbol: {"qty": float(p.qty), "avg_entry_price": float(p.avg_entry_price)}
+        for p in client.get_all_positions()
+    }
     for ticker in list(state["positions"]):
         if ticker not in held:
             journal.log("position_closed", ticker=ticker, **state["positions"][ticker])
             del state["positions"][ticker]
-    # adopt unknown holdings from recent closed orders (fills since yesterday)
     from alpaca.trading.enums import QueryOrderStatus
     from alpaca.trading.requests import GetOrdersRequest
 
@@ -133,7 +150,7 @@ def reconcile(client, state: dict, journal: Journal) -> dict:
         sym = o.symbol
         if sym in held and sym not in state["positions"] and o.client_order_id:
             parts = str(o.client_order_id).split("-")
-            if len(parts) >= 4 and parts[0] in ("A", "B", "C") and parts[-1] == "buy" and o.filled_at:
+            if len(parts) >= 4 and parts[0] in ("A", "H") and parts[-1] == "buy" and o.filled_at:
                 state["positions"][sym] = {
                     "sleeve": parts[0],
                     "entry_date": str(pd.Timestamp(o.filled_at).date()),
@@ -141,34 +158,44 @@ def reconcile(client, state: dict, journal: Journal) -> dict:
                 journal.log("position_adopted", ticker=sym, **state["positions"][sym])
     for sym in held:
         if sym not in state["positions"]:
-            journal.log("unattributed_position", ticker=sym, qty=held[sym],
+            journal.log("unattributed_position", ticker=sym, qty=held[sym]["qty"],
                         note="held in account but not in state - attribute manually")
     return held
 
 
-def run_evening(client, dry: bool) -> None:
+def drawdown_gate(state: dict, equity: float, journal: Journal):
+    """Update the high-water mark and return (drawdown, halt_a, halt_all)."""
+    hwm = max(float(state.get("hwm", 0.0)), equity)
+    dd = (equity / hwm - 1.0) if hwm > 0 else 0.0
+    state["hwm"] = hwm
+    halt_all = dd <= DRAWDOWN_HALT_ALL
+    halt_a = dd <= DRAWDOWN_HALT_A
+    if halt_all:
+        journal.log("action_needed",
+                    msg=f"Account drawdown {dd:.1%} <= {DRAWDOWN_HALT_ALL:.0%}: ALL new entries halted (exits only).")
+    elif halt_a:
+        journal.log("action_needed",
+                    msg=f"Account drawdown {dd:.1%} <= {DRAWDOWN_HALT_A:.0%}: Sleeve A entries halted (momentum + exits continue).")
+    return dd, halt_a, halt_all
+
+
+def run_morning(client, dry: bool) -> None:
     journal = Journal()
     state = load_state()
-    held = reconcile(client, state, journal) if not dry or STATE_PATH.exists() else {}
-    if client is not None:
-        acct = client.get_account()
-        equity = float(acct.equity)
-    else:
-        equity = 100_000.0
-    journal.log("run_start", mode="evening", equity=equity, dry_run=dry)
+    held = reconcile(client, state, journal) if client is not None else {}
+    equity = float(client.get_account().equity) if client is not None else 100_000.0
+    dd, halt_a, halt_all = drawdown_gate(state, equity, journal)
+    journal.log("run_start", mode="morning", equity=equity, hwm=round(state["hwm"], 2),
+                drawdown=round(dd, 4), dry_run=dry)
 
     print("Refreshing data...")
     scr.refresh_data()
     signals = scr.screen(equity)
     as_of = signals["as_of"]
-    last_session = str(scr.load_recent_panel()["close"].index[-1].date())
-    if as_of != last_session:  # defensive; screen() already trims
-        journal.log("warning", msg=f"as_of {as_of} != last session {last_session}")
-
     panel = scr.load_recent_panel()
     c = panel["close"]
 
-    # ---- Sleeve A exits: first up-close today -> OPG sell tomorrow; time stops
+    # ---- Sleeve A exits (market sell at open): first up-close since entry, or time stop
     for ticker, meta in list(state["positions"].items()):
         if meta["sleeve"] != "A" or ticker not in held:
             continue
@@ -179,131 +206,93 @@ def run_evening(client, dry: bool) -> None:
         closes = s[s.index > entry]
         up_closes = closes[closes > s.shift(1).reindex(closes.index)]
         days_held = trading_days_between(meta["entry_date"], as_of)
+        qty = held[ticker]["qty"]
         if len(up_closes) and up_closes.index[-1] == s.index[-1] and len(up_closes) == 1:
             submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
-                         qty=held[ticker], order_type="market", tif="opg")
+                         qty=qty, order_type="market")
         elif days_held >= SLEEVE_TIME_STOPS["A"]:
-            journal.log("action_needed", ticker=ticker,
-                        msg=f"A time stop reached ({days_held}d) - submit MOC sell before 3:45pm ET tomorrow")
-        elif len(up_closes) > 1:
-            journal.log("warning", ticker=ticker,
-                        msg="multiple up-closes since entry without exit - exit at next open (overdue)")
             submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
-                         qty=held[ticker], order_type="market", tif="opg")
+                         qty=qty, order_type="market")
+            journal.log("exit_reason", ticker=ticker, sleeve="A", reason="15d time stop", days_held=days_held)
+        elif len(up_closes) > 1:
+            journal.log("warning", ticker=ticker, msg="multiple up-closes since entry - exiting now (overdue)")
+            submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
+                         qty=qty, order_type="market")
 
-    # ---- Sleeve A entries: day-only limits for tomorrow
+    # ---- Sleeve A entries (limit DAY buys)
     a = signals["sleeves"]["A_three_lower_lows"]
     for w in a.get("warnings", []):
         journal.log("fat_finger_excluded", detail=w)
     a_held = [t for t, m in state["positions"].items() if m["sleeve"] == "A"]
     slots = scr.SLEEVES["A_three_lower_lows"]["max_positions"] - len(a_held)
-    for order in a["orders"]:
-        t = order["ticker"]
-        if slots <= 0:
-            journal.log("skip", sleeve="A", ticker=t, reason="sleeve full")
-            continue
-        if t in a_held:
-            journal.log("skip", sleeve="A", ticker=t, reason="already held in sleeve")
-            continue
-        if order["shares"] < 1:
-            journal.log("skip", sleeve="A", ticker=t, reason="position size < 1 share")
-            continue
-        submit_order(client, journal, dry, sleeve="A", ticker=t, side="buy",
-                     qty=order["shares"], order_type="limit", tif="day",
-                     limit_price=order["limit_price"])
-        slots -= 1
+    if halt_a or halt_all:
+        journal.log("skip", sleeve="A", reason=f"drawdown halt ({dd:.1%})")
+    else:
+        for order in a["orders"]:
+            t = order["ticker"]
+            if slots <= 0:
+                journal.log("skip", sleeve="A", ticker=t, reason="sleeve full")
+                continue
+            if t in a_held or t in held:
+                journal.log("skip", sleeve="A", ticker=t, reason="already held")
+                continue
+            if order["qty"] * order["limit_price"] < MIN_NOTIONAL:
+                journal.log("skip", sleeve="A", ticker=t, reason="notional < $1")
+                continue
+            submit_order(client, journal, dry, sleeve="A", ticker=t, side="buy",
+                         qty=order["qty"], order_type="limit", limit_price=order["limit_price"])
+            slots -= 1
 
-    # ---- Sleeve B calendar flags for tomorrow
-    cal = signals["sleeves"]["B_turn_of_month"]["calendar"]
-    if cal["trading_days_left_in_month"] == scr.B_ENTRY_DAYS_BEFORE_EOM + 1:
-        journal.log("action_needed", msg="TOMORROW is the turn-of-month ENTRY day - run nearclose mode before 3:45pm ET")
-    b_held = [t for t, m in state["positions"].items() if m["sleeve"] == "B"]
-    if b_held:
-        journal.log("action_needed",
-                    msg=f"B positions open ({b_held}) - exit MOC on trading day {scr.B_EXIT_DAY_OF_MONTH} of new month (run nearclose)")
-    spy_above = signals["spy_above_200dma"]
-    if not spy_above:
-        journal.log("action_needed", msg="SPY below 200dma - if next session is Monday, sleeve C is live (run nearclose)")
+    # ---- Sleeve H exits (market sell at open): 5% stop (any close since entry) or time stop
+    h_stop_mult = 1.0 - scr.H_STOP_FRAC
+    for ticker, meta in list(state["positions"].items()):
+        if meta["sleeve"] != "H" or ticker not in held:
+            continue
+        s = c[ticker].dropna()
+        entry = pd.Timestamp(meta["entry_date"])
+        closes_since = s[s.index >= entry]
+        avg = held[ticker]["avg_entry_price"]
+        days_held = trading_days_between(meta["entry_date"], as_of)
+        stop_hit = len(closes_since) > 0 and float(closes_since.min()) < avg * h_stop_mult
+        if stop_hit or days_held >= SLEEVE_TIME_STOPS["H"]:
+            submit_order(client, journal, dry, sleeve="H", ticker=ticker, side="sell",
+                         qty=held[ticker]["qty"], order_type="market")
+            journal.log("exit_reason", ticker=ticker, sleeve="H",
+                        reason="5% stop" if stop_hit else "15d time stop", days_held=days_held)
+
+    # ---- Sleeve H entries (market DAY buys at open; SPY>SMA100 gate)
+    hsig = signals["sleeves"]["H_momentum"]
+    h_held = [t for t, m in state["positions"].items() if m["sleeve"] == "H"]
+    slots_h = scr.SLEEVES["H_momentum"]["max_positions"] - len(h_held)
+    if not hsig["active"]:
+        journal.log("skip", sleeve="H", reason=hsig.get("reason_inactive") or "momentum gate off")
+    elif halt_all:
+        journal.log("skip", sleeve="H", reason=f"drawdown halt-all ({dd:.1%})")
+    else:
+        for order in hsig["orders"]:
+            t = order["ticker"]
+            if slots_h <= 0:
+                journal.log("skip", sleeve="H", ticker=t, reason="sleeve full")
+                continue
+            if t in h_held or t in held:
+                journal.log("skip", sleeve="H", ticker=t, reason="already held")
+                continue
+            if order["qty"] * order["last_close"] < MIN_NOTIONAL:
+                journal.log("skip", sleeve="H", ticker=t, reason="notional < $1")
+                continue
+            submit_order(client, journal, dry, sleeve="H", ticker=t, side="buy",
+                         qty=order["qty"], order_type="market")
+            slots_h -= 1
 
     save_state(state)
-    journal.log("run_end", mode="evening")
-
-
-def run_nearclose(client, dry: bool) -> None:
-    journal = Journal()
-    state = load_state()
-    held = reconcile(client, state, journal)
-    acct = client.get_account()
-    equity = float(acct.equity)
-    journal.log("run_start", mode="nearclose", equity=equity, dry_run=dry)
-
-    print("Refreshing data (today's partial bars expected)...")
-    scr.refresh_data()
-    # near the close we accept today's partial bar as the acting session
-    signals = scr.screen(equity)
-    today = dt.date.today()
-    cal = signals["sleeves"]["B_turn_of_month"]["calendar"]
-
-    # ---- B exit day?
-    b_held = {t: m for t, m in state["positions"].items() if m["sleeve"] == "B" and t in held}
-    if cal["trading_day_of_month"] == scr.B_EXIT_DAY_OF_MONTH and b_held:
-        for t in b_held:
-            submit_order(client, journal, dry, sleeve="B", ticker=t, side="sell",
-                         qty=held[t], order_type="market", tif="cls")
-
-    # ---- B entry day?
-    b = signals["sleeves"]["B_turn_of_month"]
-    if b["entry_today"]:
-        for order in b["orders"]:
-            t = order["ticker"]
-            if t in state["positions"]:
-                journal.log("skip", sleeve="B", ticker=t, reason="already held")
-                continue
-            if order["shares"] < 1:
-                journal.log("skip", sleeve="B", ticker=t, reason="size < 1 share")
-                continue
-            submit_order(client, journal, dry, sleeve="B", ticker=t, side="buy",
-                         qty=order["shares"], order_type="market", tif="cls")
-
-    # ---- C exits (close > prior high, or 4-day stop)
-    panel = scr.load_recent_panel()
-    c_, h_ = panel["close"], panel["high"]
-    for t, m in list(state["positions"].items()):
-        if m["sleeve"] != "C" or t not in held:
-            continue
-        s_c, s_h = c_[t].dropna(), h_[t].dropna()
-        days_held = trading_days_between(m["entry_date"], str(today))
-        above_prior_high = len(s_c) >= 2 and s_c.iloc[-1] > s_h.iloc[-2]
-        if above_prior_high or days_held >= SLEEVE_TIME_STOPS["C"]:
-            submit_order(client, journal, dry, sleeve="C", ticker=t, side="sell",
-                         qty=held[t], order_type="market", tif="cls")
-
-    # ---- C entries (Monday + bear regime; needs today's bar in the data)
-    c_sig = signals["sleeves"]["C_tt_bear"]
-    if c_sig["active"] and signals["as_of"] == str(today):
-        for order in c_sig["orders"]:
-            t = order["ticker"]
-            if t in state["positions"]:
-                journal.log("skip", sleeve="C", ticker=t, reason="already held")
-                continue
-            if order["shares"] < 1:
-                journal.log("skip", sleeve="C", ticker=t, reason="size < 1 share")
-                continue
-            submit_order(client, journal, dry, sleeve="C", ticker=t, side="buy",
-                         qty=order["shares"], order_type="market", tif="cls")
-    elif c_sig["active"]:
-        journal.log("skip", sleeve="C",
-                    reason=f"today's bars not yet in data (as_of {signals['as_of']}) - per playbook, skip rather than approximate")
-
-    save_state(state)
-    journal.log("run_end", mode="nearclose")
+    journal.log("run_end", mode="morning")
 
 
 def run_status(client) -> None:
     acct = client.get_account()
     state = load_state()
     print(f"Equity: ${float(acct.equity):,.2f}  Cash: ${float(acct.cash):,.2f}  "
-          f"Buying power: ${float(acct.buying_power):,.2f}")
+          f"Buying power: ${float(acct.buying_power):,.2f}  HWM: ${float(state.get('hwm', 0)):,.2f}")
     print(f"Tracked positions ({len(state['positions'])}):")
     for t, m in state["positions"].items():
         print(f"  {t}: sleeve {m['sleeve']}, entered {m['entry_date']}")
@@ -314,18 +303,23 @@ def run_status(client) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("mode", choices=["evening", "nearclose", "status"])
+    ap.add_argument("mode", choices=["morning", "status"])
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
     client = None
-    if not (args.dry_run and args.mode == "evening"):
+    if args.mode == "status":
         client = get_clients()
+    else:
+        try:
+            client = get_clients()
+        except SystemExit:
+            if not args.dry_run:
+                raise
+            print("No API keys found - dry-run preview without account (no reconcile/exits).")
 
-    if args.mode == "evening":
-        run_evening(client, args.dry_run)
-    elif args.mode == "nearclose":
-        run_nearclose(client, args.dry_run)
+    if args.mode == "morning":
+        run_morning(client, args.dry_run)
     else:
         run_status(client)
 

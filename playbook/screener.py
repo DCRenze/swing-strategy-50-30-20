@@ -1,9 +1,11 @@
-"""Daily signal screener for the validated 50/30/20 ensemble.
+"""Daily signal screener for the validated 60/40 A/H ensemble.
 
-Produces today's orders for the three sleeves:
-  A. three_lower_lows  (50%) - next-day limit buys + exit checks
-  B. turn_of_month     (30%) - calendar MOC entries/exits
-  C. tt_bear           (20%) - Monday-weakness MOC buys when SPY < SMA200
+Produces today's orders for the two sleeves:
+  A. three_lower_lows  (60%) - next-day limit buys + exit checks (mean reversion)
+  H. momentum          (40%) - 52-week-high breakouts, next-open buys (momentum)
+
+Both sleeves act at/around the next OPEN, so the daily evening run drives
+everything; there is no near-close MOC checkpoint anymore.
 
 Usage (from the project root, venv python):
   python -m playbook.screener --refresh     # download fresh bars first (1-2 min)
@@ -11,9 +13,7 @@ Usage (from the project root, venv python):
   python -m playbook.screener --equity 100000 --json signals.json
 
 Data: downloads its own ~450-calendar-day window to data/recent_*.parquet
-(does not touch the research panel). Run --refresh after each market close,
-or intraday near the close for the MOC sleeves (today's partial bar then
-stands in for the close - acceptable within ~15 min of 4pm ET).
+(does not touch the research panel). Run --refresh after each market close.
 
 The screener is STATELESS about positions: it emits entry signals and the
 exit RULES; whoever executes (human or agent) checks open positions against
@@ -34,7 +34,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from backtest.indicators import atr, dollar_volume, ibs, sma  # noqa: E402
+from backtest.indicators import atr, dollar_volume, sma  # noqa: E402
 
 DATA_DIR = ROOT / "data"
 RECENT_PREFIX = "recent_"
@@ -43,20 +43,24 @@ LOOKBACK_CAL_DAYS = 450
 # ---- ensemble parameters (validated in Phase 4 - do not change casually; ----
 # ---- any change invalidates the backtest evidence in results/ ) ----
 SLEEVES = {
-    "A_three_lower_lows": {"weight": 0.50, "max_positions": 10},
-    "B_turn_of_month": {"weight": 0.30, "max_positions": 10},
-    "C_tt_bear": {"weight": 0.20, "max_positions": 10},
+    "A_three_lower_lows": {"weight": 0.60, "max_positions": 10},
+    "H_momentum": {"weight": 0.40, "max_positions": 10},
 }
 A_STRETCH = 0.75          # limit = close - 0.75 * ATR(10)
 A_TREND_SMA = 200
 A_MIN_DOLLAR_VOL = 10e6
 A_MIN_PRICE = 1.0
 A_TIME_STOP = 15
-B_ENTRY_DAYS_BEFORE_EOM = 5   # buy close of 5th-last trading day of month
-B_EXIT_DAY_OF_MONTH = 1       # sell close of 1st trading day of new month
-B_TOP_N = 100
-C_IBS_MAX = 0.5
-C_TIME_STOP = 4
+# Sleeve H - 52-week-high momentum breakout (high52_breakout, spy100 regime).
+# Only ~0.26-correlated with A, so it diversifies the dip-buyer; carries its own
+# 5% stop and market-health gate. Validated: OOS profit factor 1.49 (gauntlet).
+H_LOOKBACK = 252          # new 252-day (52-week) closing high
+H_TREND_SMA = 100         # SPY > SMA(100) regime gate (trade only in healthy market)
+H_HOLD_DAYS = 15          # time stop (trading days)
+H_STOP_FRAC = 0.05        # 5% stop-loss from entry fill
+H_MOM_LOOKBACK = 126      # 6-month momentum, for ranking strongest first
+H_MIN_DOLLAR_VOL = 20e6
+H_MIN_PRICE = 5.0
 
 # Dual-listed share classes: map secondary -> primary so one company never
 # occupies two position slots. (Backtest did not dedupe; this only reduces
@@ -203,7 +207,7 @@ def screen(equity: float) -> dict:
              "last_close": round(last_close_raw, 2),
              "limit_vs_close_pct": round(float(dist_pct), 4),
              "dollar_volume_20d": float(dv[t].iloc[-1]),
-             "shares": int(a_size // limit_raw)}
+             "qty": round(float(a_size / limit_raw), 4)}  # fractional shares
         )
     candidates.sort(key=lambda x: -x["dollar_volume_20d"])
     keep = set(dedupe_share_classes([x["ticker"] for x in candidates]))
@@ -218,56 +222,39 @@ def screen(equity: float) -> dict:
         "warnings": warnings,
     }
 
-    # ---------- Sleeve B: turn of month ----------
-    b_size = equity * SLEEVES["B_turn_of_month"]["weight"] / SLEEVES["B_turn_of_month"]["max_positions"]
-    days_left = trading_days_left_in_month(today)
-    day_of = trading_day_of_month(today)
-    b_orders = []
-    if days_left == B_ENTRY_DAYS_BEFORE_EOM:
-        top = dv.iloc[-1].drop(labels=["SPY", "QQQ", "^VIX"], errors="ignore").nlargest(B_TOP_N)
-        picks = dedupe_share_classes(list(top.index))[: SLEEVES["B_turn_of_month"]["max_positions"]]
-        b_orders = [
-            {"ticker": t, "shares": int(b_size // raw_c[t].iloc[-1])}
-            for t in picks
-        ]
-    out["sleeves"]["B_turn_of_month"] = {
-        "entry_today": bool(b_orders),
-        "orders": b_orders,
-        "order_type": "Market-on-close TODAY (submit ~15 min before close)",
-        "position_size_usd": round(b_size, 2),
-        "exit_rules": f"Sell market-on-close on trading day {B_EXIT_DAY_OF_MONTH} of the new month.",
-        "calendar": {"trading_days_left_in_month": days_left, "trading_day_of_month": day_of},
-    }
-
-    # ---------- Sleeve C: Turnaround Tuesday (bear only) ----------
-    c_size = equity * SLEEVES["C_tt_bear"]["weight"] / SLEEVES["C_tt_bear"]["max_positions"]
-    c_orders = []
-    is_monday = today.dayofweek == 0
-    if is_monday and not spy_above_200:
-        ibs_today = ibs(h, l, c).iloc[-1]
-        down = (c.iloc[-1] < c.iloc[-2])
-        liq_today = liq.iloc[-1] if hasattr(liq, "iloc") else liq
-        # standard liquidity floor for this sleeve ($5 / $20M, as backtested)
-        liq2 = ((raw_c > 5.0) & (dv > 20e6)).iloc[-1]
-        cond = down & (ibs_today < C_IBS_MAX) & liq2
-        ranked = ibs_today[cond.fillna(False)].drop(labels=["SPY", "QQQ", "^VIX"], errors="ignore").nsmallest(
-            SLEEVES["C_tt_bear"]["max_positions"] * 2
-        )
-        picks = dedupe_share_classes(list(ranked.index))[: SLEEVES["C_tt_bear"]["max_positions"]]
-        c_orders = [
-            {"ticker": t, "ibs": round(float(ibs_today[t]), 3),
-             "shares": int(c_size // raw_c[t].iloc[-1])}
-            for t in picks
-        ]
-    out["sleeves"]["C_tt_bear"] = {
-        "active": is_monday and not spy_above_200,
-        "reason_inactive": None if (is_monday and not spy_above_200) else
-            ("not Monday" if not is_monday else "SPY above 200dma (sleeve only trades in bear regime)"),
-        "orders": c_orders,
-        "order_type": "Market-on-close TODAY (submit ~15 min before close)",
-        "position_size_usd": round(c_size, 2),
-        "exit_rules": "Sell at close when close > prior day's high, "
-                      f"or after {C_TIME_STOP} trading days (whichever first).",
+    # ---------- Sleeve H: 52-week-high momentum breakout ----------
+    h_size = equity * SLEEVES["H_momentum"]["weight"] / SLEEVES["H_momentum"]["max_positions"]
+    spy_above_100 = bool(spy.iloc[-1] > spy.rolling(H_TREND_SMA).mean().iloc[-1])
+    out["spy_above_100dma"] = spy_above_100
+    h_orders = []
+    if spy_above_100:
+        hh = c.rolling(H_LOOKBACK, min_periods=H_LOOKBACK).max()
+        new_high = (c >= hh) & (c.shift(1) < hh.shift(1))
+        vol_ok = v > sma(v, 50)
+        liq_h = (raw_c > H_MIN_PRICE) & (dv > H_MIN_DOLLAR_VOL)
+        sig_h = (new_high & vol_ok & liq_h).iloc[-1]
+        mom = (c / c.shift(H_MOM_LOOKBACK) - 1.0).iloc[-1]
+        cands = []
+        for t in sig_h.index[sig_h.fillna(False)]:
+            if t in ("SPY", "QQQ", "^VIX") or not np.isfinite(mom.get(t, np.nan)):
+                continue
+            last_close = float(raw_c[t].iloc[-1])
+            cands.append({"ticker": t, "momentum_6m": round(float(mom[t]), 4),
+                          "last_close": round(last_close, 2),
+                          "qty": round(float(h_size / last_close), 4)})  # fractional shares
+        cands.sort(key=lambda x: -x["momentum_6m"])  # strongest momentum first
+        keep = set(dedupe_share_classes([x["ticker"] for x in cands]))
+        cands = [x for x in cands if x["ticker"] in keep]
+        h_orders = cands[: SLEEVES["H_momentum"]["max_positions"]]
+    out["sleeves"]["H_momentum"] = {
+        "active": spy_above_100,
+        "reason_inactive": None if spy_above_100 else
+            "SPY below 100dma - momentum gate off (no new entries; manage exits only)",
+        "orders": h_orders,
+        "order_type": "MARKET buy at the OPEN (fractional DAY order)",
+        "position_size_usd": round(h_size, 2),
+        "exit_rules": f"Sell at the OPEN once a daily close is < entry x {1 - H_STOP_FRAC:.2f} "
+                      f"(-{H_STOP_FRAC:.0%} stop) OR after {H_HOLD_DAYS} trading days (whichever first).",
     }
     return out
 

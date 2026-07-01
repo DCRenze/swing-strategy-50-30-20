@@ -67,6 +67,18 @@ PLAN: dict[str, dict] = {
             ("sma200", {"trend_sma": 200}),
         ],
     },
+    "range_reversion": {
+        "baseline": {},  # always-on RSI(2), MOC, soft SMA100 filter, either-exit
+        "variants": [
+            ("rsi5", {"rsi_entry": 5.0}),
+            ("bb_entry", {"use_bollinger": True}),
+            ("ranging_gate", {"ranging_gate": 0.3}),   # choppy-only, for comparison
+            ("no_trend_filter", {"trend_sma": None}),  # fully unconstrained MR
+            ("exit_rsi65", {"exit_rule": "rsi65"}),
+            ("ts10", {"time_stop": 10}),
+            ("next_open", {"entry_mode": "next_open"}),
+        ],
+    },
     "band_ibs": {
         "baseline": {},  # basket port, next_open
         "variants": [

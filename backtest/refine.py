@@ -35,8 +35,15 @@ CONFIGS = {
     "h52_fast_regime": ("high52_breakout", {"_regime": "spy100"}),
 }
 
-ENSEMBLE = ["3ll_refined", "tom_exit1", "tt_bear"]  # capital split 50/30/20
+ENSEMBLE = ["3ll_refined", "tom_exit1", "tt_bear"]  # legacy split 50/30/20 (kept for comparison)
 ENSEMBLE_WEIGHTS = [0.5, 0.3, 0.2]
+
+# Deployed split: aggressive mean-reversion + momentum barbell. Sleeve A
+# (dip-buyer) paired with high52 momentum, which is only 0.26-correlated with A
+# and carries its own 5% stop + SPY>SMA regime gate. Replaces the rarely-used
+# turn-of-month / turnaround-tuesday sleeves. See the ensemble comparison below.
+DEPLOY_ENSEMBLE = ["3ll_refined", "h52_fast_regime"]
+DEPLOY_WEIGHTS = [0.6, 0.4]
 
 
 def stats_block(res, bench, start, end) -> dict:
@@ -101,27 +108,28 @@ def main() -> None:
         print(f"3ll slippage {bps}bps: {out['slippage_sensitivity_3ll'][f'{bps:.0f}bps']}", flush=True)
 
     # ensemble: capital split across sleeves (daily-return weighted sum)
-    rets = pd.DataFrame({k: equities[k].pct_change() for k in ENSEMBLE}).dropna()
-    ens_ret = sum(w * rets[k] for k, w in zip(ENSEMBLE, ENSEMBLE_WEIGHTS))
-    ens_eq = (1 + ens_ret).cumprod()
-    spy = bench["spy"].reindex(ens_eq.index).ffill()
-    blocks = {}
-    for label, (s, e) in (("is", (None, IS_END)), ("oos", (OOS_START, None)), ("full", (None, None))):
-        eq = ens_eq.loc[s:e]
-        spy_eq = (spy.loc[s:e] / spy.loc[s:e].iloc[0]).dropna()
-        blocks[label] = {
-            "cagr": round(cagr(eq), 4),
-            "sharpe": round(sharpe(eq), 2),
-            "max_dd": round(max_drawdown(eq), 4),
-            "spy_sharpe": round(sharpe(spy_eq), 2),
-        }
-    dds = monte_carlo_drawdown(ens_ret.to_numpy())
-    out["ensemble"] = {
-        "components": dict(zip(ENSEMBLE, ENSEMBLE_WEIGHTS)),
-        **blocks,
-        "mc_dd_p95": round(float(np.percentile(dds, 95)), 4),
-    }
-    print(f"ensemble: {json.dumps(out['ensemble'], indent=2)}", flush=True)
+    def compute_ensemble(names, weights) -> dict:
+        rets = pd.DataFrame({k: equities[k].pct_change() for k in names}).dropna()
+        ens_ret = sum(w * rets[k] for k, w in zip(names, weights))
+        ens_eq = (1 + ens_ret).cumprod()
+        spy = bench["spy"].reindex(ens_eq.index).ffill()
+        blocks = {}
+        for label, (s, e) in (("is", (None, IS_END)), ("oos", (OOS_START, None)), ("full", (None, None))):
+            eq = ens_eq.loc[s:e]
+            spy_eq = (spy.loc[s:e] / spy.loc[s:e].iloc[0]).dropna()
+            blocks[label] = {
+                "cagr": round(cagr(eq), 4),
+                "sharpe": round(sharpe(eq), 2),
+                "max_dd": round(max_drawdown(eq), 4),
+                "spy_sharpe": round(sharpe(spy_eq), 2),
+            }
+        dds = monte_carlo_drawdown(ens_ret.to_numpy())
+        return {"components": dict(zip(names, weights)), **blocks,
+                "mc_dd_p95": round(float(np.percentile(dds, 95)), 4)}
+
+    out["ensemble_legacy"] = compute_ensemble(ENSEMBLE, ENSEMBLE_WEIGHTS)
+    out["ensemble"] = compute_ensemble(DEPLOY_ENSEMBLE, DEPLOY_WEIGHTS)  # deployed
+    print(f"deployed ensemble (A/H 60/40): {json.dumps(out['ensemble'], indent=2)}", flush=True)
 
     (RESULTS_DIR / "refine_results.json").write_text(json.dumps(out, indent=2))
 
@@ -139,12 +147,19 @@ def main() -> None:
             f"| {c['oos']['profit_factor']} | {c['oos']['max_dd']} | {c['full']['cagr']} "
             f"| {c['full']['sharpe']} | {c['mc_dd_p95']} |"
         )
-    e = out["ensemble"]
+    def ens_line(tag, names, weights, block):
+        return (
+            f"**{tag}** ({', '.join(f'{k} {w:.0%}' for k, w in zip(names, weights))}): "
+            f"IS Sharpe {block['is']['sharpe']}, OOS Sharpe {block['oos']['sharpe']}, "
+            f"full CAGR {block['full']['cagr']}, full MaxDD {block['full']['max_dd']}, "
+            f"MC p95 DD {block['mc_dd_p95']}"
+        )
+
     lines += [
         "",
-        f"**Ensemble** ({', '.join(f'{k} {w:.0%}' for k, w in zip(ENSEMBLE, ENSEMBLE_WEIGHTS))}): "
-        f"IS Sharpe {e['is']['sharpe']}, OOS Sharpe {e['oos']['sharpe']}, full CAGR {e['full']['cagr']}, "
-        f"full MaxDD {e['full']['max_dd']}, MC p95 DD {e['mc_dd_p95']}",
+        ens_line("Deployed ensemble", DEPLOY_ENSEMBLE, DEPLOY_WEIGHTS, out["ensemble"]),
+        "",
+        ens_line("Legacy ensemble (for comparison)", ENSEMBLE, ENSEMBLE_WEIGHTS, out["ensemble_legacy"]),
         "",
         "Slippage sensitivity (3ll_refined, full window): "
         + ", ".join(f"{k}: CAGR {v['full_cagr']}, Sharpe {v['full_sharpe']}" for k, v in out["slippage_sensitivity_3ll"].items()),
