@@ -75,7 +75,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
+          # stage only the trade record; the run also regenerates data/ files we do
+          # not commit, so sync with --autostash to set those aside during the pull.
           git add papertrade/state.json papertrade/journal/
-          git diff --staged --quiet && echo "Nothing to commit" || \
-            git commit -m "Morning run $(date -u +%Y-%m-%d)" && git push
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Morning run $(date -u +%Y-%m-%d)"
+            git pull --rebase --autostash origin main
+            git push
+          fi
