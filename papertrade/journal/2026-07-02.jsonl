@@ -45,3 +45,20 @@
 {"ts": "2026-07-02T02:10:58", "kind": "skip", "sleeve": "H", "ticker": "LIN", "reason": "sleeve full"}
 {"ts": "2026-07-02T02:10:58", "kind": "skip", "sleeve": "H", "ticker": "FHB", "reason": "sleeve full"}
 {"ts": "2026-07-02T02:10:58", "kind": "run_end", "mode": "morning"}
+{"ts": "2026-07-02T13:32:28", "kind": "unattributed_position", "ticker": "OKTA", "qty": 14.0, "note": "held in account but no attributable buy fill - attribute manually"}
+{"ts": "2026-07-02T13:32:28", "kind": "run_start", "mode": "morning", "equity": 100275.61, "hwm": 100432.77, "drawdown": -0.0016, "dry_run": false}
+{"ts": "2026-07-02T13:33:26", "kind": "order_submitted", "sleeve": "A", "ticker": "NUE", "side": "sell", "qty": 50.8169, "order_type": "market", "limit_price": null, "client_order_id": "A-NUE-20260702-sell"}
+{"ts": "2026-07-02T13:33:26", "kind": "order_submitted", "sleeve": "A", "ticker": "TLN", "side": "sell", "qty": 13.0, "order_type": "market", "limit_price": null, "client_order_id": "A-TLN-20260702-sell"}
+{"ts": "2026-07-02T13:33:26", "kind": "order_submitted", "sleeve": "A", "ticker": "GM", "side": "sell", "qty": 145.8412, "order_type": "market", "limit_price": null, "client_order_id": "A-GM-20260702-sell"}
+{"ts": "2026-07-02T13:33:26", "kind": "order_submitted", "sleeve": "A", "ticker": "RCL", "side": "sell", "qty": 35.5706, "order_type": "market", "limit_price": null, "client_order_id": "A-RCL-20260702-sell"}
+{"ts": "2026-07-02T13:33:26", "kind": "order_error", "error": "{\"code\":40010001,\"message\":\"client_order_id must be unique\"}", "sleeve": "A", "ticker": "QCOM", "side": "buy", "qty": 35.1136, "order_type": "limit", "limit_price": 171.34, "client_order_id": "A-QCOM-20260702-buy"}
+{"ts": "2026-07-02T13:33:26", "kind": "order_error", "error": "{\"code\":40010001,\"message\":\"client_order_id must be unique\"}", "sleeve": "A", "ticker": "SLB", "side": "buy", "qty": 136.4086, "order_type": "limit", "limit_price": 44.11, "client_order_id": "A-SLB-20260702-buy"}
+{"ts": "2026-07-02T13:33:26", "kind": "skip", "sleeve": "A", "ticker": "RCL", "reason": "already held"}
+{"ts": "2026-07-02T13:33:26", "kind": "order_error", "error": "{\"code\":40010001,\"message\":\"client_order_id must be unique\"}", "sleeve": "A", "ticker": "DLR", "side": "buy", "qty": 35.0824, "order_type": "limit", "limit_price": 171.5, "client_order_id": "A-DLR-20260702-buy"}
+{"ts": "2026-07-02T13:33:26", "kind": "order_submitted", "sleeve": "A", "ticker": "DHI", "side": "buy", "qty": 39.2479, "order_type": "limit", "limit_price": 153.3, "client_order_id": "A-DHI-20260702-buy"}
+{"ts": "2026-07-02T13:33:26", "kind": "order_submitted", "sleeve": "A", "ticker": "TKO", "side": "buy", "qty": 31.1519, "order_type": "limit", "limit_price": 193.14, "client_order_id": "A-TKO-20260702-buy"}
+{"ts": "2026-07-02T13:33:26", "kind": "order_submitted", "sleeve": "A", "ticker": "DRI", "side": "buy", "qty": 30.4361, "order_type": "limit", "limit_price": 197.68, "client_order_id": "A-DRI-20260702-buy"}
+{"ts": "2026-07-02T13:33:26", "kind": "skip", "sleeve": "A", "ticker": "WSM", "reason": "sleeve full"}
+{"ts": "2026-07-02T13:33:26", "kind": "skip", "sleeve": "A", "ticker": "ARW", "reason": "sleeve full"}
+{"ts": "2026-07-02T13:33:26", "kind": "skip", "sleeve": "A", "ticker": "ELAN", "reason": "sleeve full"}
+{"ts": "2026-07-02T13:33:26", "kind": "run_end", "mode": "morning"}
