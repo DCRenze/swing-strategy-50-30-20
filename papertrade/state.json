@@ -2,55 +2,68 @@
   "positions": {
     "JAZZ": {
       "sleeve": "H",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 240.8161
     },
     "ACHC": {
       "sleeve": "H",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 29.51
     },
     "CRL": {
       "sleeve": "H",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 228.0
     },
     "GEV": {
       "sleeve": "H",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 1137.4494
     },
     "RRX": {
       "sleeve": "H",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 232.6423
     },
     "CAT": {
       "sleeve": "H",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 1028.72
     },
     "NUE": {
       "sleeve": "A",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 215.9992
     },
     "TLN": {
       "sleeve": "A",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 367.34
     },
     "MKSI": {
       "sleeve": "H",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 423.0106
     },
     "JBHT": {
       "sleeve": "H",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 288.97
     },
     "HAYW": {
       "sleeve": "H",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 17.1806
     },
     "GM": {
       "sleeve": "A",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 75.3
     },
     "RCL": {
       "sleeve": "A",
-      "entry_date": "2026-07-01"
+      "entry_date": "2026-07-01",
+      "entry_px": 307.2
     }
   },
   "hwm": 100432.77
