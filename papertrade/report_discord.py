@@ -33,7 +33,20 @@ from dotenv import load_dotenv  # noqa: E402
 load_dotenv(ROOT / ".env")
 
 JOURNAL_DIR = Path(__file__).resolve().parent / "journal"
+STATE_PATH = Path(__file__).resolve().parent / "state.json"
 DISCORD_LIMIT = 1990  # Discord hard-caps message content at 2000 chars
+SLEEVE_NAMES = {"A": "A · dip-buyer (mean-reversion)", "H": "H · momentum"}
+
+
+def sleeve_map() -> dict:
+    """ticker -> sleeve, from the runner's state.json (source of attribution)."""
+    if not STATE_PATH.exists():
+        return {}
+    try:
+        st = json.loads(STATE_PATH.read_text())
+        return {t: m.get("sleeve", "?") for t, m in st.get("positions", {}).items()}
+    except Exception:  # noqa: BLE001
+        return {}
 
 
 def market_snapshot() -> list[str]:
@@ -74,17 +87,20 @@ def alpaca_summary() -> list[str]:
     client = TradingClient(key, secret, paper=True)
     acct = client.get_account()
     lines = [f"**Account**: equity ${float(acct.equity):,.2f} | cash ${float(acct.cash):,.2f}"]
+    sleeve_of = sleeve_map()
 
     after = dt.datetime.now(dt.timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
     orders = list(client.get_orders(
         GetOrdersRequest(status=QueryOrderStatus.ALL, limit=100, after=after)))
     if orders:
-        lines.append(f"**Today's orders ({len(orders)})**:")
+        lines.append(f"**Today's orders ({len(orders)})** _(sleeve in brackets)_:")
         for o in orders[:12]:
+            coid = str(o.client_order_id or "")
+            sk = coid.split("-", 1)[0] if coid[:1] in ("A", "H") else "?"
             side = str(o.side).split(".")[-1].lower()
             qty = o.filled_qty if float(o.filled_qty or 0) > 0 else o.qty
             px = f"@ ${float(o.filled_avg_price):.2f}" if o.filled_avg_price else f"({str(o.status).split('.')[-1].lower()})"
-            lines.append(f"- {side} {float(qty):.4g} {o.symbol} {px}")
+            lines.append(f"- `[{sk}]` {side} {float(qty):.4g} {o.symbol} {px}")
         if len(orders) > 12:
             lines.append(f"- ...and {len(orders) - 12} more")
     else:
@@ -93,12 +109,22 @@ def alpaca_summary() -> list[str]:
     positions = list(client.get_all_positions())
     if positions:
         total_pl = sum(float(p.unrealized_pl) for p in positions)
-        lines.append(f"**Open positions ({len(positions)})** | unrealized P/L ${total_pl:+,.2f}:")
-        for p in sorted(positions, key=lambda p: -abs(float(p.market_value)))[:15]:
-            lines.append(f"- {p.symbol}: {float(p.qty):.4g} sh, "
-                         f"${float(p.market_value):,.2f} ({float(p.unrealized_plpc) * 100:+.1f}%)")
-        if len(positions) > 15:
-            lines.append(f"- ...and {len(positions) - 15} more")
+        lines.append(f"**Open positions ({len(positions)})** | total unrealized P/L ${total_pl:+,.2f}")
+        from collections import defaultdict
+        groups: dict = defaultdict(list)
+        for p in positions:
+            groups[sleeve_of.get(p.symbol, "?")].append(p)
+        for sk in ("A", "H", "?"):
+            ps = groups.get(sk)
+            if not ps:
+                continue
+            sub_pl = sum(float(p.unrealized_pl) for p in ps)
+            sub_mv = sum(float(p.market_value) for p in ps)
+            label = SLEEVE_NAMES.get(sk, "untracked (not in state.json)")
+            lines.append(f"**{label}** — {len(ps)} pos · ${sub_mv:,.0f} · P/L ${sub_pl:+,.2f}")
+            for p in sorted(ps, key=lambda p: -abs(float(p.market_value))):
+                lines.append(f"- {p.symbol}: {float(p.qty):.4g} sh, ${float(p.market_value):,.2f} "
+                             f"({float(p.unrealized_plpc) * 100:+.1f}%)")
     else:
         lines.append("**Open positions**: none")
     return lines
