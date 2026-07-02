@@ -17,9 +17,11 @@ name: Morning Trade Run
 #   ALPACA_SECRET_KEY  — Alpaca paper-trading secret key
 
 on:
-  schedule:
-    - cron: '35 13 * * 1-5'   # 9:35 AM EDT (UTC-4) — update to '35 14 * * 1-5' in November
-  workflow_dispatch:           # allows manual trigger from the Actions tab
+  # Triggered on time by an external scheduler (cron-job.org) via the GitHub API
+  # at ~6:32 AM PT. GitHub's own `schedule:` cron runs late under load, and the
+  # momentum sleeve needs to fill near the 6:30 AM PT open, so we removed the
+  # built-in schedule to avoid double-runs. workflow_dispatch = API + manual runs.
+  workflow_dispatch:
 
 permissions:
   contents: write              # needed to commit journal + state back to the repo
