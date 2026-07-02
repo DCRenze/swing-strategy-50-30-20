@@ -36,16 +36,20 @@
       "sleeve": "H",
       "entry_date": "2026-07-01"
     },
-    "TER": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01"
-    },
     "JBHT": {
       "sleeve": "H",
       "entry_date": "2026-07-01"
     },
     "HAYW": {
       "sleeve": "H",
+      "entry_date": "2026-07-01"
+    },
+    "GM": {
+      "sleeve": "A",
+      "entry_date": "2026-07-01"
+    },
+    "RCL": {
+      "sleeve": "A",
       "entry_date": "2026-07-01"
     }
   },
