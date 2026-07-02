@@ -52,6 +52,7 @@ from playbook import screener as scr  # noqa: E402
 
 STATE_PATH = Path(__file__).resolve().parent / "state.json"
 JOURNAL_DIR = Path(__file__).resolve().parent / "journal"
+TRADES_PATH = Path(__file__).resolve().parent / "trades.jsonl"  # realized closed-trade ledger
 
 SLEEVE_TIME_STOPS = {"A": scr.A_TIME_STOP, "H": scr.H_HOLD_DAYS}
 
@@ -128,17 +129,34 @@ def submit_order(client, journal: Journal, dry: bool, *, sleeve: str, ticker: st
         journal.log("order_error", error=str(e), **info)
 
 
+def _record_closed_trade(meta: dict, ticker: str, sell, journal: Journal) -> None:
+    """Append a realized round-trip to trades.jsonl when a tracked position closes."""
+    entry_px = meta.get("entry_px")
+    if not entry_px or sell is None:
+        journal.log("trade_unrecorded", ticker=ticker,
+                    reason="missing entry price or closing fill - realized P/L not logged")
+        return
+    exit_px, exit_qty, exit_at = sell
+    rec = {
+        "ticker": ticker, "sleeve": meta.get("sleeve", "?"),
+        "entry_date": meta.get("entry_date"), "exit_date": str(exit_at.date()),
+        "entry_px": round(entry_px, 4), "exit_px": round(exit_px, 4),
+        "qty": round(exit_qty, 4), "ret": round(exit_px / entry_px - 1.0, 4),
+        "pnl": round((exit_px - entry_px) * exit_qty, 2),
+    }
+    with TRADES_PATH.open("a") as f:
+        f.write(json.dumps(rec) + "\n")
+    journal.log("trade_closed", **rec)
+
+
 def reconcile(client, state: dict, journal: Journal) -> dict:
-    """Sync state.json with Alpaca: drop closed positions, adopt fills from our
-    client order IDs. Returns {symbol: {qty, avg_entry_price}} for held names."""
+    """Sync state.json with Alpaca: record realized P/L for closed positions, adopt
+    new fills (with entry price + sleeve), and backfill entry prices for known ones.
+    Returns {symbol: {qty, avg_entry_price}} for held names."""
     held = {
         p.symbol: {"qty": float(p.qty), "avg_entry_price": float(p.avg_entry_price)}
         for p in client.get_all_positions()
     }
-    for ticker in list(state["positions"]):
-        if ticker not in held:
-            journal.log("position_closed", ticker=ticker, **state["positions"][ticker])
-            del state["positions"][ticker]
     from alpaca.trading.enums import QueryOrderStatus
     from alpaca.trading.requests import GetOrdersRequest
 
@@ -146,20 +164,43 @@ def reconcile(client, state: dict, journal: Journal) -> dict:
         GetOrdersRequest(status=QueryOrderStatus.CLOSED, limit=200,
                          after=dt.datetime.now() - dt.timedelta(days=7))
     )
-    for o in orders:
-        sym = o.symbol
-        if sym in held and sym not in state["positions"] and o.client_order_id:
-            parts = str(o.client_order_id).split("-")
-            if len(parts) >= 4 and parts[0] in ("A", "H") and parts[-1] == "buy" and o.filled_at:
-                state["positions"][sym] = {
-                    "sleeve": parts[0],
-                    "entry_date": str(pd.Timestamp(o.filled_at).date()),
-                }
-                journal.log("position_adopted", ticker=sym, **state["positions"][sym])
+    # latest filled buy/sell per symbol over the last week
+    buy_fills: dict = {}   # symbol -> (price, timestamp, sleeve)
+    sell_fills: dict = {}  # symbol -> (price, qty, timestamp)
+    for o in sorted((o for o in orders if o.filled_at and o.filled_avg_price),
+                    key=lambda o: pd.Timestamp(o.filled_at)):
+        side = str(o.side).split(".")[-1].lower()
+        ts = pd.Timestamp(o.filled_at)
+        if side == "sell":
+            sell_fills[o.symbol] = (float(o.filled_avg_price), float(o.filled_qty or 0), ts)
+        elif side == "buy":
+            coid = str(o.client_order_id or "")
+            sk = coid.split("-")[0] if coid[:1] in ("A", "H") else None
+            buy_fills[o.symbol] = (float(o.filled_avg_price), ts, sk)
+
+    # closed positions: record realized P/L, then drop from state
+    for ticker in list(state["positions"]):
+        if ticker not in held:
+            meta = state["positions"][ticker]
+            _record_closed_trade(meta, ticker, sell_fills.get(ticker), journal)
+            journal.log("position_closed", ticker=ticker, **meta)
+            del state["positions"][ticker]
+
+    # adopt new holdings (with entry price); backfill entry_px for already-tracked
     for sym in held:
         if sym not in state["positions"]:
-            journal.log("unattributed_position", ticker=sym, qty=held[sym]["qty"],
-                        note="held in account but not in state - attribute manually")
+            bf = buy_fills.get(sym)
+            if bf and bf[2] in ("A", "H"):
+                px, ts, sk = bf
+                state["positions"][sym] = {
+                    "sleeve": sk, "entry_date": str(ts.date()), "entry_px": round(px, 4),
+                }
+                journal.log("position_adopted", ticker=sym, **state["positions"][sym])
+            else:
+                journal.log("unattributed_position", ticker=sym, qty=held[sym]["qty"],
+                            note="held in account but no attributable buy fill - attribute manually")
+        elif "entry_px" not in state["positions"][sym]:
+            state["positions"][sym]["entry_px"] = round(held[sym]["avg_entry_price"], 4)
     return held
 
 

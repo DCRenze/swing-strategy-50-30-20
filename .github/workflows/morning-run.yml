@@ -74,6 +74,7 @@ jobs:
           # stage only the trade record; the run also regenerates data/ files we do
           # not commit, so sync with --autostash to set those aside during the pull.
           git add papertrade/state.json papertrade/journal/
+          [ -f papertrade/trades.jsonl ] && git add papertrade/trades.jsonl || true
           if git diff --staged --quiet; then
             echo "Nothing to commit"
           else
