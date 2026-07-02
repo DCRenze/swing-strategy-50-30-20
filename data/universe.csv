@@ -1,0 +1,1010 @@
+ticker,name,source
+A,Agilent Technologies,sp500
+AA,Alcoa,russell1000
+AAL,American Airlines Group,russell1000
+AAON,AAON,russell1000
+AAPL,Apple Inc.,sp500
+ABBV,AbbVie,sp500
+ABNB,Airbnb,sp500
+ABT,Abbott Laboratories,sp500
+ACGL,Arch Capital Group,sp500
+ACHC,Acadia Healthcare,russell1000
+ACI,Albertsons,russell1000
+ACM,AECOM,russell1000
+ACN,Accenture,sp500
+ADBE,Adobe Inc.,sp500
+ADC,Agree Realty,russell1000
+ADI,Analog Devices,sp500
+ADM,Archer Daniels Midland,sp500
+ADP,Automatic Data Processing,sp500
+ADSK,Autodesk,sp500
+ADT,ADT Inc.,russell1000
+AEE,Ameren,sp500
+AEP,American Electric Power,sp500
+AES,AES Corporation,sp500
+AFG,American Financial Group,russell1000
+AFL,Aflac,sp500
+AFRM,Affirm Holdings,russell1000
+AGCO,AGCO,russell1000
+AGNC,AGNC Investment,russell1000
+AGO,Assured Guaranty,russell1000
+AIG,American International Group,sp500
+AIT,Applied Industrial Technologies,russell1000
+AIZ,Assurant,sp500
+AJG,Arthur J. Gallagher & Co.,sp500
+AKAM,Akamai Technologies,sp500
+AL,Air Lease Corporation,russell1000
+ALAB,Astera Labs,russell1000
+ALB,Albemarle Corporation,sp500
+ALGM,Allegro MicroSystems,russell1000
+ALGN,Align Technology,sp500
+ALK,Alaska Air Group,russell1000
+ALL,Allstate,sp500
+ALLE,Allegion,sp500
+ALLY,Ally Financial,russell1000
+ALNY,Alnylam Pharmaceuticals,russell1000
+ALSN,Allison Transmission,russell1000
+AM,Antero Midstream,russell1000
+AMAT,Applied Materials,sp500
+AMCR,Amcor,sp500
+AMD,Advanced Micro Devices,sp500
+AME,Ametek,sp500
+AMG,Affiliated Managers Group,russell1000
+AMGN,Amgen,sp500
+AMH,American Homes 4 Rent,russell1000
+AMKR,Amkor Technology,russell1000
+AMP,Ameriprise Financial,sp500
+AMT,American Tower,sp500
+AMTM,Amentum,russell1000
+AMZN,Amazon,sp500
+AN,AutoNation,russell1000
+ANET,Arista Networks,sp500
+AON,Aon plc,sp500
+AOS,A. O. Smith,sp500
+APA,APA Corporation,sp500
+APD,Air Products,sp500
+APG,APi Group,russell1000
+APH,Amphenol,sp500
+APO,Apollo Global Management,sp500
+APP,AppLovin,sp500
+APPF,AppFolio,russell1000
+APTV,Aptiv,sp500
+AR,Antero Resources,russell1000
+ARE,Alexandria Real Estate Equities,sp500
+ARES,Ares Management,sp500
+ARMK,Aramark,russell1000
+ARW,Arrow Electronics,russell1000
+AS,Amer Sports,russell1000
+ASH,Ashland Global,russell1000
+ASTS,AST SpaceMobile,russell1000
+ATI,ATI Inc.,russell1000
+ATO,Atmos Energy,sp500
+ATR,AptarGroup,russell1000
+AU,AngloGold Ashanti,russell1000
+AUR,Aurora Innovation,russell1000
+AVB,AvalonBay Communities,sp500
+AVGO,Broadcom,sp500
+AVT,Avnet,russell1000
+AVTR,Avantor,russell1000
+AVY,Avery Dennison,sp500
+AWI,Armstrong World Industries,russell1000
+AWK,American Water Works,sp500
+AXON,Axon Enterprise,sp500
+AXP,American Express,sp500
+AXS,AXIS Capital,russell1000
+AXTA,Axalta,russell1000
+AYI,Acuity Brands,russell1000
+AZO,AutoZone,sp500
+BA,Boeing,sp500
+BAC,Bank of America,sp500
+BAH,Booz Allen Hamilton,russell1000
+BALL,Ball Corporation,sp500
+BAM,Brookfield Asset Management,russell1000
+BAX,Baxter International,sp500
+BBWI,"Bath & Body Works, Inc.",russell1000
+BBY,Best Buy,sp500
+BC,Brunswick Corporation,russell1000
+BDX,Becton Dickinson,sp500
+BEN,Franklin Resources,sp500
+BEPC,Brookfield Renewable Partners,russell1000
+BF-A,Brown–Forman (Class A),russell1000
+BF-B,Brown–Forman,sp500
+BFAM,Bright Horizons,russell1000
+BG,Bunge Global,sp500
+BHF,Brighthouse Financial,russell1000
+BIIB,Biogen,sp500
+BILL,Bill.com,russell1000
+BIO,Bio-Rad Laboratories,russell1000
+BIRK,Birkenstock,russell1000
+BJ,BJ's Wholesale Club,russell1000
+BKNG,Booking Holdings,sp500
+BKR,Baker Hughes,sp500
+BLD,TopBuild,russell1000
+BLDR,Builders FirstSource,sp500
+BLK,BlackRock,sp500
+BLSH,Bullish,russell1000
+BMRN,BioMarin Pharmaceutical,russell1000
+BMY,Bristol Myers Squibb,sp500
+BNY,BNY Mellon,sp500
+BOKF,BOK Financial Corporation,russell1000
+BPOP,"Popular, Inc.",russell1000
+BR,Broadridge Financial Solutions,sp500
+BRBR,BellRing Brands,russell1000
+BRK-B,Berkshire Hathaway,sp500
+BRKR,Bruker,russell1000
+BRO,Brown & Brown,sp500
+BROS,Dutch Bros Inc.,russell1000
+BRX,Brixmor Property Group,russell1000
+BSX,Boston Scientific,sp500
+BSY,Bentley Systems,russell1000
+BURL,Burlington Stores,russell1000
+BWA,BorgWarner,russell1000
+BWXT,BWX Technologies,russell1000
+BX,Blackstone Inc.,sp500
+BXP,"BXP, Inc.",sp500
+BYD,Boyd Gaming,russell1000
+C,Citigroup,sp500
+CACC,Credit Acceptance,russell1000
+CACI,CACI,russell1000
+CAG,Conagra Brands,sp500
+CAH,Cardinal Health,sp500
+CAI,Caris Life Sciences,russell1000
+CAR,Avis Budget Group,russell1000
+CARR,Carrier Global,sp500
+CART,Maplebear Inc.,russell1000
+CASY,Casey's,sp500
+CAT,Caterpillar Inc.,sp500
+CAVA,Cava Group,russell1000
+CB,Chubb Limited,sp500
+CBC,Central Bancompany,russell1000
+CBOE,Cboe Global Markets,sp500
+CBRE,CBRE Group,sp500
+CBSH,Commerce Bancshares,russell1000
+CCC,CCC Intelligent Solutions,russell1000
+CCI,Crown Castle,sp500
+CCK,Crown Holdings,russell1000
+CCL,Carnival Corporation,sp500
+CDNS,Cadence Design Systems,sp500
+CDW,CDW Corporation,sp500
+CE,Celanese,russell1000
+CEG,Constellation Energy,sp500
+CELH,Celsius Holdings,russell1000
+CERT,"Certara, Inc.",russell1000
+CF,CF Industries,sp500
+CFG,Citizens Financial Group,sp500
+CFR,Frost Bank,russell1000
+CG,Carlyle Group (The),russell1000
+CGNX,Cognex Corporation,russell1000
+CHD,Church & Dwight,sp500
+CHDN,Churchill Downs Incorporated,russell1000
+CHE,Chemed Corporation,russell1000
+CHH,Choice Hotels,russell1000
+CHRD,Chord Energy,russell1000
+CHRW,C.H. Robinson,sp500
+CHTR,Charter Communications,sp500
+CHWY,Chewy,russell1000
+CI,Cigna,sp500
+CIEN,Ciena,sp500
+CINF,Cincinnati Financial,sp500
+CL,Colgate-Palmolive,sp500
+CLF,Cleveland-Cliffs,russell1000
+CLH,Clean Harbors,russell1000
+CLVT,Clarivate,russell1000
+CLX,Clorox,sp500
+CMCSA,Comcast,sp500
+CME,CME Group,sp500
+CMG,Chipotle Mexican Grill,sp500
+CMI,Cummins,sp500
+CMS,CMS Energy,sp500
+CNA,CNA Financial,russell1000
+CNC,Centene Corporation,sp500
+CNH,CNH Industrial,russell1000
+CNM,Core & Main,russell1000
+CNP,CenterPoint Energy,sp500
+CNXC,Concentrix,russell1000
+COF,Capital One,sp500
+COHR,Coherent Corp.,sp500
+COIN,Coinbase,sp500
+COKE,Coca-Cola Consolidated,russell1000
+COLB,Columbia Banking System,russell1000
+COLD,Americold,russell1000
+COLM,Columbia Sportswear,russell1000
+COO,Cooper Companies (The),sp500
+COP,ConocoPhillips,sp500
+COR,Cencora,sp500
+CORT,Corcept Therapeutics,russell1000
+COST,Costco,sp500
+COTY,Coty,russell1000
+CPAY,Corpay,sp500
+CPB,Campbell's Company (The),sp500
+CPNG,Coupang,russell1000
+CPRT,Copart,sp500
+CPT,Camden Property Trust,sp500
+CR,Crane Co.,russell1000
+CRCL,Circle Internet Group,russell1000
+CRH,CRH plc,sp500
+CRL,Charles River Laboratories,sp500
+CRM,Salesforce,sp500
+CROX,Crocs,russell1000
+CRS,Carpenter Technology Corporation,russell1000
+CRUS,Cirrus Logic,russell1000
+CRWD,CrowdStrike,sp500
+CSCO,Cisco,sp500
+CSGP,CoStar Group,sp500
+CSL,Carlisle Companies,russell1000
+CSX,CSX Corporation,sp500
+CTAS,Cintas,sp500
+CTSH,Cognizant,sp500
+CTVA,Corteva,sp500
+CUBE,CubeSmart,russell1000
+CUZ,Cousins Properties,russell1000
+CVNA,Carvana,sp500
+CVS,CVS Health,sp500
+CVX,Chevron Corporation,sp500
+CW,Curtiss-Wright,russell1000
+CWEN,Clearway Energy (Class C),russell1000
+CWEN-A,Clearway Energy (Class A),russell1000
+CXT,Crane NXT,russell1000
+CZR,Caesars Entertainment,russell1000
+D,Dominion Energy,sp500
+DAL,Delta Air Lines,sp500
+DAR,Darling Ingredients,russell1000
+DASH,DoorDash,sp500
+DBX,Dropbox,russell1000
+DCI,Donaldson Company,russell1000
+DD,DuPont,sp500
+DDOG,Datadog,sp500
+DDS,Dillard's,russell1000
+DE,Deere & Company,sp500
+DECK,Deckers Brands,sp500
+DELL,Dell Technologies,sp500
+DG,Dollar General,sp500
+DGX,Quest Diagnostics,sp500
+DHI,D. R. Horton,sp500
+DHR,Danaher Corporation,sp500
+DINO,HF Sinclair,russell1000
+DIS,Walt Disney Company (The),sp500
+DJT,Trump Media & Technology Group,russell1000
+DKNG,DraftKings,russell1000
+DKS,Dick's Sporting Goods,russell1000
+DLB,Dolby Laboratories,russell1000
+DLR,Digital Realty,sp500
+DLTR,Dollar Tree,sp500
+DOC,Healthpeak Properties,sp500
+DOCS,Doximity,russell1000
+DOCU,DocuSign,russell1000
+DOV,Dover Corporation,sp500
+DOW,Dow Inc.,sp500
+DOX,Amdocs,russell1000
+DPZ,Domino's,sp500
+DRI,Darden Restaurants,sp500
+DRS,Leonardo DRS,russell1000
+DT,Dynatrace,russell1000
+DTE,DTE Energy,sp500
+DTM,DT Midstream,russell1000
+DUK,Duke Energy,sp500
+DUOL,Duolingo,russell1000
+DV,DoubleVerify,russell1000
+DVA,DaVita,sp500
+DVN,Devon Energy,sp500
+DXC,DXC Technology,russell1000
+DXCM,Dexcom,sp500
+EA,Electronic Arts,sp500
+EBAY,eBay Inc.,sp500
+ECG,Everus Construction Group,russell1000
+ECL,Ecolab,sp500
+ED,Consolidated Edison,sp500
+EEFT,Euronet Worldwide,russell1000
+EFX,Equifax,sp500
+EG,Everest Group,sp500
+EGP,EastGroup Properties,russell1000
+EHC,Encompass Health,russell1000
+EIX,Edison International,sp500
+EL,Estée Lauder Companies (The),sp500
+ELAN,Elanco,russell1000
+ELF,e.l.f. Beauty,russell1000
+ELS,Equity Lifestyle Properties,russell1000
+ELV,Elevance Health,sp500
+EME,Emcor,sp500
+EMN,Eastman Chemical Company,russell1000
+EMR,Emerson Electric,sp500
+ENPH,Enphase Energy,russell1000
+ENTG,Entegris,russell1000
+EOG,EOG Resources,sp500
+EPAM,EPAM Systems,russell1000
+EPR,EPR Properties,russell1000
+EQH,Equitable Holdings,russell1000
+EQIX,Equinix,sp500
+EQR,Equity Residential,sp500
+EQT,EQT Corporation,sp500
+ERIE,Erie Indemnity,sp500
+ES,Eversource Energy,sp500
+ESAB,ESAB,russell1000
+ESI,Element Solutions,russell1000
+ESS,Essex Property Trust,sp500
+ESTC,Elastic NV,russell1000
+ETN,Eaton Corporation,sp500
+ETR,Entergy,sp500
+ETSY,Etsy,russell1000
+EVR,Evercore,russell1000
+EVRG,Evergy,sp500
+EW,Edwards Lifesciences,sp500
+EWBC,East West Bancorp,russell1000
+EXC,Exelon,sp500
+EXE,Expand Energy,sp500
+EXEL,Exelixis,russell1000
+EXLS,EXL Service,russell1000
+EXP,Eagle Materials,russell1000
+EXPD,Expeditors International,sp500
+EXPE,Expedia Group,sp500
+EXR,Extra Space Storage,sp500
+F,Ford Motor Company,sp500
+FAF,First American Financial Corporation,russell1000
+FANG,Diamondback Energy,sp500
+FAST,Fastenal,sp500
+FBIN,Fortune Brands Innovations,russell1000
+FCN,FTI Consulting,russell1000
+FCNCA,First Citizens BancShares,russell1000
+FCX,Freeport-McMoRan,sp500
+FDS,FactSet,sp500
+FDX,FedEx,sp500
+FDXF,FedEx Freight,sp500
+FE,FirstEnergy,sp500
+FERG,Ferguson Enterprises,russell1000
+FFIV,"F5, Inc.",sp500
+FHB,"First Hawaiian, Inc.",russell1000
+FHN,First Horizon Corporation,russell1000
+FICO,Fair Isaac,sp500
+FIGR,Figure Technology Solutions,russell1000
+FIS,Fidelity National Information Services,sp500
+FISV,Fiserv,sp500
+FITB,Fifth Third Bancorp,sp500
+FIVE,Five Below,russell1000
+FIX,Comfort Systems USA,sp500
+FLEX,Flex Ltd.,russell1000
+FLO,Flowers Foods,russell1000
+FLS,Flowserve,russell1000
+FLUT,Flutter Entertainment,russell1000
+FMC,FMC Corporation,russell1000
+FNB,FNB Corporation,russell1000
+FND,Floor & Decor,russell1000
+FNF,Fidelity National Financial,russell1000
+FOUR,Shift4,russell1000
+FOX,Fox Corporation (Class B),sp500
+FOXA,Fox Corporation (Class A),sp500
+FR,First Industrial Realty Trust,russell1000
+FRHC,Freedom Holding,russell1000
+FRMI,Fermi Inc.,russell1000
+FRPT,Freshpet,russell1000
+FRT,Federal Realty Investment Trust,sp500
+FSLR,First Solar,sp500
+FTAI,FTAI Aviation,russell1000
+FTI,TechnipFMC,russell1000
+FTNT,Fortinet,sp500
+FTV,Fortive,sp500
+FWONA,Liberty Formula 1 (Series A),russell1000
+FWONK,Liberty Formula 1 (Series C),russell1000
+G,Genpact,russell1000
+GAP,Gap Inc.,russell1000
+GD,General Dynamics,sp500
+GDDY,GoDaddy,sp500
+GE,GE Aerospace,sp500
+GEHC,GE HealthCare,sp500
+GEN,Gen Digital,sp500
+GEV,GE Vernova,sp500
+GFS,GlobalFoundries,russell1000
+GGG,Graco Inc.,russell1000
+GILD,Gilead Sciences,sp500
+GIS,General Mills,sp500
+GL,Globe Life,sp500
+GLIBA,GCI Liberty (Series A),russell1000
+GLIBK,GCI Liberty (Series C),russell1000
+GLOB,Globant,russell1000
+GLPI,Gaming and Leisure Properties,russell1000
+GLW,Corning Inc.,sp500
+GM,General Motors,sp500
+GME,GameStop,russell1000
+GMED,Globus Medical,russell1000
+GNRC,Generac,sp500
+GNTX,Gentex,russell1000
+GOOG,Alphabet Inc. (Class C),sp500
+GOOGL,Alphabet Inc. (Class A),sp500
+GPC,Genuine Parts Company,sp500
+GPK,Graphic Packaging,russell1000
+GPN,Global Payments,sp500
+GRMN,Garmin,sp500
+GS,Goldman Sachs,sp500
+GTES,Gates Corporation,russell1000
+GTLB,GitLab,russell1000
+GTM,ZoomInfo,russell1000
+GWRE,Guidewire Software,russell1000
+GWW,W. W. Grainger,sp500
+GXO,GXO Logistics,russell1000
+H,Hyatt Hotels,russell1000
+HAL,Halliburton,sp500
+HALO,Halozyme,russell1000
+HAS,Hasbro,sp500
+HAYW,Hayward Holdings,russell1000
+HBAN,Huntington Bancshares,sp500
+HCA,HCA Healthcare,sp500
+HD,Home Depot (The),sp500
+HEI,HEICO (Common),russell1000
+HEI-A,HEICO (Class A),russell1000
+HHH,Howard Hughes Holdings,russell1000
+HIG,Hartford (The),sp500
+HII,Huntington Ingalls Industries,sp500
+HIW,Highwoods Properties,russell1000
+HLI,Houlihan Lokey,russell1000
+HLNE,Hamilton Lane,russell1000
+HLT,Hilton Worldwide,sp500
+HOG,Harley-Davidson,russell1000
+HON,Honeywell,sp500
+HOOD,Robinhood Markets,sp500
+HPE,Hewlett Packard Enterprise,sp500
+HPQ,HP Inc.,sp500
+HR,Healthcare Realty Trust,russell1000
+HRB,H&R Block,russell1000
+HRL,Hormel Foods,sp500
+HSIC,Henry Schein,sp500
+HST,Host Hotels & Resorts,sp500
+HSY,Hershey Company (The),sp500
+HUBB,Hubbell Incorporated,sp500
+HUBS,HubSpot,russell1000
+HUM,Humana,sp500
+HUN,Huntsman Corporation,russell1000
+HWM,Howmet Aerospace,sp500
+HXL,Hexcel,russell1000
+IBKR,Interactive Brokers,sp500
+IBM,IBM,sp500
+ICE,Intercontinental Exchange,sp500
+IDA,Idacorp,russell1000
+IDXX,Idexx Laboratories,sp500
+IEX,IDEX Corporation,sp500
+IFF,International Flavors & Fragrances,sp500
+ILMN,"Illumina, Inc.",russell1000
+INCY,Incyte,sp500
+INGM,Ingram Micro,russell1000
+INGR,Ingredion,russell1000
+INSM,Insmed,russell1000
+INSP,Inspire Medical Systems,russell1000
+INTC,Intel,sp500
+INTU,Intuit,sp500
+INVH,Invitation Homes,sp500
+IONS,Ionis Pharmaceuticals,russell1000
+IOT,Samsara,russell1000
+IP,International Paper,sp500
+IPGP,IPG Photonics,russell1000
+IQV,IQVIA,sp500
+IR,Ingersoll Rand,sp500
+IRDM,Iridium Communications,russell1000
+IRM,Iron Mountain,sp500
+ISRG,Intuitive Surgical,sp500
+IT,Gartner,sp500
+ITT,ITT Inc.,russell1000
+ITW,Illinois Tool Works,sp500
+IVZ,Invesco,sp500
+J,Jacobs Solutions,sp500
+JAZZ,Jazz Pharmaceuticals,russell1000
+JBHT,J.B. Hunt,sp500
+JBL,Jabil,sp500
+JCI,Johnson Controls,sp500
+JEF,Jefferies Financial Group,russell1000
+JHG,Janus Henderson,russell1000
+JHX,James Hardie Industries,russell1000
+JKHY,Jack Henry & Associates,sp500
+JLL,Jones Lang LaSalle,russell1000
+JNJ,Johnson & Johnson,sp500
+JPM,JPMorgan Chase,sp500
+KBR,"KBR, Inc.",russell1000
+KD,Kyndryl,russell1000
+KDP,Keurig Dr Pepper,sp500
+KEX,Kirby Corporation,russell1000
+KEY,KeyCorp,sp500
+KEYS,Keysight Technologies,sp500
+KHC,Kraft Heinz,sp500
+KIM,Kimco Realty,sp500
+KKR,KKR & Co.,sp500
+KLAC,KLA Corporation,sp500
+KMB,Kimberly-Clark,sp500
+KMI,Kinder Morgan,sp500
+KMPR,Kemper Corporation,russell1000
+KMX,CarMax,russell1000
+KNSL,Kinsale Capital Group,russell1000
+KNX,Knight-Swift,russell1000
+KO,Coca-Cola Company (The),sp500
+KR,Kroger,sp500
+KRC,Kilroy Realty,russell1000
+KRMN,Karman Holdings,russell1000
+KVUE,Kenvue,sp500
+L,Loews Corporation,sp500
+LAD,Lithia Motors,russell1000
+LAMR,Lamar Advertising,russell1000
+LAZ,Lazard,russell1000
+LBRDA,Liberty Broadband (Series A),russell1000
+LBRDK,Liberty Broadband (Series C),russell1000
+LBTYA,Liberty Global (Series A),russell1000
+LBTYK,Liberty Global (Series C),russell1000
+LCID,Lucid Motors,russell1000
+LDOS,Leidos,sp500
+LEA,Lear Corporation,russell1000
+LECO,Lincoln Electric,russell1000
+LEN,Lennar,sp500
+LEN-B,Lennar (Class B),russell1000
+LFUS,Littelfuse,russell1000
+LH,Labcorp,sp500
+LHX,L3Harris,sp500
+LII,Lennox International,sp500
+LIN,Linde plc,sp500
+LINE,"Lineage, Inc.",russell1000
+LITE,Lumentum,sp500
+LKQ,LKQ Corporation,russell1000
+LLY,Lilly (Eli),sp500
+LLYVA,Liberty Live (Series A),russell1000
+LLYVK,Liberty Live (Series C),russell1000
+LMT,Lockheed Martin,sp500
+LNC,Lincoln Financial,russell1000
+LNG,Cheniere Energy,russell1000
+LNT,Alliant Energy,sp500
+LOAR,Loar Holdings,russell1000
+LOPE,Grand Canyon Education,russell1000
+LOW,Lowe's,sp500
+LPLA,LPL Financial,russell1000
+LPX,Louisiana-Pacific,russell1000
+LRCX,Lam Research,sp500
+LSCC,Lattice Semiconductor,russell1000
+LSTR,Landstar,russell1000
+LULU,Lululemon Athletica,sp500
+LUV,Southwest Airlines,sp500
+LVS,Las Vegas Sands,sp500
+LW,Lamb Weston,russell1000
+LYB,LyondellBasell,sp500
+LYFT,Lyft,russell1000
+LYV,Live Nation Entertainment,sp500
+M,"Macy's, Inc.",russell1000
+MA,Mastercard,sp500
+MAA,Mid-America Apartment Communities,sp500
+MAN,ManpowerGroup,russell1000
+MANH,Manhattan Associates,russell1000
+MAR,Marriott International,sp500
+MAS,Masco,sp500
+MASI,Masimo,russell1000
+MAT,Mattel,russell1000
+MCD,McDonald's,sp500
+MCHP,Microchip Technology,sp500
+MCK,McKesson Corporation,sp500
+MCO,Moody's Corporation,sp500
+MDB,MongoDB Inc.,russell1000
+MDLN,Medline Inc.,russell1000
+MDLZ,Mondelez International,sp500
+MDT,Medtronic,sp500
+MDU,MDU Resources,russell1000
+MEDP,Medpace,russell1000
+MET,MetLife,sp500
+META,Meta Platforms,sp500
+MGM,MGM Resorts,sp500
+MHK,Mohawk Industries,russell1000
+MIDD,Middleby,russell1000
+MKC,McCormick & Company,sp500
+MKL,Markel,russell1000
+MKSI,MKS Instruments,russell1000
+MKTX,MarketAxess,russell1000
+MLI,Mueller Industries,russell1000
+MLM,Martin Marietta Materials,sp500
+MMM,3M,sp500
+MNST,Monster Beverage,sp500
+MO,Altria,sp500
+MOH,Molina Healthcare,russell1000
+MORN,"Morningstar, Inc.",russell1000
+MOS,Mosaic Company (The),sp500
+MP,MP Materials,russell1000
+MPC,Marathon Petroleum,sp500
+MPT,Medical Properties Trust,russell1000
+MPWR,Monolithic Power Systems,sp500
+MRK,Merck & Co.,sp500
+MRNA,Moderna,sp500
+MRP,Millrose Properties,russell1000
+MRSH,Marsh McLennan,sp500
+MRVL,Marvell Technology,russell1000
+MS,Morgan Stanley,sp500
+MSA,MSA Safety,russell1000
+MSCI,MSCI Inc.,sp500
+MSFT,Microsoft,sp500
+MSGS,Madison Square Garden Sports,russell1000
+MSI,Motorola Solutions,sp500
+MSM,MSC Industrial Direct,russell1000
+MSTR,MicroStrategy,russell1000
+MTB,M&T Bank,sp500
+MTCH,Match Group,russell1000
+MTD,Mettler Toledo,sp500
+MTDR,Matador Resources,russell1000
+MTG,MGIC Investment Corporation,russell1000
+MTN,Vail Resorts,russell1000
+MTSI,MACOM Technology Solutions,russell1000
+MTZ,MasTec,russell1000
+MU,Micron Technology,sp500
+MUSA,Murphy USA,russell1000
+NBIX,Neurocrine Biosciences,russell1000
+NCLH,Norwegian Cruise Line Holdings,sp500
+NCNO,nCino,russell1000
+NDAQ,"Nasdaq, Inc.",sp500
+NDSN,Nordson Corporation,sp500
+NEE,NextEra Energy,sp500
+NEM,Newmont,sp500
+NET,Cloudflare,russell1000
+NEU,NewMarket,russell1000
+NFG,National Fuel Gas,russell1000
+NFLX,Netflix,sp500
+NI,NiSource,sp500
+NIQ,NIQ Global Intelligence,russell1000
+NKE,"Nike, Inc.",sp500
+NLY,Annaly Capital Management,russell1000
+NNN,NNN Reit,russell1000
+NOC,Northrop Grumman,sp500
+NOV,NOV Inc.,russell1000
+NOW,ServiceNow,sp500
+NRG,NRG Energy,sp500
+NSA,National Storage Affiliates,russell1000
+NSC,Norfolk Southern,sp500
+NTAP,NetApp,sp500
+NTNX,Nutanix,russell1000
+NTRA,Natera,russell1000
+NTRS,Northern Trust,sp500
+NU,Nubank,russell1000
+NUE,Nucor,sp500
+NVDA,Nvidia,sp500
+NVR,"NVR, Inc.",sp500
+NVST,Envista,russell1000
+NVT,nVent Electric,russell1000
+NWL,Newell Brands,russell1000
+NWS,News Corp (Class B),sp500
+NWSA,News Corp (Class A),sp500
+NXPI,NXP Semiconductors,sp500
+NXST,Nexstar Media Group,russell1000
+NYT,New York Times Company,russell1000
+O,Realty Income,sp500
+OC,Owens Corning,russell1000
+ODFL,Old Dominion,sp500
+OGE,OGE Energy,russell1000
+OGN,Organon & Co.,russell1000
+OHI,Omega Healthcare Investors,russell1000
+OKE,Oneok,sp500
+OKTA,"Okta, Inc.",russell1000
+OLED,Universal Display Corporation,russell1000
+OLLI,Ollie's Bargain Outlet,russell1000
+OLN,Olin Corporation,russell1000
+OMC,Omnicom Group,sp500
+OMF,OneMain Financial,russell1000
+ON,ON Semiconductor,sp500
+ONON,On Holding AG,russell1000
+ONTO,Onto Innovation,russell1000
+ORCL,Oracle Corporation,sp500
+ORI,Old Republic International,russell1000
+ORLY,O’Reilly Automotive,sp500
+OSK,Oshkosh Corporation,russell1000
+OTIS,Otis Worldwide,sp500
+OVV,Ovintiv,russell1000
+OWL,Blue Owl Capital,russell1000
+OXY,Occidental Petroleum,sp500
+OZK,Bank OZK,russell1000
+P,Everpure,russell1000
+PAG,Penske Automotive Group,russell1000
+PANW,Palo Alto Networks,sp500
+PATH,UiPath,russell1000
+PAYC,Paycom,russell1000
+PAYX,Paychex,sp500
+PB,Prosperity Bancshares,russell1000
+PCAR,Paccar,sp500
+PCG,PG&E Corporation,sp500
+PCOR,Procore,russell1000
+PCTY,Paylocity,russell1000
+PEG,Public Service Enterprise Group,sp500
+PEGA,Pegasystems,russell1000
+PEN,"Penumbra, Inc.",russell1000
+PENN,Penn Entertainment,russell1000
+PEP,PepsiCo,sp500
+PFE,Pfizer,sp500
+PFG,Principal Financial Group,sp500
+PFGC,Performance Food Group,russell1000
+PG,Procter & Gamble,sp500
+PGR,Progressive Corporation,sp500
+PH,Parker Hannifin,sp500
+PHM,PulteGroup,sp500
+PINS,Pinterest,russell1000
+PK,Park Hotels & Resorts,russell1000
+PKG,Packaging Corporation of America,sp500
+PLD,Prologis,sp500
+PLNT,Planet Fitness,russell1000
+PLTR,Palantir Technologies,sp500
+PM,Philip Morris International,sp500
+PNC,PNC Financial Services,sp500
+PNFP,Pinnacle Financial Partners,russell1000
+PNR,Pentair,sp500
+PNW,Pinnacle West Capital,sp500
+PODD,Insulet Corporation,sp500
+POOL,Pool Corporation,sp500
+POST,Post Holdings,russell1000
+PPC,Pilgrim's Pride,russell1000
+PPG,PPG Industries,sp500
+PPL,PPL Corporation,sp500
+PPLI,People Inc.,russell1000
+PR,Permian Resources,russell1000
+PRGO,Perrigo,russell1000
+PRI,Primerica,russell1000
+PRMB,Primo Brands,russell1000
+PRU,Prudential Financial,sp500
+PSA,Public Storage,sp500
+PSKY,Paramount Skydance Corporation,sp500
+PSN,Parsons Corporation,russell1000
+PSX,Phillips 66,sp500
+PTC,PTC Inc.,sp500
+PVH,PVH Corp.,russell1000
+PWR,Quanta Services,sp500
+PYPL,PayPal,sp500
+Q,Qnity Electronics,sp500
+QCOM,Qualcomm,sp500
+QGEN,Qiagen,russell1000
+QRVO,Qorvo,russell1000
+QS,QuantumScape,russell1000
+QSR,Restaurant Brands International,russell1000
+QXO,"QXO, Inc.",russell1000
+R,Ryder,russell1000
+RAL,Ralliant,russell1000
+RARE,Ultragenyx,russell1000
+RBA,RB Global,russell1000
+RBC,RBC Bearings,russell1000
+RBLX,Roblox Corporation,russell1000
+RBRK,Rubrik,russell1000
+RCL,Royal Caribbean Group,sp500
+RDDT,Reddit,russell1000
+REG,Regency Centers,sp500
+REGN,Regeneron Pharmaceuticals,sp500
+REXR,Rexford Industrial,russell1000
+REYN,Reynolds Consumer Products,russell1000
+RF,Regions Financial Corporation,sp500
+RGA,Reinsurance Group of America,russell1000
+RGEN,Repligen,russell1000
+RGLD,Royal Gold,russell1000
+RH,RH,russell1000
+RHI,Robert Half,russell1000
+RITM,Rithm Capital,russell1000
+RIVN,Rivian,russell1000
+RJF,Raymond James Financial,sp500
+RKLB,Rocket Lab,russell1000
+RKT,Rocket Companies,russell1000
+RL,Ralph Lauren Corporation,sp500
+RLI,RLI Corp.,russell1000
+RMD,ResMed,sp500
+RNG,RingCentral,russell1000
+RNR,RenaissanceRe,russell1000
+ROIV,Roivant Sciences,russell1000
+ROK,Rockwell Automation,sp500
+ROKU,"Roku, Inc.",russell1000
+ROL,"Rollins, Inc.",sp500
+ROP,Roper Technologies,sp500
+ROST,Ross Stores,sp500
+RPM,RPM International,russell1000
+RPRX,Royalty Pharma,russell1000
+RRC,Range Resources,russell1000
+RRX,Regal Rexnord,russell1000
+RS,"Reliance, Inc.",russell1000
+RSG,Republic Services,sp500
+RTX,RTX Corporation,sp500
+RVMD,Revolution Medicines,russell1000
+RVTY,Revvity,sp500
+RYAN,Ryan Specialty,russell1000
+RYN,Rayonier,russell1000
+S,SentinelOne,russell1000
+SAIA,Saia,russell1000
+SAIC,SAIC,russell1000
+SAIL,SailPoint,russell1000
+SAM,Boston Beer Company,russell1000
+SARO,StandardAero,russell1000
+SATS,EchoStar,sp500
+SBAC,SBA Communications,sp500
+SBUX,Starbucks,sp500
+SCCO,Southern Copper,russell1000
+SCHW,Charles Schwab Corporation,sp500
+SCI,Service Corporation International,russell1000
+SEB,Seaboard Corporation,russell1000
+SEIC,SEI Investments Company,russell1000
+SF,Stifel,russell1000
+SFD,Smithfield Foods,russell1000
+SFM,Sprouts Farmers Market,russell1000
+SGI,Somnigroup International,russell1000
+SHC,Sotera Health,russell1000
+SHW,Sherwin-Williams,sp500
+SIRI,Sirius XM,russell1000
+SITE,SiteOne Landscape Supply,russell1000
+SJM,J.M. Smucker Company (The),sp500
+SLB,Schlumberger,sp500
+SLGN,Silgan Holdings,russell1000
+SLM,Sallie Mae,russell1000
+SMCI,Supermicro,sp500
+SMG,Scotts Miracle-Gro Company,russell1000
+SMMT,Summit Therapeutics,russell1000
+SN,SharkNinja,russell1000
+SNA,Snap-on,sp500
+SNDK,Sandisk,sp500
+SNDR,Schneider National,russell1000
+SNOW,Snowflake Inc.,russell1000
+SNPS,Synopsys,sp500
+SNX,TD Synnex,russell1000
+SO,Southern Company,sp500
+SOFI,SoFi,russell1000
+SOLS,Solstice Advanced Materials,russell1000
+SOLV,Solventum,sp500
+SON,Sonoco,russell1000
+SPG,Simon Property Group,sp500
+SPGI,S&P Global,sp500
+SPOT,Spotify,russell1000
+SRE,Sempra,sp500
+SRPT,Sarepta Therapeutics,russell1000
+SSB,SouthState Corporation,russell1000
+SSD,Simpson Manufacturing Company,russell1000
+SSNC,SS&C Technologies,russell1000
+ST,Sensata Technologies,russell1000
+STAG,STAG Industrial,russell1000
+STE,Steris,sp500
+STLD,Steel Dynamics,sp500
+STT,State Street Corporation,sp500
+STWD,Starwood Property Trust,russell1000
+STX,Seagate Technology,sp500
+STZ,Constellation Brands,sp500
+SUI,Sun Communities,russell1000
+SW,Smurfit Westrock,sp500
+SWK,Stanley Black & Decker,sp500
+SWKS,Skyworks Solutions,sp500
+SYF,Synchrony Financial,sp500
+SYK,Stryker Corporation,sp500
+SYY,Sysco,sp500
+T,AT&T,sp500
+TAP,Molson Coors Beverage Company,sp500
+TDC,Teradata,russell1000
+TDG,TransDigm Group,sp500
+TDY,Teledyne Technologies,sp500
+TEAM,Atlassian,russell1000
+TECH,Bio-Techne,sp500
+TEL,TE Connectivity,sp500
+TEM,Tempus AI,russell1000
+TER,Teradyne,sp500
+TFC,Truist Financial,sp500
+TFSL,Third Federal S&L,russell1000
+TFX,Teleflex,russell1000
+TGT,Target Corporation,sp500
+THC,Tenet Healthcare,russell1000
+THG,Hanover Insurance,russell1000
+THO,Thor Industries,russell1000
+TIGO,Millicom,russell1000
+TJX,TJX Companies,sp500
+TKO,TKO Group Holdings,sp500
+TKR,Timken Company,russell1000
+TLN,Talen Energy,russell1000
+TMO,Thermo Fisher Scientific,sp500
+TMUS,T-Mobile US,sp500
+TNL,Travel + Leisure Co.,russell1000
+TOL,Toll Brothers,russell1000
+TOST,"Toast, Inc.",russell1000
+TPG,TPG Inc.,russell1000
+TPL,Texas Pacific Land Corporation,sp500
+TPR,"Tapestry, Inc.",sp500
+TREX,"Trex Company, Inc.",russell1000
+TRGP,Targa Resources,sp500
+TRMB,Trimble Inc.,sp500
+TROW,T. Rowe Price,sp500
+TRU,TransUnion,russell1000
+TRV,Travelers Companies (The),sp500
+TSCO,Tractor Supply,sp500
+TSLA,"Tesla, Inc.",sp500
+TSN,Tyson Foods,sp500
+TT,Trane Technologies,sp500
+TTC,Toro Company (The),russell1000
+TTD,Trade Desk (The),sp500
+TTEK,Tetra Tech,russell1000
+TTWO,Take-Two Interactive,sp500
+TW,Tradeweb,russell1000
+TWLO,Twilio,russell1000
+TXN,Texas Instruments,sp500
+TXRH,Texas Roadhouse,russell1000
+TXT,Textron,sp500
+TYL,Tyler Technologies,sp500
+U,Unity Technologies,russell1000
+UA,Under Armour (Class C),russell1000
+UAA,Under Armour (Class A),russell1000
+UAL,United Airlines Holdings,sp500
+UBER,Uber,sp500
+UDR,"UDR, Inc.",sp500
+UGI,UGI Corporation,russell1000
+UHAL,U-Haul,russell1000
+UHAL-B,U-Haul (Series N),russell1000
+UHS,Universal Health Services,sp500
+UI,Ubiquiti,russell1000
+ULTA,Ulta Beauty,sp500
+UNH,UnitedHealth Group,sp500
+UNM,Unum,russell1000
+UNP,Union Pacific Corporation,sp500
+UPS,United Parcel Service,sp500
+URI,United Rentals,sp500
+USB,U.S. Bancorp,sp500
+USFD,US Foods,russell1000
+UTHR,United Therapeutics,russell1000
+UWMC,United Wholesale Mortgage,russell1000
+V,Visa Inc.,sp500
+VEEV,Veeva Systems,sp500
+VFC,VF Corporation,russell1000
+VGNT,Versigent,russell1000
+VICI,Vici Properties,sp500
+VIK,Viking Holdings,russell1000
+VIRT,Virtu Financial,russell1000
+VKTX,Viking Therapeutics,russell1000
+VLO,Valero Energy,sp500
+VLTO,Veralto,sp500
+VMC,Vulcan Materials Company,sp500
+VMI,Valmont Industries,russell1000
+VNO,Vornado Realty Trust,russell1000
+VNOM,Viper Energy,russell1000
+VNT,Vontier,russell1000
+VOYA,Voya Financial,russell1000
+VRSK,Verisk Analytics,sp500
+VRSN,Verisign,sp500
+VRT,Vertiv,sp500
+VRTX,Vertex Pharmaceuticals,sp500
+VSNT,Versant,russell1000
+VST,Vistra Corp.,sp500
+VTR,Ventas,sp500
+VTRS,Viatris,sp500
+VVV,Valvoline,russell1000
+VZ,Verizon,sp500
+W,Wayfair,russell1000
+WAB,Wabtec,sp500
+WAL,Western Alliance Bancorporation,russell1000
+WAT,Waters Corporation,sp500
+WBD,Warner Bros. Discovery,sp500
+WBS,Webster Bank,russell1000
+WCC,Wesco International,russell1000
+WDAY,"Workday, Inc.",sp500
+WDC,Western Digital,sp500
+WEC,WEC Energy Group,sp500
+WELL,Welltower,sp500
+WEN,Wendy's Company (The),russell1000
+WEX,WEX Inc.,russell1000
+WFC,Wells Fargo,sp500
+WFRD,Weatherford International,russell1000
+WH,Wyndham Hotels & Resorts,russell1000
+WHR,Whirlpool Corporation,russell1000
+WING,Wingstop,russell1000
+WLK,Westlake Corporation,russell1000
+WM,Waste Management,sp500
+WMB,Williams Companies,sp500
+WMS,Advanced Drainage Systems,russell1000
+WMT,Walmart,sp500
+WPC,W. P. Carey,russell1000
+WRB,W. R. Berkley Corporation,sp500
+WSC,WillScot Mobile Mini,russell1000
+WSM,"Williams-Sonoma, Inc.",sp500
+WSO,Watsco,russell1000
+WST,West Pharmaceutical Services,sp500
+WTFC,Wintrust Financial,russell1000
+WTM,White Mountains Insurance Group,russell1000
+WTRG,Essential Utilities,russell1000
+WTW,Willis Towers Watson,sp500
+WU,Western Union,russell1000
+WWD,"Woodward, Inc.",russell1000
+WY,Weyerhaeuser,sp500
+WYNN,Wynn Resorts,sp500
+XEL,Xcel Energy,sp500
+XOM,ExxonMobil,sp500
+XP,XP Inc.,russell1000
+XPO,"XPO, Inc.",russell1000
+XRAY,Dentsply Sirona,russell1000
+XYL,Xylem Inc.,sp500
+XYZ,"Block, Inc.",sp500
+YETI,Yeti Holdings,russell1000
+YUM,Yum! Brands,sp500
+Z,Zillow (Class C),russell1000
+ZBH,Zimmer Biomet,sp500
+ZBRA,Zebra Technologies,sp500
+ZG,Zillow (Class A),russell1000
+ZION,Zions Bancorporation,russell1000
+ZM,Zoom Communications,russell1000
+ZS,Zscaler,russell1000
+ZTS,Zoetis,sp500

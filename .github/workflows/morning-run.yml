@@ -50,16 +50,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Restore cached market data
-        uses: actions/cache@v5
-        with:
-          path: data/
-          key: market-data-${{ runner.os }}-${{ github.run_id }}
-          restore-keys: |
-            market-data-${{ runner.os }}-
-
-      - name: Rebuild universe (S&P 500 + Russell 1000)
-        run: python -m backtest.universe
+      # No universe rebuild or data cache here: the committed data/universe.csv is
+      # the source of tickers, and the screener downloads fresh recent bars each run.
+      # This removes the fragile per-run Wikipedia scrape that once shrank the
+      # universe to 506 names. Rebuild the universe monthly (see PLAYBOOK) and commit.
 
       - name: Write .env from secrets
         run: |

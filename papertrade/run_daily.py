@@ -199,14 +199,26 @@ def run_morning(client, dry: bool) -> None:
     for ticker, meta in list(state["positions"].items()):
         if meta["sleeve"] != "A" or ticker not in held:
             continue
+        days_held = trading_days_between(meta["entry_date"], as_of)
+        qty = held[ticker]["qty"]
+        if ticker not in c.columns:
+            # held name missing from today's data (e.g. dropped from the universe):
+            # can't evaluate the price-based exit, but still honor the time stop.
+            if days_held >= SLEEVE_TIME_STOPS["A"]:
+                submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
+                             qty=qty, order_type="market")
+                journal.log("exit_reason", ticker=ticker, sleeve="A",
+                            reason="time stop (ticker absent from data)", days_held=days_held)
+            else:
+                journal.log("warning", ticker=ticker,
+                            msg="A position absent from current data - price exit skipped, review manually")
+            continue
         s = c[ticker].dropna()
         if len(s) < 2:
             continue
         entry = pd.Timestamp(meta["entry_date"])
         closes = s[s.index > entry]
         up_closes = closes[closes > s.shift(1).reindex(closes.index)]
-        days_held = trading_days_between(meta["entry_date"], as_of)
-        qty = held[ticker]["qty"]
         if len(up_closes) and up_closes.index[-1] == s.index[-1] and len(up_closes) == 1:
             submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
                          qty=qty, order_type="market")
@@ -248,11 +260,22 @@ def run_morning(client, dry: bool) -> None:
     for ticker, meta in list(state["positions"].items()):
         if meta["sleeve"] != "H" or ticker not in held:
             continue
+        days_held = trading_days_between(meta["entry_date"], as_of)
+        if ticker not in c.columns:
+            # missing from today's data: honor the time stop, else flag for review.
+            if days_held >= SLEEVE_TIME_STOPS["H"]:
+                submit_order(client, journal, dry, sleeve="H", ticker=ticker, side="sell",
+                             qty=held[ticker]["qty"], order_type="market")
+                journal.log("exit_reason", ticker=ticker, sleeve="H",
+                            reason="time stop (ticker absent from data)", days_held=days_held)
+            else:
+                journal.log("warning", ticker=ticker,
+                            msg="H position absent from current data - stop check skipped, review manually")
+            continue
         s = c[ticker].dropna()
         entry = pd.Timestamp(meta["entry_date"])
         closes_since = s[s.index >= entry]
         avg = held[ticker]["avg_entry_price"]
-        days_held = trading_days_between(meta["entry_date"], as_of)
         stop_hit = len(closes_since) > 0 and float(closes_since.min()) < avg * h_stop_mult
         if stop_hit or days_held >= SLEEVE_TIME_STOPS["H"]:
             submit_order(client, journal, dry, sleeve="H", ticker=ticker, side="sell",

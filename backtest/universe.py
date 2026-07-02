@@ -70,8 +70,21 @@ def build() -> pd.DataFrame:
         raise SystemExit("No universe source available")
     uni = pd.concat(frames).drop_duplicates(subset="ticker").sort_values("ticker")
     DATA_DIR.mkdir(exist_ok=True)
-    uni.to_csv(DATA_DIR / "universe.csv", index=False)
-    print(f"Universe: {len(uni)} unique tickers -> {DATA_DIR / 'universe.csv'}")
+    out_path = DATA_DIR / "universe.csv"
+    # Guard: if one source failed, the rebuilt list can be far smaller than usual,
+    # silently dropping names we may hold. Don't clobber a healthy existing list
+    # with a degraded one - keep the old universe until a full rebuild succeeds.
+    if out_path.exists():
+        try:
+            prev = pd.read_csv(out_path)
+        except Exception:  # noqa: BLE001
+            prev = None
+        if prev is not None and len(uni) < 0.9 * len(prev):
+            print(f"WARNING: rebuilt universe ({len(uni)}) is <90% of the existing "
+                  f"list ({len(prev)}) - a source likely failed. Keeping existing universe.csv.")
+            return prev
+    uni.to_csv(out_path, index=False)
+    print(f"Universe: {len(uni)} unique tickers -> {out_path}")
     return uni
 
 
