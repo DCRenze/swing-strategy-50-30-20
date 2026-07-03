@@ -1,0 +1,4 @@
+{"ticker": "NUE", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 215.9992, "exit_px": 218.37, "qty": 50.8169, "ret": 0.011, "pnl": 120.48}
+{"ticker": "TLN", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 367.34, "exit_px": 361.0854, "qty": 13.0, "ret": -0.017, "pnl": -81.31}
+{"ticker": "GM", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 75.3, "exit_px": 76.3969, "qty": 145.8412, "ret": 0.0146, "pnl": 159.98}
+{"ticker": "RCL", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 307.2, "exit_px": 308.84, "qty": 35.5706, "ret": 0.0053, "pnl": 58.34}

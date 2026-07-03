@@ -1,0 +1,38 @@
+{"ts": "2026-07-03T13:32:30", "kind": "trade_closed", "ticker": "NUE", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 215.9992, "exit_px": 218.37, "qty": 50.8169, "ret": 0.011, "pnl": 120.48}
+{"ts": "2026-07-03T13:32:30", "kind": "position_closed", "ticker": "NUE", "sleeve": "A", "entry_date": "2026-07-01", "entry_px": 215.9992}
+{"ts": "2026-07-03T13:32:30", "kind": "trade_closed", "ticker": "TLN", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 367.34, "exit_px": 361.0854, "qty": 13.0, "ret": -0.017, "pnl": -81.31}
+{"ts": "2026-07-03T13:32:30", "kind": "position_closed", "ticker": "TLN", "sleeve": "A", "entry_date": "2026-07-01", "entry_px": 367.34}
+{"ts": "2026-07-03T13:32:30", "kind": "trade_closed", "ticker": "GM", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 75.3, "exit_px": 76.3969, "qty": 145.8412, "ret": 0.0146, "pnl": 159.98}
+{"ts": "2026-07-03T13:32:30", "kind": "position_closed", "ticker": "GM", "sleeve": "A", "entry_date": "2026-07-01", "entry_px": 75.3}
+{"ts": "2026-07-03T13:32:30", "kind": "trade_closed", "ticker": "RCL", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 307.2, "exit_px": 308.84, "qty": 35.5706, "ret": 0.0053, "pnl": 58.34}
+{"ts": "2026-07-03T13:32:30", "kind": "position_closed", "ticker": "RCL", "sleeve": "A", "entry_date": "2026-07-01", "entry_px": 307.2}
+{"ts": "2026-07-03T13:32:30", "kind": "position_adopted", "ticker": "F", "sleeve": "A", "entry_date": "2026-07-02", "entry_px": 13.25}
+{"ts": "2026-07-03T13:32:30", "kind": "position_adopted", "ticker": "OKTA", "sleeve": "H", "entry_date": "2026-07-02", "entry_px": 142.9706}
+{"ts": "2026-07-03T13:32:30", "kind": "run_start", "mode": "morning", "equity": 99532.46, "hwm": 100432.77, "drawdown": -0.009, "dry_run": false}
+{"ts": "2026-07-03T13:33:59", "kind": "order_submitted", "sleeve": "A", "ticker": "QCOM", "side": "buy", "qty": 36.294, "order_type": "limit", "limit_price": 164.54, "client_order_id": "A-QCOM-20260703-buy"}
+{"ts": "2026-07-03T13:33:59", "kind": "order_submitted", "sleeve": "A", "ticker": "C", "side": "buy", "qty": 43.4807, "order_type": "limit", "limit_price": 137.35, "client_order_id": "A-C-20260703-buy"}
+{"ts": "2026-07-03T13:33:59", "kind": "order_submitted", "sleeve": "A", "ticker": "SLB", "side": "buy", "qty": 135.7157, "order_type": "limit", "limit_price": 44.0, "client_order_id": "A-SLB-20260703-buy"}
+{"ts": "2026-07-03T13:34:00", "kind": "order_submitted", "sleeve": "A", "ticker": "RCL", "side": "buy", "qty": 20.9015, "order_type": "limit", "limit_price": 285.72, "client_order_id": "A-RCL-20260703-buy"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "A", "ticker": "F", "reason": "already held"}
+{"ts": "2026-07-03T13:34:00", "kind": "order_submitted", "sleeve": "A", "ticker": "EQIX", "side": "buy", "qty": 6.0983, "order_type": "limit", "limit_price": 979.28, "client_order_id": "A-EQIX-20260703-buy"}
+{"ts": "2026-07-03T13:34:00", "kind": "order_submitted", "sleeve": "A", "ticker": "GM", "side": "buy", "qty": 80.4959, "order_type": "limit", "limit_price": 74.19, "client_order_id": "A-GM-20260703-buy"}
+{"ts": "2026-07-03T13:34:00", "kind": "order_submitted", "sleeve": "A", "ticker": "DLR", "side": "buy", "qty": 35.3166, "order_type": "limit", "limit_price": 169.1, "client_order_id": "A-DLR-20260703-buy"}
+{"ts": "2026-07-03T13:34:00", "kind": "order_submitted", "sleeve": "A", "ticker": "FANG", "side": "buy", "qty": 35.5581, "order_type": "limit", "limit_price": 167.95, "client_order_id": "A-FANG-20260703-buy"}
+{"ts": "2026-07-03T13:34:00", "kind": "order_submitted", "sleeve": "A", "ticker": "HAL", "side": "buy", "qty": 185.7977, "order_type": "limit", "limit_price": 32.14, "client_order_id": "A-HAL-20260703-buy"}
+{"ts": "2026-07-03T13:34:00", "kind": "order_submitted", "sleeve": "H", "ticker": "RRX", "side": "sell", "qty": 16.8301, "order_type": "market", "limit_price": null, "client_order_id": "H-RRX-20260703-sell"}
+{"ts": "2026-07-03T13:34:00", "kind": "exit_reason", "ticker": "RRX", "sleeve": "H", "reason": "5% stop", "days_held": 1}
+{"ts": "2026-07-03T13:34:00", "kind": "order_submitted", "sleeve": "H", "ticker": "CAT", "side": "sell", "qty": 3.7645, "order_type": "market", "limit_price": null, "client_order_id": "H-CAT-20260703-sell"}
+{"ts": "2026-07-03T13:34:00", "kind": "exit_reason", "ticker": "CAT", "sleeve": "H", "reason": "5% stop", "days_held": 1}
+{"ts": "2026-07-03T13:34:00", "kind": "order_submitted", "sleeve": "H", "ticker": "MKSI", "side": "sell", "qty": 9.0125, "order_type": "market", "limit_price": null, "client_order_id": "H-MKSI-20260703-sell"}
+{"ts": "2026-07-03T13:34:00", "kind": "exit_reason", "ticker": "MKSI", "sleeve": "H", "reason": "5% stop", "days_held": 1}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "NSA", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "IFF", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "NBIX", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "IDA", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "KO", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "LNT", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "VTR", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "EGP", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "INCY", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "skip", "sleeve": "H", "ticker": "VRTX", "reason": "sleeve full"}
+{"ts": "2026-07-03T13:34:00", "kind": "run_end", "mode": "morning"}

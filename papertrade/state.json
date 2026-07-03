@@ -30,16 +30,6 @@
       "entry_date": "2026-07-01",
       "entry_px": 1028.72
     },
-    "NUE": {
-      "sleeve": "A",
-      "entry_date": "2026-07-01",
-      "entry_px": 215.9992
-    },
-    "TLN": {
-      "sleeve": "A",
-      "entry_date": "2026-07-01",
-      "entry_px": 367.34
-    },
     "MKSI": {
       "sleeve": "H",
       "entry_date": "2026-07-01",
@@ -55,15 +45,15 @@
       "entry_date": "2026-07-01",
       "entry_px": 17.1806
     },
-    "GM": {
+    "F": {
       "sleeve": "A",
-      "entry_date": "2026-07-01",
-      "entry_px": 75.3
+      "entry_date": "2026-07-02",
+      "entry_px": 13.25
     },
-    "RCL": {
-      "sleeve": "A",
-      "entry_date": "2026-07-01",
-      "entry_px": 307.2
+    "OKTA": {
+      "sleeve": "H",
+      "entry_date": "2026-07-02",
+      "entry_px": 142.9706
     }
   },
   "hwm": 100432.77
