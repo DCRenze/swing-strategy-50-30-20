@@ -1,0 +1,16 @@
+{"ts": "2026-07-06T13:32:42", "kind": "run_start", "mode": "morning", "equity": 100001.23, "hwm": 100432.77, "drawdown": -0.0043, "dry_run": false}
+{"ts": "2026-07-06T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "F", "side": "sell", "qty": 453.269, "order_type": "market", "limit_price": null, "client_order_id": "A-F-20260706-sell"}
+{"ts": "2026-07-06T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "ENPH", "side": "buy", "qty": 153.6637, "order_type": "limit", "limit_price": 39.05, "client_order_id": "A-ENPH-20260706-buy"}
+{"ts": "2026-07-06T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "FTAI", "side": "buy", "qty": 24.8722, "order_type": "limit", "limit_price": 241.24, "client_order_id": "A-FTAI-20260706-buy"}
+{"ts": "2026-07-06T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "CAVA", "side": "buy", "qty": 82.2072, "order_type": "limit", "limit_price": 72.99, "client_order_id": "A-CAVA-20260706-buy"}
+{"ts": "2026-07-06T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "ESI", "side": "buy", "qty": 145.5109, "order_type": "limit", "limit_price": 41.23, "client_order_id": "A-ESI-20260706-buy"}
+{"ts": "2026-07-06T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "IEX", "side": "buy", "qty": 27.5074, "order_type": "limit", "limit_price": 218.13, "client_order_id": "A-IEX-20260706-buy"}
+{"ts": "2026-07-06T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "WH", "side": "buy", "qty": 75.414, "order_type": "limit", "limit_price": 79.56, "client_order_id": "A-WH-20260706-buy"}
+{"ts": "2026-07-06T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "EXP", "side": "buy", "qty": 27.9893, "order_type": "limit", "limit_price": 214.37, "client_order_id": "A-EXP-20260706-buy"}
+{"ts": "2026-07-06T13:34:16", "kind": "order_error", "error": "{\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}", "sleeve": "H", "ticker": "RRX", "side": "sell", "qty": 16.8301, "order_type": "market", "limit_price": null, "client_order_id": "H-RRX-20260706-sell"}
+{"ts": "2026-07-06T13:34:16", "kind": "exit_reason", "ticker": "RRX", "sleeve": "H", "reason": "5% stop", "days_held": 2}
+{"ts": "2026-07-06T13:34:16", "kind": "order_error", "error": "{\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"2.7645\",\"held_for_orders\":\"2.7645\",\"message\":\"insufficient qty available for order (requested: 3.7645, available: 0)\",\"related_orders\":[\"cdc9a128-1477-4903-af75-631331b20b1d\"],\"symbol\":\"CAT\"}", "sleeve": "H", "ticker": "CAT", "side": "sell", "qty": 3.7645, "order_type": "market", "limit_price": null, "client_order_id": "H-CAT-20260706-sell"}
+{"ts": "2026-07-06T13:34:16", "kind": "exit_reason", "ticker": "CAT", "sleeve": "H", "reason": "5% stop", "days_held": 2}
+{"ts": "2026-07-06T13:34:16", "kind": "order_error", "error": "{\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}", "sleeve": "H", "ticker": "MKSI", "side": "sell", "qty": 9.0125, "order_type": "market", "limit_price": null, "client_order_id": "H-MKSI-20260706-sell"}
+{"ts": "2026-07-06T13:34:16", "kind": "exit_reason", "ticker": "MKSI", "sleeve": "H", "reason": "5% stop", "days_held": 2}
+{"ts": "2026-07-06T13:34:16", "kind": "run_end", "mode": "morning"}
