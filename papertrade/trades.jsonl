@@ -2,3 +2,7 @@
 {"ticker": "TLN", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 367.34, "exit_px": 361.0854, "qty": 13.0, "ret": -0.017, "pnl": -81.31}
 {"ticker": "GM", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 75.3, "exit_px": 76.3969, "qty": 145.8412, "ret": 0.0146, "pnl": 159.98}
 {"ticker": "RCL", "sleeve": "A", "entry_date": "2026-07-01", "exit_date": "2026-07-02", "entry_px": 307.2, "exit_px": 308.84, "qty": 35.5706, "ret": 0.0053, "pnl": 58.34}
+{"ticker": "RRX", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-06", "entry_px": 232.6423, "exit_px": 219.0, "qty": 16.8301, "ret": -0.0586, "pnl": -229.6}
+{"ticker": "CAT", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-06", "entry_px": 1028.72, "exit_px": 983.0357, "qty": 3.7645, "ret": -0.0444, "pnl": -171.98}
+{"ticker": "MKSI", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-06", "entry_px": 423.0106, "exit_px": 375.0, "qty": 9.0125, "ret": -0.1135, "pnl": -432.7}
+{"ticker": "F", "sleeve": "A", "entry_date": "2026-07-02", "exit_date": "2026-07-06", "entry_px": 13.25, "exit_px": 13.49, "qty": 453.269, "ret": 0.0181, "pnl": 108.78}

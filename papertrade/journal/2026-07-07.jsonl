@@ -1,0 +1,26 @@
+{"ts": "2026-07-07T13:32:34", "kind": "trade_closed", "ticker": "RRX", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-06", "entry_px": 232.6423, "exit_px": 219.0, "qty": 16.8301, "ret": -0.0586, "pnl": -229.6}
+{"ts": "2026-07-07T13:32:34", "kind": "position_closed", "ticker": "RRX", "sleeve": "H", "entry_date": "2026-07-01", "entry_px": 232.6423}
+{"ts": "2026-07-07T13:32:34", "kind": "trade_closed", "ticker": "CAT", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-06", "entry_px": 1028.72, "exit_px": 983.0357, "qty": 3.7645, "ret": -0.0444, "pnl": -171.98}
+{"ts": "2026-07-07T13:32:34", "kind": "position_closed", "ticker": "CAT", "sleeve": "H", "entry_date": "2026-07-01", "entry_px": 1028.72}
+{"ts": "2026-07-07T13:32:34", "kind": "trade_closed", "ticker": "MKSI", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-06", "entry_px": 423.0106, "exit_px": 375.0, "qty": 9.0125, "ret": -0.1135, "pnl": -432.7}
+{"ts": "2026-07-07T13:32:34", "kind": "position_closed", "ticker": "MKSI", "sleeve": "H", "entry_date": "2026-07-01", "entry_px": 423.0106}
+{"ts": "2026-07-07T13:32:34", "kind": "trade_closed", "ticker": "F", "sleeve": "A", "entry_date": "2026-07-02", "exit_date": "2026-07-06", "entry_px": 13.25, "exit_px": 13.49, "qty": 453.269, "ret": 0.0181, "pnl": 108.78}
+{"ts": "2026-07-07T13:32:34", "kind": "position_closed", "ticker": "F", "sleeve": "A", "entry_date": "2026-07-02", "entry_px": 13.25}
+{"ts": "2026-07-07T13:32:34", "kind": "position_adopted", "ticker": "CAVA", "sleeve": "A", "entry_date": "2026-07-06", "entry_px": 72.99}
+{"ts": "2026-07-07T13:32:34", "kind": "position_adopted", "ticker": "FTAI", "sleeve": "A", "entry_date": "2026-07-06", "entry_px": 241.13}
+{"ts": "2026-07-07T13:32:34", "kind": "position_adopted", "ticker": "RCL", "sleeve": "A", "entry_date": "2026-07-06", "entry_px": 285.69}
+{"ts": "2026-07-07T13:32:34", "kind": "run_start", "mode": "morning", "equity": 99378.79, "hwm": 100432.77, "drawdown": -0.0105, "dry_run": false}
+{"ts": "2026-07-07T13:33:31", "kind": "order_submitted", "sleeve": "A", "ticker": "CAVA", "side": "sell", "qty": 82.2072, "order_type": "market", "limit_price": null, "client_order_id": "A-CAVA-20260707-sell"}
+{"ts": "2026-07-07T13:33:31", "kind": "order_submitted", "sleeve": "A", "ticker": "GLW", "side": "buy", "qty": 34.648, "order_type": "limit", "limit_price": 172.09, "client_order_id": "A-GLW-20260707-buy"}
+{"ts": "2026-07-07T13:33:31", "kind": "order_submitted", "sleeve": "A", "ticker": "AAL", "side": "buy", "qty": 347.6936, "order_type": "limit", "limit_price": 17.15, "client_order_id": "A-AAL-20260707-buy"}
+{"ts": "2026-07-07T13:33:31", "kind": "order_submitted", "sleeve": "A", "ticker": "JBL", "side": "buy", "qty": 18.9632, "order_type": "limit", "limit_price": 314.44, "client_order_id": "A-JBL-20260707-buy"}
+{"ts": "2026-07-07T13:33:31", "kind": "order_submitted", "sleeve": "A", "ticker": "SNX", "side": "buy", "qty": 25.9843, "order_type": "limit", "limit_price": 229.47, "client_order_id": "A-SNX-20260707-buy"}
+{"ts": "2026-07-07T13:33:31", "kind": "skip", "sleeve": "A", "ticker": "FTAI", "reason": "already held"}
+{"ts": "2026-07-07T13:33:31", "kind": "skip", "sleeve": "A", "ticker": "CAVA", "reason": "already held"}
+{"ts": "2026-07-07T13:33:31", "kind": "order_submitted", "sleeve": "A", "ticker": "BROS", "side": "buy", "qty": 91.0407, "order_type": "limit", "limit_price": 65.5, "client_order_id": "A-BROS-20260707-buy"}
+{"ts": "2026-07-07T13:33:31", "kind": "order_submitted", "sleeve": "A", "ticker": "SN", "side": "buy", "qty": 40.9129, "order_type": "limit", "limit_price": 145.74, "client_order_id": "A-SN-20260707-buy"}
+{"ts": "2026-07-07T13:33:31", "kind": "order_submitted", "sleeve": "A", "ticker": "GFS", "side": "buy", "qty": 95.9522, "order_type": "limit", "limit_price": 62.14, "client_order_id": "A-GFS-20260707-buy"}
+{"ts": "2026-07-07T13:33:31", "kind": "skip", "sleeve": "A", "ticker": "IRDM", "reason": "sleeve full"}
+{"ts": "2026-07-07T13:33:31", "kind": "order_submitted", "sleeve": "H", "ticker": "GEV", "side": "sell", "qty": 3.4121, "order_type": "market", "limit_price": null, "client_order_id": "H-GEV-20260707-sell"}
+{"ts": "2026-07-07T13:33:31", "kind": "exit_reason", "ticker": "GEV", "sleeve": "H", "reason": "5% stop", "days_held": 3}
+{"ts": "2026-07-07T13:33:31", "kind": "run_end", "mode": "morning"}

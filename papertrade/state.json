@@ -20,21 +20,6 @@
       "entry_date": "2026-07-01",
       "entry_px": 1137.4494
     },
-    "RRX": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01",
-      "entry_px": 232.6423
-    },
-    "CAT": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01",
-      "entry_px": 1028.72
-    },
-    "MKSI": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01",
-      "entry_px": 423.0106
-    },
     "JBHT": {
       "sleeve": "H",
       "entry_date": "2026-07-01",
@@ -45,15 +30,25 @@
       "entry_date": "2026-07-01",
       "entry_px": 17.1806
     },
-    "F": {
-      "sleeve": "A",
-      "entry_date": "2026-07-02",
-      "entry_px": 13.25
-    },
     "OKTA": {
       "sleeve": "H",
       "entry_date": "2026-07-02",
       "entry_px": 142.9706
+    },
+    "CAVA": {
+      "sleeve": "A",
+      "entry_date": "2026-07-06",
+      "entry_px": 72.99
+    },
+    "FTAI": {
+      "sleeve": "A",
+      "entry_date": "2026-07-06",
+      "entry_px": 241.13
+    },
+    "RCL": {
+      "sleeve": "A",
+      "entry_date": "2026-07-06",
+      "entry_px": 285.69
     }
   },
   "hwm": 100432.77
