@@ -15,11 +15,6 @@
       "entry_date": "2026-07-01",
       "entry_px": 228.0
     },
-    "GEV": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01",
-      "entry_px": 1137.4494
-    },
     "JBHT": {
       "sleeve": "H",
       "entry_date": "2026-07-01",
@@ -35,11 +30,6 @@
       "entry_date": "2026-07-02",
       "entry_px": 142.9706
     },
-    "CAVA": {
-      "sleeve": "A",
-      "entry_date": "2026-07-06",
-      "entry_px": 72.99
-    },
     "FTAI": {
       "sleeve": "A",
       "entry_date": "2026-07-06",
@@ -49,6 +39,21 @@
       "sleeve": "A",
       "entry_date": "2026-07-06",
       "entry_px": 285.69
+    },
+    "AAL": {
+      "sleeve": "A",
+      "entry_date": "2026-07-07",
+      "entry_px": 17.1346
+    },
+    "BROS": {
+      "sleeve": "A",
+      "entry_date": "2026-07-07",
+      "entry_px": 65.49
+    },
+    "JBL": {
+      "sleeve": "A",
+      "entry_date": "2026-07-07",
+      "entry_px": 314.192
     }
   },
   "hwm": 100432.77

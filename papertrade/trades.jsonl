@@ -6,3 +6,5 @@
 {"ticker": "CAT", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-06", "entry_px": 1028.72, "exit_px": 983.0357, "qty": 3.7645, "ret": -0.0444, "pnl": -171.98}
 {"ticker": "MKSI", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-06", "entry_px": 423.0106, "exit_px": 375.0, "qty": 9.0125, "ret": -0.1135, "pnl": -432.7}
 {"ticker": "F", "sleeve": "A", "entry_date": "2026-07-02", "exit_date": "2026-07-06", "entry_px": 13.25, "exit_px": 13.49, "qty": 453.269, "ret": 0.0181, "pnl": 108.78}
+{"ticker": "GEV", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-07", "entry_px": 1137.4494, "exit_px": 1049.35, "qty": 3.4121, "ret": -0.0775, "pnl": -300.6}
+{"ticker": "CAVA", "sleeve": "A", "entry_date": "2026-07-06", "exit_date": "2026-07-07", "entry_px": 72.99, "exit_px": 71.4, "qty": 82.2072, "ret": -0.0218, "pnl": -130.71}
