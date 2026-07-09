@@ -8,3 +8,5 @@
 {"ticker": "F", "sleeve": "A", "entry_date": "2026-07-02", "exit_date": "2026-07-06", "entry_px": 13.25, "exit_px": 13.49, "qty": 453.269, "ret": 0.0181, "pnl": 108.78}
 {"ticker": "GEV", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-07", "entry_px": 1137.4494, "exit_px": 1049.35, "qty": 3.4121, "ret": -0.0775, "pnl": -300.6}
 {"ticker": "CAVA", "sleeve": "A", "entry_date": "2026-07-06", "exit_date": "2026-07-07", "entry_px": 72.99, "exit_px": 71.4, "qty": 82.2072, "ret": -0.0218, "pnl": -130.71}
+{"ticker": "HAYW", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-08", "entry_px": 17.1806, "exit_px": 16.0181, "qty": 231.5871, "ret": -0.0677, "pnl": -269.23}
+{"ticker": "JBL", "sleeve": "A", "entry_date": "2026-07-07", "exit_date": "2026-07-08", "entry_px": 314.192, "exit_px": 322.97, "qty": 18.9632, "ret": 0.0279, "pnl": 166.46}

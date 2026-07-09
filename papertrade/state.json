@@ -20,11 +20,6 @@
       "entry_date": "2026-07-01",
       "entry_px": 288.97
     },
-    "HAYW": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01",
-      "entry_px": 17.1806
-    },
     "OKTA": {
       "sleeve": "H",
       "entry_date": "2026-07-02",
@@ -50,10 +45,10 @@
       "entry_date": "2026-07-07",
       "entry_px": 65.49
     },
-    "JBL": {
+    "PANW": {
       "sleeve": "A",
-      "entry_date": "2026-07-07",
-      "entry_px": 314.192
+      "entry_date": "2026-07-08",
+      "entry_px": 323.68
     }
   },
   "hwm": 100432.77
