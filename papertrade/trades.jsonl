@@ -10,3 +10,7 @@
 {"ticker": "CAVA", "sleeve": "A", "entry_date": "2026-07-06", "exit_date": "2026-07-07", "entry_px": 72.99, "exit_px": 71.4, "qty": 82.2072, "ret": -0.0218, "pnl": -130.71}
 {"ticker": "HAYW", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-08", "entry_px": 17.1806, "exit_px": 16.0181, "qty": 231.5871, "ret": -0.0677, "pnl": -269.23}
 {"ticker": "JBL", "sleeve": "A", "entry_date": "2026-07-07", "exit_date": "2026-07-08", "entry_px": 314.192, "exit_px": 322.97, "qty": 18.9632, "ret": 0.0279, "pnl": 166.46}
+{"ticker": "FTAI", "sleeve": "A", "entry_date": "2026-07-06", "exit_date": "2026-07-09", "entry_px": 241.13, "exit_px": 220.0, "qty": 24.8722, "ret": -0.0876, "pnl": -525.55}
+{"ticker": "RCL", "sleeve": "A", "entry_date": "2026-07-06", "exit_date": "2026-07-09", "entry_px": 285.69, "exit_px": 283.02, "qty": 20.9015, "ret": -0.0093, "pnl": -55.81}
+{"ticker": "AAL", "sleeve": "A", "entry_date": "2026-07-07", "exit_date": "2026-07-09", "entry_px": 17.1346, "exit_px": 16.68, "qty": 347.6936, "ret": -0.0265, "pnl": -158.06}
+{"ticker": "PANW", "sleeve": "A", "entry_date": "2026-07-08", "exit_date": "2026-07-09", "entry_px": 323.68, "exit_px": 326.07, "qty": 18.2619, "ret": 0.0074, "pnl": 43.65}
