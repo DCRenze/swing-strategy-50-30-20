@@ -16,3 +16,6 @@ desktop.ini
 
 # Screener test artifacts
 playbook/signals*.json
+
+# Generated reports (regenerable, posted to Discord)
+reports/
