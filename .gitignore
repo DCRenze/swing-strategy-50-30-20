@@ -16,3 +16,6 @@ desktop.ini
 
 # Screener test artifacts
 playbook/signals*.json
+
+# Generated weekly HTML reports (delivered via Discord, not committed)
+reports/
