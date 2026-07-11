@@ -64,12 +64,15 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
   exits/entries; commits `state.json` + `journal/` + `trades.jsonl`; posts a Discord morning report.
 - **`.github/workflows/eod-report.yml`** — read-only end-of-day Discord wrap-up (cron).
 - **`.github/workflows/weekly-report.yml`** — `papertrade/report_weekly.py` builds a
-  self-contained HTML PM dashboard and posts it to Discord as a file attachment every Friday
-  after the close (read-only). It runs on GitHub Actions, not a Claude routine, because it needs
-  open outbound network — Alpaca (live equity/positions), yfinance (SPY/QQQ/VIX), and Discord —
-  which the Claude env blocks by egress policy. Uses the same three Actions secrets as the daily
-  workflows. (A disabled Claude Routine for a narrative-added variant exists; re-enable it only
-  after opening the env network policy, and then avoid double-posting.)
+  self-contained HTML PM dashboard and posts it to Discord every Friday after the close
+  (read-only, `--discord`). The workflow installs headless Chromium so the report is rendered
+  to a PNG and posted **inline** (Discord doesn't render `.html`), with the HTML attached as a
+  zoomable backup; both are also kept as a workflow artifact. It runs on GitHub Actions, not a
+  Claude routine, because it needs open outbound network — Alpaca (live equity/positions),
+  yfinance (SPY/QQQ/VIX), and Discord — which the Claude env blocks by egress policy. Uses the
+  same three Actions secrets as the daily workflows. (A disabled Claude Routine for a
+  narrative-added variant exists; re-enable it only after opening the env network policy, and
+  then avoid double-posting.)
 - Keys come from `.env` locally (template: `.env.example`) or GitHub Actions secrets in CI.
 
 ## Conventions & decay watch
