@@ -1,0 +1,56 @@
+name: Weekly Portfolio Report
+
+# Builds the self-contained weekly portfolio HTML dashboard (papertrade/report_weekly.py)
+# and posts it to Discord as a file attachment, every Friday after the close. READ-ONLY -
+# it never trades. Runs on GitHub Actions specifically because the report needs open
+# outbound network (Alpaca for live equity/positions, yfinance for SPY/QQQ/VIX, Discord
+# for delivery); the Claude routine environment blocks those hosts by egress policy.
+#
+# SCHEDULE NOTE: cron is UTC. Set for EDT (UTC-4, ~Mar-Nov) = 4:30 PM ET = 1:30 PM PT on
+# Fridays. When clocks fall back (EST, ~Nov-Mar), change the cron to: '30 21 * * 5'.
+#
+# REQUIRED GITHUB SECRETS (Settings → Secrets and variables → Actions):
+#   ALPACA_API_KEY       — Alpaca paper key (starts with PK...)
+#   ALPACA_SECRET_KEY    — Alpaca paper secret key
+#   DISCORD_WEBHOOK_URL  — the Discord channel webhook URL
+
+on:
+  schedule:
+    - cron: '30 20 * * 5'   # 4:30 PM EDT (UTC-4) Fridays — update to '30 21 * * 5' in November
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build weekly report and post to Discord
+        continue-on-error: true     # a report hiccup must never red-flag the run
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python -m papertrade.report_weekly --discord
+
+      - name: Upload report as a workflow artifact (backup copy)
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-report-html
+          path: reports/weekly/*.html
+          if-no-files-found: warn
+          retention-days: 90
