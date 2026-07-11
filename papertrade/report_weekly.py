@@ -743,8 +743,19 @@ def build_html(ctx: dict) -> str:
     alerts_html = ("".join(f"<li>{escape(a)}</li>" for a in ctx["alerts"])
                    if ctx["alerts"] else "<li class='muted'>none this week</li>")
 
-    narrative = ctx.get("narrative") or (
-        "<em>Portfolio-manager commentary is added here by the weekly Claude routine.</em>")
+    narrative = ctx.get("narrative")
+    if not narrative:
+        # Fallback so the box is never an empty promise if the weekly narrative
+        # routine hasn't run: a one-line data summary from the numbers we have.
+        bits = []
+        if not eq.get("empty"):
+            bits.append(f"Week P/L {_pct(eq['week_pct'])} (equity {_money0(eq['equity'])})")
+        if ctx["dd"] is not None:
+            bits.append(f"drawdown {ctx['dd'] * 100:.1f}% vs high-water mark")
+        a, h = sl["A"]["all"], sl["H"]["all"]
+        bits.append(f"realized A {_money0(a['net'], signed=True)} / H {_money0(h['net'], signed=True)}")
+        narrative = ("<em>Auto-summary (AI commentary pending this week's routine):</em> "
+                     + "; ".join(bits) + ".")
 
     return _PAGE.format(
         title=f"Weekly Portfolio Report — {as_of}",
@@ -937,8 +948,9 @@ def collect_alerts(week_start: dt.date, as_of: dt.date) -> list[str]:
     return [a for a in alerts if a][:8]
 
 
-def generate(narrative: str | None = None) -> tuple[str, dict]:
-    """Build the report HTML. Returns (html, summary_ctx)."""
+def generate(narrative: str | None = None, with_charts: bool = True) -> tuple[str, dict]:
+    """Build the report HTML. Returns (html, summary_ctx). with_charts=False skips
+    the matplotlib renders (used by the fast --summary-json path)."""
     state = load_state()
     trades = load_trades()
     series = load_equity_series()
@@ -992,11 +1004,56 @@ def generate(narrative: str | None = None) -> tuple[str, dict]:
         "regime": regime_info(market),
         "alerts": collect_alerts(week_start, as_of),
         "narrative": narrative,
-        "equity_chart": equity_underwater_chart(eq.get("series"), spy_series),
-        "donut": allocation_donut(sleeve_cap_pct, invested_pct),
-        "cum_chart": cumulative_pl_chart(trades),
+        "equity_chart": equity_underwater_chart(eq.get("series"), spy_series) if with_charts else None,
+        "donut": allocation_donut(sleeve_cap_pct, invested_pct) if with_charts else None,
+        "cum_chart": cumulative_pl_chart(trades) if with_charts else None,
     }
     return build_html(ctx), ctx
+
+
+def summary_dict(ctx: dict) -> dict:
+    """Compact, JSON-serialisable snapshot of the week's numbers, for the weekly
+    Claude routine to write commentary from (it can't reach live data itself)."""
+    eq = ctx["equity"]
+    dd = ctx["dd"]
+    cb = "normal"
+    if dd is not None and dd <= DD_HALT_ALL:
+        cb = "all entries halted"
+    elif dd is not None and dd <= DD_HALT_A:
+        cb = "Sleeve A halted"
+
+    def sleeve(sk):
+        d = ctx["sleeves"][sk]
+        bench = PF_BENCHMARK[sk].get("oos") or PF_BENCHMARK[sk].get("full")
+        return {
+            "name": SLEEVE_NAMES[sk],
+            "all": d["all"], "week": d["week"],
+            "pf_benchmark": bench,
+            "capital_pct": ctx["sleeve_cap_pct"].get(sk),
+            "target_pct": TARGET_WEIGHTS[sk] * 100,
+            "open_pl": ctx["sleeve_upl"].get(sk),
+        }
+
+    return {
+        "as_of": str(ctx["as_of"]),
+        "week_start": str(ctx["week_start"]),
+        "equity": None if eq.get("empty") else round(eq["equity"], 2),
+        "week_pl": None if eq.get("empty") else round(eq["week_pl"], 2),
+        "week_pct": None if eq.get("empty") else round(eq["week_pct"], 2),
+        "incep_pl": None if eq.get("empty") else round(eq["incep_pl"], 2),
+        "incep_pct": None if eq.get("empty") else round(eq["incep_pct"], 2),
+        "drawdown_pct": None if dd is None else round(dd * 100, 2),
+        "circuit_breaker": cb,
+        "invested_pct": ctx["invested_pct"],
+        "risk": ctx["risk"],
+        "sleeves": {"A": sleeve("A"), "H": sleeve("H")},
+        "regime": {k: v for k, v in ctx["regime"].items() if k != "spy_series"},
+        "activity": {"exits": ctx["activity"]["exits"],
+                     "closed_count": len(ctx["activity"]["closed"]),
+                     "entries_count": len(ctx["activity"]["entries"])},
+        "alerts": ctx["alerts"],
+        "pf_benchmarks_note": "A OOS 1.19 / full 1.30; H OOS 1.37; decay flag = PF<1.0 for 6+ months",
+    }
 
 
 def summary_line(ctx: dict) -> str:
@@ -1077,16 +1134,30 @@ def main() -> None:
                     help="path to a file with PM commentary HTML (avoids shell-quoting issues)")
     ap.add_argument("--no-image", action="store_true",
                     help="skip the inline PNG snapshot when posting to Discord")
+    ap.add_argument("--summary-json", type=Path, default=None,
+                    help="write a JSON snapshot of the week's numbers (for the narrative routine)")
     args = ap.parse_args()
+
+    # Fast path: the weekly narrative routine only needs the numbers, not charts/HTML.
+    if args.summary_json is not None and not args.discord and args.out is None:
+        _, ctx = generate(narrative=None, with_charts=False)
+        args.summary_json.parent.mkdir(parents=True, exist_ok=True)
+        args.summary_json.write_text(json.dumps(summary_dict(ctx), indent=2), encoding="utf-8")
+        print(f"Wrote summary JSON {args.summary_json}")
+        return
 
     narrative = args.narrative
     if args.narrative_file is not None:
         try:
-            narrative = args.narrative_file.read_text(encoding="utf-8").strip()
+            narrative = args.narrative_file.read_text(encoding="utf-8").strip() or None
         except OSError as e:
             print(f"Could not read --narrative-file ({e}); continuing without commentary.")
 
     html, ctx = generate(narrative=narrative)
+    if args.summary_json is not None:
+        args.summary_json.parent.mkdir(parents=True, exist_ok=True)
+        args.summary_json.write_text(json.dumps(summary_dict(ctx), indent=2), encoding="utf-8")
+        print(f"Wrote summary JSON {args.summary_json}")
 
     out = args.out
     if out is None:
