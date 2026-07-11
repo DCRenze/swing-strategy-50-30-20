@@ -1010,15 +1010,21 @@ def summary_line(ctx: dict) -> str:
     return " · ".join(parts)
 
 
-def post_file_to_discord(webhook: str, filepath: Path, message: str) -> None:
-    """Upload the HTML file to a Discord webhook as an attachment (multipart)."""
+def post_file_to_discord(webhook: str, filepath: Path, message: str) -> int:
+    """Upload the HTML file to a Discord webhook as an attachment (multipart).
+
+    Returns the HTTP status code. `?wait=true` makes Discord return the created
+    message (and a proper error body) instead of a bare 204, which aids diagnosis.
+    """
     import requests
 
+    url = webhook + ("&" if "?" in webhook else "?") + "wait=true"
     with open(filepath, "rb") as fh:
         files = {"files[0]": (filepath.name, fh, "text/html")}
         data = {"payload_json": json.dumps({"content": message[:1990]})}
-        resp = requests.post(webhook, data=data, files=files, timeout=30)
-        resp.raise_for_status()
+        resp = requests.post(url, data=data, files=files, timeout=30)
+    resp.raise_for_status()
+    return resp.status_code
 
 
 def main() -> None:
@@ -1054,16 +1060,20 @@ def main() -> None:
     print(f"Wrote {out}  ({len(html):,} bytes)")
 
     if args.discord:
-        webhook = os.getenv("DISCORD_WEBHOOK_URL")
+        webhook = (os.getenv("DISCORD_WEBHOOK_URL") or "").strip()
         if not webhook:
             print("DISCORD: no DISCORD_WEBHOOK_URL set in the environment - NOT posted. "
                   "Add it to the environment to enable delivery.")
             return
         try:
-            post_file_to_discord(webhook, out, summary_line(ctx))
-            print("DISCORD: posted weekly report to Discord OK.")
+            code = post_file_to_discord(webhook, out, summary_line(ctx))
+            print(f"DISCORD: posted weekly report to Discord OK (HTTP {code}).")
         except Exception as e:  # noqa: BLE001 - a report failure must never break a pipeline
-            print(f"DISCORD: upload FAILED (report still written): {e}")
+            body = ""
+            resp = getattr(e, "response", None)
+            if resp is not None:
+                body = f" [HTTP {resp.status_code}] {resp.text[:300]}"
+            print(f"DISCORD: upload FAILED (report still written): {e}{body}")
 
 
 if __name__ == "__main__":
