@@ -16,3 +16,6 @@ desktop.ini
 
 # Screener test artifacts
 playbook/signals*.json
+
+# Generated weekly reports (regenerable via papertrade/report_weekly.py)
+reports/
