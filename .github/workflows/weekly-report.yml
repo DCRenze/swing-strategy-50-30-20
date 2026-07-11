@@ -37,6 +37,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Install headless Chromium (for the inline PNG snapshot)
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
       - name: Build weekly report and post to Discord
         continue-on-error: true     # a report hiccup must never red-flag the run
         env:
@@ -50,7 +55,7 @@ jobs:
         continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
-          name: weekly-report-html
-          path: reports/weekly/*.html
+          name: weekly-report
+          path: reports/weekly/*
           if-no-files-found: warn
           retention-days: 90

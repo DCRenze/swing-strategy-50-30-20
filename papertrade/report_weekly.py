@@ -1010,19 +1010,55 @@ def summary_line(ctx: dict) -> str:
     return " · ".join(parts)
 
 
-def post_file_to_discord(webhook: str, filepath: Path, message: str) -> int:
-    """Upload the HTML file to a Discord webhook as an attachment (multipart).
+_MIME = {".png": "image/png", ".html": "text/html"}
 
-    Returns the HTTP status code. `?wait=true` makes Discord return the created
-    message (and a proper error body) instead of a bare 204, which aids diagnosis.
+
+def render_png(html_path: Path, png_path: Path, width: int = 1200) -> Path | None:
+    """Screenshot the report HTML to a full-page PNG via headless Chromium so it can
+    be shown INLINE in Discord (which does not render .html attachments). Best-effort:
+    returns None (and prints why) if Playwright/Chromium isn't available."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception as e:  # noqa: BLE001
+        print(f"PNG: Playwright not available, skipping inline image ({e}).")
+        return None
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(args=["--no-sandbox"])
+            page = browser.new_page(viewport={"width": width, "height": 1400},
+                                    device_scale_factor=2)
+            page.goto(html_path.resolve().as_uri())
+            page.wait_for_timeout(400)  # let base64 images/SVG paint
+            page.screenshot(path=str(png_path), full_page=True)
+            browser.close()
+        print(f"PNG: rendered inline image {png_path} ({png_path.stat().st_size:,} bytes)")
+        return png_path
+    except Exception as e:  # noqa: BLE001 - inline image is a nicety, never fatal
+        print(f"PNG: render failed, will post HTML only ({e}).")
+        return None
+
+
+def post_files_to_discord(webhook: str, filepaths: list[Path], message: str) -> int:
+    """Upload one or more files to a Discord webhook in a single message (multipart).
+
+    Images render inline in Discord, so pass the PNG first and the HTML second: the
+    snapshot shows in-channel and the HTML rides along as a zoomable download.
+    `?wait=true` returns the created message (and a real error body) for diagnostics.
     """
     import requests
 
     url = webhook + ("&" if "?" in webhook else "?") + "wait=true"
-    with open(filepath, "rb") as fh:
-        files = {"files[0]": (filepath.name, fh, "text/html")}
+    handles, files = [], {}
+    try:
+        for i, fp in enumerate(filepaths):
+            fh = open(fp, "rb")
+            handles.append(fh)
+            files[f"files[{i}]"] = (fp.name, fh, _MIME.get(fp.suffix, "application/octet-stream"))
         data = {"payload_json": json.dumps({"content": message[:1990]})}
-        resp = requests.post(url, data=data, files=files, timeout=30)
+        resp = requests.post(url, data=data, files=files, timeout=60)
+    finally:
+        for fh in handles:
+            fh.close()
     resp.raise_for_status()
     return resp.status_code
 
@@ -1039,6 +1075,8 @@ def main() -> None:
                     help="PM commentary (HTML) to inject")
     ap.add_argument("--narrative-file", type=Path, default=None,
                     help="path to a file with PM commentary HTML (avoids shell-quoting issues)")
+    ap.add_argument("--no-image", action="store_true",
+                    help="skip the inline PNG snapshot when posting to Discord")
     args = ap.parse_args()
 
     narrative = args.narrative
@@ -1065,9 +1103,18 @@ def main() -> None:
             print("DISCORD: no DISCORD_WEBHOOK_URL set in the environment - NOT posted. "
                   "Add it to the environment to enable delivery.")
             return
+        # Render an inline PNG (Discord doesn't render .html) and post it first so it
+        # shows in-channel; the HTML rides along as a zoomable download.
+        files = []
+        if not args.no_image:
+            png = render_png(out, out.with_suffix(".png"))
+            if png is not None:
+                files.append(png)
+        files.append(out)
         try:
-            code = post_file_to_discord(webhook, out, summary_line(ctx))
-            print(f"DISCORD: posted weekly report to Discord OK (HTTP {code}).")
+            code = post_files_to_discord(webhook, files, summary_line(ctx))
+            kind = "image + HTML" if len(files) > 1 else "HTML"
+            print(f"DISCORD: posted weekly report to Discord OK ({kind}, HTTP {code}).")
         except Exception as e:  # noqa: BLE001 - a report failure must never break a pipeline
             body = ""
             resp = getattr(e, "response", None)
