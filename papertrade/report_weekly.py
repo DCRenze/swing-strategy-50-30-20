@@ -617,6 +617,51 @@ def chip(text, kind="") -> str:
     return f'<span class="chip {kind}">{text}</span>'
 
 
+def _auto_commentary(ctx: dict) -> str:
+    """A concise, honest, data-driven PM commentary assembled from the week's numbers.
+    Used when no AI narrative is supplied so the commentary box is always populated."""
+    eq = ctx["equity"]
+    dd = ctx["dd"]
+    sl = ctx["sleeves"]
+    lines = []
+
+    if not eq.get("empty"):
+        verb = "returned" if eq["week_pl"] >= 0 else "gave back"
+        head = f"The book {verb} {_pct(eq['week_pct'])} this week to {_money0(eq['equity'])}"
+        if dd is not None:
+            cb = ("with <b>all new entries halted</b>" if dd <= DD_HALT_ALL
+                  else "with <b>Sleeve A entries halted</b>" if dd <= DD_HALT_A
+                  else "circuit breaker normal")
+            head += f", {dd * 100:.1f}% from its high-water mark ({cb})"
+        lines.append(head + ".")
+
+    for sk in ("A", "H"):
+        a, wk = sl[sk]["all"], sl[sk]["week"]
+        bench = PF_BENCHMARK[sk].get("oos") or PF_BENCHMARK[sk].get("full")
+        name = "Sleeve A (mean-reversion)" if sk == "A" else "Sleeve H (momentum)"
+        wk_txt = (f"{_money0(wk['net'], signed=True)} on {wk['n']} closed ({wk['wr']:.0f}% wins)"
+                  if wk["n"] else "no positions closed")
+        if a["pf"] is None:
+            pf_txt = "no losing trades booked yet"
+        elif a["pf"] >= bench:
+            pf_txt = f"all-time profit factor {a['pf']:.2f}, above its {bench:.2f} benchmark"
+        elif a["pf"] >= 1.0:
+            pf_txt = f"all-time profit factor {a['pf']:.2f}, just under its {bench:.2f} benchmark"
+        else:
+            pf_txt = (f"all-time profit factor {a['pf']:.2f} (below 1.0) — worth watching, though a "
+                      f"single soft stretch isn't a decay signal (the playbook flags a sleeve only "
+                      f"after 6+ months under 1.0)")
+        lines.append(f"<b>{name}</b>: {wk_txt} this week; {pf_txt}.")
+
+    act = ctx["activity"]
+    if act.get("exits"):
+        lines.append("Exits this week: " + "; ".join(f"{k} ×{v}" for k, v in act["exits"].items()) + ".")
+
+    body = "".join(f"<p>{x}</p>" for x in lines) or "<p>No data available yet this week.</p>"
+    return body + ("<p class='fine'>Auto-generated summary — richer AI commentary appears "
+                   "here when the weekly PM-commentary routine runs.</p>")
+
+
 def build_html(ctx: dict) -> str:
     eq = ctx["equity"]
     rm = ctx["risk"]
@@ -743,19 +788,9 @@ def build_html(ctx: dict) -> str:
     alerts_html = ("".join(f"<li>{escape(a)}</li>" for a in ctx["alerts"])
                    if ctx["alerts"] else "<li class='muted'>none this week</li>")
 
-    narrative = ctx.get("narrative")
-    if not narrative:
-        # Fallback so the box is never an empty promise if the weekly narrative
-        # routine hasn't run: a one-line data summary from the numbers we have.
-        bits = []
-        if not eq.get("empty"):
-            bits.append(f"Week P/L {_pct(eq['week_pct'])} (equity {_money0(eq['equity'])})")
-        if ctx["dd"] is not None:
-            bits.append(f"drawdown {ctx['dd'] * 100:.1f}% vs high-water mark")
-        a, h = sl["A"]["all"], sl["H"]["all"]
-        bits.append(f"realized A {_money0(a['net'], signed=True)} / H {_money0(h['net'], signed=True)}")
-        narrative = ("<em>Auto-summary (AI commentary pending this week's routine):</em> "
-                     + "; ".join(bits) + ".")
+    # AI prose from the weekly routine when present; otherwise a solid data-driven
+    # auto-commentary so the box is always well-written and never empty.
+    narrative = ctx.get("narrative") or _auto_commentary(ctx)
 
     return _PAGE.format(
         title=f"Weekly Portfolio Report — {as_of}",
@@ -1149,7 +1184,12 @@ def main() -> None:
     narrative = args.narrative
     if args.narrative_file is not None:
         try:
-            narrative = args.narrative_file.read_text(encoding="utf-8").strip() or None
+            import re
+            raw = args.narrative_file.read_text(encoding="utf-8").strip()
+            # Treat an empty file, or one holding only HTML comments (the seed), as
+            # "no narrative" so the data-driven auto-commentary is used instead.
+            visible = re.sub(r"<!--.*?-->", "", raw, flags=re.S).strip()
+            narrative = raw if visible else None
         except OSError as e:
             print(f"Could not read --narrative-file ({e}); continuing without commentary.")
 
