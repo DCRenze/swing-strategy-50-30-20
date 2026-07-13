@@ -1,0 +1,14 @@
+{"ts": "2026-07-13T13:32:47", "kind": "trade_closed", "ticker": "BROS", "sleeve": "A", "entry_date": "2026-07-07", "exit_date": "2026-07-10", "entry_px": 65.49, "exit_px": 65.5388, "qty": 91.0407, "ret": 0.0007, "pnl": 4.44}
+{"ts": "2026-07-13T13:32:47", "kind": "position_closed", "ticker": "BROS", "sleeve": "A", "entry_date": "2026-07-07", "entry_px": 65.49}
+{"ts": "2026-07-13T13:32:47", "kind": "run_start", "mode": "morning", "equity": 98500.8, "hwm": 100432.77, "drawdown": -0.0192, "dry_run": false}
+{"ts": "2026-07-13T13:34:15", "kind": "order_submitted", "sleeve": "A", "ticker": "LLY", "side": "buy", "qty": 5.1615, "order_type": "limit", "limit_price": 1145.04, "client_order_id": "A-LLY-20260713-buy"}
+{"ts": "2026-07-13T13:34:15", "kind": "order_submitted", "sleeve": "A", "ticker": "MRK", "side": "buy", "qty": 49.1292, "order_type": "limit", "limit_price": 120.3, "client_order_id": "A-MRK-20260713-buy"}
+{"ts": "2026-07-13T13:34:15", "kind": "order_submitted", "sleeve": "A", "ticker": "BA", "side": "buy", "qty": 27.4394, "order_type": "limit", "limit_price": 215.39, "client_order_id": "A-BA-20260713-buy"}
+{"ts": "2026-07-13T13:34:15", "kind": "order_submitted", "sleeve": "A", "ticker": "MRNA", "side": "buy", "qty": 95.4831, "order_type": "limit", "limit_price": 61.9, "client_order_id": "A-MRNA-20260713-buy"}
+{"ts": "2026-07-13T13:34:15", "kind": "skip", "sleeve": "A", "ticker": "OKTA", "reason": "already held"}
+{"ts": "2026-07-13T13:34:15", "kind": "order_submitted", "sleeve": "A", "ticker": "UTHR", "side": "buy", "qty": 11.3675, "order_type": "limit", "limit_price": 519.91, "client_order_id": "A-UTHR-20260713-buy"}
+{"ts": "2026-07-13T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "HALO", "side": "buy", "qty": 79.7676, "order_type": "limit", "limit_price": 74.09, "client_order_id": "A-HALO-20260713-buy"}
+{"ts": "2026-07-13T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "RBA", "side": "buy", "qty": 55.4509, "order_type": "limit", "limit_price": 106.58, "client_order_id": "A-RBA-20260713-buy"}
+{"ts": "2026-07-13T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "RARE", "side": "buy", "qty": 189.276, "order_type": "limit", "limit_price": 31.22, "client_order_id": "A-RARE-20260713-buy"}
+{"ts": "2026-07-13T13:34:16", "kind": "order_submitted", "sleeve": "A", "ticker": "SFD", "side": "buy", "qty": 244.6873, "order_type": "limit", "limit_price": 24.15, "client_order_id": "A-SFD-20260713-buy"}
+{"ts": "2026-07-13T13:34:16", "kind": "run_end", "mode": "morning"}
