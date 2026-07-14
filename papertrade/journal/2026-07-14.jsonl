@@ -1,0 +1,14 @@
+{"ts": "2026-07-14T13:32:32", "kind": "position_adopted", "ticker": "BA", "sleeve": "A", "entry_date": "2026-07-13", "entry_px": 215.39}
+{"ts": "2026-07-14T13:32:32", "kind": "run_start", "mode": "morning", "equity": 98451.13, "hwm": 100432.77, "drawdown": -0.0197, "dry_run": false}
+{"ts": "2026-07-14T13:34:48", "kind": "order_submitted", "sleeve": "A", "ticker": "BA", "side": "sell", "qty": 27.4394, "order_type": "market", "limit_price": null, "client_order_id": "A-BA-20260714-sell"}
+{"ts": "2026-07-14T13:34:48", "kind": "order_submitted", "sleeve": "A", "ticker": "LLY", "side": "buy", "qty": 5.2108, "order_type": "limit", "limit_price": 1133.61, "client_order_id": "A-LLY-20260714-buy"}
+{"ts": "2026-07-14T13:34:48", "kind": "order_submitted", "sleeve": "A", "ticker": "AAL", "side": "buy", "qty": 377.3289, "order_type": "limit", "limit_price": 15.65, "client_order_id": "A-AAL-20260714-buy"}
+{"ts": "2026-07-14T13:34:48", "kind": "order_submitted", "sleeve": "A", "ticker": "MRK", "side": "buy", "qty": 49.4448, "order_type": "limit", "limit_price": 119.47, "client_order_id": "A-MRK-20260714-buy"}
+{"ts": "2026-07-14T13:34:49", "kind": "order_submitted", "sleeve": "A", "ticker": "UAL", "side": "buy", "qty": 50.4894, "order_type": "limit", "limit_price": 117.0, "client_order_id": "A-UAL-20260714-buy"}
+{"ts": "2026-07-14T13:34:49", "kind": "order_submitted", "sleeve": "A", "ticker": "AXON", "side": "buy", "qty": 11.6063, "order_type": "limit", "limit_price": 508.95, "client_order_id": "A-AXON-20260714-buy"}
+{"ts": "2026-07-14T13:34:49", "kind": "order_submitted", "sleeve": "A", "ticker": "INCY", "side": "buy", "qty": 53.1983, "order_type": "limit", "limit_price": 111.04, "client_order_id": "A-INCY-20260714-buy"}
+{"ts": "2026-07-14T13:34:49", "kind": "order_submitted", "sleeve": "A", "ticker": "NBIX", "side": "buy", "qty": 35.1375, "order_type": "limit", "limit_price": 168.11, "client_order_id": "A-NBIX-20260714-buy"}
+{"ts": "2026-07-14T13:34:49", "kind": "order_submitted", "sleeve": "A", "ticker": "BEN", "side": "buy", "qty": 184.4321, "order_type": "limit", "limit_price": 32.03, "client_order_id": "A-BEN-20260714-buy"}
+{"ts": "2026-07-14T13:34:49", "kind": "order_submitted", "sleeve": "A", "ticker": "HALO", "side": "buy", "qty": 81.4214, "order_type": "limit", "limit_price": 72.55, "client_order_id": "A-HALO-20260714-buy"}
+{"ts": "2026-07-14T13:34:49", "kind": "skip", "sleeve": "A", "ticker": "BMRN", "reason": "sleeve full"}
+{"ts": "2026-07-14T13:34:49", "kind": "run_end", "mode": "morning"}
