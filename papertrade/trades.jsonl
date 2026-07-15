@@ -15,3 +15,4 @@
 {"ticker": "AAL", "sleeve": "A", "entry_date": "2026-07-07", "exit_date": "2026-07-09", "entry_px": 17.1346, "exit_px": 16.68, "qty": 347.6936, "ret": -0.0265, "pnl": -158.06}
 {"ticker": "PANW", "sleeve": "A", "entry_date": "2026-07-08", "exit_date": "2026-07-09", "entry_px": 323.68, "exit_px": 326.07, "qty": 18.2619, "ret": 0.0074, "pnl": 43.65}
 {"ticker": "BROS", "sleeve": "A", "entry_date": "2026-07-07", "exit_date": "2026-07-10", "entry_px": 65.49, "exit_px": 65.5388, "qty": 91.0407, "ret": 0.0007, "pnl": 4.44}
+{"ticker": "BA", "sleeve": "A", "entry_date": "2026-07-13", "exit_date": "2026-07-14", "entry_px": 215.39, "exit_px": 217.06, "qty": 27.4394, "ret": 0.0078, "pnl": 45.82}

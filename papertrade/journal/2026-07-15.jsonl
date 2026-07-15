@@ -1,0 +1,14 @@
+{"ts": "2026-07-15T13:32:31", "kind": "trade_closed", "ticker": "BA", "sleeve": "A", "entry_date": "2026-07-13", "exit_date": "2026-07-14", "entry_px": 215.39, "exit_px": 217.06, "qty": 27.4394, "ret": 0.0078, "pnl": 45.82}
+{"ts": "2026-07-15T13:32:31", "kind": "position_closed", "ticker": "BA", "sleeve": "A", "entry_date": "2026-07-13", "entry_px": 215.39}
+{"ts": "2026-07-15T13:32:31", "kind": "run_start", "mode": "morning", "equity": 98791.92, "hwm": 100432.77, "drawdown": -0.0163, "dry_run": false}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "QCOM", "side": "buy", "qty": 34.807, "order_type": "limit", "limit_price": 170.3, "client_order_id": "A-QCOM-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "LLY", "side": "buy", "qty": 5.3468, "order_type": "limit", "limit_price": 1108.61, "client_order_id": "A-LLY-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "AAL", "side": "buy", "qty": 394.3289, "order_type": "limit", "limit_price": 15.03, "client_order_id": "A-AAL-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "ABBV", "side": "buy", "qty": 24.5259, "order_type": "limit", "limit_price": 241.68, "client_order_id": "A-ABBV-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "DE", "side": "buy", "qty": 10.3877, "order_type": "limit", "limit_price": 570.63, "client_order_id": "A-DE-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "UAL", "side": "buy", "qty": 50.6349, "order_type": "limit", "limit_price": 117.06, "client_order_id": "A-UAL-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "TRV", "side": "buy", "qty": 18.3288, "order_type": "limit", "limit_price": 323.4, "client_order_id": "A-TRV-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "UTHR", "side": "buy", "qty": 11.547, "order_type": "limit", "limit_price": 513.34, "client_order_id": "A-UTHR-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "VIK", "side": "buy", "qty": 62.1874, "order_type": "limit", "limit_price": 95.32, "client_order_id": "A-VIK-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "order_submitted", "sleeve": "A", "ticker": "GNRC", "side": "buy", "qty": 27.0342, "order_type": "limit", "limit_price": 219.26, "client_order_id": "A-GNRC-20260715-buy"}
+{"ts": "2026-07-15T13:33:51", "kind": "run_end", "mode": "morning"}
