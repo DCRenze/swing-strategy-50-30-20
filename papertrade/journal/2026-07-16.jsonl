@@ -1,0 +1,13 @@
+{"ts": "2026-07-16T13:32:41", "kind": "position_adopted", "ticker": "GNRC", "sleeve": "A", "entry_date": "2026-07-15", "entry_px": 219.23}
+{"ts": "2026-07-16T13:32:41", "kind": "run_start", "mode": "morning", "equity": 99101.56, "hwm": 100432.77, "drawdown": -0.0133, "dry_run": false}
+{"ts": "2026-07-16T13:34:34", "kind": "order_submitted", "sleeve": "A", "ticker": "QCOM", "side": "buy", "qty": 36.1424, "order_type": "limit", "limit_price": 164.52, "client_order_id": "A-QCOM-20260716-buy"}
+{"ts": "2026-07-16T13:34:34", "kind": "order_submitted", "sleeve": "A", "ticker": "AAL", "side": "buy", "qty": 401.0731, "order_type": "limit", "limit_price": 14.83, "client_order_id": "A-AAL-20260716-buy"}
+{"ts": "2026-07-16T13:34:34", "kind": "order_submitted", "sleeve": "A", "ticker": "ANET", "side": "buy", "qty": 37.0388, "order_type": "limit", "limit_price": 160.54, "client_order_id": "A-ANET-20260716-buy"}
+{"ts": "2026-07-16T13:34:34", "kind": "order_submitted", "sleeve": "A", "ticker": "LIN", "side": "buy", "qty": 11.7447, "order_type": "limit", "limit_price": 506.28, "client_order_id": "A-LIN-20260716-buy"}
+{"ts": "2026-07-16T13:34:34", "kind": "order_submitted", "sleeve": "A", "ticker": "CDNS", "side": "buy", "qty": 16.6262, "order_type": "limit", "limit_price": 357.63, "client_order_id": "A-CDNS-20260716-buy"}
+{"ts": "2026-07-16T13:34:34", "kind": "order_submitted", "sleeve": "A", "ticker": "AEP", "side": "buy", "qty": 45.2749, "order_type": "limit", "limit_price": 131.33, "client_order_id": "A-AEP-20260716-buy"}
+{"ts": "2026-07-16T13:34:34", "kind": "order_submitted", "sleeve": "A", "ticker": "APD", "side": "buy", "qty": 20.68, "order_type": "limit", "limit_price": 287.53, "client_order_id": "A-APD-20260716-buy"}
+{"ts": "2026-07-16T13:34:34", "kind": "skip", "sleeve": "A", "ticker": "GNRC", "reason": "already held"}
+{"ts": "2026-07-16T13:34:34", "kind": "order_submitted", "sleeve": "A", "ticker": "GFS", "side": "buy", "qty": 106.9711, "order_type": "limit", "limit_price": 55.59, "client_order_id": "A-GFS-20260716-buy"}
+{"ts": "2026-07-16T13:34:34", "kind": "order_submitted", "sleeve": "A", "ticker": "TDY", "side": "buy", "qty": 9.8012, "order_type": "limit", "limit_price": 606.67, "client_order_id": "A-TDY-20260716-buy"}
+{"ts": "2026-07-16T13:34:34", "kind": "run_end", "mode": "morning"}
