@@ -1,0 +1,13 @@
+{"ts": "2026-07-17T13:32:29", "kind": "run_start", "mode": "morning", "equity": 98782.35, "hwm": 100432.77, "drawdown": -0.0164, "dry_run": false}
+{"ts": "2026-07-17T13:34:05", "kind": "fat_finger_excluded", "detail": "SNDK: limit 1215.07 is -11.1% below last close 1366.76 - fat-finger guard, ORDER EXCLUDED"}
+{"ts": "2026-07-17T13:34:05", "kind": "order_submitted", "sleeve": "A", "ticker": "MU", "side": "buy", "qty": 7.6972, "order_type": "limit", "limit_price": 770.01, "client_order_id": "A-MU-20260717-buy"}
+{"ts": "2026-07-17T13:34:05", "kind": "order_submitted", "sleeve": "A", "ticker": "AMD", "side": "buy", "qty": 13.0484, "order_type": "limit", "limit_price": 454.23, "client_order_id": "A-AMD-20260717-buy"}
+{"ts": "2026-07-17T13:34:05", "kind": "order_submitted", "sleeve": "A", "ticker": "INTC", "side": "buy", "qty": 68.6571, "order_type": "limit", "limit_price": 86.33, "client_order_id": "A-INTC-20260717-buy"}
+{"ts": "2026-07-17T13:34:05", "kind": "order_submitted", "sleeve": "A", "ticker": "MRVL", "side": "buy", "qty": 35.2204, "order_type": "limit", "limit_price": 168.28, "client_order_id": "A-MRVL-20260717-buy"}
+{"ts": "2026-07-17T13:34:05", "kind": "order_submitted", "sleeve": "A", "ticker": "WDC", "side": "buy", "qty": 14.3721, "order_type": "limit", "limit_price": 412.39, "client_order_id": "A-WDC-20260717-buy"}
+{"ts": "2026-07-17T13:34:05", "kind": "order_submitted", "sleeve": "A", "ticker": "LRCX", "side": "buy", "qty": 20.8127, "order_type": "limit", "limit_price": 284.78, "client_order_id": "A-LRCX-20260717-buy"}
+{"ts": "2026-07-17T13:34:05", "kind": "order_submitted", "sleeve": "A", "ticker": "STX", "side": "buy", "qty": 8.9749, "order_type": "limit", "limit_price": 660.39, "client_order_id": "A-STX-20260717-buy"}
+{"ts": "2026-07-17T13:34:05", "kind": "order_submitted", "sleeve": "A", "ticker": "LITE", "side": "buy", "qty": 9.2469, "order_type": "limit", "limit_price": 640.96, "client_order_id": "A-LITE-20260717-buy"}
+{"ts": "2026-07-17T13:34:05", "kind": "order_submitted", "sleeve": "A", "ticker": "CAT", "side": "buy", "qty": 7.3161, "order_type": "limit", "limit_price": 810.12, "client_order_id": "A-CAT-20260717-buy"}
+{"ts": "2026-07-17T13:34:05", "kind": "skip", "sleeve": "A", "ticker": "GLW", "reason": "sleeve full"}
+{"ts": "2026-07-17T13:34:05", "kind": "run_end", "mode": "morning"}
