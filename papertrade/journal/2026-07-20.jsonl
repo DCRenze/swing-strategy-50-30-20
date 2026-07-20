@@ -1,0 +1,10 @@
+{"ts": "2026-07-20T13:32:35", "kind": "run_start", "mode": "morning", "equity": 99267.34, "hwm": 100432.77, "drawdown": -0.0116, "dry_run": false}
+{"ts": "2026-07-20T13:34:17", "kind": "order_submitted", "sleeve": "A", "ticker": "GNRC", "side": "sell", "qty": 27.0342, "order_type": "market", "limit_price": null, "client_order_id": "A-GNRC-20260720-sell"}
+{"ts": "2026-07-20T13:34:17", "kind": "order_submitted", "sleeve": "A", "ticker": "WBD", "side": "buy", "qty": 226.076, "order_type": "limit", "limit_price": 26.35, "client_order_id": "A-WBD-20260720-buy"}
+{"ts": "2026-07-20T13:34:17", "kind": "order_submitted", "sleeve": "A", "ticker": "WAT", "side": "buy", "qty": 16.585, "order_type": "limit", "limit_price": 359.12, "client_order_id": "A-WAT-20260720-buy"}
+{"ts": "2026-07-20T13:34:18", "kind": "order_submitted", "sleeve": "A", "ticker": "DECK", "side": "buy", "qty": 57.6627, "order_type": "limit", "limit_price": 103.29, "client_order_id": "A-DECK-20260720-buy"}
+{"ts": "2026-07-20T13:34:18", "kind": "skip", "sleeve": "A", "ticker": "CRL", "reason": "already held"}
+{"ts": "2026-07-20T13:34:18", "kind": "order_submitted", "sleeve": "A", "ticker": "RVTY", "side": "buy", "qty": 56.0674, "order_type": "limit", "limit_price": 106.23, "client_order_id": "A-RVTY-20260720-buy"}
+{"ts": "2026-07-20T13:34:18", "kind": "order_submitted", "sleeve": "A", "ticker": "S", "side": "buy", "qty": 317.724, "order_type": "limit", "limit_price": 18.75, "client_order_id": "A-S-20260720-buy"}
+{"ts": "2026-07-20T13:34:18", "kind": "order_submitted", "sleeve": "A", "ticker": "TDC", "side": "buy", "qty": 203.0042, "order_type": "limit", "limit_price": 29.34, "client_order_id": "A-TDC-20260720-buy"}
+{"ts": "2026-07-20T13:34:18", "kind": "run_end", "mode": "morning"}
