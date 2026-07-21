@@ -25,10 +25,20 @@
       "entry_date": "2026-07-02",
       "entry_px": 142.9706
     },
-    "GNRC": {
+    "DECK": {
       "sleeve": "A",
-      "entry_date": "2026-07-15",
-      "entry_px": 219.23
+      "entry_date": "2026-07-20",
+      "entry_px": 103.29
+    },
+    "WAT": {
+      "sleeve": "A",
+      "entry_date": "2026-07-20",
+      "entry_px": 359.0
+    },
+    "WBD": {
+      "sleeve": "A",
+      "entry_date": "2026-07-20",
+      "entry_px": 26.3458
     }
   },
   "hwm": 100432.77
