@@ -17,3 +17,4 @@
 {"ticker": "BROS", "sleeve": "A", "entry_date": "2026-07-07", "exit_date": "2026-07-10", "entry_px": 65.49, "exit_px": 65.5388, "qty": 91.0407, "ret": 0.0007, "pnl": 4.44}
 {"ticker": "BA", "sleeve": "A", "entry_date": "2026-07-13", "exit_date": "2026-07-14", "entry_px": 215.39, "exit_px": 217.06, "qty": 27.4394, "ret": 0.0078, "pnl": 45.82}
 {"ticker": "GNRC", "sleeve": "A", "entry_date": "2026-07-15", "exit_date": "2026-07-20", "entry_px": 219.23, "exit_px": 216.54, "qty": 27.0342, "ret": -0.0123, "pnl": -72.72}
+{"ticker": "CRL", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-21", "entry_px": 228.0, "exit_px": 214.34, "qty": 17.6761, "ret": -0.0599, "pnl": -241.46}

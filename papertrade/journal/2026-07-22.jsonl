@@ -1,0 +1,18 @@
+{"ts": "2026-07-22T13:32:32", "kind": "trade_closed", "ticker": "CRL", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-21", "entry_px": 228.0, "exit_px": 214.34, "qty": 17.6761, "ret": -0.0599, "pnl": -241.46}
+{"ts": "2026-07-22T13:32:32", "kind": "position_closed", "ticker": "CRL", "sleeve": "H", "entry_date": "2026-07-01", "entry_px": 228.0}
+{"ts": "2026-07-22T13:32:32", "kind": "position_adopted", "ticker": "ADP", "sleeve": "A", "entry_date": "2026-07-21", "entry_px": 246.41}
+{"ts": "2026-07-22T13:32:32", "kind": "position_adopted", "ticker": "CRWD", "sleeve": "A", "entry_date": "2026-07-21", "entry_px": 190.81}
+{"ts": "2026-07-22T13:32:32", "kind": "run_start", "mode": "morning", "equity": 99226.42, "hwm": 100432.77, "drawdown": -0.012, "dry_run": false}
+{"ts": "2026-07-22T13:34:59", "kind": "order_submitted", "sleeve": "A", "ticker": "WBD", "side": "sell", "qty": 226.076, "order_type": "market", "limit_price": null, "client_order_id": "A-WBD-20260722-sell"}
+{"ts": "2026-07-22T13:35:00", "kind": "order_submitted", "sleeve": "A", "ticker": "ADP", "side": "sell", "qty": 24.0106, "order_type": "market", "limit_price": null, "client_order_id": "A-ADP-20260722-sell"}
+{"ts": "2026-07-22T13:35:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AXP", "side": "buy", "qty": 17.381, "order_type": "limit", "limit_price": 342.53, "client_order_id": "A-AXP-20260722-buy"}
+{"ts": "2026-07-22T13:35:00", "kind": "order_submitted", "sleeve": "A", "ticker": "ABNB", "side": "buy", "qty": 42.4839, "order_type": "limit", "limit_price": 140.14, "client_order_id": "A-ABNB-20260722-buy"}
+{"ts": "2026-07-22T13:35:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AJG", "side": "buy", "qty": 24.7166, "order_type": "limit", "limit_price": 240.87, "client_order_id": "A-AJG-20260722-buy"}
+{"ts": "2026-07-22T13:35:00", "kind": "order_submitted", "sleeve": "A", "ticker": "ZM", "side": "buy", "qty": 68.445, "order_type": "limit", "limit_price": 86.98, "client_order_id": "A-ZM-20260722-buy"}
+{"ts": "2026-07-22T13:35:00", "kind": "order_submitted", "sleeve": "A", "ticker": "SN", "side": "buy", "qty": 41.6937, "order_type": "limit", "limit_price": 142.79, "client_order_id": "A-SN-20260722-buy"}
+{"ts": "2026-07-22T13:35:00", "kind": "skip", "sleeve": "A", "ticker": "NTNX", "reason": "sleeve full"}
+{"ts": "2026-07-22T13:35:00", "kind": "skip", "sleeve": "A", "ticker": "ACGL", "reason": "sleeve full"}
+{"ts": "2026-07-22T13:35:00", "kind": "skip", "sleeve": "A", "ticker": "NLY", "reason": "sleeve full"}
+{"ts": "2026-07-22T13:35:00", "kind": "skip", "sleeve": "A", "ticker": "FTV", "reason": "sleeve full"}
+{"ts": "2026-07-22T13:35:00", "kind": "skip", "sleeve": "A", "ticker": "AMCR", "reason": "sleeve full"}
+{"ts": "2026-07-22T13:35:00", "kind": "run_end", "mode": "morning"}

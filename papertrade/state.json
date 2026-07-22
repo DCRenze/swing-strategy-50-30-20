@@ -10,11 +10,6 @@
       "entry_date": "2026-07-01",
       "entry_px": 29.51
     },
-    "CRL": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01",
-      "entry_px": 228.0
-    },
     "JBHT": {
       "sleeve": "H",
       "entry_date": "2026-07-01",
@@ -39,6 +34,16 @@
       "sleeve": "A",
       "entry_date": "2026-07-20",
       "entry_px": 26.3458
+    },
+    "ADP": {
+      "sleeve": "A",
+      "entry_date": "2026-07-21",
+      "entry_px": 246.41
+    },
+    "CRWD": {
+      "sleeve": "A",
+      "entry_date": "2026-07-21",
+      "entry_px": 190.81
     }
   },
   "hwm": 100432.77
