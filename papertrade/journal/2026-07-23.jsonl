@@ -1,0 +1,29 @@
+{"ts": "2026-07-23T13:32:33", "kind": "trade_closed", "ticker": "WBD", "sleeve": "A", "entry_date": "2026-07-20", "exit_date": "2026-07-22", "entry_px": 26.3458, "exit_px": 25.79, "qty": 226.076, "ret": -0.0211, "pnl": -125.65}
+{"ts": "2026-07-23T13:32:33", "kind": "position_closed", "ticker": "WBD", "sleeve": "A", "entry_date": "2026-07-20", "entry_px": 26.3458}
+{"ts": "2026-07-23T13:32:33", "kind": "trade_closed", "ticker": "ADP", "sleeve": "A", "entry_date": "2026-07-21", "exit_date": "2026-07-22", "entry_px": 246.41, "exit_px": 246.11, "qty": 24.0106, "ret": -0.0012, "pnl": -7.2}
+{"ts": "2026-07-23T13:32:33", "kind": "position_closed", "ticker": "ADP", "sleeve": "A", "entry_date": "2026-07-21", "entry_px": 246.41}
+{"ts": "2026-07-23T13:32:33", "kind": "position_adopted", "ticker": "ABNB", "sleeve": "A", "entry_date": "2026-07-22", "entry_px": 140.14}
+{"ts": "2026-07-23T13:32:33", "kind": "position_adopted", "ticker": "ZM", "sleeve": "A", "entry_date": "2026-07-22", "entry_px": 86.98}
+{"ts": "2026-07-23T13:32:33", "kind": "run_start", "mode": "morning", "equity": 98686.39, "hwm": 100432.77, "drawdown": -0.0174, "dry_run": false}
+{"ts": "2026-07-23T13:34:42", "kind": "warning", "ticker": "WAT", "msg": "multiple up-closes since entry - exiting now (overdue)"}
+{"ts": "2026-07-23T13:34:42", "kind": "order_submitted", "sleeve": "A", "ticker": "WAT", "side": "sell", "qty": 16.585, "order_type": "market", "limit_price": null, "client_order_id": "A-WAT-20260723-sell"}
+{"ts": "2026-07-23T13:34:42", "kind": "order_submitted", "sleeve": "A", "ticker": "ZM", "side": "sell", "qty": 68.445, "order_type": "market", "limit_price": null, "client_order_id": "A-ZM-20260723-sell"}
+{"ts": "2026-07-23T13:34:42", "kind": "order_submitted", "sleeve": "A", "ticker": "AMZN", "side": "buy", "qty": 25.5776, "order_type": "limit", "limit_price": 231.5, "client_order_id": "A-AMZN-20260723-buy"}
+{"ts": "2026-07-23T13:34:42", "kind": "order_submitted", "sleeve": "A", "ticker": "V", "side": "buy", "qty": 17.1246, "order_type": "limit", "limit_price": 345.77, "client_order_id": "A-V-20260723-buy"}
+{"ts": "2026-07-23T13:34:42", "kind": "order_submitted", "sleeve": "A", "ticker": "PANW", "side": "buy", "qty": 18.8476, "order_type": "limit", "limit_price": 314.16, "client_order_id": "A-PANW-20260723-buy"}
+{"ts": "2026-07-23T13:34:43", "kind": "order_submitted", "sleeve": "A", "ticker": "MA", "side": "buy", "qty": 11.4058, "order_type": "limit", "limit_price": 519.14, "client_order_id": "A-MA-20260723-buy"}
+{"ts": "2026-07-23T13:34:43", "kind": "order_submitted", "sleeve": "A", "ticker": "AXP", "side": "buy", "qty": 17.5444, "order_type": "limit", "limit_price": 337.5, "client_order_id": "A-AXP-20260723-buy"}
+{"ts": "2026-07-23T13:34:43", "kind": "skip", "sleeve": "A", "ticker": "VRTX", "reason": "sleeve full"}
+{"ts": "2026-07-23T13:34:43", "kind": "skip", "sleeve": "A", "ticker": "DAL", "reason": "sleeve full"}
+{"ts": "2026-07-23T13:34:43", "kind": "skip", "sleeve": "A", "ticker": "TGT", "reason": "sleeve full"}
+{"ts": "2026-07-23T13:34:43", "kind": "skip", "sleeve": "A", "ticker": "MRNA", "reason": "sleeve full"}
+{"ts": "2026-07-23T13:34:43", "kind": "skip", "sleeve": "A", "ticker": "TTWO", "reason": "sleeve full"}
+{"ts": "2026-07-23T13:34:43", "kind": "order_submitted", "sleeve": "H", "ticker": "JAZZ", "side": "sell", "qty": 16.636, "order_type": "market", "limit_price": null, "client_order_id": "H-JAZZ-20260723-sell"}
+{"ts": "2026-07-23T13:34:43", "kind": "exit_reason", "ticker": "JAZZ", "sleeve": "H", "reason": "15d time stop", "days_held": 15}
+{"ts": "2026-07-23T13:34:43", "kind": "order_submitted", "sleeve": "H", "ticker": "ACHC", "side": "sell", "qty": 135.7525, "order_type": "market", "limit_price": null, "client_order_id": "H-ACHC-20260723-sell"}
+{"ts": "2026-07-23T13:34:43", "kind": "exit_reason", "ticker": "ACHC", "sleeve": "H", "reason": "15d time stop", "days_held": 15}
+{"ts": "2026-07-23T13:34:43", "kind": "order_submitted", "sleeve": "H", "ticker": "JBHT", "side": "sell", "qty": 13.8506, "order_type": "market", "limit_price": null, "client_order_id": "H-JBHT-20260723-sell"}
+{"ts": "2026-07-23T13:34:43", "kind": "exit_reason", "ticker": "JBHT", "sleeve": "H", "reason": "15d time stop", "days_held": 15}
+{"ts": "2026-07-23T13:34:43", "kind": "order_submitted", "sleeve": "H", "ticker": "OKTA", "side": "sell", "qty": 28.5087, "order_type": "market", "limit_price": null, "client_order_id": "H-OKTA-20260723-sell"}
+{"ts": "2026-07-23T13:34:43", "kind": "exit_reason", "ticker": "OKTA", "sleeve": "H", "reason": "5% stop", "days_held": 14}
+{"ts": "2026-07-23T13:34:43", "kind": "run_end", "mode": "morning"}

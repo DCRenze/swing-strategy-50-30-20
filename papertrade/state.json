@@ -30,20 +30,20 @@
       "entry_date": "2026-07-20",
       "entry_px": 359.0
     },
-    "WBD": {
-      "sleeve": "A",
-      "entry_date": "2026-07-20",
-      "entry_px": 26.3458
-    },
-    "ADP": {
-      "sleeve": "A",
-      "entry_date": "2026-07-21",
-      "entry_px": 246.41
-    },
     "CRWD": {
       "sleeve": "A",
       "entry_date": "2026-07-21",
       "entry_px": 190.81
+    },
+    "ABNB": {
+      "sleeve": "A",
+      "entry_date": "2026-07-22",
+      "entry_px": 140.14
+    },
+    "ZM": {
+      "sleeve": "A",
+      "entry_date": "2026-07-22",
+      "entry_px": 86.98
     }
   },
   "hwm": 100432.77
