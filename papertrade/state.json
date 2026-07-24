@@ -1,34 +1,9 @@
 {
   "positions": {
-    "JAZZ": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01",
-      "entry_px": 240.8161
-    },
-    "ACHC": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01",
-      "entry_px": 29.51
-    },
-    "JBHT": {
-      "sleeve": "H",
-      "entry_date": "2026-07-01",
-      "entry_px": 288.97
-    },
-    "OKTA": {
-      "sleeve": "H",
-      "entry_date": "2026-07-02",
-      "entry_px": 142.9706
-    },
     "DECK": {
       "sleeve": "A",
       "entry_date": "2026-07-20",
       "entry_px": 103.29
-    },
-    "WAT": {
-      "sleeve": "A",
-      "entry_date": "2026-07-20",
-      "entry_px": 359.0
     },
     "CRWD": {
       "sleeve": "A",
@@ -39,11 +14,6 @@
       "sleeve": "A",
       "entry_date": "2026-07-22",
       "entry_px": 140.14
-    },
-    "ZM": {
-      "sleeve": "A",
-      "entry_date": "2026-07-22",
-      "entry_px": 86.98
     }
   },
   "hwm": 100432.77

@@ -20,3 +20,9 @@
 {"ticker": "CRL", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-21", "entry_px": 228.0, "exit_px": 214.34, "qty": 17.6761, "ret": -0.0599, "pnl": -241.46}
 {"ticker": "WBD", "sleeve": "A", "entry_date": "2026-07-20", "exit_date": "2026-07-22", "entry_px": 26.3458, "exit_px": 25.79, "qty": 226.076, "ret": -0.0211, "pnl": -125.65}
 {"ticker": "ADP", "sleeve": "A", "entry_date": "2026-07-21", "exit_date": "2026-07-22", "entry_px": 246.41, "exit_px": 246.11, "qty": 24.0106, "ret": -0.0012, "pnl": -7.2}
+{"ticker": "JAZZ", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-23", "entry_px": 240.8161, "exit_px": 249.25, "qty": 16.636, "ret": 0.035, "pnl": 140.31}
+{"ticker": "ACHC", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-23", "entry_px": 29.51, "exit_px": 34.56, "qty": 135.7525, "ret": 0.1711, "pnl": 685.55}
+{"ticker": "JBHT", "sleeve": "H", "entry_date": "2026-07-01", "exit_date": "2026-07-23", "entry_px": 288.97, "exit_px": 286.83, "qty": 13.8506, "ret": -0.0074, "pnl": -29.64}
+{"ticker": "OKTA", "sleeve": "H", "entry_date": "2026-07-02", "exit_date": "2026-07-23", "entry_px": 142.9706, "exit_px": 135.86, "qty": 28.5087, "ret": -0.0497, "pnl": -202.71}
+{"ticker": "WAT", "sleeve": "A", "entry_date": "2026-07-20", "exit_date": "2026-07-23", "entry_px": 359.0, "exit_px": 384.17, "qty": 16.585, "ret": 0.0701, "pnl": 417.44}
+{"ticker": "ZM", "sleeve": "A", "entry_date": "2026-07-22", "exit_date": "2026-07-23", "entry_px": 86.98, "exit_px": 86.02, "qty": 68.445, "ret": -0.011, "pnl": -65.71}
