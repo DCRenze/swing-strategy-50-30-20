@@ -26,3 +26,5 @@
 {"ticker": "OKTA", "sleeve": "H", "entry_date": "2026-07-02", "exit_date": "2026-07-23", "entry_px": 142.9706, "exit_px": 135.86, "qty": 28.5087, "ret": -0.0497, "pnl": -202.71}
 {"ticker": "WAT", "sleeve": "A", "entry_date": "2026-07-20", "exit_date": "2026-07-23", "entry_px": 359.0, "exit_px": 384.17, "qty": 16.585, "ret": 0.0701, "pnl": 417.44}
 {"ticker": "ZM", "sleeve": "A", "entry_date": "2026-07-22", "exit_date": "2026-07-23", "entry_px": 86.98, "exit_px": 86.02, "qty": 68.445, "ret": -0.011, "pnl": -65.71}
+{"ticker": "CRWD", "sleeve": "A", "entry_date": "2026-07-21", "exit_date": "2026-07-24", "entry_px": 190.81, "exit_px": 183.4387, "qty": 31.0127, "ret": -0.0386, "pnl": -228.6}
+{"ticker": "ABNB", "sleeve": "A", "entry_date": "2026-07-22", "exit_date": "2026-07-24", "entry_px": 140.14, "exit_px": 138.33, "qty": 42.4839, "ret": -0.0129, "pnl": -76.9}

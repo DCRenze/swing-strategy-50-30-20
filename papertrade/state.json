@@ -5,15 +5,20 @@
       "entry_date": "2026-07-20",
       "entry_px": 103.29
     },
-    "CRWD": {
+    "ADI": {
       "sleeve": "A",
-      "entry_date": "2026-07-21",
-      "entry_px": 190.81
+      "entry_date": "2026-07-24",
+      "entry_px": 367.0108
     },
-    "ABNB": {
+    "ENTG": {
       "sleeve": "A",
-      "entry_date": "2026-07-22",
-      "entry_px": 140.14
+      "entry_date": "2026-07-24",
+      "entry_px": 128.01
+    },
+    "GFS": {
+      "sleeve": "A",
+      "entry_date": "2026-07-24",
+      "entry_px": 53.0549
     }
   },
   "hwm": 100432.77
