@@ -1,10 +1,5 @@
 {
   "positions": {
-    "DECK": {
-      "sleeve": "A",
-      "entry_date": "2026-07-20",
-      "entry_px": 103.29
-    },
     "ADI": {
       "sleeve": "A",
       "entry_date": "2026-07-24",
@@ -19,6 +14,11 @@
       "sleeve": "A",
       "entry_date": "2026-07-24",
       "entry_px": 53.0549
+    },
+    "AKAM": {
+      "sleeve": "A",
+      "entry_date": "2026-07-27",
+      "entry_px": 111.12
     }
   },
   "hwm": 100432.77

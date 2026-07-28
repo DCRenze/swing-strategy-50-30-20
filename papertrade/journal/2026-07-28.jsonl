@@ -1,0 +1,15 @@
+{"ts": "2026-07-28T13:32:36", "kind": "trade_closed", "ticker": "DECK", "sleeve": "A", "entry_date": "2026-07-20", "exit_date": "2026-07-27", "entry_px": 103.29, "exit_px": 99.2, "qty": 57.6627, "ret": -0.0396, "pnl": -235.84}
+{"ts": "2026-07-28T13:32:36", "kind": "position_closed", "ticker": "DECK", "sleeve": "A", "entry_date": "2026-07-20", "entry_px": 103.29}
+{"ts": "2026-07-28T13:32:36", "kind": "position_adopted", "ticker": "AKAM", "sleeve": "A", "entry_date": "2026-07-27", "entry_px": 111.12}
+{"ts": "2026-07-28T13:32:36", "kind": "run_start", "mode": "morning", "equity": 97591.81, "hwm": 100432.77, "drawdown": -0.0283, "dry_run": false}
+{"ts": "2026-07-28T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "AMD", "side": "buy", "qty": 13.4349, "order_type": "limit", "limit_price": 435.84, "client_order_id": "A-AMD-20260728-buy"}
+{"ts": "2026-07-28T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "INTC", "side": "buy", "qty": 72.2335, "order_type": "limit", "limit_price": 81.06, "client_order_id": "A-INTC-20260728-buy"}
+{"ts": "2026-07-28T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "PANW", "side": "buy", "qty": 19.634, "order_type": "limit", "limit_price": 298.23, "client_order_id": "A-PANW-20260728-buy"}
+{"ts": "2026-07-28T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "GS", "side": "buy", "qty": 5.8529, "order_type": "limit", "limit_price": 1000.45, "client_order_id": "A-GS-20260728-buy"}
+{"ts": "2026-07-28T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "CRWD", "side": "buy", "qty": 34.1539, "order_type": "limit", "limit_price": 171.44, "client_order_id": "A-CRWD-20260728-buy"}
+{"ts": "2026-07-28T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "MS", "side": "buy", "qty": 28.6018, "order_type": "limit", "limit_price": 204.73, "client_order_id": "A-MS-20260728-buy"}
+{"ts": "2026-07-28T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "FCX", "reason": "sleeve full"}
+{"ts": "2026-07-28T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "NET", "reason": "sleeve full"}
+{"ts": "2026-07-28T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "RIVN", "reason": "sleeve full"}
+{"ts": "2026-07-28T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "ELV", "reason": "sleeve full"}
+{"ts": "2026-07-28T13:34:12", "kind": "run_end", "mode": "morning"}

@@ -28,3 +28,4 @@
 {"ticker": "ZM", "sleeve": "A", "entry_date": "2026-07-22", "exit_date": "2026-07-23", "entry_px": 86.98, "exit_px": 86.02, "qty": 68.445, "ret": -0.011, "pnl": -65.71}
 {"ticker": "CRWD", "sleeve": "A", "entry_date": "2026-07-21", "exit_date": "2026-07-24", "entry_px": 190.81, "exit_px": 183.4387, "qty": 31.0127, "ret": -0.0386, "pnl": -228.6}
 {"ticker": "ABNB", "sleeve": "A", "entry_date": "2026-07-22", "exit_date": "2026-07-24", "entry_px": 140.14, "exit_px": 138.33, "qty": 42.4839, "ret": -0.0129, "pnl": -76.9}
+{"ticker": "DECK", "sleeve": "A", "entry_date": "2026-07-20", "exit_date": "2026-07-27", "entry_px": 103.29, "exit_px": 99.2, "qty": 57.6627, "ret": -0.0396, "pnl": -235.84}
