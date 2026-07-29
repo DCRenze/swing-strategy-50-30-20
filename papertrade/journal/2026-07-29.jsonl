@@ -1,0 +1,13 @@
+{"ts": "2026-07-29T13:32:28", "kind": "run_start", "mode": "morning", "equity": 97230.85, "hwm": 100432.77, "drawdown": -0.0319, "dry_run": false}
+{"ts": "2026-07-29T13:34:03", "kind": "order_submitted", "sleeve": "A", "ticker": "GFS", "side": "sell", "qty": 110.8187, "order_type": "market", "limit_price": null, "client_order_id": "A-GFS-20260729-sell"}
+{"ts": "2026-07-29T13:34:03", "kind": "order_submitted", "sleeve": "A", "ticker": "AMAT", "side": "buy", "qty": 13.2377, "order_type": "limit", "limit_price": 440.7, "client_order_id": "A-AMAT-20260729-buy"}
+{"ts": "2026-07-29T13:34:03", "kind": "order_submitted", "sleeve": "A", "ticker": "KLAC", "side": "buy", "qty": 33.3935, "order_type": "limit", "limit_price": 174.7, "client_order_id": "A-KLAC-20260729-buy"}
+{"ts": "2026-07-29T13:34:03", "kind": "order_submitted", "sleeve": "A", "ticker": "CAT", "side": "buy", "qty": 7.4192, "order_type": "limit", "limit_price": 786.31, "client_order_id": "A-CAT-20260729-buy"}
+{"ts": "2026-07-29T13:34:03", "kind": "order_submitted", "sleeve": "A", "ticker": "NXPI", "side": "buy", "qty": 23.5958, "order_type": "limit", "limit_price": 247.24, "client_order_id": "A-NXPI-20260729-buy"}
+{"ts": "2026-07-29T13:34:03", "kind": "order_submitted", "sleeve": "A", "ticker": "ON", "side": "buy", "qty": 73.2674, "order_type": "limit", "limit_price": 79.62, "client_order_id": "A-ON-20260729-buy"}
+{"ts": "2026-07-29T13:34:03", "kind": "order_submitted", "sleeve": "A", "ticker": "UNP", "side": "buy", "qty": 20.2091, "order_type": "limit", "limit_price": 288.67, "client_order_id": "A-UNP-20260729-buy"}
+{"ts": "2026-07-29T13:34:03", "kind": "skip", "sleeve": "A", "ticker": "MCHP", "reason": "sleeve full"}
+{"ts": "2026-07-29T13:34:03", "kind": "skip", "sleeve": "A", "ticker": "CSX", "reason": "sleeve full"}
+{"ts": "2026-07-29T13:34:03", "kind": "skip", "sleeve": "A", "ticker": "FLEX", "reason": "sleeve full"}
+{"ts": "2026-07-29T13:34:03", "kind": "skip", "sleeve": "A", "ticker": "AEP", "reason": "sleeve full"}
+{"ts": "2026-07-29T13:34:03", "kind": "run_end", "mode": "morning"}
