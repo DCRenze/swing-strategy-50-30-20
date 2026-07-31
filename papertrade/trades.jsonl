@@ -30,3 +30,11 @@
 {"ticker": "ABNB", "sleeve": "A", "entry_date": "2026-07-22", "exit_date": "2026-07-24", "entry_px": 140.14, "exit_px": 138.33, "qty": 42.4839, "ret": -0.0129, "pnl": -76.9}
 {"ticker": "DECK", "sleeve": "A", "entry_date": "2026-07-20", "exit_date": "2026-07-27", "entry_px": 103.29, "exit_px": 99.2, "qty": 57.6627, "ret": -0.0396, "pnl": -235.84}
 {"ticker": "GFS", "sleeve": "A", "entry_date": "2026-07-24", "exit_date": "2026-07-29", "entry_px": 53.0549, "exit_px": 49.2251, "qty": 110.8187, "ret": -0.0722, "pnl": -424.41}
+{"ticker": "ADI", "sleeve": "A", "entry_date": "2026-07-24", "exit_date": "2026-07-30", "entry_px": 367.0108, "exit_px": 363.09, "qty": 16.0146, "ret": -0.0107, "pnl": -62.79}
+{"ticker": "ENTG", "sleeve": "A", "entry_date": "2026-07-24", "exit_date": "2026-07-30", "entry_px": 128.01, "exit_px": 116.54, "qty": 45.9064, "ret": -0.0896, "pnl": -526.55}
+{"ticker": "AKAM", "sleeve": "A", "entry_date": "2026-07-27", "exit_date": "2026-07-30", "entry_px": 111.12, "exit_px": 109.36, "qty": 53.2604, "ret": -0.0158, "pnl": -93.74}
+{"ticker": "AMAT", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 440.68, "exit_px": 477.92, "qty": 13.2377, "ret": 0.0845, "pnl": 492.97}
+{"ticker": "CAT", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 786.28, "exit_px": 808.3802, "qty": 7.4192, "ret": 0.0281, "pnl": 163.97}
+{"ticker": "KLAC", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 174.7, "exit_px": 179.9581, "qty": 33.3935, "ret": 0.0301, "pnl": 175.59}
+{"ticker": "NXPI", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 247.23, "exit_px": 248.0178, "qty": 23.5958, "ret": 0.0032, "pnl": 18.59}
+{"ticker": "ON", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 79.61, "exit_px": 82.3685, "qty": 73.2674, "ret": 0.0347, "pnl": 202.11}

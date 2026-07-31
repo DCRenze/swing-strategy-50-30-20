@@ -1,45 +1,4 @@
 {
-  "positions": {
-    "ADI": {
-      "sleeve": "A",
-      "entry_date": "2026-07-24",
-      "entry_px": 367.0108
-    },
-    "ENTG": {
-      "sleeve": "A",
-      "entry_date": "2026-07-24",
-      "entry_px": 128.01
-    },
-    "AKAM": {
-      "sleeve": "A",
-      "entry_date": "2026-07-27",
-      "entry_px": 111.12
-    },
-    "AMAT": {
-      "sleeve": "A",
-      "entry_date": "2026-07-29",
-      "entry_px": 440.68
-    },
-    "CAT": {
-      "sleeve": "A",
-      "entry_date": "2026-07-29",
-      "entry_px": 786.28
-    },
-    "KLAC": {
-      "sleeve": "A",
-      "entry_date": "2026-07-29",
-      "entry_px": 174.7
-    },
-    "NXPI": {
-      "sleeve": "A",
-      "entry_date": "2026-07-29",
-      "entry_px": 247.23
-    },
-    "ON": {
-      "sleeve": "A",
-      "entry_date": "2026-07-29",
-      "entry_px": 79.61
-    }
-  },
+  "positions": {},
   "hwm": 100432.77
 }
