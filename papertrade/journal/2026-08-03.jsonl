@@ -1,0 +1,12 @@
+{"ts": "2026-08-03T13:32:32", "kind": "run_start", "mode": "morning", "equity": 98283.53, "hwm": 100432.77, "drawdown": -0.0214, "dry_run": false}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "SO", "side": "buy", "qty": 63.3983, "order_type": "limit", "limit_price": 93.02, "client_order_id": "A-SO-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "SPG", "side": "buy", "qty": 25.9557, "order_type": "limit", "limit_price": 227.2, "client_order_id": "A-SPG-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "BIIB", "side": "buy", "qty": 29.803, "order_type": "limit", "limit_price": 197.87, "client_order_id": "A-BIIB-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "AWK", "side": "buy", "qty": 44.7007, "order_type": "limit", "limit_price": 131.92, "client_order_id": "A-AWK-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "BBY", "side": "buy", "qty": 70.1735, "order_type": "limit", "limit_price": 84.03, "client_order_id": "A-BBY-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "CF", "side": "buy", "qty": 49.0675, "order_type": "limit", "limit_price": 120.18, "client_order_id": "A-CF-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "CNP", "side": "buy", "qty": 142.5419, "order_type": "limit", "limit_price": 41.37, "client_order_id": "A-CNP-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "ED", "side": "buy", "qty": 55.0897, "order_type": "limit", "limit_price": 107.04, "client_order_id": "A-ED-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "NBIX", "side": "buy", "qty": 37.0337, "order_type": "limit", "limit_price": 159.23, "client_order_id": "A-NBIX-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "order_submitted", "sleeve": "A", "ticker": "EQR", "side": "buy", "qty": 89.8227, "order_type": "limit", "limit_price": 65.65, "client_order_id": "A-EQR-20260803-buy"}
+{"ts": "2026-08-03T13:33:43", "kind": "run_end", "mode": "morning"}
