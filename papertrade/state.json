@@ -1,4 +1,25 @@
 {
-  "positions": {},
+  "positions": {
+    "AWK": {
+      "sleeve": "A",
+      "entry_date": "2026-08-03",
+      "entry_px": 131.9
+    },
+    "BBY": {
+      "sleeve": "A",
+      "entry_date": "2026-08-03",
+      "entry_px": 83.9521
+    },
+    "CF": {
+      "sleeve": "A",
+      "entry_date": "2026-08-03",
+      "entry_px": 120.09
+    },
+    "SO": {
+      "sleeve": "A",
+      "entry_date": "2026-08-03",
+      "entry_px": 93.0004
+    }
+  },
   "hwm": 100432.77
 }
