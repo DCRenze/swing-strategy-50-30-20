@@ -1,0 +1,25 @@
+{"ts": "2026-08-06T13:32:33", "kind": "position_adopted", "ticker": "EOG", "sleeve": "A", "entry_date": "2026-08-05", "entry_px": 137.05}
+{"ts": "2026-08-06T13:32:33", "kind": "run_start", "mode": "morning", "equity": 97917.57, "hwm": 100432.77, "drawdown": -0.025, "dry_run": false}
+{"ts": "2026-08-06T13:33:28", "kind": "warning", "ticker": "AWK", "msg": "multiple up-closes since entry - exiting now (overdue)"}
+{"ts": "2026-08-06T13:33:28", "kind": "order_submitted", "sleeve": "A", "ticker": "AWK", "side": "sell", "qty": 44.7007, "order_type": "market", "limit_price": null, "client_order_id": "A-AWK-20260806-sell"}
+{"ts": "2026-08-06T13:33:28", "kind": "order_submitted", "sleeve": "A", "ticker": "UNH", "side": "buy", "qty": 14.5576, "order_type": "limit", "limit_price": 403.57, "client_order_id": "A-UNH-20260806-buy"}
+{"ts": "2026-08-06T13:33:28", "kind": "order_submitted", "sleeve": "A", "ticker": "CVS", "side": "buy", "qty": 60.7593, "order_type": "limit", "limit_price": 96.69, "client_order_id": "A-CVS-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "A", "ticker": "PLD", "side": "buy", "qty": 42.5137, "order_type": "limit", "limit_price": 138.19, "client_order_id": "A-PLD-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "A", "ticker": "COP", "side": "buy", "qty": 52.2001, "order_type": "limit", "limit_price": 112.55, "client_order_id": "A-COP-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "A", "ticker": "MPC", "side": "buy", "qty": 20.2678, "order_type": "limit", "limit_price": 289.87, "client_order_id": "A-MPC-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "skip", "sleeve": "A", "ticker": "HUM", "reason": "sleeve full"}
+{"ts": "2026-08-06T13:33:29", "kind": "skip", "sleeve": "A", "ticker": "AEP", "reason": "sleeve full"}
+{"ts": "2026-08-06T13:33:29", "kind": "skip", "sleeve": "A", "ticker": "PSX", "reason": "sleeve full"}
+{"ts": "2026-08-06T13:33:29", "kind": "skip", "sleeve": "A", "ticker": "OXY", "reason": "sleeve full"}
+{"ts": "2026-08-06T13:33:29", "kind": "skip", "sleeve": "A", "ticker": "DVN", "reason": "sleeve full"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "H", "ticker": "ATI", "side": "buy", "qty": 19.0956, "order_type": "market", "limit_price": null, "client_order_id": "H-ATI-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "H", "ticker": "AVT", "side": "buy", "qty": 40.287, "order_type": "market", "limit_price": null, "client_order_id": "H-AVT-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "H", "ticker": "CRL", "side": "buy", "qty": 15.0226, "order_type": "market", "limit_price": null, "client_order_id": "H-CRL-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "H", "ticker": "IFF", "side": "buy", "qty": 44.4726, "order_type": "market", "limit_price": null, "client_order_id": "H-IFF-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "H", "ticker": "AIZ", "side": "buy", "qty": 12.9877, "order_type": "market", "limit_price": null, "client_order_id": "H-AIZ-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "H", "ticker": "AMGN", "side": "buy", "qty": 9.6038, "order_type": "market", "limit_price": null, "client_order_id": "H-AMGN-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "H", "ticker": "BIO", "side": "buy", "qty": 11.2594, "order_type": "market", "limit_price": null, "client_order_id": "H-BIO-20260806-buy"}
+{"ts": "2026-08-06T13:33:29", "kind": "order_submitted", "sleeve": "H", "ticker": "AFG", "side": "buy", "qty": 26.6933, "order_type": "market", "limit_price": null, "client_order_id": "H-AFG-20260806-buy"}
+{"ts": "2026-08-06T13:33:30", "kind": "order_submitted", "sleeve": "H", "ticker": "YETI", "side": "buy", "qty": 74.5897, "order_type": "market", "limit_price": null, "client_order_id": "H-YETI-20260806-buy"}
+{"ts": "2026-08-06T13:33:30", "kind": "order_submitted", "sleeve": "H", "ticker": "EMR", "side": "buy", "qty": 24.1072, "order_type": "market", "limit_price": null, "client_order_id": "H-EMR-20260806-buy"}
+{"ts": "2026-08-06T13:33:30", "kind": "run_end", "mode": "morning"}

@@ -19,6 +19,11 @@
       "sleeve": "A",
       "entry_date": "2026-08-03",
       "entry_px": 93.0004
+    },
+    "EOG": {
+      "sleeve": "A",
+      "entry_date": "2026-08-05",
+      "entry_px": 137.05
     }
   },
   "hwm": 100432.77
