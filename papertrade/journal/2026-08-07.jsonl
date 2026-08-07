@@ -1,0 +1,30 @@
+{"ts": "2026-08-07T13:32:32", "kind": "trade_closed", "ticker": "AWK", "sleeve": "A", "entry_date": "2026-08-03", "exit_date": "2026-08-06", "entry_px": 131.9, "exit_px": 134.36, "qty": 44.7007, "ret": 0.0187, "pnl": 109.96}
+{"ts": "2026-08-07T13:32:32", "kind": "position_closed", "ticker": "AWK", "sleeve": "A", "entry_date": "2026-08-03", "entry_px": 131.9}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "AFG", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 148.9994}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "AIZ", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 304.1039}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "AMGN", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 413.12}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "ATI", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 231.0}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "AVT", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 98.8921}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "BIO", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 347.5}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "CRL", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 265.9005}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "CVS", "sleeve": "A", "entry_date": "2026-08-06", "entry_px": 96.69}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "EMR", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 162.6675}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "IFF", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 85.6874}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "UNH", "sleeve": "A", "entry_date": "2026-08-06", "entry_px": 403.57}
+{"ts": "2026-08-07T13:32:32", "kind": "position_adopted", "ticker": "YETI", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 52.5383}
+{"ts": "2026-08-07T13:32:32", "kind": "run_start", "mode": "morning", "equity": 96586.39, "hwm": 100432.77, "drawdown": -0.0383, "dry_run": false}
+{"ts": "2026-08-07T13:34:12", "kind": "warning", "ticker": "BBY", "msg": "multiple up-closes since entry - exiting now (overdue)"}
+{"ts": "2026-08-07T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "BBY", "side": "sell", "qty": 70.1735, "order_type": "market", "limit_price": null, "client_order_id": "A-BBY-20260807-sell"}
+{"ts": "2026-08-07T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "MPC", "side": "buy", "qty": 20.2917, "order_type": "limit", "limit_price": 285.59, "client_order_id": "A-MPC-20260807-buy"}
+{"ts": "2026-08-07T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "PCG", "side": "buy", "qty": 348.9236, "order_type": "limit", "limit_price": 16.61, "client_order_id": "A-PCG-20260807-buy"}
+{"ts": "2026-08-07T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "SPG", "side": "buy", "qty": 26.7208, "order_type": "limit", "limit_price": 216.88, "client_order_id": "A-SPG-20260807-buy"}
+{"ts": "2026-08-07T13:34:12", "kind": "order_submitted", "sleeve": "A", "ticker": "D", "side": "buy", "qty": 88.9324, "order_type": "limit", "limit_price": 65.16, "client_order_id": "A-D-20260807-buy"}
+{"ts": "2026-08-07T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "HST", "reason": "sleeve full"}
+{"ts": "2026-08-07T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "BAX", "reason": "sleeve full"}
+{"ts": "2026-08-07T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "BEN", "reason": "sleeve full"}
+{"ts": "2026-08-07T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "ELAN", "reason": "sleeve full"}
+{"ts": "2026-08-07T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "KIM", "reason": "sleeve full"}
+{"ts": "2026-08-07T13:34:12", "kind": "skip", "sleeve": "A", "ticker": "ELS", "reason": "sleeve full"}
+{"ts": "2026-08-07T13:34:12", "kind": "order_submitted", "sleeve": "H", "ticker": "AVT", "side": "sell", "qty": 40.287, "order_type": "market", "limit_price": null, "client_order_id": "H-AVT-20260807-sell"}
+{"ts": "2026-08-07T13:34:12", "kind": "exit_reason", "ticker": "AVT", "sleeve": "H", "reason": "5% stop", "days_held": 1}
+{"ts": "2026-08-07T13:34:12", "kind": "run_end", "mode": "morning"}

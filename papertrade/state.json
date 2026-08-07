@@ -1,10 +1,5 @@
 {
   "positions": {
-    "AWK": {
-      "sleeve": "A",
-      "entry_date": "2026-08-03",
-      "entry_px": 131.9
-    },
     "BBY": {
       "sleeve": "A",
       "entry_date": "2026-08-03",
@@ -24,6 +19,66 @@
       "sleeve": "A",
       "entry_date": "2026-08-05",
       "entry_px": 137.05
+    },
+    "AFG": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 148.9994
+    },
+    "AIZ": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 304.1039
+    },
+    "AMGN": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 413.12
+    },
+    "ATI": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 231.0
+    },
+    "AVT": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 98.8921
+    },
+    "BIO": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 347.5
+    },
+    "CRL": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 265.9005
+    },
+    "CVS": {
+      "sleeve": "A",
+      "entry_date": "2026-08-06",
+      "entry_px": 96.69
+    },
+    "EMR": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 162.6675
+    },
+    "IFF": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 85.6874
+    },
+    "UNH": {
+      "sleeve": "A",
+      "entry_date": "2026-08-06",
+      "entry_px": 403.57
+    },
+    "YETI": {
+      "sleeve": "H",
+      "entry_date": "2026-08-06",
+      "entry_px": 52.5383
     }
   },
   "hwm": 100432.77

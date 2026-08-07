@@ -38,3 +38,4 @@
 {"ticker": "KLAC", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 174.7, "exit_px": 179.9581, "qty": 33.3935, "ret": 0.0301, "pnl": 175.59}
 {"ticker": "NXPI", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 247.23, "exit_px": 248.0178, "qty": 23.5958, "ret": 0.0032, "pnl": 18.59}
 {"ticker": "ON", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 79.61, "exit_px": 82.3685, "qty": 73.2674, "ret": 0.0347, "pnl": 202.11}
+{"ticker": "AWK", "sleeve": "A", "entry_date": "2026-08-03", "exit_date": "2026-08-06", "entry_px": 131.9, "exit_px": 134.36, "qty": 44.7007, "ret": 0.0187, "pnl": 109.96}
