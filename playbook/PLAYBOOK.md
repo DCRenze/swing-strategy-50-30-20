@@ -84,8 +84,21 @@ screens; then:
 4. **Sleeve H entries** (market buys at open) when SPY > SMA(100); skipped if the
    gate is off or already held.
 
-The screener's as-of date MUST equal the last completed session. If it lags, data is
-stale — the run acts on old signals; investigate per §5.
+The screener's as-of date MUST equal the last completed session. **This is now enforced
+in code, not just prose** (it silently failed for five weeks — see
+`results/LIVE_REVIEW_2026-08.md`):
+
+- Any panel row dated after the last completed session — i.e. today's in-progress bar,
+  which yfinance publishes seconds after the open — is **dropped unconditionally**.
+  Coverage checks cannot catch it: a partial bar is fully populated, just wrong.
+- If the panel then still ends *before* the last completed session, the feed is behind:
+  `screener.load_recent_panel` raises `StaleDataError`, the runner submits **nothing**
+  (entries *and* exits, since both read the same panel) and exits non-zero so the
+  workflow goes red.
+- The resolved `as_of` is stamped on **every** journal record, so the invariant is
+  auditable after the fact.
+- The runner also refuses to trade on a non-NYSE day (`run_skipped`), having once fired
+  9 limit orders into a closed market on the 2026-07-03 holiday.
 
 ### 3.2 Conventions (resolve all boundary cases)
 

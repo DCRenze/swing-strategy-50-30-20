@@ -40,6 +40,15 @@ DATA_DIR = ROOT / "data"
 RECENT_PREFIX = "recent_"
 LOOKBACK_CAL_DAYS = 450
 
+# yfinance ticker -> Alpaca symbol for dual-class names (BRK-B -> BRK.B).
+# Every dashed ticker in data/universe.csv is a share class, so the swap is total.
+BROKER_SYMBOL_SEP = "."
+FEED_SYMBOL_SEP = "-"
+
+
+class StaleDataError(RuntimeError):
+    """The panel does not end on the last completed session (PLAYBOOK 3.1/5)."""
+
 # ---- ensemble parameters (validated in Phase 4 - do not change casually; ----
 # ---- any change invalidates the backtest evidence in results/ ) ----
 SLEEVES = {
@@ -76,6 +85,49 @@ US_MARKET_HOLIDAYS = [
 ]
 
 
+def now_et() -> dt.datetime:
+    """Current wall-clock time in US/Eastern."""
+    try:
+        from zoneinfo import ZoneInfo
+
+        return dt.datetime.now(ZoneInfo("America/New_York"))
+    except Exception:  # noqa: BLE001 - tzdata missing on a minimal image
+        # Approximate ET as EST (UTC-5). This can only make `now` look EARLIER in
+        # the day, so last_completed_session() stays conservative: it will treat
+        # today's bar as unfinished rather than final.
+        return dt.datetime.now(dt.timezone.utc).replace(tzinfo=None) - dt.timedelta(hours=5)
+
+
+def is_trading_day(d: dt.date) -> bool:
+    return d.weekday() < 5 and d.isoformat() not in US_MARKET_HOLIDAYS
+
+
+def last_completed_session(now: dt.datetime | None = None) -> dt.date:
+    """Date of the most recent NYSE session whose DAILY BAR IS FINAL.
+
+    The daily bar for `today` is not final until after the 16:00 ET close, so a
+    run at 09:35 ET must use yesterday's session. This is the invariant behind
+    PLAYBOOK 3.1 ("signals come from yesterday's completed daily bar").
+    """
+    now = now if now is not None else now_et()
+    d = now.date()
+    if not (is_trading_day(d) and (now.hour, now.minute) >= (16, 30)):
+        d -= dt.timedelta(days=1)
+    while not is_trading_day(d):
+        d -= dt.timedelta(days=1)
+    return d
+
+
+def to_broker_symbol(ticker: str) -> str:
+    """yfinance ticker -> broker symbol (BRK-B -> BRK.B)."""
+    return ticker.replace(FEED_SYMBOL_SEP, BROKER_SYMBOL_SEP)
+
+
+def from_broker_symbol(symbol: str) -> str:
+    """Broker symbol -> yfinance ticker (BRK.B -> BRK-B)."""
+    return symbol.replace(BROKER_SYMBOL_SEP, FEED_SYMBOL_SEP)
+
+
 def refresh_data() -> None:
     import yfinance as yf
 
@@ -106,16 +158,39 @@ def refresh_data() -> None:
     print("Refresh complete.")
 
 
-def load_recent_panel(min_coverage: float = 0.5) -> dict:
-    """Load the recent panel, trimming trailing sessions with sparse data.
+def load_recent_panel(min_coverage: float = 0.5, expected_as_of: dt.date | None = None) -> dict:
+    """Load the recent panel, ending exactly on the last completed session.
 
-    yfinance often returns today's row before most tickers' daily bars are
-    populated (NaN for ~all names). Acting on that row would zero out every
-    signal, so we cut back to the last session where >= min_coverage of
-    tickers have a close.
+    Two guards, in order:
+
+    1. **In-progress session (the important one).** yfinance publishes a row for
+       today within seconds of the open, carrying a partial OHLC and a few
+       minutes of volume. That row passes any coverage test, so coverage alone
+       cannot catch it -- and acting on it silently corrupts every rule: Sleeve H's
+       `volume > sma(volume, 50)` filter can never pass on a partial bar (the
+       sleeve goes dark with no log line), and Sleeve A's exit fires a session
+       early off an unconfirmed up-close. Both were observed in production; see
+       `results/LIVE_REVIEW_2026-08.md`. Any row dated after the last completed
+       session is dropped unconditionally.
+    2. **Sparse trailing rows.** Whatever remains must still have >= min_coverage
+       of tickers reporting a close.
+
+    Finally the panel must END on the last completed session. If it lags, the
+    data feed is behind and the caller must stand down rather than act on stale
+    signals (PLAYBOOK 5) -- that is a StaleDataError, not a silent trim.
     """
     names = ["raw_open", "raw_high", "raw_low", "raw_close", "adj_close", "volume"]
     raw = {n: pd.read_parquet(DATA_DIR / f"{RECENT_PREFIX}{n}.parquet") for n in names}
+
+    expected = expected_as_of or last_completed_session()
+    cutoff = pd.Timestamp(expected)
+    ahead = raw["adj_close"].index[raw["adj_close"].index > cutoff]
+    if len(ahead):
+        print(f"NOTE: dropping {len(ahead)} in-progress/future session(s) "
+              f"({', '.join(str(d.date()) for d in ahead[:5])}); "
+              f"last completed session is {expected}")
+        raw = {n: df.loc[df.index <= cutoff] for n, df in raw.items()}
+
     coverage = raw["adj_close"].notna().mean(axis=1)
     good_rows = coverage[coverage >= min_coverage].index
     if good_rows.empty:
@@ -126,6 +201,13 @@ def load_recent_panel(min_coverage: float = 0.5) -> dict:
               f"({', '.join(str(d.date()) for d in dropped[:5])}); "
               f"acting as of {good_rows[-1].date()}")
     raw = {n: df.loc[good_rows] for n, df in raw.items()}
+
+    got = good_rows[-1].date()
+    if got != expected:
+        raise StaleDataError(
+            f"panel ends {got} but the last completed session is {expected} - "
+            "data feed is behind; stand down and investigate (PLAYBOOK 5)"
+        )
     factor = raw["adj_close"] / raw["raw_close"]
     return {
         "open": raw["raw_open"] * factor,
@@ -164,8 +246,8 @@ def trading_day_of_month(today: pd.Timestamp) -> int:
     return len([d for d in days if d not in holidays])
 
 
-def screen(equity: float) -> dict:
-    panel = load_recent_panel()
+def screen(equity: float, expected_as_of: dt.date | None = None) -> dict:
+    panel = load_recent_panel(expected_as_of=expected_as_of)
     c, h, l, v = panel["close"], panel["high"], panel["low"], panel["volume"]
     raw_c = panel["raw_close"]
     today = c.index[-1]
@@ -214,6 +296,9 @@ def screen(equity: float) -> dict:
     candidates = [x for x in candidates if x["ticker"] in keep]
     out["sleeves"]["A_three_lower_lows"] = {
         "orders": candidates[: SLEEVES["A_three_lower_lows"]["max_positions"]],
+        # raw signal count BEFORE the slot cap, so "no setups today" is
+        # distinguishable from "the screen is broken" in the journal.
+        "candidates_found": len(candidates),
         "order_type": "LIMIT buy, day-only, for NEXT session; never convert to market",
         "position_size_usd": round(a_size, 2),
         "exit_rules": "Sell next OPEN after first close > prior close; "
@@ -227,6 +312,7 @@ def screen(equity: float) -> dict:
     spy_above_100 = bool(spy.iloc[-1] > spy.rolling(H_TREND_SMA).mean().iloc[-1])
     out["spy_above_100dma"] = spy_above_100
     h_orders = []
+    h_found = 0
     if spy_above_100:
         hh = c.rolling(H_LOOKBACK, min_periods=H_LOOKBACK).max()
         new_high = (c >= hh) & (c.shift(1) < hh.shift(1))
@@ -245,9 +331,11 @@ def screen(equity: float) -> dict:
         cands.sort(key=lambda x: -x["momentum_6m"])  # strongest momentum first
         keep = set(dedupe_share_classes([x["ticker"] for x in cands]))
         cands = [x for x in cands if x["ticker"] in keep]
+        h_found = len(cands)
         h_orders = cands[: SLEEVES["H_momentum"]["max_positions"]]
     out["sleeves"]["H_momentum"] = {
         "active": spy_above_100,
+        "candidates_found": h_found,
         "reason_inactive": None if spy_above_100 else
             "SPY below 100dma - momentum gate off (no new entries; manage exits only)",
         "orders": h_orders,

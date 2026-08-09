@@ -86,9 +86,16 @@ class Journal:
     def __init__(self) -> None:
         JOURNAL_DIR.mkdir(exist_ok=True)
         self.path = JOURNAL_DIR / f"{dt.date.today().isoformat()}.jsonl"
+        # Set once the screener has run. Stamped onto every record so the
+        # "as-of == last completed session" invariant (PLAYBOOK 3.1) is auditable
+        # after the fact -- it previously appeared nowhere in the logs.
+        self.as_of: str | None = None
 
     def log(self, kind: str, **kw) -> None:
-        rec = {"ts": dt.datetime.now().isoformat(timespec="seconds"), "kind": kind, **kw}
+        rec = {"ts": dt.datetime.now().isoformat(timespec="seconds"), "kind": kind}
+        if self.as_of:
+            rec["as_of"] = self.as_of
+        rec.update(kw)
         with self.path.open("a") as f:
             f.write(json.dumps(rec) + "\n")
         print(f"  [{kind}] " + json.dumps(kw))
@@ -102,6 +109,43 @@ def trading_days_between(start: str, end: str) -> int:
     return max(len(days) - 1, 0)
 
 
+def a_exit_decision(s: "pd.Series", entry: "pd.Timestamp", as_of: "pd.Timestamp",
+                    days_held: int, time_stop: int) -> tuple[bool, str | None, bool]:
+    """Sleeve A exit, mirroring engine.py: sell at the next open after ANY up close.
+
+    `s` is the adjusted-close series for the ticker (index = sessions, ending at
+    `as_of`). Returns (should_exit, reason, overdue).
+
+    The entry day's own close counts: engine.py evaluates x_v[gi-1] on the first
+    session after entry, so a position filled on day t exits at the open of t+1
+    when close(t) > close(t-1).
+    """
+    if as_of < entry or len(s) < 2:
+        return False, None, False
+    closes = s[s.index >= entry]
+    if len(closes):
+        up = closes[closes > s.shift(1).reindex(closes.index)]
+        if len(up):
+            # engine.py re-checks every session, so a missed up close must still
+            # exit rather than strand the position until a second one appears.
+            overdue = len(up) > 1 or up.index[-1] != s.index[-1]
+            return True, "up close (overdue)" if overdue else "first up close", overdue
+    if days_held >= time_stop:
+        return True, "15d time stop", False
+    return False, None, False
+
+
+def h_entry_in_adjusted_space(entry_px_raw: float, adj_last: float, raw_last: float) -> float:
+    """Convert a broker RAW fill price into the panel's ADJUSTED price space.
+
+    The stop compares against adjusted closes; leaving the fill in raw space let
+    any dividend going ex during the hold trip the 5% stop early.
+    """
+    if raw_last and adj_last and raw_last > 0 and adj_last > 0:
+        return entry_px_raw * (adj_last / raw_last)
+    return entry_px_raw
+
+
 def submit_order(client, journal: Journal, dry: bool, *, sleeve: str, ticker: str,
                  side: str, qty: float, order_type: str, limit_price: float | None = None) -> None:
     from alpaca.trading.enums import OrderSide, TimeInForce
@@ -109,13 +153,15 @@ def submit_order(client, journal: Journal, dry: bool, *, sleeve: str, ticker: st
 
     qty = round(float(qty), 4)
     coid = f"{sleeve}-{ticker}-{dt.date.today():%Y%m%d}-{side}"
-    info = dict(sleeve=sleeve, ticker=ticker, side=side, qty=qty,
+    # the feed spells dual-class names BRK-B, the broker BRK.B
+    symbol = scr.to_broker_symbol(ticker)
+    info = dict(sleeve=sleeve, ticker=ticker, symbol=symbol, side=side, qty=qty,
                 order_type=order_type, limit_price=limit_price, client_order_id=coid)
     if dry:
         journal.log("dry_run_order", **info)
         return
     # every order is a fractional-capable DAY order
-    common = dict(symbol=ticker, qty=qty,
+    common = dict(symbol=symbol, qty=qty,
                   side=OrderSide.BUY if side == "buy" else OrderSide.SELL,
                   time_in_force=TimeInForce.DAY, client_order_id=coid)
     try:
@@ -153,8 +199,12 @@ def reconcile(client, state: dict, journal: Journal) -> dict:
     """Sync state.json with Alpaca: record realized P/L for closed positions, adopt
     new fills (with entry price + sleeve), and backfill entry prices for known ones.
     Returns {symbol: {qty, avg_entry_price}} for held names."""
+    # keyed by FEED ticker (BRK-B) throughout: state.json and the price panel both
+    # use that spelling, the broker returns BRK.B
     held = {
-        p.symbol: {"qty": float(p.qty), "avg_entry_price": float(p.avg_entry_price)}
+        scr.from_broker_symbol(p.symbol): {
+            "qty": float(p.qty), "avg_entry_price": float(p.avg_entry_price)
+        }
         for p in client.get_all_positions()
     }
     from alpaca.trading.enums import QueryOrderStatus
@@ -171,12 +221,13 @@ def reconcile(client, state: dict, journal: Journal) -> dict:
                     key=lambda o: pd.Timestamp(o.filled_at)):
         side = str(o.side).split(".")[-1].lower()
         ts = pd.Timestamp(o.filled_at)
+        sym = scr.from_broker_symbol(o.symbol)
         if side == "sell":
-            sell_fills[o.symbol] = (float(o.filled_avg_price), float(o.filled_qty or 0), ts)
+            sell_fills[sym] = (float(o.filled_avg_price), float(o.filled_qty or 0), ts)
         elif side == "buy":
             coid = str(o.client_order_id or "")
             sk = coid.split("-")[0] if coid[:1] in ("A", "H") else None
-            buy_fills[o.symbol] = (float(o.filled_avg_price), ts, sk)
+            buy_fills[sym] = (float(o.filled_avg_price), ts, sk)
 
     # closed positions: record realized P/L, then drop from state
     for ticker in list(state["positions"]):
@@ -220,8 +271,17 @@ def drawdown_gate(state: dict, equity: float, journal: Journal):
     return dd, halt_a, halt_all
 
 
-def run_morning(client, dry: bool) -> None:
+def run_morning(client, dry: bool) -> int:
     journal = Journal()
+
+    # ---- trading-calendar guard: the runner previously fired on 2026-07-03, a
+    # holiday listed in its own calendar, pushing 9 limit orders into a closed market.
+    today = scr.now_et().date()
+    if not scr.is_trading_day(today):
+        journal.log("run_skipped", mode="morning", date=today.isoformat(),
+                    reason="not an NYSE trading day (weekend or US_MARKET_HOLIDAYS)")
+        return 0
+
     state = load_state()
     held = reconcile(client, state, journal) if client is not None else {}
     equity = float(client.get_account().equity) if client is not None else 100_000.0
@@ -231,10 +291,41 @@ def run_morning(client, dry: bool) -> None:
 
     print("Refreshing data...")
     scr.refresh_data()
-    signals = scr.screen(equity)
+    # One authoritative as-of for the whole run: the last session whose daily bar
+    # is final. Both the screen and the exit checks below are pinned to it, so
+    # they can never disagree.
+    expected_as_of = scr.last_completed_session()
+    try:
+        signals = scr.screen(equity, expected_as_of=expected_as_of)
+        panel = scr.load_recent_panel(expected_as_of=expected_as_of)
+    except scr.StaleDataError as e:
+        # Stand down rather than trade on stale signals (PLAYBOOK 5). Exits use the
+        # same panel, so acting on it would be equally wrong. Non-zero exit turns
+        # the workflow red.
+        journal.log("action_needed", mode="morning", error=str(e),
+                    msg="STALE DATA - no orders submitted this run; investigate before the next open")
+        save_state(state)
+        journal.log("run_end", mode="morning", aborted=True)
+        return 1
+
     as_of = signals["as_of"]
-    panel = scr.load_recent_panel()
+    journal.as_of = as_of
     c = panel["close"]
+
+    a_found = signals["sleeves"]["A_three_lower_lows"].get("candidates_found", 0)
+    h_found = signals["sleeves"]["H_momentum"].get("candidates_found", 0)
+    journal.log("screen_summary", expected_as_of=expected_as_of.isoformat(),
+                a_candidates=a_found, h_candidates=h_found,
+                h_gate_open=bool(signals["sleeves"]["H_momentum"]["active"]),
+                spy_above_200dma=signals["spy_above_200dma"])
+    # A sleeve that finds nothing must say so. Sleeve H produced zero orders on 26 of
+    # 28 days and logged nothing at all, because the order loop simply never ran.
+    for name, found in (("A", a_found), ("H", h_found)):
+        if found == 0:
+            journal.log("no_signals", sleeve=name,
+                        reason="screen returned zero candidates"
+                               if name == "A" or signals["sleeves"]["H_momentum"]["active"]
+                               else "regime gate closed")
 
     # ---- Sleeve A exits (market sell at open): first up-close since entry, or time stop
     for ticker, meta in list(state["positions"].items()):
@@ -255,22 +346,17 @@ def run_morning(client, dry: bool) -> None:
                             msg="A position absent from current data - price exit skipped, review manually")
             continue
         s = c[ticker].dropna()
-        if len(s) < 2:
-            continue
-        entry = pd.Timestamp(meta["entry_date"])
-        closes = s[s.index > entry]
-        up_closes = closes[closes > s.shift(1).reindex(closes.index)]
-        if len(up_closes) and up_closes.index[-1] == s.index[-1] and len(up_closes) == 1:
+        should_exit, reason, overdue = a_exit_decision(
+            s, pd.Timestamp(meta["entry_date"]), pd.Timestamp(as_of),
+            days_held, SLEEVE_TIME_STOPS["A"])
+        if should_exit:
+            if overdue:
+                journal.log("warning", ticker=ticker,
+                            msg="up-close not acted on when it occurred - exiting now (overdue)")
             submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
                          qty=qty, order_type="market")
-        elif days_held >= SLEEVE_TIME_STOPS["A"]:
-            submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
-                         qty=qty, order_type="market")
-            journal.log("exit_reason", ticker=ticker, sleeve="A", reason="15d time stop", days_held=days_held)
-        elif len(up_closes) > 1:
-            journal.log("warning", ticker=ticker, msg="multiple up-closes since entry - exiting now (overdue)")
-            submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
-                         qty=qty, order_type="market")
+            journal.log("exit_reason", ticker=ticker, sleeve="A",
+                        reason=reason, days_held=days_held)
 
     # ---- Sleeve A entries (limit DAY buys)
     a = signals["sleeves"]["A_three_lower_lows"]
@@ -315,9 +401,17 @@ def run_morning(client, dry: bool) -> None:
             continue
         s = c[ticker].dropna()
         entry = pd.Timestamp(meta["entry_date"])
+        if pd.Timestamp(as_of) < entry:
+            continue  # entry day itself: engine.py forbids same-day round trips
         closes_since = s[s.index >= entry]
-        avg = held[ticker]["avg_entry_price"]
-        stop_hit = len(closes_since) > 0 and float(closes_since.min()) < avg * h_stop_mult
+        # `s` is ADJUSTED close; the broker reports a RAW fill price, so the two are
+        # converted into a common space before comparing (engine.py compares
+        # adjusted to adjusted).
+        raw_last = float(panel["raw_close"][ticker].iloc[-1]) if ticker in panel["raw_close"] else 0.0
+        adj_last = float(s.iloc[-1]) if len(s) else 0.0
+        entry_adj = h_entry_in_adjusted_space(held[ticker]["avg_entry_price"], adj_last, raw_last)
+        # strict `<`, matching engine.py:151 (the comparison the backtest was validated on)
+        stop_hit = len(closes_since) > 0 and float(closes_since.min()) < entry_adj * h_stop_mult
         if stop_hit or days_held >= SLEEVE_TIME_STOPS["H"]:
             submit_order(client, journal, dry, sleeve="H", ticker=ticker, side="sell",
                          qty=held[ticker]["qty"], order_type="market")
@@ -350,6 +444,7 @@ def run_morning(client, dry: bool) -> None:
 
     save_state(state)
     journal.log("run_end", mode="morning")
+    return 0
 
 
 def run_status(client) -> None:
@@ -383,9 +478,8 @@ def main() -> None:
             print("No API keys found - dry-run preview without account (no reconcile/exits).")
 
     if args.mode == "morning":
-        run_morning(client, args.dry_run)
-    else:
-        run_status(client)
+        raise SystemExit(run_morning(client, args.dry_run))
+    run_status(client)
 
 
 if __name__ == "__main__":
