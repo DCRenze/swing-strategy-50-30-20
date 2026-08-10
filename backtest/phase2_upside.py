@@ -49,23 +49,35 @@ A_WEIGHT, H_WEIGHT = 0.60, 0.40
 # label -> params layered on the validated H baseline
 VARIANTS: list[tuple[str, dict]] = [
     ("baseline", {}),
-    # 1. ATR trailing stop - exit below peak_close - k*ATR(10)
+    # 1. ATR trailing stop - exit below peak_close - k*ATR(10).
+    #    k=1.0/1.5 added after the first pass peaked at k=2.0, the tightest
+    #    value then tested: an optimum on the grid boundary is indistinguishable
+    #    from a trend that keeps going, so the boundary has to move.
+    ("trail_atr1.0", {"trail_atr_mult": 1.0}),
+    ("trail_atr1.5", {"trail_atr_mult": 1.5}),
     ("trail_atr2.0", {"trail_atr_mult": 2.0}),
     ("trail_atr2.5", {"trail_atr_mult": 2.5}),
     ("trail_atr3.0", {"trail_atr_mult": 3.0}),
     # 2. proportional give-back of peak open profit
+    ("giveback20", {"trail_giveback_frac": 0.20}),
     ("giveback33", {"trail_giveback_frac": 0.33}),
     ("giveback50", {"trail_giveback_frac": 0.50}),
     # 3. hard profit target, remainder left to the clock
+    ("target10", {"profit_target_frac": 0.10}),
     ("target15", {"profit_target_frac": 0.15}),
     ("target20", {"profit_target_frac": 0.20}),
+    ("target25", {"profit_target_frac": 0.25}),
     # 4. stop to breakeven once the trade has worked
     ("breakeven5", {"breakeven_after_frac": 0.05}),
     ("breakeven8", {"breakeven_after_frac": 0.08}),
     # 5. trend-conditional hold extension - attacks the truncated right tail
-    #    directly rather than through a trailing rule
+    #    directly rather than through a trailing rule. Caps run out to 80 and
+    #    uncapped for the same boundary reason as the ATR trail.
     ("hold_sma20_max25", {"hold_extend_sma": 20, "max_hold_days": 25}),
     ("hold_sma20_max40", {"hold_extend_sma": 20, "max_hold_days": 40}),
+    ("hold_sma20_max60", {"hold_extend_sma": 20, "max_hold_days": 60}),
+    ("hold_sma20_max80", {"hold_extend_sma": 20, "max_hold_days": 80}),
+    ("hold_sma20_nocap", {"hold_extend_sma": 20}),
 ]
 
 
@@ -139,6 +151,22 @@ def run(stage: str, confirm: list[str]) -> dict:
                 mask &= trades["exit_date"] <= pd.Timestamp(w_end)
             trades = trades[mask]
 
+        # Diversification check: the ensemble clears the gauntlet on a low A/H
+        # correlation, so a variant that improves H by making it behave more like
+        # A is spending the property the book relies on.
+        #
+        # Report BOTH Pearson and a 1%-winsorized correlation. Raw Pearson on
+        # daily returns is dominated by a handful of extreme H days (the baseline
+        # curve has a +34% and a -24% session), which makes it useless for
+        # comparing variants: it swings 0.26 -> 0.41 between neighbouring
+        # parameters purely on whether one outlier day survives. Pearson is still
+        # the right input to portfolio variance, so it stays; the winsorized
+        # figure is what to compare across variants.
+        rets = pd.DataFrame({"a": a_res.equity.pct_change(),
+                             "h": res.equity.pct_change()}).dropna()
+        rets = rets.loc[w_start:w_end]
+        wins = rets.clip(lower=rets.quantile(0.01), upper=rets.quantile(0.99), axis=1)
+
         out["variants"][label] = {
             "spec": spec.name,
             "sleeve_h": stats(h_eq, trades, spy),
@@ -147,12 +175,18 @@ def run(stage: str, confirm: list[str]) -> dict:
                 "sharpe": round(sharpe(ens_eq), 2),
                 "max_dd": round(max_drawdown(ens_eq), 4),
             },
+            "diversification": {
+                "h_exposure": round(float(res.exposure.loc[w_start:w_end].mean()), 3),
+                "corr_a_h_pearson": round(float(rets["a"].corr(rets["h"])), 3),
+                "corr_a_h_winsor": round(float(wins["a"].corr(wins["h"])), 3),
+            },
         }
-        h, e = out["variants"][label]["sleeve_h"], out["variants"][label]["ensemble"]
+        v = out["variants"][label]
+        h, e, dv = v["sleeve_h"], v["ensemble"], v["diversification"]
         print(f"  {label:18} H: PF {h['profit_factor']} Sharpe {h['sharpe']} "
               f"DD {h['max_dd']:.1%} n={h['trades']} hold {h['avg_hold_days']}d | "
-              f"ens Sharpe {e['sharpe']} DD {e['max_dd']:.1%}  ({time.time() - t0:.0f}s)",
-              flush=True)
+              f"ens Sharpe {e['sharpe']} DD {e['max_dd']:.1%} | corrW {dv['corr_a_h_winsor']} "
+              f"({time.time() - t0:.0f}s)", flush=True)
     return out
 
 
@@ -170,21 +204,32 @@ def write_report(out: dict) -> None:
         "Deltas are versus the validated baseline. A variant must improve **both**"
         " the sleeve and the ensemble to be worth carrying forward.",
         "",
-        "| Variant | H PF | H Sharpe | H maxDD | H trades | H hold | Ens Sharpe | Ens maxDD | ΔEns Sharpe |",
-        "|---|--:|--:|--:|--:|--:|--:|--:|--:|",
+        "| Variant | H PF | H Sharpe | H maxDD | H trades | H hold | Ens Sharpe | Ens maxDD | ΔEns Sharpe | corr(A,H) |",
+        "|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|",
     ]
+    base_corr = out["variants"]["baseline"]["diversification"]["corr_a_h_winsor"]
     for label, v in out["variants"].items():
-        h, e = v["sleeve_h"], v["ensemble"]
+        h, e, dv = v["sleeve_h"], v["ensemble"], v["diversification"]
         d = e["sharpe"] - base_e["sharpe"]
+        corr = dv["corr_a_h_winsor"]
+        flag = " ⚠" if corr > base_corr * 1.25 else ""
         lines.append(
             f"| {'**' + label + '**' if label == 'baseline' else label} | {h['profit_factor']} | "
             f"{h['sharpe']} | {h['max_dd']:.1%} | {h['trades']} | {h['avg_hold_days']}d | "
-            f"{e['sharpe']} | {e['max_dd']:.1%} | {d:+.2f} |"
+            f"{e['sharpe']} | {e['max_dd']:.1%} | {d:+.2f} | {corr}{flag} |"
         )
     lines += [
         "",
         f"Baseline reference: H PF {base_h['profit_factor']}, Sharpe {base_h['sharpe']}, "
-        f"maxDD {base_h['max_dd']:.1%}; ensemble Sharpe {base_e['sharpe']}, maxDD {base_e['max_dd']:.1%}.",
+        f"maxDD {base_h['max_dd']:.1%}; ensemble Sharpe {base_e['sharpe']}, maxDD {base_e['max_dd']:.1%}, "
+        f"corr(A,H) {base_corr}.",
+        "",
+        "corr(A,H) is 1%-winsorized. Raw Pearson on daily returns is unusable for"
+        " comparing variants here - the baseline H curve contains a +34% and a -24%"
+        " session, and whether one such day survives swings Pearson between 0.26 and"
+        " 0.41 across neighbouring parameters. Both figures are in the JSON."
+        " ⚠ marks a variant whose winsorized correlation runs 25% above baseline,"
+        " i.e. one buying its ensemble gain by making H behave more like A.",
         "",
     ]
     if stage == "is":
