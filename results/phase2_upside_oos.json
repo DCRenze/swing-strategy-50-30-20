@@ -1,0 +1,80 @@
+{
+  "stage": "oos",
+  "window": {
+    "start": "2023-01-01",
+    "end": null
+  },
+  "slippage_bps": 5.0,
+  "sleeve_a": "three_lower_lows[stretch0.75,sma200]",
+  "variants": {
+    "baseline": {
+      "spec": "high52_breakout[252,15d,stop5%]",
+      "sleeve_h": {
+        "cagr": 0.2164,
+        "sharpe": 0.99,
+        "max_dd": -0.2014,
+        "profit_factor": 1.39,
+        "trades": 623,
+        "win_rate": 0.483,
+        "avg_hold_days": 11.1,
+        "spy_sharpe": 1.47
+      },
+      "ensemble": {
+        "cagr": 0.1781,
+        "sharpe": 1.2,
+        "max_dd": -0.1621
+      },
+      "diversification": {
+        "h_exposure": 0.784,
+        "corr_a_h_pearson": 0.346,
+        "corr_a_h_winsor": 0.384
+      }
+    },
+    "trail_atr1.5": {
+      "spec": "high52_breakout[252,15d,stop5%,trailATR1.5x10]",
+      "sleeve_h": {
+        "cagr": 0.0856,
+        "sharpe": 0.47,
+        "max_dd": -0.2213,
+        "profit_factor": 1.15,
+        "trades": 767,
+        "win_rate": 0.42,
+        "avg_hold_days": 8.7,
+        "spy_sharpe": 1.47
+      },
+      "ensemble": {
+        "cagr": 0.126,
+        "sharpe": 0.88,
+        "max_dd": -0.1718
+      },
+      "diversification": {
+        "h_exposure": 0.796,
+        "corr_a_h_pearson": 0.339,
+        "corr_a_h_winsor": 0.381
+      }
+    },
+    "hold_sma20_max60": {
+      "spec": "high52_breakout[252,15d,stop5%,holdSMA20max60]",
+      "sleeve_h": {
+        "cagr": 0.0704,
+        "sharpe": 0.42,
+        "max_dd": -0.1971,
+        "profit_factor": 1.2,
+        "trades": 459,
+        "win_rate": 0.41,
+        "avg_hold_days": 15.7,
+        "spy_sharpe": 1.47
+      },
+      "ensemble": {
+        "cagr": 0.119,
+        "sharpe": 0.85,
+        "max_dd": -0.1598
+      },
+      "diversification": {
+        "h_exposure": 0.81,
+        "corr_a_h_pearson": 0.376,
+        "corr_a_h_winsor": 0.408
+      }
+    }
+  }
+}

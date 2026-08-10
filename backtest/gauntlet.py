@@ -117,6 +117,40 @@ PLAN: dict[str, dict] = {
             ("lb126", {"lookback": 126}),
         ],
     },
+    # --- Phase 2: deployed H config, plus the two IS-selected upside finalists.
+    # Same module, three configs, so each carries an explicit "module".
+    "high52_deployed": {
+        "module": "high52_breakout",
+        "baseline": {"_regime": "spy100"},
+        "variants": [
+            ("hold10", {"hold_days": 10}),
+            ("hold20", {"hold_days": 20}),
+            ("stop3pct", {"stop_frac": 0.03}),
+            ("stop8pct", {"stop_frac": 0.08}),
+        ],
+    },
+    "high52_trail_atr": {
+        "module": "high52_breakout",
+        "baseline": {"_regime": "spy100", "trail_atr_mult": 1.5},
+        "variants": [
+            ("k1.0", {"trail_atr_mult": 1.0}),
+            ("k2.0", {"trail_atr_mult": 2.0}),
+            ("k2.5", {"trail_atr_mult": 2.5}),
+            ("atr20", {"trail_atr_n": 20}),
+            ("stop8pct", {"stop_frac": 0.08}),
+        ],
+    },
+    "high52_hold_sma20": {
+        "module": "high52_breakout",
+        "baseline": {"_regime": "spy100", "hold_extend_sma": 20, "max_hold_days": 60},
+        "variants": [
+            ("sma10", {"hold_extend_sma": 10}),
+            ("sma50", {"hold_extend_sma": 50}),
+            ("max25", {"max_hold_days": 25}),
+            ("max40", {"max_hold_days": 40}),
+            ("nocap", {"max_hold_days": None}),
+        ],
+    },
     "turnaround_tuesday": {
         "baseline": {},
         "variants": [
@@ -143,6 +177,8 @@ def build_spec(panel, bench, strategy: str, params: dict):
     regime_key = params.pop("_regime", None)
     if regime_key == "spy200":
         params["regime_ok"] = spy_regime(bench, 200)
+    elif regime_key == "spy100":
+        params["regime_ok"] = spy_regime(bench, 100)
     elif regime_key == "below_spy200":
         params["regime_ok"] = ~spy_regime(bench, 200)
     mod = importlib.import_module(f"backtest.strategies.{strategy}")
@@ -167,10 +203,14 @@ def slice_equity(equity, start, end) -> dict:
 
 def gauntlet_one(panel, bench, strategy: str) -> dict:
     plan = PLAN[strategy]
+    # a PLAN key is normally a strategy module, but may instead name a specific
+    # config of one ("module") so two configs of the same strategy can each get
+    # the full treatment without colliding on the output filename
+    module = plan.get("module", strategy)
     out: dict = {"strategy": strategy, "windows": {}, "variants": {}, "regimes": {}}
     t0 = time.time()
 
-    spec = build_spec(panel, bench, strategy, plan["baseline"])
+    spec = build_spec(panel, bench, module, plan["baseline"])
     out["baseline_name"] = spec.name
 
     full_stats, full_res = windowed_stats(panel, bench, spec, START, None)
@@ -190,7 +230,7 @@ def gauntlet_one(panel, bench, strategy: str) -> dict:
         }
 
     for label, overrides in plan["variants"]:
-        vspec = build_spec(panel, bench, strategy, {**plan["baseline"], **overrides})
+        vspec = build_spec(panel, bench, module, {**plan["baseline"], **overrides})
         vstats, _ = windowed_stats(panel, bench, vspec, START, IS_END)
         out["variants"][label] = {
             k: vstats.get(k)
@@ -216,6 +256,22 @@ def gauntlet_one(panel, bench, strategy: str) -> dict:
 
 
 def write_summary(results: list[dict]) -> None:
+    # Subset runs are explicitly supported (see the module docstring), so the
+    # summary is rebuilt from every gauntlet_*.json on disk with this run's
+    # results layered on top. Rebuilding from `results` alone silently dropped
+    # every strategy that was not re-run.
+    merged: dict[str, dict] = {}
+    for f in sorted(RESULTS_DIR.glob("gauntlet_*.json")):
+        try:
+            r = json.loads(f.read_text())
+        except json.JSONDecodeError:
+            continue
+        if isinstance(r, dict) and "windows" in r and "strategy" in r:
+            merged[r["strategy"]] = r
+    for r in results:
+        merged[r["strategy"]] = r
+    results = [merged[k] for k in sorted(merged)]
+
     lines = [
         "# Gauntlet Summary",
         "",

@@ -89,6 +89,14 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
   full / 1.19 OOS; Sleeve H OOS PF 1.37. A sleeve below PF 1.0 for 6+ rolling months → flag David.
 - Every strategy **fails** the gauntlet individually (`GAUNTLET_SUMMARY.md`); the **ensemble** is
   what clears the bar via diversification. Don't judge a sleeve in isolation.
+- **Sleeve H upside management was tested and rejected** (Aug 2026, `results/PHASE2_CONCLUSION.md`).
+  ATR trailing stops, give-back stops, profit targets, breakeven stops and trend-conditional hold
+  extension: 20 configs, 2005-2026. Two showed clean in-sample plateaus and both flipped sign
+  out-of-sample (ensemble Sharpe +0.12 → −0.32 and +0.15 → −0.35), losing an OOS profit-factor bar
+  the deployed config clears. The flat 15-day clock beat both a tighter and a looser exit in the
+  same window. **Don't re-litigate this without a new pre-registered hypothesis and a fresh OOS
+  window** — the one open thread is that hold-extension halves the sleeve's max drawdown
+  (−44.6% → −24.1%) and should be re-tested as a *drawdown* rule, not an edge rule.
 
 ## Golden rule
 
