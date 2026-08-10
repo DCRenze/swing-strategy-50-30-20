@@ -1,10 +1,5 @@
 {
   "positions": {
-    "BBY": {
-      "sleeve": "A",
-      "entry_date": "2026-08-03",
-      "entry_px": 83.9521
-    },
     "CF": {
       "sleeve": "A",
       "entry_date": "2026-08-03",
@@ -39,11 +34,6 @@
       "sleeve": "H",
       "entry_date": "2026-08-06",
       "entry_px": 231.0
-    },
-    "AVT": {
-      "sleeve": "H",
-      "entry_date": "2026-08-06",
-      "entry_px": 98.8921
     },
     "BIO": {
       "sleeve": "H",

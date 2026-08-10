@@ -39,3 +39,5 @@
 {"ticker": "NXPI", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 247.23, "exit_px": 248.0178, "qty": 23.5958, "ret": 0.0032, "pnl": 18.59}
 {"ticker": "ON", "sleeve": "A", "entry_date": "2026-07-29", "exit_date": "2026-07-30", "entry_px": 79.61, "exit_px": 82.3685, "qty": 73.2674, "ret": 0.0347, "pnl": 202.11}
 {"ticker": "AWK", "sleeve": "A", "entry_date": "2026-08-03", "exit_date": "2026-08-06", "entry_px": 131.9, "exit_px": 134.36, "qty": 44.7007, "ret": 0.0187, "pnl": 109.96}
+{"ticker": "BBY", "sleeve": "A", "entry_date": "2026-08-03", "exit_date": "2026-08-07", "entry_px": 83.9521, "exit_px": 79.86, "qty": 70.1735, "ret": -0.0487, "pnl": -287.16}
+{"ticker": "AVT", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-07", "entry_px": 98.8921, "exit_px": 94.65, "qty": 40.287, "ret": -0.0429, "pnl": -170.9}
