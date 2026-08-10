@@ -163,10 +163,148 @@ def test_no_lookahead_and_position_cap():
     print("ok: no look-ahead on final-day signal; max_positions enforced")
 
 
+# ------------------------------------------------ upside management (Phase 2) ---
+# Shared tape: buy at day-1 open (100), peak close 112 on day 3, then fade.
+UPSIDE_CLOSES = [100, 100, 106, 112, 109, 100, 100, 100, 100, 100]
+
+
+def upside_spec(name, **kw):
+    panel = make_panel(UPSIDE_CLOSES)
+    return panel, StrategySpec(
+        name=name,
+        entry_signal=frame_like(panel, [0]),
+        entry_mode="next_open",  # buy day 1 open = 100
+        max_positions=1,
+        **kw,
+    )
+
+
+def test_upside_fields_default_to_noop():
+    """A spec that sets none of them must behave exactly as before."""
+    panel, spec = upside_spec("u0", time_stop=4)
+    res = run_backtest(panel, spec, slippage_bps=0)
+    tr = res.trades.iloc[0]
+    assert tr["entry_px"] == 100 and tr["hold_days"] == 4 and tr["exit_px"] == 100, tr
+    print("ok: upside fields default to no-op")
+
+
+def test_profit_target():
+    # day 3 close 112 >= 100 * 1.10 -> sell day 4 open = 109
+    panel, spec = upside_spec("u1", profit_target_frac=0.10)
+    res = run_backtest(panel, spec, slippage_bps=0)
+    tr = res.trades.iloc[0]
+    assert tr["exit_px"] == 109, tr
+    print("ok: profit target exits at the open after the target close")
+
+
+def test_trailing_giveback():
+    # peak 112, open profit 12, give back half -> level 106
+    # day 4 close 109 > 106 holds; day 5 close 100 < 106 -> sell day 6 open = 100
+    panel, spec = upside_spec("u2", trail_giveback_frac=0.5)
+    res = run_backtest(panel, spec, slippage_bps=0)
+    tr = res.trades.iloc[0]
+    assert tr["exit_px"] == 100 and str(tr["exit_date"].date()) == str(DATES[6].date()), tr
+    print("ok: give-back stop exits after surrendering half the open profit")
+
+
+def test_trailing_atr():
+    # ATR fixed at 2.0, k=2 -> trail level = peak - 4 = 108
+    # day 4 close 109 > 108 holds; day 5 close 100 < 108 -> sell day 6 open
+    panel, spec = upside_spec("u3", trail_atr_mult=2.0,
+                              trail_atr=panel_atr(make_panel(UPSIDE_CLOSES), 2.0))
+    res = run_backtest(panel, spec, slippage_bps=0)
+    tr = res.trades.iloc[0]
+    assert str(tr["exit_date"].date()) == str(DATES[6].date()), tr
+    print("ok: ATR trailing stop exits below peak - k*ATR")
+
+
+def test_trailing_atr_requires_frame():
+    _, spec = upside_spec("u3b", trail_atr_mult=2.0)
+    try:
+        run_backtest(make_panel(UPSIDE_CLOSES), spec, slippage_bps=0)
+    except ValueError:
+        print("ok: ATR trailing stop without an ATR frame is rejected")
+        return
+    raise AssertionError("expected ValueError for trail_atr_mult without trail_atr")
+
+
+def test_breakeven_stop():
+    # peak 106 on day 2 arms the stop (>= 105); day 3 close 99 < 100 -> sell day 4 open
+    closes = [100, 100, 106, 99, 95, 95, 95, 95, 95, 95]
+    panel = make_panel(closes)
+    spec = StrategySpec(
+        name="u4", entry_signal=frame_like(panel, [0]), entry_mode="next_open",
+        breakeven_after_frac=0.05, max_positions=1,
+    )
+    res = run_backtest(panel, spec, slippage_bps=0)
+    tr = res.trades.iloc[0]
+    assert tr["exit_px"] == 95 and str(tr["exit_date"].date()) == str(DATES[4].date()), tr
+    # unarmed: never reaches +5%, so the breakeven stop must not fire
+    flat = make_panel([100, 100, 101, 99, 95, 95, 95, 95, 95, 95])
+    spec2 = StrategySpec(
+        name="u4b", entry_signal=frame_like(flat, [0]), entry_mode="next_open",
+        breakeven_after_frac=0.05, max_positions=1,
+    )
+    assert len(run_backtest(flat, spec2, slippage_bps=0).trades) == 0
+    print("ok: breakeven stop only fires once armed by peak profit")
+
+
+def test_hold_while_defers_time_stop():
+    panel = make_panel(UPSIDE_CLOSES)
+    hold = pd.DataFrame(False, index=DATES, columns=["TST"])
+    hold.iloc[3] = True  # day 3 would be the time stop; defer it one session
+    spec = StrategySpec(
+        name="u5", entry_signal=frame_like(panel, [0]), entry_mode="next_open",
+        time_stop=2, hold_while=hold, max_positions=1,
+    )
+    res = run_backtest(panel, spec, slippage_bps=0)
+    tr = res.trades.iloc[0]
+    assert tr["hold_days"] == 3 and tr["exit_px"] == 109, tr  # day 4 close
+    # without the deferral the same spec exits a day earlier, at day 3 close 112
+    spec2 = StrategySpec(
+        name="u5b", entry_signal=frame_like(panel, [0]), entry_mode="next_open",
+        time_stop=2, max_positions=1,
+    )
+    tr2 = run_backtest(panel, spec2, slippage_bps=0).trades.iloc[0]
+    assert tr2["hold_days"] == 2 and tr2["exit_px"] == 112, tr2
+    print("ok: hold_while defers the time stop while the condition holds")
+
+
+def test_hold_while_max_caps_the_deferral():
+    panel = make_panel(UPSIDE_CLOSES)
+    hold = pd.DataFrame(True, index=DATES, columns=["TST"])  # would defer forever
+    spec = StrategySpec(
+        name="u6", entry_signal=frame_like(panel, [0]), entry_mode="next_open",
+        time_stop=2, hold_while=hold, hold_while_max=4, max_positions=1,
+    )
+    tr = run_backtest(panel, spec, slippage_bps=0).trades.iloc[0]
+    assert tr["hold_days"] == 4, tr
+    # without the cap the position never exits inside the tape
+    spec2 = StrategySpec(
+        name="u6b", entry_signal=frame_like(panel, [0]), entry_mode="next_open",
+        time_stop=2, hold_while=hold, max_positions=1,
+    )
+    assert len(run_backtest(panel, spec2, slippage_bps=0).trades) == 0
+    print("ok: hold_while_max caps an otherwise unbounded deferral")
+
+
+def panel_atr(panel, value: float):
+    """Constant ATR frame shaped like the panel."""
+    return panel["close"] * 0.0 + value
+
+
 if __name__ == "__main__":
     test_next_open_entry_close_exit()
     test_slippage()
     test_limit_entry()
     test_time_stop_and_stop_loss()
     test_no_lookahead_and_position_cap()
+    test_upside_fields_default_to_noop()
+    test_profit_target()
+    test_trailing_giveback()
+    test_trailing_atr()
+    test_trailing_atr_requires_frame()
+    test_breakeven_stop()
+    test_hold_while_defers_time_stop()
+    test_hold_while_max_caps_the_deferral()
     print("\nAll engine tests passed.")

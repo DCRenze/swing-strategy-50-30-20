@@ -20,6 +20,17 @@ Execution model (daily OHLCV, adjusted prices):
   - stop_loss_frac: if close < entry_px*(1-frac) -> sell next open
   - stop_at_signal_low: stop level = signal-day low; close < stop -> sell next open
 
+Upside management (Phase 2 candidates; all off by default, so a spec that does
+not set them behaves exactly as before). Each reads the prior completed close
+and sells at the next open, the same timing stop_loss_frac uses:
+  - trail_atr_mult (+ trail_atr): close < peak_close - k*ATR -> sell next open
+  - trail_giveback_frac: give back at most this share of peak open profit
+  - profit_target_frac: close >= entry_px*(1+frac) -> sell next open
+  - breakeven_after_frac: once peak >= entry*(1+frac), close < entry exits
+  - hold_while (+ hold_while_max): bool frame; while true at the close the time
+    stop is deferred, but never past hold_while_max days held
+"peak_close" is the highest close since entry inclusive of the entry day.
+
 Slippage is charged on both sides (default 5 bps each way). No commissions
 (commission-free brokers), but slippage covers spread costs.
 
@@ -50,6 +61,14 @@ class StrategySpec:
     time_stop: int | None = None
     stop_loss_frac: float | None = None
     stop_at_signal_low: bool = False
+    # upside management - see module docstring; None = disabled
+    trail_atr_mult: float | None = None
+    trail_atr: pd.DataFrame | None = None
+    trail_giveback_frac: float | None = None
+    profit_target_frac: float | None = None
+    breakeven_after_frac: float | None = None
+    hold_while: pd.DataFrame | None = None
+    hold_while_max: int | None = None       # absolute cap on a deferred time stop
     rank: pd.DataFrame | None = None        # lower value = higher priority
     max_positions: int = 10
     regime_ok: pd.Series | None = None      # bool, indexed by date
@@ -96,6 +115,18 @@ def run_backtest(
         if spec.limit_price is not None
         else None
     )
+    trail_atr = (
+        spec.trail_atr.reindex(index=close.index, columns=tickers)
+        if spec.trail_atr is not None
+        else None
+    )
+    hold_while = (
+        spec.hold_while.reindex(index=close.index, columns=tickers).fillna(False)
+        if spec.hold_while is not None
+        else None
+    )
+    if spec.trail_atr_mult is not None and trail_atr is None:
+        raise ValueError("trail_atr_mult requires a trail_atr frame")
 
     # numpy views for speed
     o_v, h_v, l_v, c_v = (df.to_numpy() for df in (open_, high, low, close))
@@ -103,6 +134,8 @@ def run_backtest(
     x_v = exit_sig.to_numpy() if exit_sig is not None else None
     r_v = rank.to_numpy() if rank is not None else None
     lim_v = limit.to_numpy() if limit is not None else None
+    ta_v = trail_atr.to_numpy() if trail_atr is not None else None
+    hw_v = hold_while.to_numpy() if hold_while is not None else None
     date_pos = {d: i for i, d in enumerate(close.index)}
     rng = np.random.default_rng(seed)
 
@@ -155,6 +188,26 @@ def run_backtest(
                     yc = c_v[yi, ti]
                     if np.isfinite(yc) and yc < pos["stop_level"]:
                         flag = True
+                # ---- upside management, on the prior completed close ----
+                yc = c_v[yi, ti]
+                peak = pos["peak_close"]
+                if not flag and np.isfinite(yc) and peak is not None:
+                    entry_px = pos["entry_px"]
+                    if spec.trail_atr_mult is not None:
+                        a = ta_v[yi, ti]
+                        if np.isfinite(a) and yc < peak - spec.trail_atr_mult * a:
+                            flag = True
+                    if not flag and spec.trail_giveback_frac is not None:
+                        open_profit = peak - entry_px
+                        if open_profit > 0 and yc < peak - spec.trail_giveback_frac * open_profit:
+                            flag = True
+                    if not flag and spec.profit_target_frac is not None:
+                        if yc >= entry_px * (1.0 + spec.profit_target_frac):
+                            flag = True
+                    if not flag and spec.breakeven_after_frac is not None:
+                        armed = peak >= entry_px * (1.0 + spec.breakeven_after_frac)
+                        if armed and yc < entry_px:
+                            flag = True
                 if flag:
                     px = o_v[gi, ti]
                     if np.isfinite(px):
@@ -205,6 +258,7 @@ def run_backtest(
                         "entry_px": fill,
                         "shares": shares,
                         "days_held": 0,
+                        "peak_close": None,
                         "stop_level": (l_v[yi, ti] if spec.stop_at_signal_low else None),
                     }
                     slots -= 1
@@ -241,6 +295,7 @@ def run_backtest(
                         "entry_px": fill,
                         "shares": shares,
                         "days_held": 0,
+                        "peak_close": None,
                         "stop_level": (l_v[gi, ti] if spec.stop_at_signal_low else None),
                     }
                     slots -= 1
@@ -248,6 +303,9 @@ def run_backtest(
         # ---- 3. at-the-close exits ----
         for ti in list(positions):
             pos = positions[ti]
+            cc = c_v[gi, ti]
+            if np.isfinite(cc):  # peak since entry, entry day included
+                pos["peak_close"] = cc if pos["peak_close"] is None else max(pos["peak_close"], cc)
             if pos["entry_gi"] == gi:
                 continue  # no same-day round trips
             pos["days_held"] += 1
@@ -255,7 +313,13 @@ def run_backtest(
             if spec.exit_mode == "close" and x_v is not None and x_v[gi, ti]:
                 exit_now = True
             if not exit_now and spec.time_stop is not None and pos["days_held"] >= spec.time_stop:
-                exit_now = True
+                # hold_while defers the clock while the trend condition holds,
+                # up to hold_while_max so a deferral cannot run unbounded
+                deferred = hw_v is not None and bool(hw_v[gi, ti])
+                if spec.hold_while_max is not None and pos["days_held"] >= spec.hold_while_max:
+                    deferred = False
+                if not deferred:
+                    exit_now = True
             if exit_now:
                 px = c_v[gi, ti]
                 if np.isfinite(px):

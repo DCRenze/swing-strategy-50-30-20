@@ -1,0 +1,101 @@
+name: Phase 2 Upside Sweep
+
+# Sleeve H upside-management research (backtest/phase2_upside.py).
+#
+# Runs here rather than in a Claude session because it needs the full
+# 2005-2026 research panel from yfinance, and the Claude environment blocks
+# that host by egress policy. Read-only with respect to trading: no Alpaca
+# credentials, no orders, nothing touching papertrade/.
+#
+# Stage discipline (see the module docstring):
+#   is   - every variant on in-sample data; selection happens by eye afterwards
+#   oos  - one confirmation for the IS-selected labels passed in `confirm`
+#
+# Results are committed back to the branch that ran the workflow.
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: 'is = in-sample sweep, oos = confirmation run'
+        type: choice
+        options: [is, oos]
+        default: is
+      confirm:
+        description: 'Space-separated variant labels (stage oos only)'
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phase2-sweep-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # The research panel is ~1000 tickers x 21 years and is git-ignored.
+      # Cache it per-week so a re-run or the OOS stage does not re-download.
+      - name: Cache research panel
+        id: panel-cache
+        uses: actions/cache@v4
+        with:
+          path: data/*.parquet
+          key: research-panel-${{ hashFiles('data/universe.csv') }}-${{ github.run_id }}
+          restore-keys: |
+            research-panel-${{ hashFiles('data/universe.csv') }}-
+
+      - name: Download research panel
+        run: python -m backtest.data
+
+      - name: Engine tests
+        run: python -m backtest.test_engine
+
+      - name: Run sweep
+        run: |
+          if [ "${{ inputs.stage }}" = "oos" ]; then
+            if [ -z "${{ inputs.confirm }}" ]; then
+              echo "stage=oos requires the confirm input" >&2
+              exit 1
+            fi
+            python -m backtest.phase2_upside --stage oos --confirm ${{ inputs.confirm }}
+          else
+            python -m backtest.phase2_upside --stage is
+          fi
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase2-upside-${{ inputs.stage }}
+          path: |
+            results/PHASE2_UPSIDE_*.md
+            results/phase2_upside_*.json
+
+      - name: Commit results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/PHASE2_UPSIDE_*.md results/phase2_upside_*.json
+          if git diff --staged --quiet; then
+            echo "no result changes"
+          else
+            git commit -m "Phase 2 upside sweep (${{ inputs.stage }})"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
