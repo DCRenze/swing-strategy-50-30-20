@@ -82,7 +82,7 @@ US_MARKET_HOLIDAYS = [
 
 
 def refresh_data() -> None:
-    import yfinance as yf
+    from backtest.yfsession import download as yf_download
 
     uni = pd.read_csv(DATA_DIR / "universe.csv")
     tickers = sorted(set(uni["ticker"]) | {"SPY", "QQQ", "^VIX"})
@@ -93,7 +93,7 @@ def refresh_data() -> None:
     parts: dict[str, list] = {f: [] for f in fields}
     for i in range(0, len(tickers), 100):
         batch = tickers[i : i + 100]
-        df = yf.download(batch, start=start, auto_adjust=False, actions=False,
+        df = yf_download(batch, start=start, auto_adjust=False, actions=False,
                          group_by="column", threads=True, progress=False)
         if df is None or df.empty:
             continue

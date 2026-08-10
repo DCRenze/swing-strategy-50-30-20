@@ -18,7 +18,8 @@ import time
 from pathlib import Path
 
 import pandas as pd
-import yfinance as yf
+
+from backtest.yfsession import download as yf_download
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 START = "2005-01-01"
@@ -37,7 +38,7 @@ BATCH = 50
 def _download_batch(tickers: list[str]) -> pd.DataFrame:
     for attempt in range(3):
         try:
-            df = yf.download(
+            df = yf_download(
                 tickers,
                 start=START,
                 auto_adjust=False,
