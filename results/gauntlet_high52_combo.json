@@ -1,0 +1,139 @@
+{
+  "strategy": "high52_combo",
+  "windows": {
+    "full": {
+      "strategy": "high52_breakout[252,15d,stop5%,trailATR1.5x10,holdSMA20max60]",
+      "start": "2005-06-01",
+      "end": "2026-08-07",
+      "cagr": 0.0661,
+      "sharpe": 0.47,
+      "max_dd": -0.2957,
+      "exposure": 0.729,
+      "trades": 2933,
+      "win_rate": 0.424,
+      "avg_ret": 0.0057,
+      "profit_factor": 1.24,
+      "avg_hold_days": 12.5,
+      "bench_cagr": 0.112,
+      "bench_sharpe": 0.65,
+      "bench_max_dd": -0.5519
+    },
+    "is": {
+      "strategy": "high52_breakout[252,15d,stop5%,trailATR1.5x10,holdSMA20max60]",
+      "start": "2005-06-01",
+      "end": "2022-12-30",
+      "cagr": 0.0567,
+      "sharpe": 0.44,
+      "max_dd": -0.284,
+      "exposure": 0.713,
+      "trades": 2338,
+      "win_rate": 0.422,
+      "avg_ret": 0.00516,
+      "profit_factor": 1.23,
+      "avg_hold_days": 12.7,
+      "bench_cagr": 0.089,
+      "bench_sharpe": 0.53,
+      "bench_max_dd": -0.5519
+    },
+    "oos": {
+      "strategy": "high52_breakout[252,15d,stop5%,trailATR1.5x10,holdSMA20max60]",
+      "start": "2023-01-03",
+      "end": "2026-08-07",
+      "cagr": 0.1143,
+      "sharpe": 0.61,
+      "max_dd": -0.186,
+      "exposure": 0.811,
+      "trades": 594,
+      "win_rate": 0.434,
+      "avg_ret": 0.00788,
+      "profit_factor": 1.27,
+      "avg_hold_days": 11.6,
+      "bench_cagr": 0.2333,
+      "bench_sharpe": 1.47,
+      "bench_max_dd": -0.1876
+    }
+  },
+  "variants": {
+    "trail_only": {
+      "cagr": 0.087,
+      "sharpe": 0.51,
+      "max_dd": -0.3436,
+      "trades": 3022,
+      "win_rate": 0.439,
+      "avg_ret": 0.0062,
+      "profit_factor": 1.28,
+      "exposure": 0.696
+    },
+    "hold_only": {
+      "cagr": 0.0844,
+      "sharpe": 0.6,
+      "max_dd": -0.2414,
+      "trades": 1708,
+      "win_rate": 0.456,
+      "avg_ret": 0.00964,
+      "profit_factor": 1.37,
+      "exposure": 0.725
+    },
+    "k2.0": {
+      "cagr": 0.0795,
+      "sharpe": 0.48,
+      "max_dd": -0.304,
+      "trades": 1955,
+      "win_rate": 0.435,
+      "avg_ret": 0.00874,
+      "profit_factor": 1.36,
+      "exposure": 0.719
+    },
+    "max40": {
+      "cagr": 0.0872,
+      "sharpe": 0.51,
+      "max_dd": -0.284,
+      "trades": 2390,
+      "win_rate": 0.419,
+      "avg_ret": 0.00792,
+      "profit_factor": 1.35,
+      "exposure": 0.712
+    },
+    "nocap": {
+      "cagr": 0.0568,
+      "sharpe": 0.44,
+      "max_dd": -0.284,
+      "trades": 2332,
+      "win_rate": 0.423,
+      "avg_ret": 0.00522,
+      "profit_factor": 1.23,
+      "exposure": 0.713
+    }
+  },
+  "regimes": {
+    "2020_crash_recovery": {
+      "return": 0.3609,
+      "max_dd": -0.1399,
+      "sharpe": 1.46
+    },
+    "2022_bear": {
+      "return": -0.0987,
+      "max_dd": -0.1103,
+      "sharpe": -0.79
+    },
+    "2023_25_chop": {
+      "return": 0.3608,
+      "max_dd": -0.186,
+      "sharpe": 0.59
+    }
+  },
+  "baseline_name": "high52_breakout[252,15d,stop5%,trailATR1.5x10,holdSMA20max60]",
+  "mc_drawdown": {
+    "p50": -0.3873,
+    "p95": -0.2598,
+    "p99": -0.227
+  },
+  "pass_bar": {
+    "oos_pf_gt_1.3": false,
+    "oos_maxdd_lt_25pct": true,
+    "full_trades_gte_100": true,
+    "oos_sharpe_beats_spy": false
+  },
+  "pass_all": false,
+  "runtime_s": 12.7
+}

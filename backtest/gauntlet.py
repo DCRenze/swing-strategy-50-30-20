@@ -151,6 +151,18 @@ PLAN: dict[str, dict] = {
             ("nocap", {"max_hold_days": None}),
         ],
     },
+    "high52_combo": {
+        "module": "high52_breakout",
+        "baseline": {"_regime": "spy100", "trail_atr_mult": 1.5,
+                     "hold_extend_sma": 20, "max_hold_days": 60},
+        "variants": [
+            ("trail_only", {"hold_extend_sma": None, "max_hold_days": None}),
+            ("hold_only", {"trail_atr_mult": None}),
+            ("k2.0", {"trail_atr_mult": 2.0}),
+            ("max40", {"max_hold_days": 40}),
+            ("nocap", {"max_hold_days": None}),
+        ],
+    },
     "turnaround_tuesday": {
         "baseline": {},
         "variants": [

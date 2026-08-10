@@ -75,6 +75,29 @@
         "corr_a_h_pearson": 0.376,
         "corr_a_h_winsor": 0.408
       }
+    },
+    "combo_trail1.5_hold60": {
+      "spec": "high52_breakout[252,15d,stop5%,trailATR1.5x10,holdSMA20max60]",
+      "sleeve_h": {
+        "cagr": 0.1143,
+        "sharpe": 0.61,
+        "max_dd": -0.186,
+        "profit_factor": 1.27,
+        "trades": 595,
+        "win_rate": 0.434,
+        "avg_hold_days": 11.6,
+        "spy_sharpe": 1.47
+      },
+      "ensemble": {
+        "cagr": 0.1372,
+        "sharpe": 0.96,
+        "max_dd": -0.1503
+      },
+      "diversification": {
+        "h_exposure": 0.811,
+        "corr_a_h_pearson": 0.36,
+        "corr_a_h_winsor": 0.391
+      }
     }
   }
 }

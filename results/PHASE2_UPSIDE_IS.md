@@ -26,6 +26,7 @@ Deltas are versus the validated baseline. A variant must improve **both** the sl
 | hold_sma20_max60 | 1.37 | 0.6 | -24.1% | 1708 | 18.4d | 1.12 | -21.7% | +0.15 | 0.46 |
 | hold_sma20_max80 | 1.38 | 0.6 | -24.1% | 1700 | 18.6d | 1.12 | -21.8% | +0.15 | 0.459 |
 | hold_sma20_nocap | 1.39 | 0.6 | -24.1% | 1692 | 18.6d | 1.12 | -21.8% | +0.15 | 0.46 |
+| combo_trail1.5_hold60 | 1.23 | 0.44 | -28.4% | 2338 | 12.7d | 1.06 | -21.8% | +0.09 | 0.43 |
 
 Baseline reference: H PF 1.16, Sharpe 0.33, maxDD -44.0%; ensemble Sharpe 0.97, maxDD -23.3%, corr(A,H) 0.452.
 

@@ -66,6 +66,37 @@ expected and is why the ensemble exists — so what matters is *which bars* each
 
 Both finalists **lose a bar the incumbent currently clears**. That settles it.
 
+## Follow-up: the two finalists combined
+
+Requested after the above, since the pair had never been run together. Config
+`high52_combo` = 5% stop (unchanged) + ATR trail at k=1.5 + hold extension while
+above SMA20, capped at 60 days.
+
+| Ensemble Sharpe | IS | OOS |
+|---|--:|--:|
+| baseline (deployed) | 0.97 | **1.20** |
+| `trail_atr1.5` | 1.09 (+0.12) | 0.88 (−0.32) |
+| `hold_sma20_max60` | 1.12 (+0.15) | 0.85 (−0.35) |
+| `combo` | 1.06 (**+0.09**) | 0.96 (**−0.24**) |
+
+The combination is **worse in-sample than either rule alone** and still clearly
+worse than the baseline out-of-sample, though it loses less than either component
+did. Gauntlet: OOS PF 1.27 — still short of the 1.3 bar the deployed config clears
+at 1.39.
+
+The mechanism is visible in the holding period. Trail-only averages 9.6 days,
+hold-only 18.4, the combination 12.7 — essentially back to the baseline's 11.9.
+**The two rules cancel.** The trailing stop closes exactly the extended runners the
+hold rule exists to capture, so the pair reproduces roughly the baseline's holding
+behaviour while paying the exit costs of both. The in-sample sensitivity run makes
+the same point from the other side: stripping either half out (`trail_only` 0.51,
+`hold_only` 0.60) scores better than keeping both (0.44).
+
+Statistical status: the OOS window had already been spent on the two components
+before this ran, so the combo's OOS figure is descriptive, not a clean verdict. It
+points the same direction as everything else, which is why it does not change the
+conclusion.
+
 ## The one result worth remembering
 
 `hold_sma20_max60` is dramatically better on drawdown and in bad regimes, even though it

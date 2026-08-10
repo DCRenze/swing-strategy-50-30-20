@@ -78,6 +78,11 @@ VARIANTS: list[tuple[str, dict]] = [
     ("hold_sma20_max60", {"hold_extend_sma": 20, "max_hold_days": 60}),
     ("hold_sma20_max80", {"hold_extend_sma": 20, "max_hold_days": 80}),
     ("hold_sma20_nocap", {"hold_extend_sma": 20}),
+    # 6. combination: the two IS-selected finalists together. Each failed its
+    #    own OOS confirmation; tested jointly because they were never run as a
+    #    pair and they pull in opposite directions on holding period.
+    ("combo_trail1.5_hold60",
+     {"trail_atr_mult": 1.5, "hold_extend_sma": 20, "max_hold_days": 60}),
 ]
 
 
