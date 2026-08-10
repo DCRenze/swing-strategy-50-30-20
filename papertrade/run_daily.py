@@ -1,8 +1,10 @@
 """Alpaca paper-trading runner for the 60/40 A/H ensemble (fractional shares).
 
-Single daily checkpoint, run shortly after the open (~9:35 am ET). Signals are
+Single daily checkpoint, started BEFORE the open (~9:20 am ET). Signals are
 computed from yesterday's completed daily bar and acted on at today's open, which
-matches the backtest's timing exactly. Fractional shares let a small ($1-2k)
+matches the backtest's timing exactly. Because nothing reads today's bar, the whole
+computation runs pre-open and --submit-at holds the orders until the bell, so fills
+land at 9:30 rather than several minutes into the session. Fractional shares let a small ($1-2k)
 account hold the full 20-position book, so every order is a DAY order (market or
 limit) - the only order types Alpaca allows fractional quantities on.
 
@@ -10,7 +12,8 @@ limit) - the only order types Alpaca allows fractional quantities on.
     ALPACA_SECRET_KEY=...
 
 Usage (venv python, from project root):
-  python -m papertrade.run_daily morning              # ~9:35 am ET, every trading day
+  python -m papertrade.run_daily morning --submit-at 09:30  # start ~9:20, fills at the bell
+  python -m papertrade.run_daily morning              # submit as soon as computed
   python -m papertrade.run_daily morning --dry-run    # compute + print orders, submit nothing
   python -m papertrade.run_daily status               # account + tracked positions
 
@@ -35,6 +38,7 @@ import argparse
 import datetime as dt
 import json
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -129,8 +133,12 @@ def submit_order(client, journal: Journal, dry: bool, *, sleeve: str, ticker: st
         journal.log("order_error", error=str(e), **info)
 
 
-def _record_closed_trade(meta: dict, ticker: str, sell, journal: Journal) -> None:
-    """Append a realized round-trip to trades.jsonl when a tracked position closes."""
+def _record_closed_trade(meta: dict, ticker: str, sell, journal: Journal,
+                         dry: bool = False) -> None:
+    """Append a realized round-trip to trades.jsonl when a tracked position closes.
+
+    A dry run journals the trade but must not touch the ledger of record.
+    """
     entry_px = meta.get("entry_px")
     if not entry_px or sell is None:
         journal.log("trade_unrecorded", ticker=ticker,
@@ -144,12 +152,13 @@ def _record_closed_trade(meta: dict, ticker: str, sell, journal: Journal) -> Non
         "qty": round(exit_qty, 4), "ret": round(exit_px / entry_px - 1.0, 4),
         "pnl": round((exit_px - entry_px) * exit_qty, 2),
     }
-    with TRADES_PATH.open("a") as f:
-        f.write(json.dumps(rec) + "\n")
-    journal.log("trade_closed", **rec)
+    if not dry:
+        with TRADES_PATH.open("a") as f:
+            f.write(json.dumps(rec) + "\n")
+    journal.log("trade_closed", dry_run=dry or None, **rec)
 
 
-def reconcile(client, state: dict, journal: Journal) -> dict:
+def reconcile(client, state: dict, journal: Journal, dry: bool = False) -> dict:
     """Sync state.json with Alpaca: record realized P/L for closed positions, adopt
     new fills (with entry price + sleeve), and backfill entry prices for known ones.
     Returns {symbol: {qty, avg_entry_price}} for held names."""
@@ -182,7 +191,7 @@ def reconcile(client, state: dict, journal: Journal) -> dict:
     for ticker in list(state["positions"]):
         if ticker not in held:
             meta = state["positions"][ticker]
-            _record_closed_trade(meta, ticker, sell_fills.get(ticker), journal)
+            _record_closed_trade(meta, ticker, sell_fills.get(ticker), journal, dry)
             journal.log("position_closed", ticker=ticker, **meta)
             del state["positions"][ticker]
 
@@ -257,6 +266,47 @@ def h_stop_signal(raw_closes: pd.Series, entry_date: str, avg_entry_price: float
     }
 
 
+MAX_SUBMIT_WAIT_S = 45 * 60  # refuse to sit idle longer than this if misconfigured
+
+
+def wait_for_submit_window(submit_at: str | None, journal: Journal, dry: bool) -> None:
+    """Hold computed orders until the opening bell.
+
+    Everything upstream of this point reads COMPLETED bars only (Phase 0), so
+    signals, exits and sizing can all be produced before the market opens; only
+    the orders themselves need to land at 9:30. Without this barrier the ~90s
+    universe refresh ran after the bell and pushed fills a median 255s past the
+    open, costing ~19 bps per Sleeve A exit and ~104 bps per Sleeve H exit
+    (results/LIVE_REVIEW_2026-08.md).
+
+    Sizing is unaffected by starting early: equity is read pre-open, i.e. at the
+    prior close, which is the same basis backtest/engine.py sizes on.
+    """
+    if not submit_at:
+        return
+    try:
+        hh, mm = (int(x) for x in submit_at.split(":"))
+        now = scr.now_et()
+        target = now.replace(hour=hh, minute=mm, second=0, microsecond=0)
+    except ValueError:
+        journal.log("warning", msg=f"unparsable --submit-at {submit_at!r}; submitting immediately")
+        return
+
+    wait_s = (target - now).total_seconds()
+    if wait_s <= 0:
+        journal.log("submit_window", target=submit_at, waited_s=0, late_s=round(-wait_s, 1),
+                    note="computation finished after the target - submitting immediately")
+        return
+    if wait_s > MAX_SUBMIT_WAIT_S:
+        journal.log("action_needed", msg=f"--submit-at {submit_at} is {wait_s / 60:.0f} min away; "
+                                         "refusing to wait, submitting now - check the schedule")
+        return
+    journal.log("submit_window", target=submit_at, waited_s=round(wait_s, 1),
+                note="orders computed pre-open; holding until the bell")
+    if not dry:
+        time.sleep(wait_s)
+
+
 def drawdown_gate(state: dict, equity: float, journal: Journal):
     """Update the high-water mark and return (drawdown, halt_a, halt_all)."""
     hwm = max(float(state.get("hwm", 0.0)), equity)
@@ -273,10 +323,10 @@ def drawdown_gate(state: dict, equity: float, journal: Journal):
     return dd, halt_a, halt_all
 
 
-def run_morning(client, dry: bool) -> None:
+def run_morning(client, dry: bool, submit_at: str | None = None) -> None:
     journal = Journal()
     state = load_state()
-    held = reconcile(client, state, journal) if client is not None else {}
+    held = reconcile(client, state, journal, dry) if client is not None else {}
     equity = float(client.get_account().equity) if client is not None else 100_000.0
     dd, halt_a, halt_all = drawdown_gate(state, equity, journal)
     journal.log("run_start", mode="morning", equity=equity, hwm=round(state["hwm"], 2),
@@ -295,6 +345,10 @@ def run_morning(client, dry: bool) -> None:
     raw_c = panel["raw_close"]   # unadjusted - for comparisons against real fills
     journal.log("data_asof", signal_date=signal_date, trade_date=as_of,
                 sessions=len(c.index))
+
+    # Everything above reads completed bars and can run pre-open; nothing below
+    # this line should touch the network for market data.
+    wait_for_submit_window(submit_at, journal, dry)
 
     # ---- Sleeve A exits (market sell at open): first up-close since entry, or time stop
     for ticker, meta in list(state["positions"].items()):
@@ -405,7 +459,10 @@ def run_morning(client, dry: bool) -> None:
                          qty=order["qty"], order_type="market")
             slots_h -= 1
 
-    save_state(state)
+    if dry:
+        journal.log("dry_run_end", note="state.json and trades.jsonl left untouched")
+    else:
+        save_state(state)
     journal.log("run_end", mode="morning")
 
 
@@ -426,6 +483,10 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("mode", choices=["morning", "status"])
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--submit-at", metavar="HH:MM", default=None,
+                    help="ET time to release orders. Start the job BEFORE the open so the "
+                         "universe refresh finishes early, then orders fire at the bell "
+                         "(e.g. --submit-at 09:30). Omit to submit as soon as computed.")
     args = ap.parse_args()
 
     client = None
@@ -440,7 +501,7 @@ def main() -> None:
             print("No API keys found - dry-run preview without account (no reconcile/exits).")
 
     if args.mode == "morning":
-        run_morning(client, args.dry_run)
+        run_morning(client, args.dry_run, submit_at=args.submit_at)
     else:
         run_status(client)
 

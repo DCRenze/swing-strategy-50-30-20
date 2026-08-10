@@ -59,9 +59,12 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
 
 ## Automation
 
-- **`.github/workflows/morning-run.yml`** — one daily run (~9:35am ET, fired by an external
-  scheduler via `workflow_dispatch`): reconcile → drawdown gate → A exits/entries → H
-  exits/entries; commits `state.json` + `journal/` + `trades.jsonl`; posts a Discord morning report.
+- **`.github/workflows/morning-run.yml`** — one daily run started **pre-open** (~9:20am ET,
+  fired by an external scheduler via `workflow_dispatch`): reconcile → drawdown gate → A
+  exits/entries → H exits/entries; commits `state.json` + `journal/` + `trades.jsonl`; posts a
+  Discord morning report. Every rule reads completed bars, so the whole computation happens
+  before the bell and `--submit-at 09:30` releases the orders at the open — refreshing after
+  the bell instead cost a median 255s of slippage (`results/LIVE_REVIEW_2026-08.md`).
 - **`.github/workflows/eod-report.yml`** — read-only end-of-day Discord wrap-up (cron).
 - **`.github/workflows/weekly-report.yml`** — `papertrade/report_weekly.py` builds a
   self-contained HTML PM dashboard and posts it to Discord every Friday after the close

@@ -13,6 +13,7 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 
+from papertrade import run_daily as rd
 from papertrade.run_daily import a_exit_signal, h_stop_signal
 from playbook import screener as scr
 
@@ -136,6 +137,101 @@ def test_no_up_close_holds():
     print("ok: monotonically lower closes hold")
 
 
+# ------------------------------------------------- pre-open submit barrier ---
+class FakeJournal:
+    def __init__(self):
+        self.records = []
+
+    def log(self, kind, **kw):
+        self.records.append((kind, kw))
+
+    def kinds(self):
+        return [k for k, _ in self.records]
+
+
+def at(h, m, s=0):
+    return dt.datetime(2026, 8, 11, h, m, s, tzinfo=ET)
+
+
+def with_clock(now):
+    """Swap the screener's ET clock for a fixed instant."""
+    original = scr.now_et
+    scr.now_et = lambda: now
+    return original
+
+
+def test_submit_barrier_disabled_by_default():
+    j = FakeJournal()
+    rd.wait_for_submit_window(None, j, dry=False)
+    assert j.records == [], j.records
+    print("ok: no --submit-at means submit immediately, as before")
+
+
+def test_submit_barrier_waits_when_early():
+    j = FakeJournal()
+    orig = with_clock(at(9, 22, 0))
+    try:
+        rd.wait_for_submit_window("09:30", j, dry=True)  # dry: computes the wait, does not sleep
+    finally:
+        scr.now_et = orig
+    kind, kw = j.records[0]
+    assert kind == "submit_window" and kw["waited_s"] == 480.0, j.records
+    print("ok: computed pre-open, holds until the bell (480s from 09:22)")
+
+
+def test_submit_barrier_does_not_delay_when_late():
+    j = FakeJournal()
+    orig = with_clock(at(9, 34, 12))
+    try:
+        rd.wait_for_submit_window("09:30", j, dry=False)
+    finally:
+        scr.now_et = orig
+    kind, kw = j.records[0]
+    assert kind == "submit_window" and kw["waited_s"] == 0 and kw["late_s"] == 252.0, j.records
+    print("ok: already past the bell submits immediately and records how late")
+
+
+def test_submit_barrier_refuses_absurd_wait():
+    j = FakeJournal()
+    orig = with_clock(at(3, 0, 0))  # 6.5h early - a misconfigured schedule
+    try:
+        rd.wait_for_submit_window("09:30", j, dry=False)
+    finally:
+        scr.now_et = orig
+    assert j.kinds() == ["action_needed"], j.records
+    print("ok: an absurd wait is flagged, not slept through")
+
+
+def test_submit_barrier_survives_bad_input():
+    j = FakeJournal()
+    rd.wait_for_submit_window("not-a-time", j, dry=False)
+    assert j.kinds() == ["warning"], j.records
+    print("ok: unparsable --submit-at warns and submits rather than crashing")
+
+
+# ------------------------------------------------------ dry run is dry ---
+def test_dry_run_does_not_touch_the_ledger():
+    """--dry-run promises to submit nothing; it must not write the files of
+    record either. It used to append to trades.jsonl and save state.json."""
+    with tempfile.TemporaryDirectory() as tmp:
+        ledger = Path(tmp) / "trades.jsonl"
+        original = rd.TRADES_PATH
+        rd.TRADES_PATH = ledger
+        try:
+            j = FakeJournal()
+            meta = {"sleeve": "A", "entry_date": "2026-08-03", "entry_px": 100.0}
+            sell = (110.0, 5.0, pd.Timestamp("2026-08-07"))
+            rd._record_closed_trade(meta, "TEST", sell, j, dry=True)
+            assert not ledger.exists(), "dry run wrote to the trade ledger"
+            assert j.kinds() == ["trade_closed"], j.records
+
+            rd._record_closed_trade(meta, "TEST", sell, j, dry=False)
+            assert ledger.exists() and len(ledger.read_text().strip().splitlines()) == 1
+        finally:
+            rd.TRADES_PATH = original
+    print("ok: dry run journals the close but leaves trades.jsonl alone")
+
+
 if __name__ == "__main__":
     test_session_complete()
     test_panel_excludes_in_progress_row()
@@ -146,4 +242,10 @@ if __name__ == "__main__":
     test_first_up_close_exits()
     test_missed_up_close_is_flagged_overdue()
     test_no_up_close_holds()
+    test_submit_barrier_disabled_by_default()
+    test_submit_barrier_waits_when_early()
+    test_submit_barrier_does_not_delay_when_late()
+    test_submit_barrier_refuses_absurd_wait()
+    test_submit_barrier_survives_bad_input()
+    test_dry_run_does_not_touch_the_ledger()
     print("\nall exit-rule tests passed")

@@ -6,11 +6,15 @@ name: Morning Trade Run
 # computed from yesterday's completed bar and executed at today's open (fractional
 # DAY orders), matching the backtest timing.
 #
-# SCHEDULE NOTE: GitHub Actions cron runs in UTC. This is set for EDT (UTC-4, ~Mar-Nov).
-# When clocks fall back (EST, UTC-5, ~Nov-Mar), change the cron to: '35 14 * * 1-5'
-# EDT: 13:35 UTC = 9:35 AM ET   |   EST: 14:35 UTC = 9:35 AM ET
-# NOTE: scheduled runs can start several minutes late; momentum market orders may
-# therefore fill a little off the 9:30 open (see PLAYBOOK §6).
+# SCHEDULING: start the job BEFORE the open. Every rule reads completed bars
+# only, so signals, exits and sizing are all computable pre-open; the runner then
+# holds the orders until --submit-at (default 09:30 ET) and releases them at the
+# bell. Point the external scheduler at ~9:20 ET to leave room for the ~90s
+# universe refresh, and note the runner works in ET directly, so no DST edits.
+# Starting at 9:32 and refreshing after the bell put fills a median 255s late,
+# costing ~19 bps per Sleeve A exit and ~104 bps per Sleeve H exit
+# (results/LIVE_REVIEW_2026-08.md). Equity is read pre-open, i.e. at the prior
+# close, which is the basis backtest/engine.py sizes on anyway.
 #
 # REQUIRED GITHUB SECRETS (Settings → Secrets and variables → Actions):
 #   ALPACA_API_KEY     — Alpaca paper-trading API key (starts with PK...)
@@ -22,6 +26,11 @@ on:
   # momentum sleeve needs to fill near the 6:30 AM PT open, so we removed the
   # built-in schedule to avoid double-runs. workflow_dispatch = API + manual runs.
   workflow_dispatch:
+    inputs:
+      submit_at:
+        description: 'ET time to release orders (HH:MM). Blank = submit as soon as computed.'
+        type: string
+        default: '09:30'
 
 permissions:
   contents: write              # needed to commit journal + state back to the repo
@@ -61,7 +70,13 @@ jobs:
           echo "ALPACA_SECRET_KEY=${{ secrets.ALPACA_SECRET_KEY }}" >> .env
 
       - name: Run morning trade
-        run: python -m papertrade.run_daily morning
+        run: |
+          SUBMIT_AT="${{ inputs.submit_at }}"
+          if [ -n "$SUBMIT_AT" ]; then
+            python -m papertrade.run_daily morning --submit-at "$SUBMIT_AT"
+          else
+            python -m papertrade.run_daily morning
+          fi
 
       - name: Remove .env
         if: always()
