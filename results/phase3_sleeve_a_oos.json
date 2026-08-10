@@ -1,0 +1,66 @@
+{
+  "stage": "oos",
+  "window": {
+    "start": "2023-01-01",
+    "end": null
+  },
+  "slippage_bps": 5.0,
+  "variants": {
+    "slots10_baseline": {
+      "cagr": 0.1422,
+      "sharpe": 0.98,
+      "max_dd": -0.1458,
+      "mc_dd_p95": -0.1001,
+      "avg_exposure": 0.703,
+      "pct_days_over_90": 0.512,
+      "pct_days_under_10": 0.122,
+      "trades": 2297,
+      "profit_factor": 1.21,
+      "spy_sharpe": 1.47,
+      "slots": 10,
+      "position_size_pct": 0.1
+    },
+    "slots8": {
+      "cagr": 0.1223,
+      "sharpe": 0.8,
+      "max_dd": -0.1505,
+      "mc_dd_p95": -0.1138,
+      "avg_exposure": 0.729,
+      "pct_days_over_90": 0.567,
+      "pct_days_under_10": 0.102,
+      "trades": 1906,
+      "profit_factor": 1.17,
+      "spy_sharpe": 1.47,
+      "slots": 8,
+      "position_size_pct": 0.125
+    },
+    "slots5": {
+      "cagr": 0.1446,
+      "sharpe": 0.81,
+      "max_dd": -0.167,
+      "mc_dd_p95": -0.1332,
+      "avg_exposure": 0.783,
+      "pct_days_over_90": 0.667,
+      "pct_days_under_10": 0.103,
+      "trades": 1302,
+      "profit_factor": 1.19,
+      "spy_sharpe": 1.47,
+      "slots": 5,
+      "position_size_pct": 0.2
+    },
+    "slots2": {
+      "cagr": 0.2536,
+      "sharpe": 1.03,
+      "max_dd": -0.2499,
+      "mc_dd_p95": -0.168,
+      "avg_exposure": 0.843,
+      "pct_days_over_90": 0.815,
+      "pct_days_under_10": 0.124,
+      "trades": 563,
+      "profit_factor": 1.33,
+      "spy_sharpe": 1.47,
+      "slots": 2,
+      "position_size_pct": 0.5
+    }
+  }
+}

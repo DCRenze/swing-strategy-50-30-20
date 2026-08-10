@@ -1,0 +1,108 @@
+{
+  "stage": "is",
+  "window": {
+    "start": "2005-06-01",
+    "end": "2022-12-31"
+  },
+  "slippage_bps": 5.0,
+  "variants": {
+    "slots10_baseline": {
+      "cagr": 0.1837,
+      "sharpe": 1.18,
+      "max_dd": -0.3017,
+      "mc_dd_p95": -0.171,
+      "avg_exposure": 0.585,
+      "pct_days_over_90": 0.384,
+      "pct_days_under_10": 0.181,
+      "trades": 9636,
+      "profit_factor": 1.35,
+      "spy_sharpe": 0.53,
+      "slots": 10,
+      "position_size_pct": 0.1
+    },
+    "slots8": {
+      "cagr": 0.2247,
+      "sharpe": 1.33,
+      "max_dd": -0.3518,
+      "mc_dd_p95": -0.1743,
+      "avg_exposure": 0.621,
+      "pct_days_over_90": 0.432,
+      "pct_days_under_10": 0.135,
+      "trades": 8206,
+      "profit_factor": 1.4,
+      "spy_sharpe": 0.53,
+      "slots": 8,
+      "position_size_pct": 0.125
+    },
+    "slots6": {
+      "cagr": 0.2213,
+      "sharpe": 1.22,
+      "max_dd": -0.3678,
+      "mc_dd_p95": -0.2013,
+      "avg_exposure": 0.664,
+      "pct_days_over_90": 0.5,
+      "pct_days_under_10": 0.133,
+      "trades": 6519,
+      "profit_factor": 1.36,
+      "spy_sharpe": 0.53,
+      "slots": 6,
+      "position_size_pct": 0.167
+    },
+    "slots5": {
+      "cagr": 0.2463,
+      "sharpe": 1.32,
+      "max_dd": -0.3044,
+      "mc_dd_p95": -0.1923,
+      "avg_exposure": 0.688,
+      "pct_days_over_90": 0.54,
+      "pct_days_under_10": 0.136,
+      "trades": 5690,
+      "profit_factor": 1.39,
+      "spy_sharpe": 0.53,
+      "slots": 5,
+      "position_size_pct": 0.2
+    },
+    "slots4": {
+      "cagr": 0.2314,
+      "sharpe": 1.14,
+      "max_dd": -0.4268,
+      "mc_dd_p95": -0.2264,
+      "avg_exposure": 0.714,
+      "pct_days_over_90": 0.584,
+      "pct_days_under_10": 0.14,
+      "trades": 4657,
+      "profit_factor": 1.35,
+      "spy_sharpe": 0.53,
+      "slots": 4,
+      "position_size_pct": 0.25
+    },
+    "slots3": {
+      "cagr": 0.2522,
+      "sharpe": 1.17,
+      "max_dd": -0.3636,
+      "mc_dd_p95": -0.2253,
+      "avg_exposure": 0.746,
+      "pct_days_over_90": 0.649,
+      "pct_days_under_10": 0.146,
+      "trades": 3652,
+      "profit_factor": 1.37,
+      "spy_sharpe": 0.53,
+      "slots": 3,
+      "position_size_pct": 0.333
+    },
+    "slots2": {
+      "cagr": 0.294,
+      "sharpe": 1.15,
+      "max_dd": -0.6006,
+      "mc_dd_p95": -0.2728,
+      "avg_exposure": 0.78,
+      "pct_days_over_90": 0.717,
+      "pct_days_under_10": 0.153,
+      "trades": 2590,
+      "profit_factor": 1.42,
+      "spy_sharpe": 0.53,
+      "slots": 2,
+      "position_size_pct": 0.5
+    }
+  }
+}
