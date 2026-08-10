@@ -78,6 +78,13 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
 ## Conventions & decay watch
 
 - **Day counting:** entry day = day 0; "15-day time stop" = sell at the open once day 15 is reached.
+- **Completed bars only:** every signal and price-based exit reads the last *completed* session.
+  `load_recent_panel()` drops the in-progress row (yfinance serves one during market hours whose
+  "close" is a live tick), and `screen()` returns `as_of` = that completed session plus
+  `trade_date` = today, which is the day-count anchor. Never anchor day counts to `as_of` or read
+  prices off `trade_date` — mixing them is what turned close-based rules into intraday rules for
+  five weeks in Jul 2026. Comparisons against a real fill price (the H stop) use `raw_close`,
+  never `close`, which is dividend-adjusted. `papertrade/test_run_daily.py` guards both.
 - **Backtest benchmarks** for spotting strategy decay (PLAYBOOK §8): Sleeve A profit factor 1.30
   full / 1.19 OOS; Sleeve H OOS PF 1.37. A sleeve below PF 1.0 for 6+ rolling months → flag David.
 - Every strategy **fails** the gauntlet individually (`GAUNTLET_SUMMARY.md`); the **ensemble** is

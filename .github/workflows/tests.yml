@@ -1,0 +1,38 @@
+name: Tests
+
+# Correctness tests for the backtest engine and the live exit rules. Read-only:
+# never touches Alpaca, never places an order, no secrets required.
+#
+# The live exit tests exist because a data-layer defect (today's in-progress bar
+# leaking into the price panel) silently turned close-based rules into intraday
+# rules for five weeks. They replay the tapes that exposed it.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Backtest engine tests
+        run: python -m backtest.test_engine
+
+      - name: Live exit-rule tests
+        run: python -m papertrade.test_run_daily

@@ -204,6 +204,59 @@ def reconcile(client, state: dict, journal: Journal) -> dict:
     return held
 
 
+def a_exit_signal(closes: pd.Series, entry_date: str) -> dict | None:
+    """Sleeve A: sell at today's open after the first completed close > its prior close.
+
+    `closes` must be adjusted closes for COMPLETED sessions only - the same basis
+    the backtest evaluates the rule on. Returns None to hold, else the trigger.
+    """
+    s = closes.dropna()
+    if len(s) < 2:
+        return None
+    post = s[s.index > pd.Timestamp(entry_date)]
+    if post.empty:
+        return None
+    ups = post[post > s.shift(1).reindex(post.index)]
+    if ups.empty:
+        return None
+    first = ups.index[0]
+    detail = {
+        "trigger_close": round(float(s.loc[first]), 4),
+        "prior_close": round(float(s.shift(1).loc[first]), 4),
+        "trigger_session": str(first.date()),
+    }
+    # The rule fires on the FIRST up-close; if more have accrued we missed a run
+    # and are exiting late, which is worth flagging but still an exit.
+    if first == s.index[-1] and len(ups) == 1:
+        return {"reason": "first up-close", **detail}
+    return {"reason": "up-close (overdue)", "up_closes_since_entry": len(ups), **detail}
+
+
+def h_stop_signal(raw_closes: pd.Series, entry_date: str, avg_entry_price: float,
+                  stop_frac: float) -> dict | None:
+    """Sleeve H: 5% stop, measured on completed closes against the actual fill.
+
+    `raw_closes` must be UNADJUSTED closes: `avg_entry_price` is a real fill, so
+    comparing it to a dividend-adjusted series would measure a drawdown that
+    never happened and trip the stop early.
+    """
+    s = raw_closes.dropna()
+    post = s[s.index >= pd.Timestamp(entry_date)]
+    if post.empty:
+        return None
+    level = avg_entry_price * (1.0 - stop_frac)
+    breaches = post[post < level]
+    if breaches.empty:
+        return None
+    first = breaches.index[0]
+    return {
+        "reason": f"{stop_frac:.0%} stop",
+        "trigger_close": round(float(breaches.iloc[0]), 4),
+        "stop_level": round(float(level), 4),
+        "trigger_session": str(first.date()),
+    }
+
+
 def drawdown_gate(state: dict, equity: float, journal: Journal):
     """Update the high-water mark and return (drawdown, halt_a, halt_all)."""
     hwm = max(float(state.get("hwm", 0.0)), equity)
@@ -231,10 +284,17 @@ def run_morning(client, dry: bool) -> None:
 
     print("Refreshing data...")
     scr.refresh_data()
-    signals = scr.screen(equity)
-    as_of = signals["as_of"]
-    panel = scr.load_recent_panel()
-    c = panel["close"]
+    ref_et = scr.now_et()
+    signals = scr.screen(equity, ref_et=ref_et)
+    panel = scr.load_recent_panel(ref_et=ref_et)
+    # Rules read the last COMPLETED session; day counts anchor to the session we
+    # are trading into, so a 15-day time stop still fires on day 15.
+    signal_date = signals["as_of"]
+    as_of = signals["trade_date"]
+    c = panel["close"]           # adjusted - for close-vs-close rules
+    raw_c = panel["raw_close"]   # unadjusted - for comparisons against real fills
+    journal.log("data_asof", signal_date=signal_date, trade_date=as_of,
+                sessions=len(c.index))
 
     # ---- Sleeve A exits (market sell at open): first up-close since entry, or time stop
     for ticker, meta in list(state["positions"].items()):
@@ -251,26 +311,24 @@ def run_morning(client, dry: bool) -> None:
                 journal.log("exit_reason", ticker=ticker, sleeve="A",
                             reason="time stop (ticker absent from data)", days_held=days_held)
             else:
+                journal.log("action_needed", ticker=ticker,
+                            msg="A position absent from current data - price exit could NOT be "
+                                "evaluated; check this name manually before the close")
+            continue
+        exit_sig = a_exit_signal(c[ticker], meta["entry_date"])
+        if exit_sig:
+            if exit_sig["reason"] != "first up-close":
                 journal.log("warning", ticker=ticker,
-                            msg="A position absent from current data - price exit skipped, review manually")
-            continue
-        s = c[ticker].dropna()
-        if len(s) < 2:
-            continue
-        entry = pd.Timestamp(meta["entry_date"])
-        closes = s[s.index > entry]
-        up_closes = closes[closes > s.shift(1).reindex(closes.index)]
-        if len(up_closes) and up_closes.index[-1] == s.index[-1] and len(up_closes) == 1:
+                            msg="multiple up-closes since entry - exiting now (overdue)")
             submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
                          qty=qty, order_type="market")
+            journal.log("exit_reason", ticker=ticker, sleeve="A", days_held=days_held,
+                        signal_date=signal_date, **exit_sig)
         elif days_held >= SLEEVE_TIME_STOPS["A"]:
             submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
                          qty=qty, order_type="market")
-            journal.log("exit_reason", ticker=ticker, sleeve="A", reason="15d time stop", days_held=days_held)
-        elif len(up_closes) > 1:
-            journal.log("warning", ticker=ticker, msg="multiple up-closes since entry - exiting now (overdue)")
-            submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
-                         qty=qty, order_type="market")
+            journal.log("exit_reason", ticker=ticker, sleeve="A", reason="15d time stop",
+                        days_held=days_held, signal_date=signal_date)
 
     # ---- Sleeve A entries (limit DAY buys)
     a = signals["sleeves"]["A_three_lower_lows"]
@@ -296,13 +354,13 @@ def run_morning(client, dry: bool) -> None:
                          qty=order["qty"], order_type="limit", limit_price=order["limit_price"])
             slots -= 1
 
-    # ---- Sleeve H exits (market sell at open): 5% stop (any close since entry) or time stop
-    h_stop_mult = 1.0 - scr.H_STOP_FRAC
+    # ---- Sleeve H exits (market sell at open): 5% stop (any completed close since
+    # ---- entry, measured against the real fill) or time stop
     for ticker, meta in list(state["positions"].items()):
         if meta["sleeve"] != "H" or ticker not in held:
             continue
         days_held = trading_days_between(meta["entry_date"], as_of)
-        if ticker not in c.columns:
+        if ticker not in raw_c.columns:
             # missing from today's data: honor the time stop, else flag for review.
             if days_held >= SLEEVE_TIME_STOPS["H"]:
                 submit_order(client, journal, dry, sleeve="H", ticker=ticker, side="sell",
@@ -310,19 +368,18 @@ def run_morning(client, dry: bool) -> None:
                 journal.log("exit_reason", ticker=ticker, sleeve="H",
                             reason="time stop (ticker absent from data)", days_held=days_held)
             else:
-                journal.log("warning", ticker=ticker,
-                            msg="H position absent from current data - stop check skipped, review manually")
+                journal.log("action_needed", ticker=ticker,
+                            msg="H position absent from current data - stop could NOT be "
+                                "evaluated; check this name manually before the close")
             continue
-        s = c[ticker].dropna()
-        entry = pd.Timestamp(meta["entry_date"])
-        closes_since = s[s.index >= entry]
-        avg = held[ticker]["avg_entry_price"]
-        stop_hit = len(closes_since) > 0 and float(closes_since.min()) < avg * h_stop_mult
-        if stop_hit or days_held >= SLEEVE_TIME_STOPS["H"]:
+        stop_sig = h_stop_signal(raw_c[ticker], meta["entry_date"],
+                                 held[ticker]["avg_entry_price"], scr.H_STOP_FRAC)
+        if stop_sig or days_held >= SLEEVE_TIME_STOPS["H"]:
             submit_order(client, journal, dry, sleeve="H", ticker=ticker, side="sell",
                          qty=held[ticker]["qty"], order_type="market")
-            journal.log("exit_reason", ticker=ticker, sleeve="H",
-                        reason="5% stop" if stop_hit else "15d time stop", days_held=days_held)
+            journal.log("exit_reason", ticker=ticker, sleeve="H", days_held=days_held,
+                        signal_date=signal_date,
+                        **(stop_sig or {"reason": "15d time stop"}))
 
     # ---- Sleeve H entries (market DAY buys at open; SPY>SMA100 gate)
     hsig = signals["sleeves"]["H_momentum"]

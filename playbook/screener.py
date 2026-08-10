@@ -67,6 +67,11 @@ H_MIN_PRICE = 5.0
 # concentration, it does not change entry/exit rules.)
 SHARE_CLASS_MAP = {"GOOG": "GOOGL", "FOXA": "FOX", "NWSA": "NWS", "UAA": "UA"}
 
+# A daily bar is only final once the session closes. yfinance serves an
+# in-progress row during market hours whose "close" is just the last trade, so
+# anything read off it is a live intraday tick, not a completed daily bar.
+MARKET_CLOSE_ET = dt.time(16, 0)
+
 # US market holidays (NYSE) for month-end calendar math; extend yearly.
 US_MARKET_HOLIDAYS = [
     "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25",
@@ -106,13 +111,41 @@ def refresh_data() -> None:
     print("Refresh complete.")
 
 
-def load_recent_panel(min_coverage: float = 0.5) -> dict:
-    """Load the recent panel, trimming trailing sessions with sparse data.
+def now_et() -> dt.datetime:
+    """Current wall-clock time in US market time."""
+    from zoneinfo import ZoneInfo
 
-    yfinance often returns today's row before most tickers' daily bars are
-    populated (NaN for ~all names). Acting on that row would zero out every
-    signal, so we cut back to the last session where >= min_coverage of
-    tickers have a close.
+    return dt.datetime.now(ZoneInfo("America/New_York"))
+
+
+def session_complete(session, ref_et: dt.datetime | None = None) -> bool:
+    """Has this session's regular trading day finished?
+
+    Only completed sessions may drive signals or exit rules: the backtest
+    evaluates every rule on the prior completed bar and acts at the next open
+    (see backtest/engine.py), so reading a partially-formed bar would compare a
+    live intraday price against thresholds defined on closes.
+    """
+    ref = ref_et or now_et()
+    session_date = pd.Timestamp(session).date()
+    if session_date != ref.date():
+        return session_date < ref.date()
+    return ref.time() >= MARKET_CLOSE_ET
+
+
+def load_recent_panel(min_coverage: float = 0.5, ref_et: dt.datetime | None = None) -> dict:
+    """Load the recent panel: completed sessions only, sparse tails trimmed.
+
+    Two separate trailing rows have to go:
+
+    1. Sparse rows - yfinance often returns today's row before most tickers'
+       daily bars are populated (NaN for ~all names). Acting on that row would
+       zero out every signal, so we cut back to the last session where
+       >= min_coverage of tickers have a close.
+    2. The in-progress row - during market hours the coverage check above does
+       NOT catch today's bar, because liquid names populate immediately with a
+       live last trade. That row looks complete and is not; every rule read off
+       it silently becomes an intraday-tick rule.
     """
     names = ["raw_open", "raw_high", "raw_low", "raw_close", "adj_close", "volume"]
     raw = {n: pd.read_parquet(DATA_DIR / f"{RECENT_PREFIX}{n}.parquet") for n in names}
@@ -125,6 +158,16 @@ def load_recent_panel(min_coverage: float = 0.5) -> dict:
         print(f"NOTE: dropping {len(dropped)} sparse session(s) "
               f"({', '.join(str(d.date()) for d in dropped[:5])}); "
               f"acting as of {good_rows[-1].date()}")
+    ref = ref_et or now_et()
+    complete_rows = good_rows[[session_complete(ts, ref) for ts in good_rows]]
+    if complete_rows.empty:
+        raise SystemExit("No completed session in the panel - refresh failed?")
+    if len(complete_rows) != len(good_rows):
+        in_progress = good_rows.difference(complete_rows)
+        print(f"NOTE: excluding in-progress session(s) "
+              f"({', '.join(str(d.date()) for d in in_progress)}); "
+              f"rules evaluate on completed bars through {complete_rows[-1].date()}")
+    good_rows = complete_rows
     raw = {n: df.loc[good_rows] for n, df in raw.items()}
     factor = raw["adj_close"] / raw["raw_close"]
     return {
@@ -164,12 +207,16 @@ def trading_day_of_month(today: pd.Timestamp) -> int:
     return len([d for d in days if d not in holidays])
 
 
-def screen(equity: float) -> dict:
-    panel = load_recent_panel()
+def screen(equity: float, ref_et: dt.datetime | None = None) -> dict:
+    ref = ref_et or now_et()
+    panel = load_recent_panel(ref_et=ref)
     c, h, l, v = panel["close"], panel["high"], panel["low"], panel["volume"]
     raw_c = panel["raw_close"]
     today = c.index[-1]
-    out: dict = {"as_of": str(today.date()), "equity": equity, "sleeves": {}}
+    # as_of = the completed session every rule is evaluated on;
+    # trade_date = the session those orders are acted on (and the day-count anchor).
+    out: dict = {"as_of": str(today.date()), "trade_date": str(ref.date()),
+                 "equity": equity, "sleeves": {}}
 
     spy = c["SPY"].dropna()
     spy_above_200 = bool(spy.iloc[-1] > spy.rolling(200).mean().iloc[-1])
