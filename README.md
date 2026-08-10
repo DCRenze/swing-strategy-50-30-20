@@ -54,11 +54,49 @@ toolset still exposes `close_position`, so this is "cannot open new orders" rath
 strictly read-only. `ALPACA_PAPER_TRADE` defaults to `true`; both are overridable via the
 environment if you deliberately need more.
 
-**It will not connect from a Claude Code web/remote session.** Those run in a container
-whose egress policy blocks `*.alpaca.markets` (and `query1.finance.yahoo.com`) — the same
-reason the weekly report runs on GitHub Actions rather than as a Claude routine. Anything
-needing Alpaca or yfinance — `backtest.data`, `backtest.gauntlet`, `backtest.excursion`,
-`papertrade.run_daily` — has to run locally or in Actions.
+### Using it from a Claude Code cloud session
+
+Cloud sessions run in a container whose default **Trusted** egress policy blocks
+`*.alpaca.markets` and Yahoo, so the server starts but every call fails. To fix it, edit
+the environment at [claude.ai/code](https://claude.ai/code): click the **cloud icon**
+showing the environment name in the row above the message box, hover the environment, and
+click the **gear**. (There is no settings URL for this selector.)
+
+Set **Network access → Custom**, keep **"Also include default list of common package
+managers"** checked — `uvx` needs PyPI — and add:
+
+```text
+paper-api.alpaca.markets
+data.alpaca.markets
+query1.finance.yahoo.com
+query2.finance.yahoo.com
+fc.yahoo.com
+```
+
+Deliberately **not** `*.alpaca.markets`: that would also reach `api.alpaca.markets`, the
+live-trading endpoint. This list can only reach the paper account and market data, which
+matches PLAYBOOK §5 ("never trade live"). If yfinance fails on its cookie/crumb handshake,
+add `*.yahoo.com`.
+
+In the same dialog, add the keys under **Environment variables** (`.env` format) —
+`.env` is gitignored so it does **not** exist in the container, and `.mcp.json`'s
+`${ALPACA_API_KEY}` would otherwise expand to nothing:
+
+```text
+ALPACA_API_KEY=PK...
+ALPACA_SECRET_KEY=...
+```
+
+Note the dialog's own warning that these values are visible to anyone using the
+environment; keep them paper-trading keys.
+
+Save, then **start a new session** — the VM is provisioned at session start, so a running
+session won't pick up the change. Verify with
+`curl -sS -o /dev/null -w '%{http_code}\n' https://paper-api.alpaca.markets/v2/account`
+(401 = reachable, credentials simply not passed by curl; `000` = still blocked).
+
+GitHub traffic uses a separate proxy and is unaffected by this setting. Environments are
+personal to your account, so no admin action is needed.
 
 ## Layout
 
