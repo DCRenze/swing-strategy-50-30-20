@@ -211,9 +211,12 @@ alters a validated parameter.
 
 10. **Re-baseline the evaluation window.** Treat 07-01 → 08-07 as *invalid for judging the
     strategy*. Start the PLAYBOOK §8 rolling-PF clock from the first clean run after P0 ships.
-11. **Quarterly slippage check** (PLAYBOOK §8) has never run. Sleeve A dies at ~20 bps/side;
-    with limits filling at or inside the limit price, realized slippage should be ≈0 — worth
-    confirming from the fills now that a month of data exists.
+11. ~~**Quarterly slippage check** (PLAYBOOK §8) has never run.~~ **Done — clean.** Across
+    26 matched Sleeve A entries, every fill landed **at or inside** the submitted limit;
+    mean **−2.51 bps** (i.e. favourable), worst case 0.0 bps. Sleeve A dies at ~20 bps/side
+    (PLAYBOOK §6), so execution has a wide margin: the limit orders are providing liquidity
+    exactly as designed and are *not* being chased. This closes the §8 quarterly item and
+    rules out execution cost as a contributor to the drawdown.
 
 ### What *not* to do
 

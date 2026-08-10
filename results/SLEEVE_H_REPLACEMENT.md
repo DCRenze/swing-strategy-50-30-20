@@ -101,8 +101,45 @@ drawdown tolerance is genuinely high, but it buys nothing on utilisation.
 - **`range_reversion`** — 0.66 correlation; already rejected once for exactly this reason
   (PLAYBOOK §1).
 - **`momentum_burst`** — 81% invested but a −70.6% full-window drawdown.
-- **Re-tuning H's hold** — its edge is letting winners run (avg win +9.75% OOS);
-  shortening the hold destroys it and needs full re-validation.
+- **Re-tuning H's hold** — no longer an inference: the gauntlet already tested it.
+  See "Does H really hold 15 days?" below.
+
+## Does H really hold 15 days? Yes — and that is where its profit comes from
+
+| Exit | OOS share | avg return |
+|---|---|---|
+| rode the full **15-day time stop** | **62.3%** | **+7.02%** |
+| cut early on the 5% stop | 37.7% | −7.45% |
+
+Full window: 65.8% time-stop / 34.2% stop-out. The hold distribution is bimodal — H either
+stops out inside a few days or goes the distance; almost nothing exits in between.
+Expectancy decomposes exactly: `0.623 × 7.02% + 0.377 × (−7.45%) = +1.56%/trade`. **The
+day-15 winners are the entire edge**; the 5% stop just truncates the losers.
+
+Shortening the time stop is already in the evidence (`gauntlet_high52_breakout.json`,
+`variants.hold10`, full window):
+
+| | 15-day *(live)* | 10-day variant |
+|---|---|---|
+| CAGR | **9.12%** | 7.03% |
+| Sharpe | **0.51** | 0.42 |
+| Profit factor | **1.25** | 1.19 |
+| Avg return / trade | **+0.669%** | +0.410% |
+| Max drawdown | −45.2% | −42.6% |
+| **Exposure** | **74.3%** | **68.8%** |
+
+Cutting to 10 days costs ~23% of CAGR, ~18% of Sharpe and ~39% of per-trade expectancy,
+improves drawdown by only 2.6 points — and *lowers* capital utilisation, working against
+the other objective. There is no shorter-hold version of H worth deploying.
+
+**Note the interaction with the P0 fix.** Live H was exiting mostly on the 5% stop (12 of
+15 logged exits) because the buggy stop fired on intraday touches. Now that it compares
+completed closes in a consistent price space, fewer positions will be cut early — so a
+*larger* share of H trades will ride the full 15 days than was observed in July. The fix
+makes the 15-day behaviour more visible, not less.
+
+If a 15-day hold is an unacceptable constraint, the coherent response is to replace the
+sleeve (see the books above), not to re-tune it.
 
 ## Two operational consequences
 
