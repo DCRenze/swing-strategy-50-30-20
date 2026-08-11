@@ -87,9 +87,18 @@ def save_state(state: dict) -> None:
 
 
 class Journal:
-    def __init__(self) -> None:
-        JOURNAL_DIR.mkdir(exist_ok=True)
-        self.path = JOURNAL_DIR / f"{dt.date.today().isoformat()}.jsonl"
+    def __init__(self, dry: bool = False) -> None:
+        """Decision log for the day.
+
+        A dry run is a preview, not a record of what happened, and must not
+        share the file the reports read: report_discord/report_weekly count
+        `exit_reason` records and surface `action_needed` as alerts, so a
+        preview landing there double-counts exits and raises false alarms.
+        Previews go to journal/dry-run/ instead, where they stay inspectable.
+        """
+        directory = JOURNAL_DIR / "dry-run" if dry else JOURNAL_DIR
+        directory.mkdir(parents=True, exist_ok=True)
+        self.path = directory / f"{dt.date.today().isoformat()}.jsonl"
 
     def log(self, kind: str, **kw) -> None:
         rec = {"ts": dt.datetime.now().isoformat(timespec="seconds"), "kind": kind, **kw}
@@ -324,7 +333,7 @@ def drawdown_gate(state: dict, equity: float, journal: Journal):
 
 
 def run_morning(client, dry: bool, submit_at: str | None = None) -> None:
-    journal = Journal()
+    journal = Journal(dry)
     state = load_state()
     held = reconcile(client, state, journal, dry) if client is not None else {}
     equity = float(client.get_account().equity) if client is not None else 100_000.0

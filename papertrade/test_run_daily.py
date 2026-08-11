@@ -232,6 +232,28 @@ def test_dry_run_does_not_touch_the_ledger():
     print("ok: dry run journals the close but leaves trades.jsonl alone")
 
 
+def test_dry_run_journal_is_separate():
+    """Reports read journal/<date>.jsonl - they count exit_reason records and
+    surface action_needed as alerts. A preview writing there double-counted the
+    2026-08-10 exits (8 reported, 4 real) and raised a false alarm."""
+    original = rd.JOURNAL_DIR
+    with tempfile.TemporaryDirectory() as tmp:
+        rd.JOURNAL_DIR = Path(tmp)
+        try:
+            real, preview = rd.Journal(dry=False), rd.Journal(dry=True)
+            real.log("exit_reason", ticker="REAL", reason="first up-close")
+            preview.log("exit_reason", ticker="FAKE", reason="first up-close")
+            preview.log("action_needed", msg="schedule warning from a preview")
+            assert real.path.parent == Path(tmp), real.path
+            assert preview.path.parent == Path(tmp) / "dry-run", preview.path
+            body = real.path.read_text()
+            assert "REAL" in body and "FAKE" not in body, body
+            assert "action_needed" not in body, "a preview alert reached the record"
+        finally:
+            rd.JOURNAL_DIR = original
+    print("ok: dry-run journal is separate, so previews cannot pollute reports")
+
+
 if __name__ == "__main__":
     test_session_complete()
     test_panel_excludes_in_progress_row()
@@ -248,4 +270,5 @@ if __name__ == "__main__":
     test_submit_barrier_refuses_absurd_wait()
     test_submit_barrier_survives_bad_input()
     test_dry_run_does_not_touch_the_ledger()
+    test_dry_run_journal_is_separate()
     print("\nall exit-rule tests passed")

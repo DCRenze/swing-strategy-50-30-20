@@ -2,41 +2,6 @@
 {"ts": "2026-08-10T06:20:18", "kind": "position_closed", "ticker": "BBY", "sleeve": "A", "entry_date": "2026-08-03", "entry_px": 83.9521}
 {"ts": "2026-08-10T06:20:18", "kind": "trade_closed", "dry_run": true, "ticker": "AVT", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-07", "entry_px": 98.8921, "exit_px": 94.65, "qty": 40.287, "ret": -0.0429, "pnl": -170.9}
 {"ts": "2026-08-10T06:20:18", "kind": "position_closed", "ticker": "AVT", "sleeve": "H", "entry_date": "2026-08-06", "entry_px": 98.8921}
-{"ts": "2026-08-10T06:20:18", "kind": "run_start", "mode": "morning", "equity": 97190.02, "hwm": 100432.77, "drawdown": -0.0323, "dry_run": true}
-{"ts": "2026-08-10T06:21:23", "kind": "data_asof", "signal_date": "2026-08-07", "trade_date": "2026-08-10", "sessions": 307}
-{"ts": "2026-08-10T06:21:23", "kind": "action_needed", "msg": "--submit-at 09:30 is 429 min away; refusing to wait, submitting now - check the schedule"}
-{"ts": "2026-08-10T06:21:23", "kind": "warning", "ticker": "CF", "msg": "multiple up-closes since entry - exiting now (overdue)"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "A", "ticker": "CF", "side": "sell", "qty": 49.0675, "order_type": "market", "limit_price": null, "client_order_id": "A-CF-20260810-sell"}
-{"ts": "2026-08-10T06:21:23", "kind": "exit_reason", "ticker": "CF", "sleeve": "A", "days_held": 5, "signal_date": "2026-08-07", "reason": "up-close (overdue)", "up_closes_since_entry": 1, "trigger_close": 116.73, "prior_close": 116.71, "trigger_session": "2026-08-06"}
-{"ts": "2026-08-10T06:21:23", "kind": "warning", "ticker": "SO", "msg": "multiple up-closes since entry - exiting now (overdue)"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "A", "ticker": "SO", "side": "sell", "qty": 63.3983, "order_type": "market", "limit_price": null, "client_order_id": "A-SO-20260810-sell"}
-{"ts": "2026-08-10T06:21:23", "kind": "exit_reason", "ticker": "SO", "sleeve": "A", "days_held": 5, "signal_date": "2026-08-07", "reason": "up-close (overdue)", "up_closes_since_entry": 1, "trigger_close": 93.25, "prior_close": 92.94, "trigger_session": "2026-08-04"}
-{"ts": "2026-08-10T06:21:23", "kind": "warning", "ticker": "EOG", "msg": "multiple up-closes since entry - exiting now (overdue)"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "A", "ticker": "EOG", "side": "sell", "qty": 43.003, "order_type": "market", "limit_price": null, "client_order_id": "A-EOG-20260810-sell"}
-{"ts": "2026-08-10T06:21:23", "kind": "exit_reason", "ticker": "EOG", "sleeve": "A", "days_held": 3, "signal_date": "2026-08-07", "reason": "up-close (overdue)", "up_closes_since_entry": 1, "trigger_close": 136.2, "prior_close": 134.23, "trigger_session": "2026-08-06"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "A", "ticker": "UNH", "side": "sell", "qty": 14.5576, "order_type": "market", "limit_price": null, "client_order_id": "A-UNH-20260810-sell"}
-{"ts": "2026-08-10T06:21:23", "kind": "exit_reason", "ticker": "UNH", "sleeve": "A", "days_held": 2, "signal_date": "2026-08-07", "reason": "first up-close", "trigger_close": 407.08, "prior_close": 403.97, "trigger_session": "2026-08-07"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "A", "ticker": "MPC", "side": "buy", "qty": 20.0851, "order_type": "limit", "limit_price": 290.34, "client_order_id": "A-MPC-20260810-buy"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "A", "ticker": "AEP", "side": "buy", "qty": 47.2108, "order_type": "limit", "limit_price": 123.52, "client_order_id": "A-AEP-20260810-buy"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "A", "ticker": "SPG", "side": "buy", "qty": 26.5484, "order_type": "limit", "limit_price": 219.65, "client_order_id": "A-SPG-20260810-buy"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "A", "ticker": "WAB", "side": "buy", "qty": 20.3769, "order_type": "limit", "limit_price": 286.18, "client_order_id": "A-WAB-20260810-buy"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "A", "ticker": "DINO", "side": "buy", "qty": 74.307, "order_type": "limit", "limit_price": 78.48, "client_order_id": "A-DINO-20260810-buy"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "A", "ticker": "D", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "A", "ticker": "FE", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "A", "ticker": "HST", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "A", "ticker": "DVA", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "A", "ticker": "BAX", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_order", "sleeve": "H", "ticker": "TWLO", "side": "buy", "qty": 16.1124, "order_type": "market", "limit_price": null, "client_order_id": "H-TWLO-20260810-buy"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "H", "ticker": "OGN", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "H", "ticker": "NTRA", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "H", "ticker": "ABNB", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "H", "ticker": "JHX", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "H", "ticker": "SWK", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "H", "ticker": "ASH", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "H", "ticker": "RGA", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "skip", "sleeve": "H", "ticker": "TECH", "reason": "sleeve full"}
-{"ts": "2026-08-10T06:21:23", "kind": "dry_run_end", "note": "state.json and trades.jsonl left untouched"}
-{"ts": "2026-08-10T06:21:23", "kind": "run_end", "mode": "morning"}
 {"ts": "2026-08-10T13:20:37", "kind": "trade_closed", "dry_run": null, "ticker": "BBY", "sleeve": "A", "entry_date": "2026-08-03", "exit_date": "2026-08-07", "entry_px": 83.9521, "exit_px": 79.86, "qty": 70.1735, "ret": -0.0487, "pnl": -287.16}
 {"ts": "2026-08-10T13:20:37", "kind": "position_closed", "ticker": "BBY", "sleeve": "A", "entry_date": "2026-08-03", "entry_px": 83.9521}
 {"ts": "2026-08-10T13:20:37", "kind": "trade_closed", "dry_run": null, "ticker": "AVT", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-07", "entry_px": 98.8921, "exit_px": 94.65, "qty": 40.287, "ret": -0.0429, "pnl": -170.9}
