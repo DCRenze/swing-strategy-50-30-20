@@ -41,3 +41,7 @@
 {"ticker": "AWK", "sleeve": "A", "entry_date": "2026-08-03", "exit_date": "2026-08-06", "entry_px": 131.9, "exit_px": 134.36, "qty": 44.7007, "ret": 0.0187, "pnl": 109.96}
 {"ticker": "BBY", "sleeve": "A", "entry_date": "2026-08-03", "exit_date": "2026-08-07", "entry_px": 83.9521, "exit_px": 79.86, "qty": 70.1735, "ret": -0.0487, "pnl": -287.16}
 {"ticker": "AVT", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-07", "entry_px": 98.8921, "exit_px": 94.65, "qty": 40.287, "ret": -0.0429, "pnl": -170.9}
+{"ticker": "CF", "sleeve": "A", "entry_date": "2026-08-03", "exit_date": "2026-08-10", "entry_px": 120.09, "exit_px": 116.5289, "qty": 49.0675, "ret": -0.0297, "pnl": -174.73}
+{"ticker": "SO", "sleeve": "A", "entry_date": "2026-08-03", "exit_date": "2026-08-10", "entry_px": 93.0004, "exit_px": 91.6156, "qty": 63.3983, "ret": -0.0149, "pnl": -87.8}
+{"ticker": "EOG", "sleeve": "A", "entry_date": "2026-08-05", "exit_date": "2026-08-10", "entry_px": 137.05, "exit_px": 137.73, "qty": 43.003, "ret": 0.005, "pnl": 29.24}
+{"ticker": "UNH", "sleeve": "A", "entry_date": "2026-08-06", "exit_date": "2026-08-10", "entry_px": 403.57, "exit_px": 411.71, "qty": 14.5576, "ret": 0.0202, "pnl": 118.5}
