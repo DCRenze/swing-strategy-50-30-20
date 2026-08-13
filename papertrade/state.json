@@ -45,11 +45,6 @@
       "entry_date": "2026-08-06",
       "entry_px": 52.5383
     },
-    "AEP": {
-      "sleeve": "A",
-      "entry_date": "2026-08-10",
-      "entry_px": 123.4147
-    },
     "SPG": {
       "sleeve": "A",
       "entry_date": "2026-08-10",
@@ -59,6 +54,16 @@
       "sleeve": "H",
       "entry_date": "2026-08-10",
       "entry_px": 246.2404
+    },
+    "P": {
+      "sleeve": "H",
+      "entry_date": "2026-08-12",
+      "entry_px": 113.6833
+    },
+    "TJX": {
+      "sleeve": "A",
+      "entry_date": "2026-08-12",
+      "entry_px": 153.15
     }
   },
   "hwm": 100432.77

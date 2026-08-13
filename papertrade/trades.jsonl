@@ -46,3 +46,4 @@
 {"ticker": "EOG", "sleeve": "A", "entry_date": "2026-08-05", "exit_date": "2026-08-10", "entry_px": 137.05, "exit_px": 137.73, "qty": 43.003, "ret": 0.005, "pnl": 29.24}
 {"ticker": "UNH", "sleeve": "A", "entry_date": "2026-08-06", "exit_date": "2026-08-10", "entry_px": 403.57, "exit_px": 411.71, "qty": 14.5576, "ret": 0.0202, "pnl": 118.5}
 {"ticker": "AIZ", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-11", "entry_px": 304.1039, "exit_px": 285.29, "qty": 12.9877, "ret": -0.0619, "pnl": -244.35}
+{"ticker": "AEP", "sleeve": "A", "entry_date": "2026-08-10", "exit_date": "2026-08-12", "entry_px": 123.4147, "exit_px": 123.8, "qty": 47.2843, "ret": 0.0031, "pnl": 18.22}
