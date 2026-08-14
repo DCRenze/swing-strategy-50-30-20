@@ -25,11 +25,6 @@
       "entry_date": "2026-08-06",
       "entry_px": 265.9005
     },
-    "CVS": {
-      "sleeve": "A",
-      "entry_date": "2026-08-06",
-      "entry_px": 96.69
-    },
     "EMR": {
       "sleeve": "H",
       "entry_date": "2026-08-06",
@@ -44,11 +39,6 @@
       "sleeve": "H",
       "entry_date": "2026-08-06",
       "entry_px": 52.5383
-    },
-    "SPG": {
-      "sleeve": "A",
-      "entry_date": "2026-08-10",
-      "entry_px": 219.51
     },
     "TWLO": {
       "sleeve": "H",

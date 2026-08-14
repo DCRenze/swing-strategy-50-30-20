@@ -47,3 +47,5 @@
 {"ticker": "UNH", "sleeve": "A", "entry_date": "2026-08-06", "exit_date": "2026-08-10", "entry_px": 403.57, "exit_px": 411.71, "qty": 14.5576, "ret": 0.0202, "pnl": 118.5}
 {"ticker": "AIZ", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-11", "entry_px": 304.1039, "exit_px": 285.29, "qty": 12.9877, "ret": -0.0619, "pnl": -244.35}
 {"ticker": "AEP", "sleeve": "A", "entry_date": "2026-08-10", "exit_date": "2026-08-12", "entry_px": 123.4147, "exit_px": 123.8, "qty": 47.2843, "ret": 0.0031, "pnl": 18.22}
+{"ticker": "CVS", "sleeve": "A", "entry_date": "2026-08-06", "exit_date": "2026-08-13", "entry_px": 96.69, "exit_px": 95.56, "qty": 60.7593, "ret": -0.0117, "pnl": -68.66}
+{"ticker": "SPG", "sleeve": "A", "entry_date": "2026-08-10", "exit_date": "2026-08-13", "entry_px": 219.51, "exit_px": 221.19, "qty": 26.5897, "ret": 0.0077, "pnl": 44.67}

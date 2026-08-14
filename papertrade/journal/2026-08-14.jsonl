@@ -1,0 +1,32 @@
+{"ts": "2026-08-14T13:20:30", "kind": "trade_closed", "dry_run": null, "ticker": "CVS", "sleeve": "A", "entry_date": "2026-08-06", "exit_date": "2026-08-13", "entry_px": 96.69, "exit_px": 95.56, "qty": 60.7593, "ret": -0.0117, "pnl": -68.66}
+{"ts": "2026-08-14T13:20:30", "kind": "position_closed", "ticker": "CVS", "sleeve": "A", "entry_date": "2026-08-06", "entry_px": 96.69}
+{"ts": "2026-08-14T13:20:30", "kind": "trade_closed", "dry_run": null, "ticker": "SPG", "sleeve": "A", "entry_date": "2026-08-10", "exit_date": "2026-08-13", "entry_px": 219.51, "exit_px": 221.19, "qty": 26.5897, "ret": 0.0077, "pnl": 44.67}
+{"ts": "2026-08-14T13:20:30", "kind": "position_closed", "ticker": "SPG", "sleeve": "A", "entry_date": "2026-08-10", "entry_px": 219.51}
+{"ts": "2026-08-14T13:20:30", "kind": "run_start", "mode": "morning", "equity": 97566.88, "hwm": 100432.77, "drawdown": -0.0285, "dry_run": false}
+{"ts": "2026-08-14T13:21:22", "kind": "data_asof", "signal_date": "2026-08-13", "trade_date": "2026-08-14", "sessions": 309}
+{"ts": "2026-08-14T13:21:22", "kind": "submit_window", "target": "09:30", "waited_s": 517.7, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "TJX", "side": "sell", "qty": 38.2509, "order_type": "market", "limit_price": null, "client_order_id": "A-TJX-20260814-sell"}
+{"ts": "2026-08-14T13:30:00", "kind": "exit_reason", "ticker": "TJX", "sleeve": "A", "days_held": 2, "signal_date": "2026-08-13", "reason": "first up-close", "trigger_close": 153.81, "prior_close": 152.13, "trigger_session": "2026-08-13"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMZN", "side": "buy", "qty": 22.6253, "order_type": "limit", "limit_price": 258.74, "client_order_id": "A-AMZN-20260814-buy"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_error", "error": "{\"code\":42210000,\"message\":\"asset \\\"BRK-B\\\" not found\"}", "sleeve": "A", "ticker": "BRK-B", "side": "buy", "qty": 11.6992, "order_type": "limit", "limit_price": 500.38, "client_order_id": "A-BRK-B-20260814-buy"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "TXN", "side": "buy", "qty": 22.0671, "order_type": "limit", "limit_price": 265.28, "client_order_id": "A-TXN-20260814-buy"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "UNH", "side": "buy", "qty": 14.9707, "order_type": "limit", "limit_price": 391.03, "client_order_id": "A-UNH-20260814-buy"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "RTX", "side": "buy", "qty": 26.9944, "order_type": "limit", "limit_price": 216.86, "client_order_id": "A-RTX-20260814-buy"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "FERG", "side": "buy", "qty": 24.2033, "order_type": "limit", "limit_price": 241.87, "client_order_id": "A-FERG-20260814-buy"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MCHP", "side": "buy", "qty": 78.823, "order_type": "limit", "limit_price": 74.27, "client_order_id": "A-MCHP-20260814-buy"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "TRV", "side": "buy", "qty": 16.0916, "order_type": "limit", "limit_price": 363.79, "client_order_id": "A-TRV-20260814-buy"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "SHW", "side": "buy", "qty": 16.5153, "order_type": "limit", "limit_price": 354.46, "client_order_id": "A-SHW-20260814-buy"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "ROST", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "order_submitted", "sleeve": "H", "ticker": "YETI", "side": "sell", "qty": 74.5897, "order_type": "market", "limit_price": null, "client_order_id": "H-YETI-20260814-sell"}
+{"ts": "2026-08-14T13:30:00", "kind": "exit_reason", "ticker": "YETI", "sleeve": "H", "days_held": 6, "signal_date": "2026-08-13", "reason": "5% stop", "trigger_close": 45.47, "stop_level": 49.9113, "trigger_session": "2026-08-13"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "RBRK", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "S", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "HPQ", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "ABNB", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "DBX", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "ARMK", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "MDB", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "FDX", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "RGA", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "SSB", "reason": "sleeve full"}
+{"ts": "2026-08-14T13:30:00", "kind": "run_end", "mode": "morning"}
