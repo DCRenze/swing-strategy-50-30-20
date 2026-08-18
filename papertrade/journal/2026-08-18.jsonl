@@ -1,0 +1,19 @@
+{"ts": "2026-08-18T13:20:31", "kind": "position_adopted", "ticker": "AIT", "sleeve": "H", "entry_date": "2026-08-17", "entry_px": 359.2121}
+{"ts": "2026-08-18T13:20:31", "kind": "position_adopted", "ticker": "GM", "sleeve": "A", "entry_date": "2026-08-17", "entry_px": 85.06}
+{"ts": "2026-08-18T13:20:31", "kind": "position_adopted", "ticker": "SHW", "sleeve": "A", "entry_date": "2026-08-17", "entry_px": 352.25}
+{"ts": "2026-08-18T13:20:31", "kind": "position_adopted", "ticker": "TRV", "sleeve": "A", "entry_date": "2026-08-17", "entry_px": 364.49}
+{"ts": "2026-08-18T13:20:31", "kind": "position_adopted", "ticker": "UNH", "sleeve": "A", "entry_date": "2026-08-17", "entry_px": 393.6159}
+{"ts": "2026-08-18T13:20:31", "kind": "run_start", "mode": "morning", "equity": 96900.04, "hwm": 100432.77, "drawdown": -0.0352, "dry_run": false}
+{"ts": "2026-08-18T13:21:40", "kind": "data_asof", "signal_date": "2026-08-14", "trade_date": "2026-08-18", "sessions": 307}
+{"ts": "2026-08-18T13:21:40", "kind": "submit_window", "target": "09:30", "waited_s": 499.8, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-08-18T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMZN", "side": "buy", "qty": 22.6541, "order_type": "limit", "limit_price": 256.64, "client_order_id": "A-AMZN-20260818-buy"}
+{"ts": "2026-08-18T13:30:00", "kind": "order_error", "error": "{\"code\":42210000,\"message\":\"asset \\\"BRK-B\\\" not found\"}", "sleeve": "A", "ticker": "BRK-B", "side": "buy", "qty": 11.6811, "order_type": "limit", "limit_price": 497.73, "client_order_id": "A-BRK-B-20260818-buy"}
+{"ts": "2026-08-18T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "UNH", "reason": "already held"}
+{"ts": "2026-08-18T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MCHP", "side": "buy", "qty": 76.5665, "order_type": "limit", "limit_price": 75.93, "client_order_id": "A-MCHP-20260818-buy"}
+{"ts": "2026-08-18T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "VRTX", "side": "buy", "qty": 11.7708, "order_type": "limit", "limit_price": 493.94, "client_order_id": "A-VRTX-20260818-buy"}
+{"ts": "2026-08-18T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "GM", "reason": "already held"}
+{"ts": "2026-08-18T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "ITW", "side": "buy", "qty": 20.3118, "order_type": "limit", "limit_price": 286.24, "client_order_id": "A-ITW-20260818-buy"}
+{"ts": "2026-08-18T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "IQV", "side": "buy", "qty": 25.2088, "order_type": "limit", "limit_price": 230.63, "client_order_id": "A-IQV-20260818-buy"}
+{"ts": "2026-08-18T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "NBIX", "reason": "sleeve full"}
+{"ts": "2026-08-18T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "RL", "reason": "sleeve full"}
+{"ts": "2026-08-18T13:30:00", "kind": "run_end", "mode": "morning"}

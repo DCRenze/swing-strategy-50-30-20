@@ -44,6 +44,31 @@
       "sleeve": "H",
       "entry_date": "2026-08-12",
       "entry_px": 113.6833
+    },
+    "AIT": {
+      "sleeve": "H",
+      "entry_date": "2026-08-17",
+      "entry_px": 359.2121
+    },
+    "GM": {
+      "sleeve": "A",
+      "entry_date": "2026-08-17",
+      "entry_px": 85.06
+    },
+    "SHW": {
+      "sleeve": "A",
+      "entry_date": "2026-08-17",
+      "entry_px": 352.25
+    },
+    "TRV": {
+      "sleeve": "A",
+      "entry_date": "2026-08-17",
+      "entry_px": 364.49
+    },
+    "UNH": {
+      "sleeve": "A",
+      "entry_date": "2026-08-17",
+      "entry_px": 393.6159
     }
   },
   "hwm": 100432.77
