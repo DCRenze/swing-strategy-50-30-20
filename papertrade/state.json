@@ -30,16 +30,6 @@
       "entry_date": "2026-08-06",
       "entry_px": 162.6675
     },
-    "IFF": {
-      "sleeve": "H",
-      "entry_date": "2026-08-06",
-      "entry_px": 85.6874
-    },
-    "TWLO": {
-      "sleeve": "H",
-      "entry_date": "2026-08-10",
-      "entry_px": 246.2404
-    },
     "P": {
       "sleeve": "H",
       "entry_date": "2026-08-12",
@@ -60,11 +50,6 @@
       "entry_date": "2026-08-17",
       "entry_px": 352.25
     },
-    "TRV": {
-      "sleeve": "A",
-      "entry_date": "2026-08-17",
-      "entry_px": 364.49
-    },
     "UNH": {
       "sleeve": "A",
       "entry_date": "2026-08-17",
@@ -79,6 +64,11 @@
       "sleeve": "A",
       "entry_date": "2026-08-18",
       "entry_px": 75.93
+    },
+    "PANW": {
+      "sleeve": "A",
+      "entry_date": "2026-08-19",
+      "entry_px": 363.26
     }
   },
   "hwm": 100432.77
