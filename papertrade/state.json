@@ -10,11 +10,6 @@
       "entry_date": "2026-08-06",
       "entry_px": 413.12
     },
-    "ATI": {
-      "sleeve": "H",
-      "entry_date": "2026-08-06",
-      "entry_px": 231.0
-    },
     "BIO": {
       "sleeve": "H",
       "entry_date": "2026-08-06",
@@ -40,16 +35,6 @@
       "entry_date": "2026-08-17",
       "entry_px": 359.2121
     },
-    "GM": {
-      "sleeve": "A",
-      "entry_date": "2026-08-17",
-      "entry_px": 85.06
-    },
-    "SHW": {
-      "sleeve": "A",
-      "entry_date": "2026-08-17",
-      "entry_px": 352.25
-    },
     "UNH": {
       "sleeve": "A",
       "entry_date": "2026-08-17",
@@ -69,6 +54,21 @@
       "sleeve": "A",
       "entry_date": "2026-08-19",
       "entry_px": 363.26
+    },
+    "ABNB": {
+      "sleeve": "H",
+      "entry_date": "2026-08-20",
+      "entry_px": 185.3384
+    },
+    "JPM": {
+      "sleeve": "A",
+      "entry_date": "2026-08-20",
+      "entry_px": 352.7941
+    },
+    "MRNA": {
+      "sleeve": "H",
+      "entry_date": "2026-08-20",
+      "entry_px": 143.88
     }
   },
   "hwm": 100432.77

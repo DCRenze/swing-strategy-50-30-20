@@ -54,3 +54,6 @@
 {"ticker": "IFF", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-19", "entry_px": 85.6874, "exit_px": 82.8646, "qty": 44.4726, "ret": -0.0329, "pnl": -125.54}
 {"ticker": "TWLO", "sleeve": "H", "entry_date": "2026-08-10", "exit_date": "2026-08-19", "entry_px": 246.2404, "exit_px": 232.33, "qty": 16.1375, "ret": -0.0565, "pnl": -224.48}
 {"ticker": "TRV", "sleeve": "A", "entry_date": "2026-08-17", "exit_date": "2026-08-19", "entry_px": 364.49, "exit_px": 365.01, "qty": 16.0046, "ret": 0.0014, "pnl": 8.32}
+{"ticker": "ATI", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-20", "entry_px": 231.0, "exit_px": 213.5, "qty": 19.0956, "ret": -0.0758, "pnl": -334.17}
+{"ticker": "GM", "sleeve": "A", "entry_date": "2026-08-17", "exit_date": "2026-08-20", "entry_px": 85.06, "exit_px": 84.6, "qty": 68.5747, "ret": -0.0054, "pnl": -31.54}
+{"ticker": "SHW", "sleeve": "A", "entry_date": "2026-08-17", "exit_date": "2026-08-20", "entry_px": 352.25, "exit_px": 341.6223, "qty": 16.5558, "ret": -0.0302, "pnl": -175.95}
