@@ -57,3 +57,5 @@
 {"ticker": "ATI", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-20", "entry_px": 231.0, "exit_px": 213.5, "qty": 19.0956, "ret": -0.0758, "pnl": -334.17}
 {"ticker": "GM", "sleeve": "A", "entry_date": "2026-08-17", "exit_date": "2026-08-20", "entry_px": 85.06, "exit_px": 84.6, "qty": 68.5747, "ret": -0.0054, "pnl": -31.54}
 {"ticker": "SHW", "sleeve": "A", "entry_date": "2026-08-17", "exit_date": "2026-08-20", "entry_px": 352.25, "exit_px": 341.6223, "qty": 16.5558, "ret": -0.0302, "pnl": -175.95}
+{"ticker": "AIT", "sleeve": "H", "entry_date": "2026-08-17", "exit_date": "2026-08-21", "entry_px": 359.2121, "exit_px": 340.13, "qty": 10.745, "ret": -0.0531, "pnl": -205.04}
+{"ticker": "MRNA", "sleeve": "H", "entry_date": "2026-08-20", "exit_date": "2026-08-21", "entry_px": 143.88, "exit_px": 138.8293, "qty": 22.0817, "ret": -0.0351, "pnl": -111.53}

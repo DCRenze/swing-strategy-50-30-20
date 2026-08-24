@@ -30,11 +30,6 @@
       "entry_date": "2026-08-12",
       "entry_px": 113.6833
     },
-    "AIT": {
-      "sleeve": "H",
-      "entry_date": "2026-08-17",
-      "entry_px": 359.2121
-    },
     "UNH": {
       "sleeve": "A",
       "entry_date": "2026-08-17",
@@ -65,10 +60,10 @@
       "entry_date": "2026-08-20",
       "entry_px": 352.7941
     },
-    "MRNA": {
+    "ILMN": {
       "sleeve": "H",
-      "entry_date": "2026-08-20",
-      "entry_px": 143.88
+      "entry_date": "2026-08-21",
+      "entry_px": 212.9295
     }
   },
   "hwm": 100432.77
