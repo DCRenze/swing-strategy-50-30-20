@@ -30,40 +30,40 @@
       "entry_date": "2026-08-12",
       "entry_px": 113.6833
     },
-    "UNH": {
-      "sleeve": "A",
-      "entry_date": "2026-08-17",
-      "entry_px": 393.6159
-    },
     "ITW": {
       "sleeve": "A",
       "entry_date": "2026-08-18",
       "entry_px": 286.23
-    },
-    "MCHP": {
-      "sleeve": "A",
-      "entry_date": "2026-08-18",
-      "entry_px": 75.93
-    },
-    "PANW": {
-      "sleeve": "A",
-      "entry_date": "2026-08-19",
-      "entry_px": 363.26
     },
     "ABNB": {
       "sleeve": "H",
       "entry_date": "2026-08-20",
       "entry_px": 185.3384
     },
-    "JPM": {
-      "sleeve": "A",
-      "entry_date": "2026-08-20",
-      "entry_px": 352.7941
-    },
     "ILMN": {
       "sleeve": "H",
       "entry_date": "2026-08-21",
       "entry_px": 212.9295
+    },
+    "DINO": {
+      "sleeve": "H",
+      "entry_date": "2026-08-24",
+      "entry_px": 98.0897
+    },
+    "INTC": {
+      "sleeve": "A",
+      "entry_date": "2026-08-24",
+      "entry_px": 85.5578
+    },
+    "NVDA": {
+      "sleeve": "A",
+      "entry_date": "2026-08-24",
+      "entry_px": 210.27
+    },
+    "VIRT": {
+      "sleeve": "H",
+      "entry_date": "2026-08-24",
+      "entry_px": 65.7121
     }
   },
   "hwm": 100432.77
