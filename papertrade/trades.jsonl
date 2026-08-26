@@ -63,3 +63,5 @@
 {"ticker": "MCHP", "sleeve": "A", "entry_date": "2026-08-18", "exit_date": "2026-08-24", "entry_px": 75.93, "exit_px": 74.0048, "qty": 76.5665, "ret": -0.0254, "pnl": -147.41}
 {"ticker": "PANW", "sleeve": "A", "entry_date": "2026-08-19", "exit_date": "2026-08-24", "entry_px": 363.26, "exit_px": 355.3827, "qty": 16.0232, "ret": -0.0217, "pnl": -126.22}
 {"ticker": "JPM", "sleeve": "A", "entry_date": "2026-08-20", "exit_date": "2026-08-24", "entry_px": 352.7941, "exit_px": 354.5309, "qty": 16.3709, "ret": 0.0049, "pnl": 28.43}
+{"ticker": "P", "sleeve": "H", "entry_date": "2026-08-12", "exit_date": "2026-08-25", "entry_px": 113.6833, "exit_px": 102.25, "qty": 35.7044, "ret": -0.1006, "pnl": -408.22}
+{"ticker": "ITW", "sleeve": "A", "entry_date": "2026-08-18", "exit_date": "2026-08-25", "entry_px": 286.23, "exit_px": 282.263, "qty": 20.3118, "ret": -0.0139, "pnl": -80.58}
