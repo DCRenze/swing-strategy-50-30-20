@@ -40,20 +40,15 @@
       "entry_date": "2026-08-24",
       "entry_px": 98.0897
     },
-    "INTC": {
-      "sleeve": "A",
-      "entry_date": "2026-08-24",
-      "entry_px": 85.5578
-    },
-    "NVDA": {
-      "sleeve": "A",
-      "entry_date": "2026-08-24",
-      "entry_px": 210.27
-    },
     "VIRT": {
       "sleeve": "H",
       "entry_date": "2026-08-24",
       "entry_px": 65.7121
+    },
+    "NTRA": {
+      "sleeve": "H",
+      "entry_date": "2026-08-26",
+      "entry_px": 337.3545
     }
   },
   "hwm": 100432.77

@@ -65,3 +65,5 @@
 {"ticker": "JPM", "sleeve": "A", "entry_date": "2026-08-20", "exit_date": "2026-08-24", "entry_px": 352.7941, "exit_px": 354.5309, "qty": 16.3709, "ret": 0.0049, "pnl": 28.43}
 {"ticker": "P", "sleeve": "H", "entry_date": "2026-08-12", "exit_date": "2026-08-25", "entry_px": 113.6833, "exit_px": 102.25, "qty": 35.7044, "ret": -0.1006, "pnl": -408.22}
 {"ticker": "ITW", "sleeve": "A", "entry_date": "2026-08-18", "exit_date": "2026-08-25", "entry_px": 286.23, "exit_px": 282.263, "qty": 20.3118, "ret": -0.0139, "pnl": -80.58}
+{"ticker": "INTC", "sleeve": "A", "entry_date": "2026-08-24", "exit_date": "2026-08-26", "entry_px": 85.5578, "exit_px": 86.66, "qty": 67.4399, "ret": 0.0129, "pnl": 74.33}
+{"ticker": "NVDA", "sleeve": "A", "entry_date": "2026-08-24", "exit_date": "2026-08-26", "entry_px": 210.27, "exit_px": 212.4562, "qty": 27.4442, "ret": 0.0104, "pnl": 60.0}
