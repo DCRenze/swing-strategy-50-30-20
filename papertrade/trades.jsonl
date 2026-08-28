@@ -67,3 +67,8 @@
 {"ticker": "ITW", "sleeve": "A", "entry_date": "2026-08-18", "exit_date": "2026-08-25", "entry_px": 286.23, "exit_px": 282.263, "qty": 20.3118, "ret": -0.0139, "pnl": -80.58}
 {"ticker": "INTC", "sleeve": "A", "entry_date": "2026-08-24", "exit_date": "2026-08-26", "entry_px": 85.5578, "exit_px": 86.66, "qty": 67.4399, "ret": 0.0129, "pnl": 74.33}
 {"ticker": "NVDA", "sleeve": "A", "entry_date": "2026-08-24", "exit_date": "2026-08-26", "entry_px": 210.27, "exit_px": 212.4562, "qty": 27.4442, "ret": 0.0104, "pnl": 60.0}
+{"ticker": "AFG", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-27", "entry_px": 148.9994, "exit_px": 142.0, "qty": 26.6933, "ret": -0.047, "pnl": -186.84}
+{"ticker": "AMGN", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-27", "entry_px": 413.12, "exit_px": 433.152, "qty": 9.6038, "ret": 0.0485, "pnl": 192.38}
+{"ticker": "BIO", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-27", "entry_px": 347.5, "exit_px": 383.239, "qty": 11.2594, "ret": 0.1028, "pnl": 402.4}
+{"ticker": "CRL", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-27", "entry_px": 265.9005, "exit_px": 297.74, "qty": 15.0226, "ret": 0.1197, "pnl": 478.31}
+{"ticker": "EMR", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-27", "entry_px": 162.6675, "exit_px": 157.8106, "qty": 24.1072, "ret": -0.0299, "pnl": -117.09}
