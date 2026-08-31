@@ -29,6 +29,31 @@
       "sleeve": "A",
       "entry_date": "2026-08-27",
       "entry_px": 128.26
+    },
+    "CRWD": {
+      "sleeve": "H",
+      "entry_date": "2026-08-28",
+      "entry_px": 222.55
+    },
+    "FTNT": {
+      "sleeve": "H",
+      "entry_date": "2026-08-28",
+      "entry_px": 170.2031
+    },
+    "OKTA": {
+      "sleeve": "H",
+      "entry_date": "2026-08-28",
+      "entry_px": 170.6211
+    },
+    "RVMD": {
+      "sleeve": "H",
+      "entry_date": "2026-08-28",
+      "entry_px": 216.6029
+    },
+    "TEAM": {
+      "sleeve": "H",
+      "entry_date": "2026-08-28",
+      "entry_px": 190.0073
     }
   },
   "hwm": 100432.77
