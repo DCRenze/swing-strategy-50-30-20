@@ -25,11 +25,6 @@
       "entry_date": "2026-08-26",
       "entry_px": 337.3545
     },
-    "COP": {
-      "sleeve": "A",
-      "entry_date": "2026-08-27",
-      "entry_px": 128.26
-    },
     "CRWD": {
       "sleeve": "H",
       "entry_date": "2026-08-28",
@@ -54,6 +49,16 @@
       "sleeve": "H",
       "entry_date": "2026-08-28",
       "entry_px": 190.0073
+    },
+    "ABT": {
+      "sleeve": "A",
+      "entry_date": "2026-08-31",
+      "entry_px": 110.68
+    },
+    "MAR": {
+      "sleeve": "A",
+      "entry_date": "2026-08-31",
+      "entry_px": 345.4049
     }
   },
   "hwm": 100432.77

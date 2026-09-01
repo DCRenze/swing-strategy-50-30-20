@@ -72,3 +72,4 @@
 {"ticker": "BIO", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-27", "entry_px": 347.5, "exit_px": 383.239, "qty": 11.2594, "ret": 0.1028, "pnl": 402.4}
 {"ticker": "CRL", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-27", "entry_px": 265.9005, "exit_px": 297.74, "qty": 15.0226, "ret": 0.1197, "pnl": 478.31}
 {"ticker": "EMR", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-27", "entry_px": 162.6675, "exit_px": 157.8106, "qty": 24.1072, "ret": -0.0299, "pnl": -117.09}
+{"ticker": "COP", "sleeve": "A", "entry_date": "2026-08-27", "exit_date": "2026-08-31", "entry_px": 128.26, "exit_px": 132.7, "qty": 45.0511, "ret": 0.0346, "pnl": 200.03}
