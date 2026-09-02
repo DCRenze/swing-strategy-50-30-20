@@ -40,11 +40,6 @@
       "entry_date": "2026-08-28",
       "entry_px": 170.6211
     },
-    "RVMD": {
-      "sleeve": "H",
-      "entry_date": "2026-08-28",
-      "entry_px": 216.6029
-    },
     "TEAM": {
       "sleeve": "H",
       "entry_date": "2026-08-28",
@@ -59,6 +54,26 @@
       "sleeve": "A",
       "entry_date": "2026-08-31",
       "entry_px": 345.4049
+    },
+    "AMAT": {
+      "sleeve": "A",
+      "entry_date": "2026-09-01",
+      "entry_px": 441.0
+    },
+    "AMD": {
+      "sleeve": "A",
+      "entry_date": "2026-09-01",
+      "entry_px": 454.57
+    },
+    "CAT": {
+      "sleeve": "A",
+      "entry_date": "2026-09-01",
+      "entry_px": 777.0497
+    },
+    "GS": {
+      "sleeve": "A",
+      "entry_date": "2026-09-01",
+      "entry_px": 1003.7496
     }
   },
   "hwm": 100432.77
