@@ -25,16 +25,6 @@
       "entry_date": "2026-08-26",
       "entry_px": 337.3545
     },
-    "CRWD": {
-      "sleeve": "H",
-      "entry_date": "2026-08-28",
-      "entry_px": 222.55
-    },
-    "FTNT": {
-      "sleeve": "H",
-      "entry_date": "2026-08-28",
-      "entry_px": 170.2031
-    },
     "OKTA": {
       "sleeve": "H",
       "entry_date": "2026-08-28",
@@ -44,11 +34,6 @@
       "sleeve": "H",
       "entry_date": "2026-08-28",
       "entry_px": 190.0073
-    },
-    "ABT": {
-      "sleeve": "A",
-      "entry_date": "2026-08-31",
-      "entry_px": 110.68
     },
     "MAR": {
       "sleeve": "A",
@@ -65,20 +50,15 @@
       "entry_date": "2026-09-01",
       "entry_px": 454.57
     },
-    "CAT": {
-      "sleeve": "A",
-      "entry_date": "2026-09-01",
-      "entry_px": 777.0497
-    },
-    "GS": {
-      "sleeve": "A",
-      "entry_date": "2026-09-01",
-      "entry_px": 1003.7496
-    },
     "CVX": {
       "sleeve": "H",
       "entry_date": "2026-09-02",
       "entry_px": 211.49
+    },
+    "STX": {
+      "sleeve": "A",
+      "entry_date": "2026-09-03",
+      "entry_px": 766.89
     }
   },
   "hwm": 100432.77

@@ -74,3 +74,8 @@
 {"ticker": "EMR", "sleeve": "H", "entry_date": "2026-08-06", "exit_date": "2026-08-27", "entry_px": 162.6675, "exit_px": 157.8106, "qty": 24.1072, "ret": -0.0299, "pnl": -117.09}
 {"ticker": "COP", "sleeve": "A", "entry_date": "2026-08-27", "exit_date": "2026-08-31", "entry_px": 128.26, "exit_px": 132.7, "qty": 45.0511, "ret": 0.0346, "pnl": 200.03}
 {"ticker": "RVMD", "sleeve": "H", "entry_date": "2026-08-28", "exit_date": "2026-09-01", "entry_px": 216.6029, "exit_px": 207.4417, "qty": 17.4303, "ret": -0.0423, "pnl": -159.68}
+{"ticker": "CRWD", "sleeve": "H", "entry_date": "2026-08-28", "exit_date": "2026-09-03", "entry_px": 222.55, "exit_px": 206.14, "qty": 16.9096, "ret": -0.0737, "pnl": -277.49}
+{"ticker": "FTNT", "sleeve": "H", "entry_date": "2026-08-28", "exit_date": "2026-09-03", "entry_px": 170.2031, "exit_px": 154.6861, "qty": 22.3099, "ret": -0.0912, "pnl": -346.18}
+{"ticker": "ABT", "sleeve": "A", "entry_date": "2026-08-31", "exit_date": "2026-09-03", "entry_px": 110.68, "exit_px": 110.86, "qty": 52.0081, "ret": 0.0016, "pnl": 9.36}
+{"ticker": "CAT", "sleeve": "A", "entry_date": "2026-09-01", "exit_date": "2026-09-03", "entry_px": 777.0497, "exit_px": 787.7502, "qty": 7.4047, "ret": 0.0138, "pnl": 79.23}
+{"ticker": "GS", "sleeve": "A", "entry_date": "2026-09-01", "exit_date": "2026-09-03", "entry_px": 1003.7496, "exit_px": 1014.2592, "qty": 5.7089, "ret": 0.0105, "pnl": 60.0}
