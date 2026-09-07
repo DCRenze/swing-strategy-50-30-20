@@ -35,11 +35,6 @@
       "entry_date": "2026-08-28",
       "entry_px": 190.0073
     },
-    "MAR": {
-      "sleeve": "A",
-      "entry_date": "2026-08-31",
-      "entry_px": 345.4049
-    },
     "AMAT": {
       "sleeve": "A",
       "entry_date": "2026-09-01",
@@ -59,6 +54,16 @@
       "sleeve": "A",
       "entry_date": "2026-09-03",
       "entry_px": 766.89
+    },
+    "DELL": {
+      "sleeve": "H",
+      "entry_date": "2026-09-04",
+      "entry_px": 518.454
+    },
+    "SNOW": {
+      "sleeve": "H",
+      "entry_date": "2026-09-04",
+      "entry_px": 349.4815
     }
   },
   "hwm": 100432.77

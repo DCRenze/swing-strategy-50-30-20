@@ -79,3 +79,4 @@
 {"ticker": "ABT", "sleeve": "A", "entry_date": "2026-08-31", "exit_date": "2026-09-03", "entry_px": 110.68, "exit_px": 110.86, "qty": 52.0081, "ret": 0.0016, "pnl": 9.36}
 {"ticker": "CAT", "sleeve": "A", "entry_date": "2026-09-01", "exit_date": "2026-09-03", "entry_px": 777.0497, "exit_px": 787.7502, "qty": 7.4047, "ret": 0.0138, "pnl": 79.23}
 {"ticker": "GS", "sleeve": "A", "entry_date": "2026-09-01", "exit_date": "2026-09-03", "entry_px": 1003.7496, "exit_px": 1014.2592, "qty": 5.7089, "ret": 0.0105, "pnl": 60.0}
+{"ticker": "MAR", "sleeve": "A", "entry_date": "2026-08-31", "exit_date": "2026-09-04", "entry_px": 345.4049, "exit_px": 336.11, "qty": 16.6465, "ret": -0.0269, "pnl": -154.73}

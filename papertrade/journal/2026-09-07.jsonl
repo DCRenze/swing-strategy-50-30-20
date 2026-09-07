@@ -1,0 +1,26 @@
+{"ts": "2026-09-07T13:20:28", "kind": "trade_closed", "dry_run": null, "ticker": "MAR", "sleeve": "A", "entry_date": "2026-08-31", "exit_date": "2026-09-04", "entry_px": 345.4049, "exit_px": 336.11, "qty": 16.6465, "ret": -0.0269, "pnl": -154.73}
+{"ts": "2026-09-07T13:20:28", "kind": "position_closed", "ticker": "MAR", "sleeve": "A", "entry_date": "2026-08-31", "entry_px": 345.4049}
+{"ts": "2026-09-07T13:20:28", "kind": "position_adopted", "ticker": "DELL", "sleeve": "H", "entry_date": "2026-09-04", "entry_px": 518.454}
+{"ts": "2026-09-07T13:20:28", "kind": "position_adopted", "ticker": "SNOW", "sleeve": "H", "entry_date": "2026-09-04", "entry_px": 349.4815}
+{"ts": "2026-09-07T13:20:28", "kind": "run_start", "mode": "morning", "equity": 96518.19, "hwm": 100432.77, "drawdown": -0.039, "dry_run": false}
+{"ts": "2026-09-07T13:21:38", "kind": "data_asof", "signal_date": "2026-09-04", "trade_date": "2026-09-07", "sessions": 308}
+{"ts": "2026-09-07T13:21:38", "kind": "submit_window", "target": "09:30", "waited_s": 501.1, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMAT", "side": "sell", "qty": 13.0474, "order_type": "market", "limit_price": null, "client_order_id": "A-AMAT-20260907-sell"}
+{"ts": "2026-09-07T13:30:00", "kind": "exit_reason", "ticker": "AMAT", "sleeve": "A", "days_held": 3, "signal_date": "2026-09-04", "reason": "first up-close", "trigger_close": 454.71, "prior_close": 435.91, "trigger_session": "2026-09-04"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMD", "side": "sell", "qty": 12.658, "order_type": "market", "limit_price": null, "client_order_id": "A-AMD-20260907-sell"}
+{"ts": "2026-09-07T13:30:00", "kind": "exit_reason", "ticker": "AMD", "sleeve": "A", "days_held": 3, "signal_date": "2026-09-04", "reason": "first up-close", "trigger_close": 477.57, "prior_close": 456.16, "trigger_session": "2026-09-04"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "STX", "side": "sell", "qty": 7.4708, "order_type": "market", "limit_price": null, "client_order_id": "A-STX-20260907-sell"}
+{"ts": "2026-09-07T13:30:00", "kind": "exit_reason", "ticker": "STX", "sleeve": "A", "days_held": 1, "signal_date": "2026-09-04", "reason": "first up-close", "trigger_close": 849.28, "prior_close": 798.61, "trigger_session": "2026-09-04"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "ABBV", "side": "buy", "qty": 22.9563, "order_type": "limit", "limit_price": 252.27, "client_order_id": "A-ABBV-20260907-buy"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "DASH", "side": "buy", "qty": 28.1572, "order_type": "limit", "limit_price": 205.67, "client_order_id": "A-DASH-20260907-buy"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "RTX", "side": "buy", "qty": 29.3138, "order_type": "limit", "limit_price": 197.56, "client_order_id": "A-RTX-20260907-buy"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "T", "side": "buy", "qty": 228.8665, "order_type": "limit", "limit_price": 25.3, "client_order_id": "A-T-20260907-buy"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "DHR", "side": "buy", "qty": 28.5274, "order_type": "limit", "limit_price": 203.0, "client_order_id": "A-DHR-20260907-buy"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "BX", "side": "buy", "qty": 43.5297, "order_type": "limit", "limit_price": 133.04, "client_order_id": "A-BX-20260907-buy"}
+{"ts": "2026-09-07T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MNST", "side": "buy", "qty": 134.5781, "order_type": "limit", "limit_price": 43.03, "client_order_id": "A-MNST-20260907-buy"}
+{"ts": "2026-09-07T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "MSI", "reason": "sleeve full"}
+{"ts": "2026-09-07T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "MDLZ", "reason": "sleeve full"}
+{"ts": "2026-09-07T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "ECL", "reason": "sleeve full"}
+{"ts": "2026-09-07T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "BBY", "reason": "sleeve full"}
+{"ts": "2026-09-07T13:30:00", "kind": "skip", "sleeve": "H", "ticker": "MRP", "reason": "sleeve full"}
+{"ts": "2026-09-07T13:30:00", "kind": "run_end", "mode": "morning"}
