@@ -39,6 +39,20 @@ HERE = Path(__file__).resolve().parent
 JOURNAL_DIR = HERE / "journal"
 STATE_PATH = HERE / "state.json"
 TRADES_PATH = HERE / "trades.jsonl"
+
+# Reporting baseline. Trades that exited before this date ran under the
+# in-progress-bar defect and the ~09:34 submit window, i.e. under rules that are
+# no longer the live rules (results/LIVE_REVIEW_2026-08.md, which recommended
+# exactly this re-baselining). Stats from here on measure the system as it
+# actually runs now.
+#
+# This changes REPORTING ONLY. Equity, the high-water mark and the drawdown
+# circuit breakers are untouched and still span the account's whole life - the
+# money lost before the fix was really lost, and resetting the high-water mark
+# would make the -15%/-20% halts fire LATER in real-dollar terms, weakening the
+# thing that protects the account.
+BASELINE_DATE = "2026-08-11"
+BASELINE_LABEL = "since the timing fix"
 DISCORD_LIMIT = 1990
 SLEEVE_NAMES = {"A": "A · dip-buyer (mean-reversion)", "H": "H · momentum"}
 TIME_STOP = {"A": 15, "H": 15}   # trading-day time stops per sleeve
@@ -192,9 +206,10 @@ def realized_by_sleeve() -> list[str]:
             continue
     if not trades:
         return ["**Realized P/L (closed trades)**: none yet"]
-    lines = ["**Realized P/L by sleeve (closed trades, all-time)**"]
+    post = [t for t in trades if t.get("exit_date", "") >= BASELINE_DATE]
+    lines = [f"**Realized P/L by sleeve ({BASELINE_LABEL}, from {BASELINE_DATE})**"]
     groups = defaultdict(list)
-    for t in trades:
+    for t in post:
         groups[t.get("sleeve", "?")].append(t)
     for sk in ("A", "H", "?"):
         ts = groups.get(sk)
@@ -212,6 +227,17 @@ def realized_by_sleeve() -> list[str]:
         label = SLEEVE_NAMES.get(sk, "untracked")
         lines.append(f"**{label}**: {len(ts)} trades · win {wr:.0f}% · net ${tot:+,.2f} · "
                      f"avg win ${avg_w:,.2f} / avg loss ${avg_l:,.2f} · PF {pf}")
+    # All-time stays visible, deliberately smaller. The pre-fix record is real
+    # money and hiding it would be dishonest reporting; it is just not a
+    # measurement of the rules running today.
+    a_wins = sum(1 for t in trades if t["pnl"] > 0)
+    a_tot = sum(t["pnl"] for t in trades)
+    pre = len(trades) - len(post)
+    lines.append(
+        f"_All-time (incl. {pre} trade(s) under the pre-fix rules): {len(trades)} trades · "
+        f"win {a_wins / len(trades) * 100:.0f}% · net ${a_tot:+,.2f}_"
+    )
+
     today = dt.date.today().isoformat()
     td = [t for t in trades if t.get("exit_date") == today]
     if td:

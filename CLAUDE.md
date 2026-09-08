@@ -68,6 +68,7 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
 |---|---|
 | `papertrade/state.json` | Live state: `positions{ticker→{sleeve,entry_date,entry_px}}` + `hwm`. Alpaca is the source of truth for holdings; this file adds sleeve attribution. |
 | `papertrade/trades.jsonl` | Realized closed-trade ledger, one JSON/line: `{ticker,sleeve,entry_date,exit_date,entry_px,exit_px,qty,ret,pnl}`. |
+| Reporting baseline | `BASELINE_DATE = 2026-08-11` in both report scripts: trade stats measure **since the timing fix**, with the lifetime record still shown alongside. **Reporting only** — equity, the high-water mark and the −15%/−20% drawdown halts stay lifetime, because rebasing the HWM would make the halts fire later in real-dollar terms. |
 | `papertrade/verify.py` | Read-only auditor: re-derives the rules and fails if live behaviour diverges. `--with-prices` re-computes every exit from price history. Never places an order. |
 | `papertrade/known_findings.json` | Investigated historical audit findings, with reasons. Keeps CI red for *new* divergences only — it is a record, not a mute button. |
 | `papertrade/journal/YYYY-MM-DD.jsonl` | Per-day decision log. `kind` ∈ run_start (carries daily `equity`/`hwm`/`drawdown`), order_submitted, skip, exit_reason, trade_closed, position_adopted, action_needed, warning, run_end, … |

@@ -286,6 +286,48 @@ def test_acknowledged_findings_still_appear():
     print("ok: an acknowledged finding is still reported, with its reason")
 
 
+# ------------------------------------------------------- reporting baseline ---
+def test_reports_rebaseline_but_never_reset_the_account():
+    """Reports measure from the timing fix; risk controls must NOT be rebased.
+
+    Resetting the high-water mark would shrink every measured drawdown, which
+    would make the -15%/-20% halts fire LATER in real-dollar terms - i.e. it
+    would quietly weaken the account's main protection. The baseline is a
+    reporting window only.
+    """
+    from papertrade import report_discord as rd
+    from papertrade import report_weekly as rw
+
+    assert rd.BASELINE_DATE == rw.BASELINE_DATE, "the two reports must agree"
+    assert rd.BASELINE_DATE >= "2026-08-11", "baseline must start after the fix landed"
+
+    # the auditor's own timing gate keys off the same event, so they must match
+    assert vf.TIMING_FIX_DATE == rd.BASELINE_DATE
+
+    # risk controls still read lifetime equity, not a rebased number
+    src = (Path(vf.__file__).parent / "run_daily.py").read_text()
+    assert "state[\"hwm\"]" in src or "hwm" in src
+    assert "BASELINE_DATE" not in src, (
+        "run_daily must not import a reporting baseline - drawdown is lifetime")
+    print("ok: reports rebase to the fix date; the drawdown gate does not")
+
+
+def test_lifetime_record_is_still_reported():
+    """Re-baselining must not hide the pre-fix losses - they were real money."""
+    import json as _json
+    from papertrade import report_weekly as rw
+
+    trades = [
+        {"ticker": "OLD", "sleeve": "A", "exit_date": "2026-07-01", "pnl": -500.0},
+        {"ticker": "NEW", "sleeve": "A", "exit_date": "2026-09-01", "pnl": 100.0},
+    ]
+    out = rw.sleeve_realized(trades, __import__("datetime").date(2026, 9, 30))
+    assert out["A"]["all"]["n"] == 1, "post-fix window should hold only the new trade"
+    assert out["A"]["lifetime"]["n"] == 2, "lifetime must still count the old trade"
+    assert out["A"]["lifetime"]["net"] == -400.0
+    print("ok: the pre-fix record is still carried in the lifetime figures")
+
+
 if __name__ == "__main__":
     test_clean_day_passes()
     test_in_progress_bar_is_caught()
@@ -307,4 +349,6 @@ if __name__ == "__main__":
     test_ledger_arithmetic_is_checked()
     test_acknowledgement_does_not_suppress_new_findings()
     test_acknowledged_findings_still_appear()
+    test_reports_rebaseline_but_never_reset_the_account()
+    test_lifetime_record_is_still_reported()
     print("\nall auditor tests passed")

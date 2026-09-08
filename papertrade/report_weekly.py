@@ -62,6 +62,13 @@ from papertrade.report_discord import (  # noqa: E402
 HERE = Path(__file__).resolve().parent
 JOURNAL_DIR = HERE / "journal"
 TRADES_PATH = HERE / "trades.jsonl"
+
+# Reporting baseline - see papertrade/report_discord.py for the full rationale.
+# Trades that exited before this date ran under the in-progress-bar defect and
+# the ~09:34 submit window, so they measure rules that are no longer live.
+# REPORTING ONLY: equity, the high-water mark and the drawdown halts are
+# untouched and still span the account's whole life.
+BASELINE_DATE = "2026-08-11"
 DEFAULT_OUT_DIR = ROOT / "reports" / "weekly"
 
 MAX_POSITIONS = 20
@@ -223,10 +230,18 @@ def risk_metrics(series) -> dict:
 
 
 def sleeve_realized(trades: list[dict], week_start: dt.date) -> dict:
-    """Per-sleeve realized stats, all-time and this-week."""
+    """Per-sleeve realized stats: since the timing fix, this week, and lifetime.
+
+    "all" means since BASELINE_DATE, because that is the window in which the
+    live rules match the validated rules. "lifetime" keeps the true whole-account
+    record so nothing is hidden.
+    """
     groups: dict[str, list[dict]] = defaultdict(list)
+    lifetime: dict[str, list[dict]] = defaultdict(list)
     for t in trades:
-        groups[t.get("sleeve", "?")].append(t)
+        lifetime[t.get("sleeve", "?")].append(t)
+        if (t.get("exit_date") or "") >= BASELINE_DATE:
+            groups[t.get("sleeve", "?")].append(t)
 
     def summarize(ts: list[dict]) -> dict:
         if not ts:
@@ -253,7 +268,8 @@ def sleeve_realized(trades: list[dict], week_start: dt.date) -> dict:
     for sk in ("A", "H"):
         ts = groups.get(sk, [])
         wk = [t for t in ts if (t.get("exit_date") or "") >= ws]
-        out[sk] = {"all": summarize(ts), "week": summarize(wk)}
+        out[sk] = {"all": summarize(ts), "week": summarize(wk),
+                   "lifetime": summarize(lifetime.get(sk, []))}
     return out
 
 
@@ -592,7 +608,7 @@ def sleeve_card(sk, data, cap_pct, upl) -> str:
         f'<b>{escape(SLEEVE_NAMES[sk])}</b></div>'
         f'<div class="scard-cap">Capital: {cap_txt}</div>'
         f'<div class="scard-net {_cls(a["net"])}">{_money(a["net"], signed=True)}'
-        f'<span class="scard-net-lbl">realized · all-time</span></div>'
+        f'<span class="scard-net-lbl">realized · since fix</span></div>'
         f'<div class="scard-grid">'
         f'<div><span>Trades</span><b>{a["n"]}</b></div>'
         f'<div><span>Win rate</span><b>{a["wr"]:.0f}%</b></div>'
@@ -644,11 +660,11 @@ def _auto_commentary(ctx: dict) -> str:
         if a["pf"] is None:
             pf_txt = "no losing trades booked yet"
         elif a["pf"] >= bench:
-            pf_txt = f"all-time profit factor {a['pf']:.2f}, above its {bench:.2f} benchmark"
+            pf_txt = f"post-fix profit factor {a['pf']:.2f}, above its {bench:.2f} benchmark"
         elif a["pf"] >= 1.0:
-            pf_txt = f"all-time profit factor {a['pf']:.2f}, just under its {bench:.2f} benchmark"
+            pf_txt = f"post-fix profit factor {a['pf']:.2f}, just under its {bench:.2f} benchmark"
         else:
-            pf_txt = (f"all-time profit factor {a['pf']:.2f} (below 1.0) — worth watching, though a "
+            pf_txt = (f"post-fix profit factor {a['pf']:.2f} (below 1.0) — worth watching, though a "
                       f"single soft stretch isn't a decay signal (the playbook flags a sleeve only "
                       f"after 6+ months under 1.0)")
         lines.append(f"<b>{name}</b>: {wk_txt} this week; {pf_txt}.")
