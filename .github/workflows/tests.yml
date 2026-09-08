@@ -36,3 +36,12 @@ jobs:
 
       - name: Live exit-rule tests
         run: python -m papertrade.test_run_daily
+
+      - name: Auditor tests
+        run: python -m papertrade.test_verify
+
+      # Structural tier only: no network, so this asserts on the committed
+      # journal exactly as CI sees it. The price-verified tier runs in the
+      # morning workflow, where a data fetch is already happening anyway.
+      - name: Audit the committed trade record
+        run: python -m papertrade.verify --since 2026-08-10

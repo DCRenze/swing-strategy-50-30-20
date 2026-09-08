@@ -51,6 +51,8 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
 |---|---|
 | `papertrade/state.json` | Live state: `positions{ticker→{sleeve,entry_date,entry_px}}` + `hwm`. Alpaca is the source of truth for holdings; this file adds sleeve attribution. |
 | `papertrade/trades.jsonl` | Realized closed-trade ledger, one JSON/line: `{ticker,sleeve,entry_date,exit_date,entry_px,exit_px,qty,ret,pnl}`. |
+| `papertrade/verify.py` | Read-only auditor: re-derives the rules and fails if live behaviour diverges. `--with-prices` re-computes every exit from price history. Never places an order. |
+| `papertrade/known_findings.json` | Investigated historical audit findings, with reasons. Keeps CI red for *new* divergences only — it is a record, not a mute button. |
 | `papertrade/journal/YYYY-MM-DD.jsonl` | Per-day decision log. `kind` ∈ run_start (carries daily `equity`/`hwm`/`drawdown`), order_submitted, skip, exit_reason, trade_closed, position_adopted, action_needed, warning, run_end, … |
 | `data/universe.csv` | Tradable universe: `ticker,name,source` (sp500 ∪ russell1000). |
 | `results/` | Backtest evidence: `GAUNTLET_SUMMARY.md`, `REFINEMENT.md`, `gauntlet_*.json`, equity/trades CSVs. |
@@ -65,6 +67,13 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
   Discord morning report. Every rule reads completed bars, so the whole computation happens
   before the bell and `--submit-at 09:30` releases the orders at the open — refreshing after
   the bell instead cost a median 255s of slippage (`results/LIVE_REVIEW_2026-08.md`).
+- **Verification** — `papertrade/verify.py` runs inside `morning-run.yml` (after the commit, so
+  a failed audit never destroys the evidence) and in `tests.yml` on every push. It checks
+  day-count anchoring, feed staleness, submit timing, exit-reason coherence, drawdown-gate
+  obedience, position caps and ledger arithmetic; `--with-prices` re-derives each exit from
+  actual price history using run_daily's own rule functions. It exists because the Phase 0
+  defect ran five weeks undetected. It found a second one on its first run: **2026-08-18 read
+  a stale feed** (Friday's bar on a Tuesday), which delayed TWLO's stop by a session.
 - **`.github/workflows/eod-report.yml`** — read-only end-of-day Discord wrap-up (cron).
 - **`.github/workflows/weekly-report.yml`** — `papertrade/report_weekly.py` builds a
   self-contained HTML PM dashboard and posts it to Discord every Friday after the close
@@ -92,6 +101,17 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
   full / 1.19 OOS; Sleeve H OOS PF 1.37. A sleeve below PF 1.0 for 6+ rolling months → flag David.
 - Every strategy **fails** the gauntlet individually (`GAUNTLET_SUMMARY.md`); the **ensemble** is
   what clears the bar via diversification. Don't judge a sleeve in isolation.
+- **Sleeve H entry-breadth gating was tested and rejected** (Sep 2026, `results/PHASE4_CONCLUSION.md`).
+  Requiring N simultaneous H signals before taking any: 8 thresholds, 2005-2026, pre-registered in
+  `BREADTH_HYPOTHESIS.md`. The in-sample profit-factor curve is a sawtooth with no plateau, the one
+  finalist with a real treatment (`breadth5`) flipped sign out-of-sample (PF 1.19 > baseline IS →
+  1.36 < 1.41 OOS, ensemble Sharpe 1.09 → 1.00), and the only "passing" config removed 2 of 624 OOS
+  trades. The motivating gradient (win rate 45.6% → 57.4% by same-day entry count) was **selection
+  depth and free capital, which the deployed config already captures** — not breadth. Live win rate
+  moved 48.4% → 48.6%. The related G2 "throttle entry clustering" idea is rejected in the opposite
+  direction: clustered entries are the sleeve's *best* trades (PF 1.63 vs 1.16), so throttling them
+  would delete the best cohort. Don't re-litigate without a hypothesis about *which names to pick
+  within a session*, and a fresh OOS window.
 - **Sleeve H upside management was tested and rejected** (Aug 2026, `results/PHASE2_CONCLUSION.md`).
   ATR trailing stops, give-back stops, profit targets, breakeven stops and trend-conditional hold
   extension: 20 configs, 2005-2026. Two showed clean in-sample plateaus and both flipped sign

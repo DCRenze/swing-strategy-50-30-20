@@ -3,6 +3,10 @@
 Baseline: close makes a new 252-day closing high (yesterday wasn't one);
 volume > 50-day average; SPY > SMA(200) gate; buy next open; hold 15 days
 or exit on 5% stop from entry.
+
+`min_same_day_signals` (default None = the validated baseline) adds an optional
+breadth gate; see results/BREADTH_HYPOTHESIS.md. It is research-only until the
+gauntlet clears it - the deployed config does not set it.
 """
 
 from __future__ import annotations
@@ -19,6 +23,7 @@ def build(
     hold_days: int = 15,
     stop_frac: float = 0.05,
     vol_confirm: bool = True,
+    min_same_day_signals: int | None = None,
     max_positions: int = 10,
     regime_ok=None,
     # --- Phase 2 upside management; all None = the validated baseline ---
@@ -37,6 +42,15 @@ def build(
     entry = new_high & liquidity_mask(panel)
     if vol_confirm:
         entry = entry & (v > sma(v, 50))
+    if min_same_day_signals is not None and min_same_day_signals > 1:
+        # Breadth gate: a day on which many names simultaneously print a new
+        # 52-week high is a market-wide thrust, and those cohorts historically
+        # carry a much higher hit rate than a lone breakout. Require at least N
+        # qualifying signals on the session, otherwise take none of them.
+        # Counted AFTER liquidity/volume filters so it reflects tradable names,
+        # and BEFORE the regime gate + ranking, which the engine applies.
+        breadth_ok = entry.sum(axis=1) >= min_same_day_signals
+        entry = entry.mul(breadth_ok, axis=0).astype(bool)
     if regime_ok is None:
         regime_ok = spy_regime(bench, 200)
 
@@ -44,6 +58,8 @@ def build(
 
     upside = {}
     tag = ""
+    if min_same_day_signals is not None and min_same_day_signals > 1:
+        tag += f",breadth{min_same_day_signals}"
     if trail_atr_mult is not None:
         upside["trail_atr_mult"] = trail_atr_mult
         upside["trail_atr"] = atr(panel["high"], panel["low"], c, trail_atr_n)
@@ -73,7 +89,8 @@ def build(
         max_positions=max_positions,
         regime_ok=regime_ok,
         params=dict(lookback=lookback, hold_days=hold_days, stop_frac=stop_frac,
-                    vol_confirm=vol_confirm, trail_atr_mult=trail_atr_mult,
+                    vol_confirm=vol_confirm, min_same_day_signals=min_same_day_signals,
+                    trail_atr_mult=trail_atr_mult,
                     trail_giveback_frac=trail_giveback_frac,
                     profit_target_frac=profit_target_frac,
                     breakeven_after_frac=breakeven_after_frac,

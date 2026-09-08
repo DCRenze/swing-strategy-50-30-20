@@ -129,6 +129,19 @@ PLAN: dict[str, dict] = {
             ("stop8pct", {"stop_frac": 0.08}),
         ],
     },
+    # --- Breadth hypothesis (Sep 2026): entry-day signal count predicts trade
+    # quality. Pre-registered in results/BREADTH_HYPOTHESIS.md. Research only -
+    # the deployed H config is high52_deployed and is unchanged.
+    "high52_breadth": {
+        "module": "high52_breakout",
+        "baseline": {"_regime": "spy100", "min_same_day_signals": 3},
+        "variants": [
+            ("n2", {"min_same_day_signals": 2}),
+            ("n4", {"min_same_day_signals": 4}),
+            ("n5", {"min_same_day_signals": 5}),
+            ("n7", {"min_same_day_signals": 7}),
+        ],
+    },
     "high52_trail_atr": {
         "module": "high52_breakout",
         "baseline": {"_regime": "spy100", "trail_atr_mult": 1.5},

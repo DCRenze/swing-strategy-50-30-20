@@ -64,6 +64,19 @@ DRAWDOWN_HALT_A = -0.15    # halt Sleeve A (mean-reversion) new entries
 DRAWDOWN_HALT_ALL = -0.20  # halt all new entries
 MIN_NOTIONAL = 1.0         # Alpaca fractional minimum order value ($1)
 
+# Marketable limit exits (LIVE_REVIEW_2026-08 ranked item 3). Exits are market
+# orders by default; the worst single fills ran -369 bps (A) and -433 bps (H)
+# against the official open. A limit placed a defined distance THROUGH the bid
+# still crosses the spread and fills, but refuses the tail.
+#
+# Default None = market orders, i.e. behaviour is unchanged until someone opts
+# in with --exit-limit-bps. That default is deliberate: an unfilled exit is
+# worse than a bad fill (the position survives to the next session against the
+# rule), and this repo has no live fill-rate evidence yet - only a backtest that
+# assumes fills at the open. Turn it on, then read the exit_fill_ref journal
+# records to measure whether the band is wide enough before trusting it.
+EXIT_LIMIT_BPS: float | None = None
+
 
 def get_clients():
     from alpaca.trading.client import TradingClient
@@ -113,6 +126,49 @@ def trading_days_between(start: str, end: str) -> int:
     days = pd.bdate_range(pd.Timestamp(start), pd.Timestamp(end))
     days = [d for d in days if d not in holidays]
     return max(len(days) - 1, 0)
+
+
+def latest_bid(ticker: str) -> float | None:
+    """Live bid at submit time, or None if it cannot be read.
+
+    Called only at the moment orders are released, never during the pre-open
+    signal computation - the Phase 0 rule is that SIGNALS read completed bars,
+    not that the runner may never look at a live quote. Pricing an order at the
+    bell is exactly when a live quote is the correct input.
+    """
+    try:
+        from alpaca.data.historical import StockHistoricalDataClient
+        from alpaca.data.requests import StockLatestQuoteRequest
+
+        key, secret = os.getenv("ALPACA_API_KEY"), os.getenv("ALPACA_SECRET_KEY")
+        if not key or not secret:
+            return None
+        client = StockHistoricalDataClient(key, secret)
+        q = client.get_stock_latest_quote(StockLatestQuoteRequest(symbol_or_symbols=ticker))
+        bid = float(q[ticker].bid_price)
+        return bid if bid > 0 else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def exit_order_params(ticker: str, journal: Journal, band_bps: float | None) -> tuple[str, float | None]:
+    """Order type and limit price for an exit.
+
+    Falls back to a market order whenever a quote is unavailable. That fallback
+    is not a nicety: skipping or deferring an exit because a quote failed would
+    override an exit rule, which the playbook forbids outright.
+    """
+    if not band_bps:
+        return "market", None
+    bid = latest_bid(ticker)
+    if bid is None:
+        journal.log("exit_fill_ref", ticker=ticker, bid=None,
+                    note="no quote at submit time - falling back to a market order")
+        return "market", None
+    limit = bid * (1.0 - band_bps / 10_000.0)
+    journal.log("exit_fill_ref", ticker=ticker, bid=round(bid, 4),
+                band_bps=band_bps, limit_price=round(limit, 2))
+    return "limit", limit
 
 
 def submit_order(client, journal: Journal, dry: bool, *, sleeve: str, ticker: str,
@@ -332,7 +388,8 @@ def drawdown_gate(state: dict, equity: float, journal: Journal):
     return dd, halt_a, halt_all
 
 
-def run_morning(client, dry: bool, submit_at: str | None = None) -> None:
+def run_morning(client, dry: bool, submit_at: str | None = None,
+                exit_limit_bps: float | None = None) -> None:
     journal = Journal(dry)
     state = load_state()
     held = reconcile(client, state, journal, dry) if client is not None else {}
@@ -369,8 +426,9 @@ def run_morning(client, dry: bool, submit_at: str | None = None) -> None:
             # held name missing from today's data (e.g. dropped from the universe):
             # can't evaluate the price-based exit, but still honor the time stop.
             if days_held >= SLEEVE_TIME_STOPS["A"]:
+                otype, lpx = exit_order_params(ticker, journal, exit_limit_bps)
                 submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
-                             qty=qty, order_type="market")
+                             qty=qty, order_type=otype, limit_price=lpx)
                 journal.log("exit_reason", ticker=ticker, sleeve="A",
                             reason="time stop (ticker absent from data)", days_held=days_held)
             else:
@@ -383,13 +441,15 @@ def run_morning(client, dry: bool, submit_at: str | None = None) -> None:
             if exit_sig["reason"] != "first up-close":
                 journal.log("warning", ticker=ticker,
                             msg="multiple up-closes since entry - exiting now (overdue)")
+            otype, lpx = exit_order_params(ticker, journal, exit_limit_bps)
             submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
-                         qty=qty, order_type="market")
+                         qty=qty, order_type=otype, limit_price=lpx)
             journal.log("exit_reason", ticker=ticker, sleeve="A", days_held=days_held,
                         signal_date=signal_date, **exit_sig)
         elif days_held >= SLEEVE_TIME_STOPS["A"]:
+            otype, lpx = exit_order_params(ticker, journal, exit_limit_bps)
             submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
-                         qty=qty, order_type="market")
+                         qty=qty, order_type=otype, limit_price=lpx)
             journal.log("exit_reason", ticker=ticker, sleeve="A", reason="15d time stop",
                         days_held=days_held, signal_date=signal_date)
 
@@ -426,8 +486,9 @@ def run_morning(client, dry: bool, submit_at: str | None = None) -> None:
         if ticker not in raw_c.columns:
             # missing from today's data: honor the time stop, else flag for review.
             if days_held >= SLEEVE_TIME_STOPS["H"]:
+                otype, lpx = exit_order_params(ticker, journal, exit_limit_bps)
                 submit_order(client, journal, dry, sleeve="H", ticker=ticker, side="sell",
-                             qty=held[ticker]["qty"], order_type="market")
+                             qty=held[ticker]["qty"], order_type=otype, limit_price=lpx)
                 journal.log("exit_reason", ticker=ticker, sleeve="H",
                             reason="time stop (ticker absent from data)", days_held=days_held)
             else:
@@ -438,8 +499,9 @@ def run_morning(client, dry: bool, submit_at: str | None = None) -> None:
         stop_sig = h_stop_signal(raw_c[ticker], meta["entry_date"],
                                  held[ticker]["avg_entry_price"], scr.H_STOP_FRAC)
         if stop_sig or days_held >= SLEEVE_TIME_STOPS["H"]:
+            otype, lpx = exit_order_params(ticker, journal, exit_limit_bps)
             submit_order(client, journal, dry, sleeve="H", ticker=ticker, side="sell",
-                         qty=held[ticker]["qty"], order_type="market")
+                         qty=held[ticker]["qty"], order_type=otype, limit_price=lpx)
             journal.log("exit_reason", ticker=ticker, sleeve="H", days_held=days_held,
                         signal_date=signal_date,
                         **(stop_sig or {"reason": "15d time stop"}))
@@ -496,6 +558,13 @@ def main() -> None:
                     help="ET time to release orders. Start the job BEFORE the open so the "
                          "universe refresh finishes early, then orders fire at the bell "
                          "(e.g. --submit-at 09:30). Omit to submit as soon as computed.")
+    ap.add_argument("--exit-limit-bps", type=float, default=EXIT_LIMIT_BPS,
+                    metavar="BPS",
+                    help="price exits as marketable limits this many bps THROUGH the "
+                         "live bid instead of as market orders (e.g. 50). Caps the "
+                         "bad-fill tail; an unfilled exit carries the position to the "
+                         "next session, so measure fill rates before relying on it. "
+                         "Omit for market orders (current validated behaviour).")
     args = ap.parse_args()
 
     client = None
@@ -510,7 +579,8 @@ def main() -> None:
             print("No API keys found - dry-run preview without account (no reconcile/exits).")
 
     if args.mode == "morning":
-        run_morning(client, args.dry_run, submit_at=args.submit_at)
+        run_morning(client, args.dry_run, submit_at=args.submit_at,
+                    exit_limit_bps=args.exit_limit_bps)
     else:
         run_status(client)
 

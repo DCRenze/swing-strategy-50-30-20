@@ -98,6 +98,32 @@ jobs:
             git push
           fi
 
+      # The Phase 0 defect ran five weeks undetected because nothing re-derived
+      # what the run should have done. This does: it re-computes the exit rules
+      # from price history and fails the job when live behaviour and the playbook
+      # disagree. Read-only - it never places, modifies or cancels an order, and
+      # it needs no Alpaca credentials.
+      #
+      # Deliberately placed AFTER the commit: the trade record must be preserved
+      # whatever the audit says, or a failed audit would also destroy the evidence
+      # needed to investigate it. Equally deliberately NOT continue-on-error - a
+      # silent rule divergence is the exact failure this exists to make loud.
+      #
+      # It audits a trailing window rather than only today, so a defect that takes
+      # a few sessions to become visible (a stop that fired a session late) is
+      # still caught.
+      - name: Verify the run obeyed the playbook
+        run: python -m papertrade.verify --days 10 --with-prices --json audit.json
+
+      - name: Upload audit findings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-${{ github.run_id }}
+          path: audit.json
+          if-no-files-found: ignore
+          retention-days: 30
+
       - name: Post morning report to Discord
         if: always()               # send even if an earlier step hiccupped
         continue-on-error: true     # a report failure must never fail the run

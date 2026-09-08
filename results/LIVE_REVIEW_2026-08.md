@@ -102,12 +102,25 @@ measures a different rule.
 
 ## Ranked next steps
 
-1. **Pre-open signal computation** — worth ~$795/5 weeks on this sample, no strategy change.
-2. **Phase 1 verification harness** — the defect ran five weeks undetected and cost ~3.7% of
-   the account. Nothing else compares on expected value.
-3. **Marketable limit orders on exits** — caps the −400 bps tail.
-4. **Entry clustering (G2)** — H filled all ten slots on a single day twice (07-01, 08-06),
-   with visible sector concentration. Untested.
+1. ~~**Pre-open signal computation**~~ — **DONE** (`0c81a55`, 2026-08-10). Verified live: 21
+   consecutive sessions computing by ~09:21 and releasing at 09:30:00.
+2. ~~**Phase 1 verification harness**~~ — **DONE** (2026-09-08, `papertrade/verify.py`). Runs in
+   `morning-run.yml` and `tests.yml`. It found a second, unrelated defect on its first pass:
+   **2026-08-18 ran on a stale feed** (Friday 08-14's bar on a Tuesday), delaying TWLO's 5% stop
+   by a session. That is the class of thing this was built for, and it had gone unnoticed for
+   three weeks.
+3. ~~**Marketable limit orders on exits**~~ — **BUILT, OFF BY DEFAULT** (2026-09-08,
+   `--exit-limit-bps`). Prices exits through the live bid at submit time, falls back to a market
+   order whenever a quote is unavailable, and journals `exit_fill_ref` so fill quality can be
+   measured. Default stays market: an unfilled exit carries the position past its rule, and there
+   is no live fill-rate evidence yet — only a backtest that assumes fills at the open. Enable it
+   for a measured window, read the `exit_fill_ref` records, then decide.
+4. ~~**Entry clustering (G2)**~~ — **TESTED AND REJECTED** (2026-09-08,
+   `PHASE4_CONCLUSION.md`). The premise was backwards: clustered entries are the sleeve's *best*
+   trades (PF 1.63 on 8–10 entry days vs 1.16 on 1–2, and the ordering holds OOS), so throttling
+   them would delete the best cohort. The inverse — gating *for* breadth — was pre-registered
+   (`BREADTH_HYPOTHESIS.md`) and also failed: sawtooth in-sample, sign flip out-of-sample.
 
 Already tested and rejected, do not revisit without a fresh hypothesis: upside management
-(`PHASE2_CONCLUSION.md`), slot concentration (`PHASE3_CONCLUSION.md`).
+(`PHASE2_CONCLUSION.md`), slot concentration (`PHASE3_CONCLUSION.md`), entry-breadth gating and
+clustering throttles (`PHASE4_CONCLUSION.md`).

@@ -254,6 +254,70 @@ def test_dry_run_journal_is_separate():
     print("ok: dry-run journal is separate, so previews cannot pollute reports")
 
 
+# ------------------------------------------------------ marketable limits ---
+class _CaptureJournal:
+    """Minimal Journal stand-in that records what would have been logged."""
+
+    def __init__(self):
+        self.records = []
+
+    def log(self, kind, **kw):
+        self.records.append({"kind": kind, **kw})
+
+
+def test_exits_are_market_orders_by_default():
+    """The validated behaviour must not change unless someone opts in."""
+    j = _CaptureJournal()
+    otype, lpx = rd.exit_order_params("AAPL", j, None)
+    assert otype == "market" and lpx is None
+    assert not j.records, "no quote should be fetched when the band is off"
+    print("ok: exits stay market orders unless --exit-limit-bps is given")
+
+
+def test_limit_exit_prices_through_the_bid():
+    j = _CaptureJournal()
+    original = rd.latest_bid
+    rd.latest_bid = lambda t: 100.0
+    try:
+        otype, lpx = rd.exit_order_params("AAPL", j, 50.0)
+    finally:
+        rd.latest_bid = original
+    assert otype == "limit"
+    # 50 bps through a 100.00 bid = 99.50; a SELL limit must sit BELOW the bid
+    # so it crosses and fills, otherwise it is not marketable at all.
+    assert abs(lpx - 99.50) < 1e-9, lpx
+    assert lpx < 100.0, "a sell limit above the bid would not fill"
+    assert j.records[0]["kind"] == "exit_fill_ref"
+    print("ok: a limit exit is priced through the bid, not above it")
+
+
+def test_limit_exit_falls_back_to_market_without_a_quote():
+    """Never defer an exit because a quote failed - that would override a rule."""
+    j = _CaptureJournal()
+    original = rd.latest_bid
+    rd.latest_bid = lambda t: None
+    try:
+        otype, lpx = rd.exit_order_params("AAPL", j, 50.0)
+    finally:
+        rd.latest_bid = original
+    assert otype == "market" and lpx is None
+    assert j.records[0]["bid"] is None
+    print("ok: a missing quote falls back to a market order, never a skipped exit")
+
+
+def test_wider_band_is_more_marketable():
+    j = _CaptureJournal()
+    original = rd.latest_bid
+    rd.latest_bid = lambda t: 200.0
+    try:
+        _, tight = rd.exit_order_params("AAPL", j, 10.0)
+        _, wide = rd.exit_order_params("AAPL", j, 100.0)
+    finally:
+        rd.latest_bid = original
+    assert wide < tight < 200.0
+    print("ok: a wider band prices further through the bid (more likely to fill)")
+
+
 if __name__ == "__main__":
     test_session_complete()
     test_panel_excludes_in_progress_row()
@@ -271,4 +335,8 @@ if __name__ == "__main__":
     test_submit_barrier_survives_bad_input()
     test_dry_run_does_not_touch_the_ledger()
     test_dry_run_journal_is_separate()
+    test_exits_are_market_orders_by_default()
+    test_limit_exit_prices_through_the_bid()
+    test_limit_exit_falls_back_to_market_without_a_quote()
+    test_wider_band_is_more_marketable()
     print("\nall exit-rule tests passed")

@@ -1,0 +1,38 @@
+{
+  "_readme": [
+    "Historical audit findings that have been investigated and explained. They are",
+    "reported by papertrade/verify.py as 'acknowledged' rather than failing the build,",
+    "so that CI goes red on a NEW divergence instead of staying permanently red on",
+    "known history that cannot be undone.",
+    "",
+    "This is a record, not a mute button. Add an entry only after establishing what",
+    "actually happened and writing the reason down. An unexplained finding must fail.",
+    "Match is exact on day + check + substring."
+  ],
+  "acknowledged": [
+    {
+      "day": "2026-08-10",
+      "check": "late_exit",
+      "match": "CF",
+      "reason": "Phase 0 transition day. CF accumulated up-closes under the defective in-progress-bar rule; the first corrected run cleared the backlog. Artifact of the fix landing, not of the fixed code."
+    },
+    {
+      "day": "2026-08-10",
+      "check": "late_exit",
+      "match": "SO",
+      "reason": "Phase 0 transition day - same backlog clearance as CF."
+    },
+    {
+      "day": "2026-08-10",
+      "check": "late_exit",
+      "match": "EOG",
+      "reason": "Phase 0 transition day - same backlog clearance as CF."
+    },
+    {
+      "day": "2026-08-18",
+      "check": "anchor",
+      "match": "STALE",
+      "reason": "Real defect, found by this auditor on 2026-09-08, three weeks after the fact. The yfinance feed had not published Monday 2026-08-17's bar when the run fetched at 13:20:31Z, so signal_date stayed at Friday 2026-08-14 (sessions count stuck at 307, jumping to 309 on 08-19). Every price rule that session ran a bar behind. Measured consequence: TWLO's 5% stop triggered on the 08-17 close but was not acted on until 08-19, one session late. Cannot be undone retroactively; the auditor now fails the build if it recurs."
+    }
+  ]
+}
