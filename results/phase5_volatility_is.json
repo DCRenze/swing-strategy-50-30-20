@@ -1,0 +1,179 @@
+{
+  "stage": "is",
+  "window": {
+    "start": "2005-06-01",
+    "end": "2022-12-31"
+  },
+  "slippage_bps": 5.0,
+  "sleeve_h": "high52_breakout[252,15d,stop5%]",
+  "variants": {
+    "baseline": {
+      "spec": "three_lower_lows[stretch0.75,sma200]",
+      "sleeve_a": {
+        "cagr": 0.1834,
+        "sharpe": 1.18,
+        "max_dd": -0.365,
+        "profit_factor": 1.35,
+        "trades": 9607,
+        "win_rate": 0.613,
+        "avg_hold_days": 1.7,
+        "spy_sharpe": 0.53
+      },
+      "ensemble": {
+        "cagr": 0.1337,
+        "sharpe": 0.97,
+        "max_dd": -0.2001
+      },
+      "diversification": {
+        "a_exposure": 0.583,
+        "corr_a_h_pearson": 0.243,
+        "corr_a_h_winsor": 0.441,
+        "entry_days_full": 3591
+      }
+    },
+    "maxatr2.0": {
+      "spec": "three_lower_lows[stretch0.75,sma200,maxatr2.0%]",
+      "sleeve_a": {
+        "cagr": 0.0453,
+        "sharpe": 0.61,
+        "max_dd": -0.2247,
+        "profit_factor": 1.2,
+        "trades": 6089,
+        "win_rate": 0.606,
+        "avg_hold_days": 1.7,
+        "spy_sharpe": 0.53
+      },
+      "ensemble": {
+        "cagr": 0.0511,
+        "sharpe": 0.52,
+        "max_dd": -0.1869
+      },
+      "diversification": {
+        "a_exposure": 0.372,
+        "corr_a_h_pearson": 0.243,
+        "corr_a_h_winsor": 0.414,
+        "entry_days_full": 2539
+      }
+    },
+    "maxatr2.5": {
+      "spec": "three_lower_lows[stretch0.75,sma200,maxatr2.5%]",
+      "sleeve_a": {
+        "cagr": 0.0933,
+        "sharpe": 0.99,
+        "max_dd": -0.2078,
+        "profit_factor": 1.29,
+        "trades": 7709,
+        "win_rate": 0.612,
+        "avg_hold_days": 1.7,
+        "spy_sharpe": 0.53
+      },
+      "ensemble": {
+        "cagr": 0.0798,
+        "sharpe": 0.73,
+        "max_dd": -0.195
+      },
+      "diversification": {
+        "a_exposure": 0.467,
+        "corr_a_h_pearson": 0.279,
+        "corr_a_h_winsor": 0.456,
+        "entry_days_full": 3033
+      }
+    },
+    "maxatr3.0": {
+      "spec": "three_lower_lows[stretch0.75,sma200,maxatr3.0%]",
+      "sleeve_a": {
+        "cagr": 0.1069,
+        "sharpe": 1.0,
+        "max_dd": -0.2156,
+        "profit_factor": 1.28,
+        "trades": 8469,
+        "win_rate": 0.614,
+        "avg_hold_days": 1.7,
+        "spy_sharpe": 0.53
+      },
+      "ensemble": {
+        "cagr": 0.0879,
+        "sharpe": 0.77,
+        "max_dd": -0.2075
+      },
+      "diversification": {
+        "a_exposure": 0.515,
+        "corr_a_h_pearson": 0.282,
+        "corr_a_h_winsor": 0.477,
+        "entry_days_full": 3252
+      }
+    },
+    "maxatr3.5": {
+      "spec": "three_lower_lows[stretch0.75,sma200,maxatr3.5%]",
+      "sleeve_a": {
+        "cagr": 0.1371,
+        "sharpe": 1.15,
+        "max_dd": -0.2324,
+        "profit_factor": 1.32,
+        "trades": 8971,
+        "win_rate": 0.618,
+        "avg_hold_days": 1.7,
+        "spy_sharpe": 0.53
+      },
+      "ensemble": {
+        "cagr": 0.1059,
+        "sharpe": 0.88,
+        "max_dd": -0.2126
+      },
+      "diversification": {
+        "a_exposure": 0.543,
+        "corr_a_h_pearson": 0.259,
+        "corr_a_h_winsor": 0.468,
+        "entry_days_full": 3410
+      }
+    },
+    "maxatr4.0": {
+      "spec": "three_lower_lows[stretch0.75,sma200,maxatr4.0%]",
+      "sleeve_a": {
+        "cagr": 0.1293,
+        "sharpe": 1.02,
+        "max_dd": -0.234,
+        "profit_factor": 1.29,
+        "trades": 9155,
+        "win_rate": 0.61,
+        "avg_hold_days": 1.7,
+        "spy_sharpe": 0.53
+      },
+      "ensemble": {
+        "cagr": 0.1014,
+        "sharpe": 0.81,
+        "max_dd": -0.2081
+      },
+      "diversification": {
+        "a_exposure": 0.559,
+        "corr_a_h_pearson": 0.282,
+        "corr_a_h_winsor": 0.476,
+        "entry_days_full": 3463
+      }
+    },
+    "maxatr5.0": {
+      "spec": "three_lower_lows[stretch0.75,sma200,maxatr5.0%]",
+      "sleeve_a": {
+        "cagr": 0.1335,
+        "sharpe": 0.99,
+        "max_dd": -0.3263,
+        "profit_factor": 1.28,
+        "trades": 9336,
+        "win_rate": 0.611,
+        "avg_hold_days": 1.7,
+        "spy_sharpe": 0.53
+      },
+      "ensemble": {
+        "cagr": 0.1041,
+        "sharpe": 0.81,
+        "max_dd": -0.2374
+      },
+      "diversification": {
+        "a_exposure": 0.571,
+        "corr_a_h_pearson": 0.281,
+        "corr_a_h_winsor": 0.47,
+        "entry_days_full": 3516
+      }
+    }
+  }
+}

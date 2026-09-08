@@ -118,6 +118,19 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
   full / 1.19 OOS; Sleeve H OOS PF 1.37. A sleeve below PF 1.0 for 6+ rolling months → flag David.
 - Every strategy **fails** the gauntlet individually (`GAUNTLET_SUMMARY.md`); the **ensemble** is
   what clears the bar via diversification. Don't judge a sleeve in isolation.
+- **Sleeve A volatility filtering was tested and rejected** (Sep 2026, `results/PHASE5_CONCLUSION.md`).
+  Capping entries by ATR% of price: 6 caps, 2005-2026, pre-registered in `VOLATILITY_HYPOTHESIS.md`.
+  Killed in-sample, OOS not spent. **The win rate never moved** (61.3% baseline vs 60.6-61.8%; the
+  tightest cap was *worse* than baseline) while Sleeve A CAGR fell 18.3% -> 4.5% and ensemble Sharpe
+  0.97 -> 0.52. Reason: **stock ATR correlates 0.914 with VIX** - it is a market-fear gauge, not a
+  stock trait, so the filter switches the dip-buyer off precisely in the panics that generate its
+  edge (exposure 0.58 -> 0.37). It does buy drawdown (-36.5% -> -22.5%), so it is a *risk* dial worth
+  revisiting only if Sleeve A drawdown ever binds - priced at ~14 points of CAGR.
+- **Two rejections, one lesson (Phase 4 + Phase 5):** both began from a table sorting
+  *already-taken trades* by a feature and finding a clean gradient; both gradients vanished as rules
+  because the feature proxied something already exploited (free capital / market regime). **Before
+  the next such hypothesis, check whether the feature varies between names on the same day, or
+  mostly between days.** Only the former is actionable.
 - **Sleeve H entry-breadth gating was tested and rejected** (Sep 2026, `results/PHASE4_CONCLUSION.md`).
   Requiring N simultaneous H signals before taking any: 8 thresholds, 2005-2026, pre-registered in
   `BREADTH_HYPOTHESIS.md`. The in-sample profit-factor curve is a sawtooth with no plateau, the one
