@@ -1,0 +1,107 @@
+{
+  "stage": "oos",
+  "window": {
+    "start": "2023-01-01",
+    "end": null
+  },
+  "slippage_bps": 5.0,
+  "sleeve_h": "high52_breakout[252,15d,stop5%]",
+  "variants": {
+    "baseline": {
+      "spec": "three_lower_lows[stretch0.75,sma200]",
+      "sleeve_a": {
+        "cagr": 0.1067,
+        "sharpe": 0.78,
+        "max_dd": -0.1431,
+        "profit_factor": 1.16,
+        "trades": 2303,
+        "win_rate": 0.601,
+        "avg_hold_days": 1.8,
+        "spy_sharpe": 1.44
+      },
+      "ensemble": {
+        "cagr": 0.1558,
+        "sharpe": 1.09,
+        "max_dd": -0.1554
+      },
+      "diversification": {
+        "a_exposure": 0.687,
+        "corr_a_h_pearson": 0.344,
+        "corr_a_h_winsor": 0.385,
+        "entry_days_full": 3591
+      }
+    },
+    "rsi5": {
+      "spec": "three_lower_lows[stretch0.75,sma200,rsi5]",
+      "sleeve_a": {
+        "cagr": 0.0419,
+        "sharpe": 0.46,
+        "max_dd": -0.1158,
+        "profit_factor": 1.12,
+        "trades": 1238,
+        "win_rate": 0.602,
+        "avg_hold_days": 1.8,
+        "spy_sharpe": 1.44
+      },
+      "ensemble": {
+        "cagr": 0.1145,
+        "sharpe": 0.97,
+        "max_dd": -0.1113
+      },
+      "diversification": {
+        "a_exposure": 0.368,
+        "corr_a_h_pearson": 0.278,
+        "corr_a_h_winsor": 0.302,
+        "entry_days_full": 2306
+      }
+    },
+    "rsi5+ibs+bb": {
+      "spec": "three_lower_lows[stretch0.75,sma200,rsi5,ibs0.2,bb]",
+      "sleeve_a": {
+        "cagr": 0.023,
+        "sharpe": 0.43,
+        "max_dd": -0.0659,
+        "profit_factor": 1.21,
+        "trades": 371,
+        "win_rate": 0.604,
+        "avg_hold_days": 1.8,
+        "spy_sharpe": 1.44
+      },
+      "ensemble": {
+        "cagr": 0.1025,
+        "sharpe": 1.03,
+        "max_dd": -0.0862
+      },
+      "diversification": {
+        "a_exposure": 0.111,
+        "corr_a_h_pearson": 0.177,
+        "corr_a_h_winsor": 0.186,
+        "entry_days_full": 935
+      }
+    },
+    "everything": {
+      "spec": "three_lower_lows[stretch0.75,sma200,ll4,rsi5,ibs0.2,trend10%,bb]",
+      "sleeve_a": {
+        "cagr": 0.0149,
+        "sharpe": 0.56,
+        "max_dd": -0.0361,
+        "profit_factor": 1.75,
+        "trades": 82,
+        "win_rate": 0.659,
+        "avg_hold_days": 1.5,
+        "spy_sharpe": 1.44
+      },
+      "ensemble": {
+        "cagr": 0.0973,
+        "sharpe": 1.06,
+        "max_dd": -0.0733
+      },
+      "diversification": {
+        "a_exposure": 0.022,
+        "corr_a_h_pearson": 0.141,
+        "corr_a_h_winsor": 0.17,
+        "entry_days_full": 272
+      }
+    }
+  }
+}

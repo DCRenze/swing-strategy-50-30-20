@@ -118,6 +118,17 @@ slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%
   full / 1.19 OOS; Sleeve H OOS PF 1.37. A sleeve below PF 1.0 for 6+ rolling months → flag David.
 - Every strategy **fails** the gauntlet individually (`GAUNTLET_SUMMARY.md`); the **ensemble** is
   what clears the bar via diversification. Don't judge a sleeve in isolation.
+- **Stacked entry confirmations were tested and rejected** (Sep 2026, `results/PHASE6_CONCLUSION.md`).
+  RSI(2)<=5, IBS<=0.2, below lower Bollinger, >=10% above SMA200, 4-5 lower lows - alone and stacked,
+  pre-registered in `STRICTNESS_HYPOTHESIS.md`. **The filters genuinely work** (IS profit factor
+  1.35 -> 1.88, monotone) - this is not the Phase 4/5 failure mode. But exposure collapses 0.58 ->
+  0.02 and the IS win-rate gain evaporates OOS: rsi5 +1.3pts IS -> **+0.1pts OOS**; rsi5+ibs+bb
+  +3.0 -> **+0.3**. Only `everything` held its win rate (65.9%) and it has **82 OOS trades**, under
+  the pre-registered 100 floor. Ensemble CAGR 15.6% -> 9.7-11.5% in every config. **Lesson: the
+  binding constraint is setup SUPPLY, not entry quality** - you cannot compound on a better trade
+  you almost never take. Buys drawdown (-15.5% -> -7.3%) at ~6 points of CAGR; a risk dial, not an
+  edge rule. The one open thread is a materially larger universe to feed a quality filter - untested,
+  and liquidity screening must be part of any such hypothesis (A is zero-CAGR at 20bps).
 - **Sleeve A volatility filtering was tested and rejected** (Sep 2026, `results/PHASE5_CONCLUSION.md`).
   Capping entries by ATR% of price: 6 caps, 2005-2026, pre-registered in `VOLATILITY_HYPOTHESIS.md`.
   Killed in-sample, OOS not spent. **The win rate never moved** (61.3% baseline vs 60.6-61.8%; the
