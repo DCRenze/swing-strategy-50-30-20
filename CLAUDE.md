@@ -3,6 +3,23 @@
 Read this before touching anything. It is the fast orientation; `playbook/PLAYBOOK.md` is the
 **authoritative** trading spec and always wins on any rule detail.
 
+## How to talk to David (always)
+
+**Plain English, short, no jargon.** Lead with the answer. Cut the detail unless he asks for
+it or it changes what he should do.
+
+- No jargon without a plain-English translation right there. Not "profit factor 0.52" but
+  "for every $1 it made, it lost about $2."
+- Skip the workings. He wants the conclusion and what to do about it, not the method that
+  got there. Evidence goes in `results/`, not the reply.
+- Short. A few sentences or a small table beats a wall of text. No long tables of metrics
+  unless he asked for numbers.
+- Say plainly when something is bad news, uncertain, or too small a sample to call.
+- He'll ask for depth when he wants it — then go as deep as he likes.
+
+This is about the **reply**, not the work. Code comments, `results/` write-ups and commit
+messages stay as rigorous and detailed as ever.
+
 ## What this is
 
 A research-and-execution pipeline for a **long-only US-stock swing strategy** (2–15 trading-day
