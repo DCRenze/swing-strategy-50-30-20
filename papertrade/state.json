@@ -35,25 +35,10 @@
       "entry_date": "2026-08-28",
       "entry_px": 190.0073
     },
-    "AMAT": {
-      "sleeve": "A",
-      "entry_date": "2026-09-01",
-      "entry_px": 441.0
-    },
-    "AMD": {
-      "sleeve": "A",
-      "entry_date": "2026-09-01",
-      "entry_px": 454.57
-    },
     "CVX": {
       "sleeve": "H",
       "entry_date": "2026-09-02",
       "entry_px": 211.49
-    },
-    "STX": {
-      "sleeve": "A",
-      "entry_date": "2026-09-03",
-      "entry_px": 766.89
     },
     "DELL": {
       "sleeve": "H",
@@ -64,6 +49,21 @@
       "sleeve": "H",
       "entry_date": "2026-09-04",
       "entry_px": 349.4815
+    },
+    "ABBV": {
+      "sleeve": "A",
+      "entry_date": "2026-09-08",
+      "entry_px": 251.4812
+    },
+    "DASH": {
+      "sleeve": "A",
+      "entry_date": "2026-09-08",
+      "entry_px": 203.9622
+    },
+    "MNST": {
+      "sleeve": "A",
+      "entry_date": "2026-09-08",
+      "entry_px": 43.03
     }
   },
   "hwm": 100432.77
