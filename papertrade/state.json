@@ -1,10 +1,5 @@
 {
   "positions": {
-    "ABNB": {
-      "sleeve": "H",
-      "entry_date": "2026-08-20",
-      "entry_px": 185.3384
-    },
     "ILMN": {
       "sleeve": "H",
       "entry_date": "2026-08-21",
@@ -29,11 +24,6 @@
       "sleeve": "H",
       "entry_date": "2026-08-28",
       "entry_px": 170.6211
-    },
-    "TEAM": {
-      "sleeve": "H",
-      "entry_date": "2026-08-28",
-      "entry_px": 190.0073
     },
     "CVX": {
       "sleeve": "H",
@@ -64,6 +54,11 @@
       "sleeve": "A",
       "entry_date": "2026-09-08",
       "entry_px": 43.03
+    },
+    "T": {
+      "sleeve": "A",
+      "entry_date": "2026-09-09",
+      "entry_px": 25.23
     }
   },
   "hwm": 100432.77

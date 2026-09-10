@@ -83,3 +83,5 @@
 {"ticker": "AMAT", "sleeve": "A", "entry_date": "2026-09-01", "exit_date": "2026-09-08", "entry_px": 441.0, "exit_px": 465.05, "qty": 13.0474, "ret": 0.0545, "pnl": 313.79}
 {"ticker": "AMD", "sleeve": "A", "entry_date": "2026-09-01", "exit_date": "2026-09-08", "entry_px": 454.57, "exit_px": 490.53, "qty": 12.658, "ret": 0.0791, "pnl": 455.18}
 {"ticker": "STX", "sleeve": "A", "entry_date": "2026-09-03", "exit_date": "2026-09-08", "entry_px": 766.89, "exit_px": 873.7691, "qty": 7.4708, "ret": 0.1394, "pnl": 798.47}
+{"ticker": "ABNB", "sleeve": "H", "entry_date": "2026-08-20", "exit_date": "2026-09-09", "entry_px": 185.3384, "exit_px": 172.69, "qty": 20.6589, "ret": -0.0682, "pnl": -261.3}
+{"ticker": "TEAM", "sleeve": "H", "entry_date": "2026-08-28", "exit_date": "2026-09-09", "entry_px": 190.0073, "exit_px": 176.94, "qty": 20.7667, "ret": -0.0688, "pnl": -271.36}
