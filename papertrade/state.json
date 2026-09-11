@@ -35,16 +35,6 @@
       "entry_date": "2026-09-04",
       "entry_px": 518.454
     },
-    "SNOW": {
-      "sleeve": "H",
-      "entry_date": "2026-09-04",
-      "entry_px": 349.4815
-    },
-    "ABBV": {
-      "sleeve": "A",
-      "entry_date": "2026-09-08",
-      "entry_px": 251.4812
-    },
     "DASH": {
       "sleeve": "A",
       "entry_date": "2026-09-08",
@@ -59,6 +49,11 @@
       "sleeve": "A",
       "entry_date": "2026-09-09",
       "entry_px": 25.23
+    },
+    "HPQ": {
+      "sleeve": "H",
+      "entry_date": "2026-09-10",
+      "entry_px": 31.94
     }
   },
   "hwm": 100432.77

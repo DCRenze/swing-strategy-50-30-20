@@ -1,0 +1,33 @@
+{"ts": "2026-09-11T13:20:31", "kind": "trade_closed", "dry_run": null, "ticker": "SNOW", "sleeve": "H", "entry_date": "2026-09-04", "exit_date": "2026-09-10", "entry_px": 349.4815, "exit_px": 325.7518, "qty": 10.7839, "ret": -0.0679, "pnl": -255.9}
+{"ts": "2026-09-11T13:20:31", "kind": "position_closed", "ticker": "SNOW", "sleeve": "H", "entry_date": "2026-09-04", "entry_px": 349.4815}
+{"ts": "2026-09-11T13:20:31", "kind": "trade_closed", "dry_run": null, "ticker": "ABBV", "sleeve": "A", "entry_date": "2026-09-08", "exit_date": "2026-09-10", "entry_px": 251.4812, "exit_px": 251.7754, "qty": 46.017, "ret": 0.0012, "pnl": 13.54}
+{"ts": "2026-09-11T13:20:31", "kind": "position_closed", "ticker": "ABBV", "sleeve": "A", "entry_date": "2026-09-08", "entry_px": 251.4812}
+{"ts": "2026-09-11T13:20:31", "kind": "position_adopted", "ticker": "HPQ", "sleeve": "H", "entry_date": "2026-09-10", "entry_px": 31.94}
+{"ts": "2026-09-11T13:20:31", "kind": "run_start", "mode": "morning", "equity": 96348.66, "hwm": 100432.77, "drawdown": -0.0407, "dry_run": false}
+{"ts": "2026-09-11T13:21:28", "kind": "data_asof", "signal_date": "2026-09-10", "trade_date": "2026-09-11", "sessions": 309}
+{"ts": "2026-09-11T13:21:28", "kind": "submit_window", "target": "09:30", "waited_s": 511.7, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-09-11T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "DASH", "side": "sell", "qty": 56.4424, "order_type": "market", "limit_price": null, "client_order_id": "A-DASH-20260911-sell"}
+{"ts": "2026-09-11T13:30:00", "kind": "exit_reason", "ticker": "DASH", "sleeve": "A", "days_held": 3, "signal_date": "2026-09-10", "reason": "first up-close", "trigger_close": 201.03, "prior_close": 197.245, "trigger_session": "2026-09-10"}
+{"ts": "2026-09-11T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MNST", "side": "sell", "qty": 269.7682, "order_type": "market", "limit_price": null, "client_order_id": "A-MNST-20260911-sell"}
+{"ts": "2026-09-11T13:30:00", "kind": "exit_reason", "ticker": "MNST", "sleeve": "A", "days_held": 3, "signal_date": "2026-09-10", "reason": "first up-close", "trigger_close": 43.09, "prior_close": 42.84, "trigger_session": "2026-09-10"}
+{"ts": "2026-09-11T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "T", "side": "sell", "qty": 229.15, "order_type": "market", "limit_price": null, "client_order_id": "A-T-20260911-sell"}
+{"ts": "2026-09-11T13:30:00", "kind": "exit_reason", "ticker": "T", "sleeve": "A", "days_held": 2, "signal_date": "2026-09-10", "reason": "first up-close", "trigger_close": 25.55, "prior_close": 25.15, "trigger_session": "2026-09-10"}
+{"ts": "2026-09-11T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "NVDA", "side": "buy", "qty": 27.1288, "order_type": "limit", "limit_price": 213.09, "client_order_id": "A-NVDA-20260911-buy"}
+{"ts": "2026-09-11T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MSFT", "side": "buy", "qty": 11.9291, "order_type": "limit", "limit_price": 484.61, "client_order_id": "A-MSFT-20260911-buy"}
+{"ts": "2026-09-11T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "AMZN", "side": "buy", "qty": 23.3592, "order_type": "limit", "limit_price": 247.48, "client_order_id": "A-AMZN-20260911-buy"}
+{"ts": "2026-09-11T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "PLTR", "side": "buy", "qty": 36.1076, "order_type": "limit", "limit_price": 160.1, "client_order_id": "A-PLTR-20260911-buy"}
+{"ts": "2026-09-11T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "MRNA", "side": "buy", "qty": 45.4837, "order_type": "limit", "limit_price": 127.1, "client_order_id": "A-MRNA-20260911-buy"}
+{"ts": "2026-09-11T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "CRM", "side": "buy", "qty": 24.5961, "order_type": "limit", "limit_price": 235.03, "client_order_id": "A-CRM-20260911-buy"}
+{"ts": "2026-09-11T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "V", "side": "buy", "qty": 15.9293, "order_type": "limit", "limit_price": 362.91, "client_order_id": "A-V-20260911-buy"}
+{"ts": "2026-09-11T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "HOOD", "reason": "sleeve full"}
+{"ts": "2026-09-11T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "NOW", "reason": "sleeve full"}
+{"ts": "2026-09-11T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "SNOW", "reason": "sleeve full"}
+{"ts": "2026-09-11T13:30:01", "kind": "order_submitted", "sleeve": "H", "ticker": "ILMN", "side": "sell", "qty": 18.0083, "order_type": "market", "limit_price": null, "client_order_id": "H-ILMN-20260911-sell"}
+{"ts": "2026-09-11T13:30:01", "kind": "exit_reason", "ticker": "ILMN", "sleeve": "H", "days_held": 14, "signal_date": "2026-09-10", "reason": "5% stop", "trigger_close": 201.27, "stop_level": 202.283, "trigger_session": "2026-09-10"}
+{"ts": "2026-09-11T13:30:01", "kind": "order_submitted", "sleeve": "H", "ticker": "VIRT", "side": "sell", "qty": 56.6384, "order_type": "market", "limit_price": null, "client_order_id": "H-VIRT-20260911-sell"}
+{"ts": "2026-09-11T13:30:01", "kind": "exit_reason", "ticker": "VIRT", "sleeve": "H", "days_held": 13, "signal_date": "2026-09-10", "reason": "5% stop", "trigger_close": 61.57, "stop_level": 62.4265, "trigger_session": "2026-09-10"}
+{"ts": "2026-09-11T13:30:01", "kind": "order_submitted", "sleeve": "H", "ticker": "SWKS", "side": "buy", "qty": 45.8639, "order_type": "market", "limit_price": null, "client_order_id": "H-SWKS-20260911-buy"}
+{"ts": "2026-09-11T13:30:02", "kind": "order_submitted", "sleeve": "H", "ticker": "QRVO", "side": "buy", "qty": 34.3, "order_type": "market", "limit_price": null, "client_order_id": "H-QRVO-20260911-buy"}
+{"ts": "2026-09-11T13:30:02", "kind": "skip", "sleeve": "H", "ticker": "CHRD", "reason": "sleeve full"}
+{"ts": "2026-09-11T13:30:02", "kind": "skip", "sleeve": "H", "ticker": "ADM", "reason": "sleeve full"}
+{"ts": "2026-09-11T13:30:02", "kind": "run_end", "mode": "morning"}

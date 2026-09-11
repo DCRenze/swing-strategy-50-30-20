@@ -85,3 +85,5 @@
 {"ticker": "STX", "sleeve": "A", "entry_date": "2026-09-03", "exit_date": "2026-09-08", "entry_px": 766.89, "exit_px": 873.7691, "qty": 7.4708, "ret": 0.1394, "pnl": 798.47}
 {"ticker": "ABNB", "sleeve": "H", "entry_date": "2026-08-20", "exit_date": "2026-09-09", "entry_px": 185.3384, "exit_px": 172.69, "qty": 20.6589, "ret": -0.0682, "pnl": -261.3}
 {"ticker": "TEAM", "sleeve": "H", "entry_date": "2026-08-28", "exit_date": "2026-09-09", "entry_px": 190.0073, "exit_px": 176.94, "qty": 20.7667, "ret": -0.0688, "pnl": -271.36}
+{"ticker": "SNOW", "sleeve": "H", "entry_date": "2026-09-04", "exit_date": "2026-09-10", "entry_px": 349.4815, "exit_px": 325.7518, "qty": 10.7839, "ret": -0.0679, "pnl": -255.9}
+{"ticker": "ABBV", "sleeve": "A", "entry_date": "2026-09-08", "exit_date": "2026-09-10", "entry_px": 251.4812, "exit_px": 251.7754, "qty": 46.017, "ret": 0.0012, "pnl": 13.54}
