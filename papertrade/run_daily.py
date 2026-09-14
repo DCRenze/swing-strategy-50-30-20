@@ -5,8 +5,18 @@ computed from yesterday's completed daily bar and acted on at today's open, whic
 matches the backtest's timing exactly. Because nothing reads today's bar, the whole
 computation runs pre-open and --submit-at holds the orders until the bell, so fills
 land at 9:30 rather than several minutes into the session. Fractional shares let a small ($1-2k)
-account hold the full 20-position book, so every order is a DAY order (market or
-limit) - the only order types Alpaca allows fractional quantities on.
+account hold the full 20-position book, so every order is a DAY order.
+
+Fractional order constraints, VERIFIED against the live paper API on 2026-09-14
+(results/ALPACA_ORDER_CONSTRAINTS.md - the earlier claim here that only market and
+limit orders accept fractional quantities was WRONG):
+  - market, limit, stop, stop_limit  -> all ACCEPTED with fractional qty
+  - time_in_force                    -> DAY only; GTC is rejected outright
+        ("stop/stop_limit fractional GTC orders are not enabled")
+  - bracket / OCO / OTO              -> REJECTED
+        ("fractional orders must be simple orders")
+So a protective stop CAN rest at the broker intraday, but it dies at the close and
+cannot be attached to the entry. Overnight gaps remain uncovered by any resting order.
 
     ALPACA_API_KEY=...        # in .env at the project root (never committed)
     ALPACA_SECRET_KEY=...
