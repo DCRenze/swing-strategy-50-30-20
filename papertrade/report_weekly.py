@@ -693,8 +693,9 @@ def build_html(ctx: dict) -> str:
                         extra=f'<div class="kpi-spark">{spark}</div>'))
         kpis.append(kpi("Week P/L", _money0(eq["week_pl"], signed=True),
                         _pct(eq["week_pct"]), _cls(eq["week_pl"]), _arrow(eq["week_pl"])))
-        kpis.append(kpi("Since inception", _money0(eq["incep_pl"], signed=True),
-                        _pct(eq["incep_pct"]), _cls(eq["incep_pl"]), _arrow(eq["incep_pl"])))
+        kpis.append(kpi("Since the fix", _money0(eq["incep_pl"], signed=True),
+                        _pct(eq["incep_pct"]), _cls(eq["incep_pl"]), _arrow(eq["incep_pl"]),
+                        extra='<div class="kpi-note">from 2026-08-11</div>'))
     if rm:
         kpis.append(kpi("Max drawdown", f"{rm['maxdd']:.1f}%",
                         f"current {rm['curdd']:.1f}%", "neg"))
@@ -859,6 +860,7 @@ font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:6px}}
 .kpi-sub{{font-size:12.5px;color:var(--muted);margin-top:2px}}
 .kpi-sub.pos{{color:var(--pos)}}.kpi-sub.neg{{color:var(--neg)}}
 .kpi-spark{{position:absolute;right:12px;bottom:10px;opacity:.9}}
+.kpi-note{{font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:.02em}}
 .spark{{display:block}}
 /* panels */
 .panel{{background:var(--surface);border:1px solid var(--grid);border-radius:12px;padding:14px 16px}}
@@ -1002,9 +1004,19 @@ def collect_alerts(week_start: dt.date, as_of: dt.date) -> list[str]:
 def generate(narrative: str | None = None, with_charts: bool = True) -> tuple[str, dict]:
     """Build the report HTML. Returns (html, summary_ctx). with_charts=False skips
     the matplotlib renders (used by the fast --summary-json path)."""
+    import pandas as pd
+
     state = load_state()
     trades = load_trades()
-    series = load_equity_series()
+    # The equity curve, its charts and every performance figure below measure
+    # from BASELINE_DATE. Sessions before it ran under the in-progress-bar defect
+    # and the ~09:34 submit window, so they describe rules that are no longer
+    # live. `full_series` is kept for the one number that must stay lifetime: the
+    # drawdown against the account high-water mark, which is what actually fires
+    # the -15%/-20% halts in run_daily.
+    full_series = load_equity_series()
+    series = full_series[full_series.index >= pd.Timestamp(BASELINE_DATE)] \
+        if len(full_series) else full_series
     account, positions = alpaca_snapshot()
     market = fetch_market()
 
@@ -1112,7 +1124,7 @@ def summary_line(ctx: dict) -> str:
     parts = [f"📊 Weekly report — week ending {ctx['as_of']}"]
     if not eq.get("empty"):
         parts.append(f"Equity ${eq['equity']:,.0f} (week {eq['week_pct']:+.2f}%, "
-                     f"since inception {eq['incep_pct']:+.2f}%)")
+                     f"since the fix {eq['incep_pct']:+.2f}%)")
     a, h = ctx["sleeves"]["A"]["all"], ctx["sleeves"]["H"]["all"]
     parts.append(f"Realized net — A ${a['net']:+,.0f} / H ${h['net']:+,.0f}")
     return " · ".join(parts)

@@ -103,6 +103,27 @@ def market_snapshot() -> list[str]:
     return lines
 
 
+def baseline_equity() -> float | None:
+    """Account equity at the first session under the corrected rules.
+
+    Read from the journal rather than hard-coded, so it stays right if
+    BASELINE_DATE ever moves. Returns None if that session is not on disk.
+    """
+    for path in sorted(JOURNAL_DIR.glob("*.jsonl")):
+        if path.stem < BASELINE_DATE:
+            continue
+        for ln in path.read_text().splitlines():
+            try:
+                r = json.loads(ln)
+            except json.JSONDecodeError:
+                continue
+            if r.get("kind") == "run_start" and not r.get("dry_run"):
+                eq = r.get("equity")
+                if eq is not None:
+                    return float(eq)
+    return None
+
+
 def account_and_risk(acct, positions, state) -> list[str]:
     equity = float(acct.equity)
     cash = float(acct.cash)
@@ -120,8 +141,19 @@ def account_and_risk(acct, positions, state) -> list[str]:
         "**Account & risk**",
         f"- Equity: ${equity:,.2f}  (day {dchg:+,.2f}, {dpct:+.2f}%)",
         f"- Cash: ${cash:,.2f}  ·  Invested: {mv / equity * 100:.0f}%" if equity else f"- Cash: ${cash:,.2f}",
-        f"- Drawdown vs high-water ${hwm:,.0f}: {dd:+.1f}%",
     ]
+    # Headline performance measures from the fix, because sessions before it ran
+    # under rules that are no longer live. The drawdown line below stays LIFETIME
+    # on purpose - it is the number the -15%/-20% halts actually fire on, and
+    # rebasing it would make them trigger later in real-dollar terms.
+    base_eq = baseline_equity()
+    if base_eq:
+        chg = equity - base_eq
+        pct = (chg / base_eq * 100) if base_eq else 0.0
+        lines.append(f"- Since the fix ({BASELINE_DATE}): {chg:+,.2f} ({pct:+.2f}%) "
+                     f"from ${base_eq:,.0f}")
+    lines.append(f"- Drawdown vs lifetime high-water ${hwm:,.0f}: {dd:+.1f}%  "
+                 f"_(risk gate — lifetime by design)_")
     if equity:
         lines.append(f"- Capital by sleeve: A {by.get('A', 0) / equity * 100:.0f}% · "
                      f"H {by.get('H', 0) / equity * 100:.0f}% "
