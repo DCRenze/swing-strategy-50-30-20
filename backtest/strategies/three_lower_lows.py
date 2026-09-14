@@ -22,6 +22,7 @@ def build(
     trend_sma: int = 100,
     min_dollar_vol: float = 10e6,
     min_price: float = 1.0,
+    stop_frac: float | None = None,
     max_atr_pct: float | None = None,
     # --- Phase 6 entry-confirmation filters; all None/default = validated baseline.
     # Every one of these varies BETWEEN NAMES ON THE SAME DAY, which is the test
@@ -78,6 +79,7 @@ def build(
 
     return StrategySpec(
         name=(f"three_lower_lows[stretch{stretch},sma{trend_sma}"
+              + (f",stop{stop_frac:.0%}" if stop_frac is not None else "")
               + (f",maxatr{max_atr_pct:.1%}" if max_atr_pct is not None else "")
               + ("," + ",".join(tags) if tags else "") + "]"),
         entry_signal=entry,
@@ -86,9 +88,11 @@ def build(
         exit_signal=exit_sig,
         exit_mode="next_open",
         time_stop=15,
+        stop_loss_frac=stop_frac,
         max_positions=max_positions,
         regime_ok=regime_ok,
-        params=dict(stretch=stretch, trend_sma=trend_sma, min_dollar_vol=min_dollar_vol,
+        params=dict(stretch=stretch, trend_sma=trend_sma, stop_frac=stop_frac,
+                    min_dollar_vol=min_dollar_vol,
                     max_atr_pct=max_atr_pct, n_lower_lows=n_lower_lows, max_rsi2=max_rsi2,
                     max_ibs=max_ibs, min_trend_strength=min_trend_strength,
                     below_lower_band=below_lower_band),

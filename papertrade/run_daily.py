@@ -59,6 +59,7 @@ JOURNAL_DIR = Path(__file__).resolve().parent / "journal"
 TRADES_PATH = Path(__file__).resolve().parent / "trades.jsonl"  # realized closed-trade ledger
 
 SLEEVE_TIME_STOPS = {"A": scr.A_TIME_STOP, "H": scr.H_HOLD_DAYS}
+SLEEVE_STOP_FRACS = {"A": scr.A_STOP_FRAC, "H": 0.05}
 
 DRAWDOWN_HALT_A = -0.15    # halt Sleeve A (mean-reversion) new entries
 DRAWDOWN_HALT_ALL = -0.20  # halt all new entries
@@ -306,6 +307,22 @@ def a_exit_signal(closes: pd.Series, entry_date: str) -> dict | None:
     return {"reason": "up-close (overdue)", "up_closes_since_entry": len(ups), **detail}
 
 
+def a_stop_signal(raw_closes: pd.Series, entry_date: str, avg_entry_price: float,
+                  stop_frac: float) -> dict | None:
+    """Sleeve A disaster stop - identical mechanics to the H stop, wider level.
+
+    Sleeve A ran with no stop until Sep 2026. The evidence for that was measured on a
+    survivorship-biased universe, which is the sample most HOSTILE to stops: every name in
+    it recovered, so every stop-out there looks like a mistake the real world would not
+    have punished. See results/PHASE7_STOP.md.
+
+    This is a DISASTER BRAKE, not a bounded loss. It reads a completed close and sells at
+    the next open, so a gap-down fills worse than the level - which is exactly what wider
+    levels did to ELF in the out-of-sample test. Never describe it as a maximum loss.
+    """
+    return h_stop_signal(raw_closes, entry_date, avg_entry_price, stop_frac)
+
+
 def h_stop_signal(raw_closes: pd.Series, entry_date: str, avg_entry_price: float,
                   stop_frac: float) -> dict | None:
     """Sleeve H: 5% stop, measured on completed closes against the actual fill.
@@ -436,6 +453,23 @@ def run_morning(client, dry: bool, submit_at: str | None = None,
                             msg="A position absent from current data - price exit could NOT be "
                                 "evaluated; check this name manually before the close")
             continue
+        # Disaster stop first: once the position has broken the level it exits, whether or
+        # not an up-close has since appeared. Measured on raw_close against the real fill,
+        # never the dividend-adjusted series (same rule as the H stop, and the reason
+        # test_run_daily guards it).
+        entry_px = meta.get("entry_px")
+        stop_sig = None
+        if entry_px and ticker in raw_c.columns:
+            stop_sig = a_stop_signal(raw_c[ticker], meta["entry_date"], float(entry_px),
+                                     SLEEVE_STOP_FRACS["A"])
+        if stop_sig:
+            otype, lpx = exit_order_params(ticker, journal, exit_limit_bps)
+            submit_order(client, journal, dry, sleeve="A", ticker=ticker, side="sell",
+                         qty=qty, order_type=otype, limit_price=lpx)
+            journal.log("exit_reason", ticker=ticker, sleeve="A", days_held=days_held,
+                        signal_date=signal_date, **stop_sig)
+            continue
+
         exit_sig = a_exit_signal(c[ticker], meta["entry_date"])
         if exit_sig:
             if exit_sig["reason"] != "first up-close":

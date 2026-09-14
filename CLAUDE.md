@@ -44,18 +44,21 @@ see "50/30/20", it is history, not the live config. Sleeve labels in code/data a
 
 - **A · dip-buyer (60%, mean-reversion):** `close>SMA200`, `close<SMA5`, 3 consecutive lower
   lows, liquid → **limit buy at `close − 0.75×ATR(10)`** (DAY order). Exit: sell at open on the
-  first close > prior close, or a hard **15-day time stop**. **No stop-loss** — but that claim is over-stated; see
-  `results/SLEEVE_A_CRITIQUE_2026-09.md`. Stops hurt only at TIGHT levels (7% costs 1.9 CAGR
-  pts). A **15-25% stop is free** (20% costs 0.05 pts; 15% costs nothing and improves maxDD by
-  3.3 pts) on the survivorship-biased universe — the sample most hostile to stops, so that cost
-  is an upper bound. Ship no level until Test 1 (point-in-time universe) runs.
-  Max 10 positions (~6% equity each).
+  first close > prior close, or a hard **15-day time stop**. **15% disaster stop** (`A_STOP_FRAC`, added Sep 2026 — `results/PHASE7_STOP.md`): a completed
+  close ≤ entry×0.85 → sell next open, evaluated BEFORE the up-close rule. Deployed book improved
+  on every axis: full maxDD −24.9% → **−20.7%**, CAGR 13.64% → 13.77%, OOS Sharpe 1.16 → 1.21.
+  **It is a brake, not a bounded loss** — it reads a close and sells at the next open, so a gap
+  fills worse (30%/25%/20% levels were rejected precisely because the only OOS trade they touched,
+  ELF, got *worse*: −31.6% → −35.2%). Level still owes a re-check once a point-in-time universe
+  exists. Max 10 positions (~6% equity each).
 - **H · momentum (40%):** new **252-day closing high** on above-average volume, liquid, **only
   when SPY > SMA(100)** → **market buy at the open**, ranked by 6-month momentum. Exit: **5% stop**
   (a close ≤ entry×0.95) or **15-day time stop**. Max 10 positions (~4% equity each).
 
 The two are only ~0.26 correlated — pairing them shrinks drawdown. Validated 2005–2026 (5 bps/side
-slippage, last 3.5y out-of-sample): full CAGR 13.6%, Sharpe 0.99, MaxDD −24.9%; OOS CAGR 17.4%.
+slippage, last 3.5y out-of-sample): full CAGR **13.8%**, Sharpe **1.00**, MaxDD **−20.7%**; OOS
+CAGR **17.7%**, OOS Sharpe 1.21. (Re-validated Sep 2026 with Sleeve A's 15% stop —
+`results/PHASE7_STOP.md`. Pre-stop figures were CAGR 13.6% / MaxDD −24.9% / OOS Sharpe 1.16.)
 
 ## Risk guardrails (enforced in `papertrade/run_daily.py`, not just prose)
 

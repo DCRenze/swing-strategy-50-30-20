@@ -318,6 +318,51 @@ def test_wider_band_is_more_marketable():
     print("ok: a wider band prices further through the bid (more likely to fill)")
 
 
+# ------------------------------------------------- Sleeve A disaster stop ---
+def test_a_stop_fires_on_a_completed_breach():
+    s = series([("2026-09-01", 100.0), ("2026-09-02", 95.0),
+                ("2026-09-03", 90.0), ("2026-09-04", 84.0)])
+    got = rd.a_stop_signal(s, "2026-09-01", 100.0, scr.A_STOP_FRAC)
+    assert got and got["reason"] == "15% stop", got
+    assert got["trigger_session"] == "2026-09-04"
+    print("ok: Sleeve A stop fires when a completed close breaks the level")
+
+
+def test_a_stop_holds_just_above_the_level():
+    s = series([("2026-09-01", 100.0), ("2026-09-02", 95.0),
+                ("2026-09-03", 90.0), ("2026-09-04", 86.0)])
+    assert rd.a_stop_signal(s, "2026-09-01", 100.0, scr.A_STOP_FRAC) is None
+    print("ok: Sleeve A stop holds at -14%, does not fire early")
+
+
+def test_a_stop_uses_unadjusted_closes():
+    """Same trap as the H stop: entry_px is a real fill, so comparing it to a
+    dividend-adjusted series would trip the stop on a drop that never happened."""
+    import inspect
+    src = inspect.getsource(rd.run_morning)
+    assert "a_stop_signal(raw_c[ticker]" in src, "A stop must read raw_close, not close"
+    print("ok: Sleeve A stop reads raw (unadjusted) closes")
+
+
+def test_a_stop_takes_precedence_over_the_up_close_exit():
+    """A position that has already broken the stop must exit even if an up-close
+    appeared afterwards - otherwise the brake is silently outranked."""
+    import inspect
+    src = inspect.getsource(rd.run_morning)
+    stop_at = src.index("stop_sig = a_stop_signal")
+    upclose_at = src.index("exit_sig = a_exit_signal")
+    assert stop_at < upclose_at, "the stop must be evaluated before the up-close rule"
+    print("ok: the disaster stop is checked before the up-close exit")
+
+
+def test_a_stop_level_matches_the_validated_value():
+    """PHASE7_STOP.md selected 15%. A silent drift here invalidates that evidence."""
+    assert scr.A_STOP_FRAC == 0.15, scr.A_STOP_FRAC
+    assert rd.SLEEVE_STOP_FRACS["A"] == 0.15
+    assert rd.SLEEVE_STOP_FRACS["H"] == 0.05, "H's validated 5% stop must not move"
+    print("ok: stop levels match the validated values (A 15%, H 5%)")
+
+
 if __name__ == "__main__":
     test_session_complete()
     test_panel_excludes_in_progress_row()
@@ -339,4 +384,9 @@ if __name__ == "__main__":
     test_limit_exit_prices_through_the_bid()
     test_limit_exit_falls_back_to_market_without_a_quote()
     test_wider_band_is_more_marketable()
+    test_a_stop_fires_on_a_completed_breach()
+    test_a_stop_holds_just_above_the_level()
+    test_a_stop_uses_unadjusted_closes()
+    test_a_stop_takes_precedence_over_the_up_close_exit()
+    test_a_stop_level_matches_the_validated_value()
     print("\nall exit-rule tests passed")

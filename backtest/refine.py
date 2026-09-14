@@ -28,7 +28,12 @@ SLIPPAGE = 5.0
 
 # label -> (strategy, params). IS-selected refinements.
 CONFIGS = {
-    "3ll_refined": ("three_lower_lows", {"stretch": 0.75, "trend_sma": 200}),
+    # stop_frac added Sep 2026 - see results/PHASE7_STOP.md and STOP_HYPOTHESIS.md.
+    # 15% disaster brake, selected by a pre-registered "widest level that still
+    # truncates the tail" rule, not by picking the best number on the grid.
+    "3ll_refined": ("three_lower_lows", {"stretch": 0.75, "trend_sma": 200,
+                                         "stop_frac": 0.15}),
+    "3ll_nostop": ("three_lower_lows", {"stretch": 0.75, "trend_sma": 200}),
     "tom_exit1": ("turn_of_month", {"exit_day_of_month": 1}),
     "double7_lb10": ("double7", {"lookback": 10}),
     "tt_bear": ("turnaround_tuesday", {"_regime": "below_spy200"}),
