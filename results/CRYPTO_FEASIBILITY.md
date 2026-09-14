@@ -8,10 +8,21 @@ book has a hard ceiling of roughly 10–21% invested before any question of edge
 arises. That is the Phase 6 `everything` configuration (2% exposure, 1.55% CAGR,
 rejected) reached by a different route.**
 
-**No backtest was run. The out-of-sample window was NOT spent.** Two blockers are
-fatal on their own, and `PHASE5_CONCLUSION.md` sets the precedent: a kill criterion
-met before the confirmation stage ends the phase there. Nothing in `playbook/` or
-`papertrade/` was touched; no order of any kind was placed.
+**No backtest was run for this document.** Two blockers are fatal on their own, and
+`PHASE5_CONCLUSION.md` sets the precedent: a kill criterion met before the
+confirmation stage ends the phase there. Nothing in `playbook/` or `papertrade/` was
+touched; no order of any kind was placed.
+
+> **Update — a backtest was subsequently run at David's instruction.** He asked for
+> the deployed config over the last three years, having read this document's argument
+> that the window cannot support a verdict. Pre-registered in
+> `CRYPTO_BACKTEST_HYPOTHESIS.md`, results in `CRYPTO_BACKTEST_RESULT.md`. It failed
+> 4 of 6 pre-registered criteria: 1.0% CAGR at 2% exposure against bitcoin's 43.1%,
+> on 91 trades — below the README's 100-trade minimum for a testable result. It also
+> closed the one objection this document could not: retuning the ATR limit would not
+> help, because crypto and equity fill rates are already the same (20.8% vs 22.5%).
+> The only correction it forces is in this document's favour: the exposure ceiling
+> estimated below as 10–21% is realised at **2%**.
 
 Evidence and reproduction: `backtest/crypto_feasibility.py` (measurement only — it
 contains no strategy and no backtest).
