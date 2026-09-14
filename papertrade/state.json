@@ -1,19 +1,9 @@
 {
   "positions": {
-    "ILMN": {
-      "sleeve": "H",
-      "entry_date": "2026-08-21",
-      "entry_px": 212.9295
-    },
     "DINO": {
       "sleeve": "H",
       "entry_date": "2026-08-24",
       "entry_px": 98.0897
-    },
-    "VIRT": {
-      "sleeve": "H",
-      "entry_date": "2026-08-24",
-      "entry_px": 65.7121
     },
     "NTRA": {
       "sleeve": "H",
@@ -35,25 +25,20 @@
       "entry_date": "2026-09-04",
       "entry_px": 518.454
     },
-    "DASH": {
-      "sleeve": "A",
-      "entry_date": "2026-09-08",
-      "entry_px": 203.9622
-    },
-    "MNST": {
-      "sleeve": "A",
-      "entry_date": "2026-09-08",
-      "entry_px": 43.03
-    },
-    "T": {
-      "sleeve": "A",
-      "entry_date": "2026-09-09",
-      "entry_px": 25.23
-    },
     "HPQ": {
       "sleeve": "H",
       "entry_date": "2026-09-10",
       "entry_px": 31.94
+    },
+    "QRVO": {
+      "sleeve": "H",
+      "entry_date": "2026-09-11",
+      "entry_px": 113.838
+    },
+    "SWKS": {
+      "sleeve": "H",
+      "entry_date": "2026-09-11",
+      "entry_px": 85.3217
     }
   },
   "hwm": 100432.77

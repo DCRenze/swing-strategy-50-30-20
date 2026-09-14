@@ -87,3 +87,8 @@
 {"ticker": "TEAM", "sleeve": "H", "entry_date": "2026-08-28", "exit_date": "2026-09-09", "entry_px": 190.0073, "exit_px": 176.94, "qty": 20.7667, "ret": -0.0688, "pnl": -271.36}
 {"ticker": "SNOW", "sleeve": "H", "entry_date": "2026-09-04", "exit_date": "2026-09-10", "entry_px": 349.4815, "exit_px": 325.7518, "qty": 10.7839, "ret": -0.0679, "pnl": -255.9}
 {"ticker": "ABBV", "sleeve": "A", "entry_date": "2026-09-08", "exit_date": "2026-09-10", "entry_px": 251.4812, "exit_px": 251.7754, "qty": 46.017, "ret": 0.0012, "pnl": 13.54}
+{"ticker": "ILMN", "sleeve": "H", "entry_date": "2026-08-21", "exit_date": "2026-09-11", "entry_px": 212.9295, "exit_px": 201.8552, "qty": 18.0083, "ret": -0.052, "pnl": -199.43}
+{"ticker": "VIRT", "sleeve": "H", "entry_date": "2026-08-24", "exit_date": "2026-09-11", "entry_px": 65.7121, "exit_px": 61.77, "qty": 56.6384, "ret": -0.06, "pnl": -223.27}
+{"ticker": "DASH", "sleeve": "A", "entry_date": "2026-09-08", "exit_date": "2026-09-11", "entry_px": 203.9622, "exit_px": 202.02, "qty": 56.4424, "ret": -0.0095, "pnl": -109.62}
+{"ticker": "MNST", "sleeve": "A", "entry_date": "2026-09-08", "exit_date": "2026-09-11", "entry_px": 43.03, "exit_px": 43.35, "qty": 269.7682, "ret": 0.0074, "pnl": 86.33}
+{"ticker": "T", "sleeve": "A", "entry_date": "2026-09-09", "exit_date": "2026-09-11", "entry_px": 25.23, "exit_px": 25.6544, "qty": 229.15, "ret": 0.0168, "pnl": 97.25}
