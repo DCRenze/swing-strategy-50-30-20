@@ -84,14 +84,53 @@ move against it is not evidence of anything; it is the thesis in progress.
 ordinary days of range — it fires on normal movement, on 6.8% of trades versus 0.5% at 15%,
 roughly a 14× higher firing rate.
 
-**3. Tight stops make the tail WORSE here, not better.** Both 5% and 10% produce a −52.8%
-worst trade against −43.5% with no stop at all. The mechanic is the one documented above: a
-close-based stop sells at the next open, so every firing is exposed to a gap. Firing 14× more
-often means catching 14× more gaps. A stop that fires often under this execution model is not
-a smaller loss, it is more chances to be gapped through.
+**3. ~~Tight stops make the tail WORSE here, not better.~~ — RETRACTED, THIS WAS WRONG.**
 
-The ensemble figures close the argument: 15% delivers 13.77% against 13.16% at 5% and 12.60%
-at 7%. Tighter is worse on return *and* worse on the tail.
+The original claim was that 5% and 10% produce a −52.8% worst trade against −43.5% unstopped,
+and that this proved tight stops get gapped through more often. **That reasoning does not
+survive inspection and is withdrawn.**
+
+The −52.8% trade is SRPT, entered 2016-01-14 at 30.47. On 2016-01-15 the stock collapsed from
+a 31.63 close to a 14.28 close — **−55% in one session, and it opened that day at 15.00,
+already −53%.** No stop level could have helped: the position went from healthy to −53%
+between one close and the next open, and every stop level exits at the same place, the next
+open at ~14.39.
+
+Crucially, **SRPT was not taken at all in the no-stop or 15% runs.** It appears only under 10%
+and 5%, because a tighter stop closes positions sooner and frees a slot that the other
+configurations did not have on that date. So the worse "worst trade" is a **different trade
+set**, not the same trade made worse. It is a slot-allocation artifact of a 10-position
+portfolio, not a mechanism.
+
+Measured properly, on the aggregate tail rather than a single observation, **tighter stops
+protect better, monotonically**:
+
+| Stop | Ensemble CAGR | Trades < −20% | Trades < −30% | Mean of worst 1% |
+|---|--:|--:|--:|--:|
+| none | 13.72% | 10 | 3 | −14.8% |
+| 20% | 13.30% | 16 | 4 | −15.3% |
+| **15% (shipped)** | **13.77%** | **9** | **2** | **−15.4%** |
+| 10% | 13.04% | 10 | 3 | −14.6% |
+| 7% | 12.60% | **5** | **1** | **−13.0%** |
+| 5% | 13.16% | **4** | **1** | **−12.3%** |
+
+**This is uncomfortable for the shipped choice.** 15% barely improves the tail at all — 9
+catastrophic trades versus 10 unstopped, and a mean worst-1% that is marginally *worse* than
+no stop. 5% and 7% genuinely halve the catastrophic bucket. The honest trade-off is:
+
+- **15%** keeps the return (13.77%) and buys almost no tail protection.
+- **5%** costs ~0.6 CAGR points and roughly halves the number of trades worse than −20%.
+
+Reasons 1 and 2 above (a dip-buyer buys weakness; 5% is inside two days of normal range) still
+stand and still argue against a stop that fires on 6.8% of trades. But they are arguments about
+*character and cost*, not about the tail — and the tail argument, which was the strongest-sounding
+of the three, was an artifact.
+
+**Consequence:** the level warrants re-selection against a corrected criterion that measures the
+aggregate tail (count and mean of the worst decile) rather than the single worst trade. The
+pre-registered OOS criterion 3 in `STOP_HYPOTHESIS.md` said "reduce the worst single-trade loss",
+and that criterion is now known to be sensitive to exactly this slot-allocation noise. It was a
+badly chosen criterion. Recorded here rather than quietly rewritten.
 
 **It is not a guaranteed maximum loss.** The rule reads a completed close and sells at the
 next open. A gap-down fills below the level. That is exactly what happened to ELF at wider

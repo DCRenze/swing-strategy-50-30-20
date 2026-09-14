@@ -48,9 +48,14 @@ see "50/30/20", it is history, not the live config. Sleeve labels in code/data a
   close ≤ entry×0.85 → sell next open, evaluated BEFORE the up-close rule. Deployed book improved
   on every axis: full maxDD −24.9% → **−20.7%**, CAGR 13.64% → 13.77%, OOS Sharpe 1.16 → 1.21.
   **It is a brake, not a bounded loss** — it reads a close and sells at the next open, so a gap
-  fills worse (30%/25%/20% levels were rejected precisely because the only OOS trade they touched,
-  ELF, got *worse*: −31.6% → −35.2%). Level still owes a re-check once a point-in-time universe
-  exists. Max 10 positions (~6% equity each).
+  fills worse. **⚠️ THE LEVEL IS UNDER REVIEW.** The claim that tighter stops worsen the tail was
+  **retracted** (see PHASE7_STOP.md §"Why not 5%"): it rested on a −52.8% SRPT trade that only
+  *exists* in the tight-stop runs because a tighter stop frees a portfolio slot — a different
+  trade set, not the same trade made worse. Measured on the aggregate tail, tighter is better:
+  trades worse than −20% run 10 (none) / **9 (15%, shipped)** / 5 (7%) / **4 (5%)**. 15% buys
+  almost no tail protection; 5% roughly halves the catastrophic bucket for ~0.6 CAGR points.
+  Re-select against an aggregate-tail criterion, not the single worst trade. Also owes a re-check
+  once a point-in-time universe exists. Max 10 positions (~6% equity each).
 - **H · momentum (40%):** new **252-day closing high** on above-average volume, liquid, **only
   when SPY > SMA(100)** → **market buy at the open**, ranked by 6-month momentum. Exit: **5% stop**
   (a close ≤ entry×0.95) or **15-day time stop**. Max 10 positions (~4% equity each).
