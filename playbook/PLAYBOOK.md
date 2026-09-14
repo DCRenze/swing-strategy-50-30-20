@@ -22,13 +22,16 @@ stocks, 5 bps/side slippage, last 3.5 years held out of sample
 
 | | Full window (2005–2026) | Out-of-sample (2023+) |
 |---|---|---|
-| CAGR | 13.8% | 17.7% |
-| Sharpe | 1.00 (SPY: 0.65) | 1.21 (SPY: 1.44*) |
-| Max drawdown | **−20.7%** (SPY: −55%) | −14.8% |
-| Monte Carlo p95 DD | −16.9% | — |
+| CAGR | 13.2% | — |
+| Sharpe | 0.95 (IS) | 1.09 |
+| Max drawdown | **−19.1%** (SPY: −55%) | — |
+| Monte Carlo p95 DD | −16.7% | — |
 
-Re-validated Sep 2026 after adding Sleeve A's 15% disaster stop (`results/PHASE7_STOP.md`).
-Pre-stop the same table read CAGR 13.6% / Sharpe 0.99 / MaxDD −24.9% / OOS Sharpe 1.16.
+Re-validated Sep 2026 after adding Sleeve A's **5%** stop (`results/PHASE7_STOP.md`). Pre-stop
+the same table read CAGR 13.6% / MaxDD −24.9% / OOS Sharpe 1.16. A first pass shipped 15% and was
+retracted — it bought almost no tail protection. Note the stop barely moves *portfolio* risk
+(MC p95 DD −16.7% vs −16.8% unstopped); what it cuts is single-trade disasters, from 10 trades
+worse than −20% down to 4.
 
 *2023–26 was a near-record bull run; SPY's 1.43 Sharpe there is an outlier no
 low-exposure long/flat strategy matched.
@@ -55,7 +58,7 @@ and the `2023_25_chop` slice in `results/gauntlet_range_reversion.json`.)
 | Parameter | Value |
 |---|---|
 | Universe | S&P 500 ∪ Russell 1000 (`data/universe.csv`; rebuild monthly via `backtest/universe.py`) |
-| Sleeve A (60%) | close > SMA200, close < SMA5, 3 consecutive lower lows, price > $1, 20d avg dollar vol > $10M → **limit buy at close − 0.75×ATR(10)**, DAY order at the open. Exit, in precedence order: (1) **15% disaster stop** — a completed close ≤ entry×0.85 → sell next open; (2) first close > prior close → sell next open; (3) hard 15-day time stop. The stop is a brake, not a capped loss (it reads a close, sells at the next open, so gaps fill worse). Added Sep 2026, `results/PHASE7_STOP.md`; tighter levels were NOT adopted and 20–30% levels were rejected for making the worst trade worse. Max 10 positions (~6% equity each). |
+| Sleeve A (60%) | close > SMA200, close < SMA5, 3 consecutive lower lows, price > $1, 20d avg dollar vol > $10M → **limit buy at close − 0.75×ATR(10)**, DAY order at the open. Exit, in precedence order: (1) **5% stop** — a completed close ≤ entry×0.95 → sell next open; (2) first close > prior close → sell next open; (3) hard 15-day time stop. The stop is a brake, not a capped loss (it reads a close, sells at the next open, so gaps fill worse). Added Sep 2026, `results/PHASE7_STOP.md`; 15–30% levels were rejected for buying almost no tail protection, and resting broker-side (intraday) stops were rejected for costing 2–4× more return via whipsaw. Max 10 positions (~6% equity each). |
 | Sleeve H (40%) | close makes a new **252-day closing high** (yesterday did not), volume > 50-day avg, price > $5, 20d dollar vol > $20M, **SPY > SMA(100)** → **market buy at the open**, ranked by 6-month momentum. Exit: **5% stop** (a close ≤ entry×0.95) OR 15-day time stop; sell at the open. Max 10 positions (~4% equity each). |
 | Shares | **Fractional.** Position size = weight/10 of equity; qty = size ÷ price. Enables the full 20-name book on a $1–2k account. Alpaca allows fractional only on **DAY market/limit** orders — hence the single at-the-open run below. Orders under $1 notional are skipped. |
 | Slippage budget | Validated at 5 bps/side. Sleeve A **dies at ~20 bps/side** (see §6). |
@@ -144,12 +147,13 @@ stale — the run acts on old signals; investigate per §5.
   winners, not hit rate. It suffers "momentum crashes" (violent trend reversals:
   2008–09, spring 2020) — its standalone MaxDD was −44.6%. The SPY>SMA(100) gate keeps
   it flat in unhealthy markets, and the 5% stop caps individual losers.
-- **The ensemble's** worst historical drawdown was −20.7% (−24.9% before Sleeve A's 15%
+- **The ensemble's** worst historical drawdown was −19.1% (−24.9% before Sleeve A's 5%
   stop). A losing quarter — even a −20% stretch — is within distribution (§5); it is
   aggressive by design.
-- **Sleeve A's 15% stop is a disaster brake, not a maximum loss.** It reads a completed
+- **Sleeve A's 5% stop is a brake, not a maximum loss.** It reads a completed
   close and sells at the next open, so a gap-down fills below the level. Do not quote it to
-  anyone as a capped loss; the worst modelled Sleeve A trade after the stop is still −24.8%.
+  anyone as a capped loss — a gap fills below it. It is also NOT a portfolio-drawdown tool: Monte
+  Carlo p95 drawdown is ~−16.7% with or without it. What it cuts is single-trade disasters.
 
 ## 8. Monitoring and decay protocol
 

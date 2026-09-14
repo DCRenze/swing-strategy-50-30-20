@@ -44,25 +44,26 @@ see "50/30/20", it is history, not the live config. Sleeve labels in code/data a
 
 - **A · dip-buyer (60%, mean-reversion):** `close>SMA200`, `close<SMA5`, 3 consecutive lower
   lows, liquid → **limit buy at `close − 0.75×ATR(10)`** (DAY order). Exit: sell at open on the
-  first close > prior close, or a hard **15-day time stop**. **15% disaster stop** (`A_STOP_FRAC`, added Sep 2026 — `results/PHASE7_STOP.md`): a completed
-  close ≤ entry×0.85 → sell next open, evaluated BEFORE the up-close rule. Deployed book improved
-  on every axis: full maxDD −24.9% → **−20.7%**, CAGR 13.64% → 13.77%, OOS Sharpe 1.16 → 1.21.
+  first close > prior close, or a hard **15-day time stop**. **5% stop** (`A_STOP_FRAC`, Sep 2026 — `results/PHASE7_STOP.md`): a completed close ≤ entry×0.95
+  → sell next open, evaluated BEFORE the up-close rule. Same mechanic and level as the H stop.
   **It is a brake, not a bounded loss** — it reads a close and sells at the next open, so a gap
-  fills worse. **⚠️ THE LEVEL IS UNDER REVIEW.** The claim that tighter stops worsen the tail was
-  **retracted** (see PHASE7_STOP.md §"Why not 5%"): it rested on a −52.8% SRPT trade that only
-  *exists* in the tight-stop runs because a tighter stop frees a portfolio slot — a different
-  trade set, not the same trade made worse. Measured on the aggregate tail, tighter is better:
-  trades worse than −20% run 10 (none) / **9 (15%, shipped)** / 5 (7%) / **4 (5%)**. 15% buys
-  almost no tail protection; 5% roughly halves the catastrophic bucket for ~0.6 CAGR points.
-  Re-select against an aggregate-tail criterion, not the single worst trade. Also owes a re-check
-  once a point-in-time universe exists. Max 10 positions (~6% equity each).
+  fills worse. Cost/benefit: CAGR 13.64% → **13.16%**, full maxDD −24.9% → **−19.1%**, OOS Sharpe
+  1.16 → 1.09, trades worse than −20% **10 → 4**, mean worst 1% −14.8% → **−12.3%**.
+  **The stop is a single-trade-disaster tool, NOT a portfolio-drawdown tool** — Monte Carlo p95
+  drawdown is −16.7% to −16.9% with or without it, at any level. A first pass shipped 15% on a
+  "worst single trade" criterion that turned out to be slot-allocation noise; that is retracted in
+  PHASE7_STOP.md and 15% is now known to buy almost no protection. **Resting broker-side stops
+  were tested and rejected** (`intraday_stop_frac` in the engine): 2–4× the return cost for
+  comparable protection, because they sell into intraday dips that recover by the close — +710
+  trades at the 5% level. Level still owes a re-check once a point-in-time universe exists.
+  Max 10 positions (~6% equity each).
 - **H · momentum (40%):** new **252-day closing high** on above-average volume, liquid, **only
   when SPY > SMA(100)** → **market buy at the open**, ranked by 6-month momentum. Exit: **5% stop**
   (a close ≤ entry×0.95) or **15-day time stop**. Max 10 positions (~4% equity each).
 
 The two are only ~0.26 correlated — pairing them shrinks drawdown. Validated 2005–2026 (5 bps/side
-slippage, last 3.5y out-of-sample): full CAGR **13.8%**, Sharpe **1.00**, MaxDD **−20.7%**; OOS
-CAGR **17.7%**, OOS Sharpe 1.21. (Re-validated Sep 2026 with Sleeve A's 15% stop —
+slippage, last 3.5y out-of-sample): full CAGR **13.2%**, Sharpe 0.95 IS, MaxDD **−19.1%**, MC p95
+DD −16.7%; OOS Sharpe **1.09**. (Re-validated Sep 2026 with Sleeve A's 5% stop —
 `results/PHASE7_STOP.md`. Pre-stop figures were CAGR 13.6% / MaxDD −24.9% / OOS Sharpe 1.16.)
 
 ## Risk guardrails (enforced in `papertrade/run_daily.py`, not just prose)

@@ -32,7 +32,7 @@ CONFIGS = {
     # 15% disaster brake, selected by a pre-registered "widest level that still
     # truncates the tail" rule, not by picking the best number on the grid.
     "3ll_refined": ("three_lower_lows", {"stretch": 0.75, "trend_sma": 200,
-                                         "stop_frac": 0.15}),
+                                         "stop_frac": 0.05}),
     "3ll_nostop": ("three_lower_lows", {"stretch": 0.75, "trend_sma": 200}),
     "tom_exit1": ("turn_of_month", {"exit_day_of_month": 1}),
     "double7_lb10": ("double7", {"lookback": 10}),

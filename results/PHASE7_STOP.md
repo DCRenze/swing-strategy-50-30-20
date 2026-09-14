@@ -1,4 +1,13 @@
-# Phase 7 conclusion — Sleeve A gets a 15% disaster stop
+# Phase 7 conclusion — Sleeve A gets a 5% stop (re-selected; 15% was wrong)
+
+> **FINAL: `A_STOP_FRAC = 0.05`.** This document records two passes. The first shipped 15% on a
+> criterion (single worst trade) later shown to be noise-driven; see the retraction in
+> "Why not 5%". The second pass, below, re-selected on an aggregate-tail criterion and also
+> answered whether a *resting broker-side* stop is worth using instead. Read §"Second pass"
+> for the live answer; everything above it is retained as the record of how it went wrong.
+
+---
+
 
 **Verdict: shipped.** `A_STOP_FRAC = 0.15` in `playbook/screener.py`, wired into
 `papertrade/run_daily.py` ahead of the up-close exit. The validation chain
@@ -174,3 +183,87 @@ may not repeat.
    morning script fails" gap. This change does **not** do that — the stop is still evaluated
    once a day by the script.
 3. The fill-rate measurement (Test 3) is still unrun and still the cheapest high-value item.
+
+---
+
+# Second pass — re-selection on an aggregate tail, plus resting stops
+
+The first pass selected on "worst single trade", which turned out to be hostage to which trades
+a given configuration happens to buy (see the retraction above). This pass uses the **mean of
+the worst 1% of trades** and the **count of trades worse than −20%**, both of which are stable
+across slot-allocation reshuffles.
+
+It also answers David's second question directly: what if the stop is a **real resting order at
+the broker** rather than a rule checked once a day? `results/ALPACA_ORDER_CONSTRAINTS.md`
+established that a fractional stop order is accepted (DAY only, no brackets), so this is a real
+option, and `backtest/engine.py` gained `intraday_stop_frac` to model it: triggers the moment the
+session's low touches the level, fills **at** the level normally but **at the open** when the
+stock gapped below overnight — because a resting stop that is already through the market at the
+bell is just a market order.
+
+## Protection bought per point of return given up (in-sample)
+
+| Config | IS ensemble cost | Mean worst 1% | Tail improvement | Gain per point of cost | Extra trades |
+|---|--:|--:|--:|--:|--:|
+| no stop | — | −14.8% | — | — | — |
+| close 15% *(first pass)* | 0.37% | −15.4% | **−0.6%** | **−1.58** | +3 |
+| close 10% | 1.34% | −14.6% | +0.2% | 0.13 | +91 |
+| close 7% | 1.15% | −13.0% | +1.8% | 1.56 | +209 |
+| **close 5% (SELECTED)** | **0.66%** | **−12.3%** | **+2.5%** | **3.77** | +523 |
+| intraday 15% | 0.79% | −15.6% | −0.8% | −1.01 | +63 |
+| intraday 10% | 1.59% | −12.1% | +2.7% | 1.71 | +133 |
+| intraday 7% | 2.29% | −11.1% | +3.7% | 1.60 | +377 |
+| intraday 5% | 3.08% | −10.2% | +4.6% | 1.49 | +710 |
+
+**Close 5% is the best value by more than 2×**, and the shipped 15% has *negative* value — it
+costs 0.37 points and leaves the tail marginally worse than no stop at all.
+
+## Resting (intraday) stops: rejected
+
+Every intraday level costs **2–4× more return for comparable protection**. The mechanism is
+visible in the trade counts: intraday 5% adds **710 trades**. Those are positions sold on an
+intraday dip that recovered by the close — which is precisely the dip-buyer's thesis being cut
+short. A synthetic check makes it concrete: on a tape that dips to −8% intraday and closes at
+−1%, the intraday stop exits at −7% while the close-based rule correctly holds.
+
+One benefit the backtest *cannot* price: a resting order keeps working if the morning script
+fails. But a fractional stop is DAY-only, so it expires the same afternoon and cannot serve as
+an outage net anyway. That argument does not rescue it.
+
+## Effect on the validated book
+
+| | No stop | 15% (first pass) | **5% (deployed)** |
+|---|--:|--:|--:|
+| Full CAGR | 13.64% | 13.77% | **13.16%** |
+| Full max drawdown | −24.87% | −20.70% | **−19.11%** |
+| OOS Sharpe | 1.16 | 1.21 | 1.09 |
+| **Monte Carlo p95 drawdown** | **−16.83%** | **−16.89%** | **−16.69%** |
+| Trades worse than −20% | 10 | 9 | **4** |
+| Mean worst 1% | −14.8% | −15.4% | **−12.3%** |
+
+**Read the Monte Carlo row carefully — it is the most important line here.** At the *portfolio*
+level the stop changes almost nothing: p95 drawdown is −16.7% to −16.9% in every configuration.
+`PHASE3_CONCLUSION.md` established that MC p95 is the honest risk figure and max drawdown is just
+the single worst path that happened to occur.
+
+So the stop is **not** a portfolio-drawdown tool. What it genuinely changes is the **single-trade
+disaster**: trades worse than −20% fall from 10 to 4, and the mean of the worst 1% improves 2.5
+points. That is exactly the risk the original critique raised ("a position can be down 40% on day
+3 and you hold it twelve more days"), and it is the risk David asked to cover.
+
+The price is ~0.5 points of CAGR and 0.07 of OOS Sharpe.
+
+## Honest limits
+
+- **IS cost estimates are noisy.** Close-based costs run 0.37 / 1.34 / 1.15 / 0.66 for
+  15/10/7/5% — non-monotone, so ±0.5 points of noise. The *tail* metric is monotone
+  (−15.4 / −14.6 / −13.0 / −12.3) and is the reliable signal.
+- **15% was defensible on one axis.** It posts a better full-window CAGR and OOS Sharpe. If the
+  goal were portfolio drawdown rather than single-trade disasters, it would be the better pick.
+  The selection follows David's stated goal.
+- **Survivorship bias is untouched.** `SLEEVE_A_CRITIQUE_2026-09.md` stands; the loss
+  distribution this was chosen against still excludes companies that never recovered. The bias
+  direction favours stops, so the true case for 5% is likely stronger, not weaker.
+- **Cost fragility is unchanged but worth watching.** At 20 bps/side Sleeve A is negative with or
+  without a stop (−1.2% no stop, −2.4% at 5%). The extra 523 trades make the 5% version slightly
+  more cost-sensitive, which matters because live fill quality has still not been measured.

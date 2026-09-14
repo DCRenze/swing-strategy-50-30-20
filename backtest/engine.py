@@ -61,6 +61,14 @@ class StrategySpec:
     time_stop: int | None = None
     stop_loss_frac: float | None = None
     stop_at_signal_low: bool = False
+    # A RESTING broker-side stop, re-placed each morning, as opposed to
+    # stop_loss_frac which reads a completed close and sells the next open.
+    # Triggers the moment the session's low touches the level. Fills AT the level
+    # normally, but at the OPEN when the stock gapped below it overnight - a
+    # resting stop cannot protect against a gap, it just becomes a market order.
+    # Verified available on fractional shares, DAY only (see
+    # results/ALPACA_ORDER_CONSTRAINTS.md).
+    intraday_stop_frac: float | None = None
     # upside management - see module docstring; None = disabled
     trail_atr_mult: float | None = None
     trail_atr: pd.DataFrame | None = None
@@ -299,6 +307,26 @@ def run_backtest(
                         "stop_level": (l_v[gi, ti] if spec.stop_at_signal_low else None),
                     }
                     slots -= 1
+
+        # ---- 2b. resting intraday stop ----
+        # Models a real broker stop sitting in the book during the session. It is
+        # placed the morning AFTER entry (a DAY order cannot exist before the
+        # position does), so the entry day is skipped, matching the engine's
+        # no-same-day-round-trip rule.
+        if spec.intraday_stop_frac is not None:
+            for ti in list(positions):
+                pos = positions[ti]
+                if pos["entry_gi"] == gi:
+                    continue
+                lvl = pos["entry_px"] * (1.0 - spec.intraday_stop_frac)
+                lo, op = l_v[gi, ti], o_v[gi, ti]
+                if np.isfinite(lo) and lo <= lvl:
+                    # Gapped below the level overnight -> the stop is already
+                    # through the market at the bell and fills at the open, worse
+                    # than the level. This is the honest modelling of gap risk and
+                    # the reason a resting stop is not a guaranteed floor.
+                    px = op if (np.isfinite(op) and op < lvl) else lvl
+                    sell(ti, px, di, "intraday_stop")
 
         # ---- 3. at-the-close exits ----
         for ti in list(positions):

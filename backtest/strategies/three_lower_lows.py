@@ -23,6 +23,7 @@ def build(
     min_dollar_vol: float = 10e6,
     min_price: float = 1.0,
     stop_frac: float | None = None,
+    intraday_stop_frac: float | None = None,
     max_atr_pct: float | None = None,
     # --- Phase 6 entry-confirmation filters; all None/default = validated baseline.
     # Every one of these varies BETWEEN NAMES ON THE SAME DAY, which is the test
@@ -89,6 +90,7 @@ def build(
         exit_mode="next_open",
         time_stop=15,
         stop_loss_frac=stop_frac,
+        intraday_stop_frac=intraday_stop_frac,
         max_positions=max_positions,
         regime_ok=regime_ok,
         params=dict(stretch=stretch, trend_sma=trend_sma, stop_frac=stop_frac,

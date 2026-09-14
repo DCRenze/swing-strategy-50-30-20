@@ -51,9 +51,11 @@ A_TREND_SMA = 200
 A_MIN_DOLLAR_VOL = 10e6
 A_MIN_PRICE = 1.0
 A_TIME_STOP = 15
-A_STOP_FRAC = 0.15       # disaster stop: a completed close <= entry x 0.85 -> sell next open.
-                         # Added Sep 2026 (results/PHASE7_STOP.md). NOT a guaranteed max loss:
-                         # it reads a CLOSE and sells at the next OPEN, so a gap can fill worse.
+A_STOP_FRAC = 0.05       # stop: a completed close <= entry x 0.95 -> sell next open.
+                         # Re-selected Sep 2026 on an aggregate-tail criterion after the first
+                         # pass (15%) was found to buy almost no protection - results/PHASE7_STOP.md.
+                         # NOT a guaranteed max loss: it reads a CLOSE and sells at the next OPEN,
+                         # so a gap fills worse. Same mechanic as the H stop, same level.
 # Sleeve H - 52-week-high momentum breakout (high52_breakout, spy100 regime).
 # Only ~0.26-correlated with A, so it diversifies the dip-buyer; carries its own
 # 5% stop and market-health gate. Validated: OOS profit factor 1.49 (gauntlet).

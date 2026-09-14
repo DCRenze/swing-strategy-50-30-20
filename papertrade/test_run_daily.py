@@ -320,19 +320,19 @@ def test_wider_band_is_more_marketable():
 
 # ------------------------------------------------- Sleeve A disaster stop ---
 def test_a_stop_fires_on_a_completed_breach():
-    s = series([("2026-09-01", 100.0), ("2026-09-02", 95.0),
-                ("2026-09-03", 90.0), ("2026-09-04", 84.0)])
+    s = series([("2026-09-01", 100.0), ("2026-09-02", 97.0),
+                ("2026-09-03", 96.0), ("2026-09-04", 94.0)])
     got = rd.a_stop_signal(s, "2026-09-01", 100.0, scr.A_STOP_FRAC)
-    assert got and got["reason"] == "15% stop", got
+    assert got and got["reason"] == "5% stop", got
     assert got["trigger_session"] == "2026-09-04"
     print("ok: Sleeve A stop fires when a completed close breaks the level")
 
 
 def test_a_stop_holds_just_above_the_level():
-    s = series([("2026-09-01", 100.0), ("2026-09-02", 95.0),
-                ("2026-09-03", 90.0), ("2026-09-04", 86.0)])
+    s = series([("2026-09-01", 100.0), ("2026-09-02", 97.0),
+                ("2026-09-03", 96.0), ("2026-09-04", 95.5)])
     assert rd.a_stop_signal(s, "2026-09-01", 100.0, scr.A_STOP_FRAC) is None
-    print("ok: Sleeve A stop holds at -14%, does not fire early")
+    print("ok: Sleeve A stop holds at -4.5%, does not fire early")
 
 
 def test_a_stop_uses_unadjusted_closes():
@@ -356,9 +356,9 @@ def test_a_stop_takes_precedence_over_the_up_close_exit():
 
 
 def test_a_stop_level_matches_the_validated_value():
-    """PHASE7_STOP.md selected 15%. A silent drift here invalidates that evidence."""
-    assert scr.A_STOP_FRAC == 0.15, scr.A_STOP_FRAC
-    assert rd.SLEEVE_STOP_FRACS["A"] == 0.15
+    """PHASE7_STOP.md selected 5%. A silent drift here invalidates that evidence."""
+    assert scr.A_STOP_FRAC == 0.05, scr.A_STOP_FRAC
+    assert rd.SLEEVE_STOP_FRACS["A"] == 0.05
     assert rd.SLEEVE_STOP_FRACS["H"] == 0.05, "H's validated 5% stop must not move"
     print("ok: stop levels match the validated values (A 15%, H 5%)")
 
