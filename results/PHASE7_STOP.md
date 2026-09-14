@@ -59,7 +59,39 @@ Note that 15% was also the in-sample peak in the earlier full-window run, which 
 a warning sign. Here it was selected by the *tail* criterion, not the return criterion, and
 by a rule written before the split — but the coincidence is recorded rather than hidden.
 
-## What this is NOT
+## Why not 5%, like Sleeve H?
+
+Asked directly, and worth recording because it will be asked again.
+
+| Stop | IS CAGR | OOS CAGR | Ensemble CAGR | Worst trade | Trades hitting it |
+|---|--:|--:|--:|--:|--:|
+| none | 18.34% | 10.67% | 13.72% | −43.5% | — |
+| **15%** | 17.71% | **14.08%** | **13.77%** | **−35.6%** | **0.5%** |
+| 10% | 16.05% | 14.89% | 13.04% | **−52.8%** | 1.6% |
+| 7% | 16.40% | 9.05% | 12.60% | −35.6% | 3.8% |
+| 5% | 17.27% | 10.63% | 13.16% | **−52.8%** | 6.8% |
+
+Three reasons, in order of importance:
+
+**1. The two sleeves buy opposite things, so the same stop means opposite things.** Sleeve H
+buys *strength* — a new 252-day high. A 5% fall from that entry is evidence the breakout
+failed, so cutting is correct. Sleeve A buys *weakness* — three consecutive lower lows, then
+a limit order still further below the close. It is entering a falling stock on purpose. A 5%
+move against it is not evidence of anything; it is the thesis in progress.
+
+**2. 5% is inside the noise on the holding period.** Median Sleeve A entry has an ATR(10) of
+**2.24% of price**, and the average hold is **1.7 days**. A 5% stop is therefore about two
+ordinary days of range — it fires on normal movement, on 6.8% of trades versus 0.5% at 15%,
+roughly a 14× higher firing rate.
+
+**3. Tight stops make the tail WORSE here, not better.** Both 5% and 10% produce a −52.8%
+worst trade against −43.5% with no stop at all. The mechanic is the one documented above: a
+close-based stop sells at the next open, so every firing is exposed to a gap. Firing 14× more
+often means catching 14× more gaps. A stop that fires often under this execution model is not
+a smaller loss, it is more chances to be gapped through.
+
+The ensemble figures close the argument: 15% delivers 13.77% against 13.16% at 5% and 12.60%
+at 7%. Tighter is worse on return *and* worse on the tail.
 
 **It is not a guaranteed maximum loss.** The rule reads a completed close and sells at the
 next open. A gap-down fills below the level. That is exactly what happened to ELF at wider
