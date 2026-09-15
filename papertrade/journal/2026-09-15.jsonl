@@ -1,0 +1,32 @@
+{"ts": "2026-09-15T13:20:34", "kind": "position_adopted", "ticker": "HPE", "sleeve": "H", "entry_date": "2026-09-14", "entry_px": 56.34}
+{"ts": "2026-09-15T13:20:34", "kind": "position_adopted", "ticker": "MU", "sleeve": "A", "entry_date": "2026-09-14", "entry_px": 911.7538}
+{"ts": "2026-09-15T13:20:34", "kind": "position_adopted", "ticker": "RTX", "sleeve": "A", "entry_date": "2026-09-14", "entry_px": 194.7}
+{"ts": "2026-09-15T13:20:34", "kind": "position_adopted", "ticker": "SNDK", "sleeve": "A", "entry_date": "2026-09-14", "entry_px": 1528.0695}
+{"ts": "2026-09-15T13:20:34", "kind": "position_adopted", "ticker": "VLO", "sleeve": "H", "entry_date": "2026-09-14", "entry_px": 393.4514}
+{"ts": "2026-09-15T13:20:34", "kind": "run_start", "mode": "morning", "equity": 96650.33, "hwm": 100432.77, "drawdown": -0.0377, "dry_run": false}
+{"ts": "2026-09-15T13:21:43", "kind": "data_asof", "signal_date": "2026-09-14", "trade_date": "2026-09-15", "sessions": 309}
+{"ts": "2026-09-15T13:21:43", "kind": "submit_window", "target": "09:30", "waited_s": 496.1, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-09-15T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "MU", "reason": "already held"}
+{"ts": "2026-09-15T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "SNDK", "reason": "already held"}
+{"ts": "2026-09-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMD", "side": "buy", "qty": 12.1711, "order_type": "limit", "limit_price": 476.46, "client_order_id": "A-AMD-20260915-buy"}
+{"ts": "2026-09-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "LITE", "side": "buy", "qty": 7.3971, "order_type": "limit", "limit_price": 783.96, "client_order_id": "A-LITE-20260915-buy"}
+{"ts": "2026-09-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "STX", "side": "buy", "qty": 7.5627, "order_type": "limit", "limit_price": 766.8, "client_order_id": "A-STX-20260915-buy"}
+{"ts": "2026-09-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "WDC", "side": "buy", "qty": 14.3091, "order_type": "limit", "limit_price": 405.27, "client_order_id": "A-WDC-20260915-buy"}
+{"ts": "2026-09-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "LRCX", "side": "buy", "qty": 22.133, "order_type": "limit", "limit_price": 262.01, "client_order_id": "A-LRCX-20260915-buy"}
+{"ts": "2026-09-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMGN", "side": "buy", "qty": 15.5505, "order_type": "limit", "limit_price": 372.92, "client_order_id": "A-AMGN-20260915-buy"}
+{"ts": "2026-09-15T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "RTX", "reason": "already held"}
+{"ts": "2026-09-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "UNP", "side": "buy", "qty": 20.636, "order_type": "limit", "limit_price": 281.01, "client_order_id": "A-UNP-20260915-buy"}
+{"ts": "2026-09-15T13:30:01", "kind": "order_submitted", "sleeve": "H", "ticker": "DINO", "side": "sell", "qty": 39.534, "order_type": "market", "limit_price": null, "client_order_id": "H-DINO-20260915-sell"}
+{"ts": "2026-09-15T13:30:01", "kind": "exit_reason", "ticker": "DINO", "sleeve": "H", "days_held": 15, "signal_date": "2026-09-14", "reason": "15d time stop"}
+{"ts": "2026-09-15T13:30:01", "kind": "order_submitted", "sleeve": "H", "ticker": "QRVO", "side": "sell", "qty": 34.3, "order_type": "market", "limit_price": null, "client_order_id": "H-QRVO-20260915-sell"}
+{"ts": "2026-09-15T13:30:01", "kind": "exit_reason", "ticker": "QRVO", "sleeve": "H", "days_held": 2, "signal_date": "2026-09-14", "reason": "5% stop", "trigger_close": 107.98, "stop_level": 108.1461, "trigger_session": "2026-09-14"}
+{"ts": "2026-09-15T13:30:01", "kind": "order_submitted", "sleeve": "H", "ticker": "SWKS", "side": "sell", "qty": 45.8639, "order_type": "market", "limit_price": null, "client_order_id": "H-SWKS-20260915-sell"}
+{"ts": "2026-09-15T13:30:01", "kind": "exit_reason", "ticker": "SWKS", "sleeve": "H", "days_held": 2, "signal_date": "2026-09-14", "reason": "5% stop", "trigger_close": 79.26, "stop_level": 81.0556, "trigger_session": "2026-09-14"}
+{"ts": "2026-09-15T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "OKTA", "reason": "sleeve full"}
+{"ts": "2026-09-15T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "CRWD", "reason": "sleeve full"}
+{"ts": "2026-09-15T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "GEN", "reason": "sleeve full"}
+{"ts": "2026-09-15T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "EQH", "reason": "sleeve full"}
+{"ts": "2026-09-15T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "DBX", "reason": "sleeve full"}
+{"ts": "2026-09-15T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "APA", "reason": "sleeve full"}
+{"ts": "2026-09-15T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "DV", "reason": "sleeve full"}
+{"ts": "2026-09-15T13:30:01", "kind": "run_end", "mode": "morning"}

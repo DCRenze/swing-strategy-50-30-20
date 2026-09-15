@@ -39,6 +39,31 @@
       "sleeve": "H",
       "entry_date": "2026-09-11",
       "entry_px": 85.3217
+    },
+    "HPE": {
+      "sleeve": "H",
+      "entry_date": "2026-09-14",
+      "entry_px": 56.34
+    },
+    "MU": {
+      "sleeve": "A",
+      "entry_date": "2026-09-14",
+      "entry_px": 911.7538
+    },
+    "RTX": {
+      "sleeve": "A",
+      "entry_date": "2026-09-14",
+      "entry_px": 194.7
+    },
+    "SNDK": {
+      "sleeve": "A",
+      "entry_date": "2026-09-14",
+      "entry_px": 1528.0695
+    },
+    "VLO": {
+      "sleeve": "H",
+      "entry_date": "2026-09-14",
+      "entry_px": 393.4514
     }
   },
   "hwm": 100432.77
