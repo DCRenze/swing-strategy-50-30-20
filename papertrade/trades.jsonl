@@ -92,3 +92,6 @@
 {"ticker": "DASH", "sleeve": "A", "entry_date": "2026-09-08", "exit_date": "2026-09-11", "entry_px": 203.9622, "exit_px": 202.02, "qty": 56.4424, "ret": -0.0095, "pnl": -109.62}
 {"ticker": "MNST", "sleeve": "A", "entry_date": "2026-09-08", "exit_date": "2026-09-11", "entry_px": 43.03, "exit_px": 43.35, "qty": 269.7682, "ret": 0.0074, "pnl": 86.33}
 {"ticker": "T", "sleeve": "A", "entry_date": "2026-09-09", "exit_date": "2026-09-11", "entry_px": 25.23, "exit_px": 25.6544, "qty": 229.15, "ret": 0.0168, "pnl": 97.25}
+{"ticker": "DINO", "sleeve": "H", "entry_date": "2026-08-24", "exit_date": "2026-09-15", "entry_px": 98.0897, "exit_px": 107.4007, "qty": 39.534, "ret": 0.0949, "pnl": 368.1}
+{"ticker": "QRVO", "sleeve": "H", "entry_date": "2026-09-11", "exit_date": "2026-09-15", "entry_px": 113.838, "exit_px": 109.6272, "qty": 34.3, "ret": -0.037, "pnl": -144.43}
+{"ticker": "SWKS", "sleeve": "H", "entry_date": "2026-09-11", "exit_date": "2026-09-15", "entry_px": 85.3217, "exit_px": 80.44, "qty": 45.8639, "ret": -0.0572, "pnl": -223.89}
