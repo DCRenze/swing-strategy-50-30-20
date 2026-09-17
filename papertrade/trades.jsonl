@@ -95,3 +95,5 @@
 {"ticker": "DINO", "sleeve": "H", "entry_date": "2026-08-24", "exit_date": "2026-09-15", "entry_px": 98.0897, "exit_px": 107.4007, "qty": 39.534, "ret": 0.0949, "pnl": 368.1}
 {"ticker": "QRVO", "sleeve": "H", "entry_date": "2026-09-11", "exit_date": "2026-09-15", "entry_px": 113.838, "exit_px": 109.6272, "qty": 34.3, "ret": -0.037, "pnl": -144.43}
 {"ticker": "SWKS", "sleeve": "H", "entry_date": "2026-09-11", "exit_date": "2026-09-15", "entry_px": 85.3217, "exit_px": 80.44, "qty": 45.8639, "ret": -0.0572, "pnl": -223.89}
+{"ticker": "MU", "sleeve": "A", "entry_date": "2026-09-14", "exit_date": "2026-09-16", "entry_px": 911.7538, "exit_px": 931.28, "qty": 6.1973, "ret": 0.0214, "pnl": 121.01}
+{"ticker": "RTX", "sleeve": "A", "entry_date": "2026-09-14", "exit_date": "2026-09-16", "entry_px": 194.7, "exit_px": 195.26, "qty": 29.8954, "ret": 0.0029, "pnl": 16.74}

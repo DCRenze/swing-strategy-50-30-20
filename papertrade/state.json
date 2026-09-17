@@ -30,16 +30,6 @@
       "entry_date": "2026-09-14",
       "entry_px": 56.34
     },
-    "MU": {
-      "sleeve": "A",
-      "entry_date": "2026-09-14",
-      "entry_px": 911.7538
-    },
-    "RTX": {
-      "sleeve": "A",
-      "entry_date": "2026-09-14",
-      "entry_px": 194.7
-    },
     "SNDK": {
       "sleeve": "A",
       "entry_date": "2026-09-14",
@@ -54,6 +44,26 @@
       "sleeve": "A",
       "entry_date": "2026-09-15",
       "entry_px": 766.79
+    },
+    "DINO": {
+      "sleeve": "H",
+      "entry_date": "2026-09-16",
+      "entry_px": 111.019
+    },
+    "MPC": {
+      "sleeve": "H",
+      "entry_date": "2026-09-16",
+      "entry_px": 408.5608
+    },
+    "MS": {
+      "sleeve": "A",
+      "entry_date": "2026-09-16",
+      "entry_px": 202.1524
+    },
+    "SWKS": {
+      "sleeve": "H",
+      "entry_date": "2026-09-16",
+      "entry_px": 87.65
     }
   },
   "hwm": 100432.77

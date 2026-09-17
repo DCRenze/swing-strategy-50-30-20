@@ -1,0 +1,28 @@
+{"ts": "2026-09-17T13:20:21", "kind": "trade_closed", "dry_run": null, "ticker": "MU", "sleeve": "A", "entry_date": "2026-09-14", "exit_date": "2026-09-16", "entry_px": 911.7538, "exit_px": 931.28, "qty": 6.1973, "ret": 0.0214, "pnl": 121.01}
+{"ts": "2026-09-17T13:20:21", "kind": "position_closed", "ticker": "MU", "sleeve": "A", "entry_date": "2026-09-14", "entry_px": 911.7538}
+{"ts": "2026-09-17T13:20:21", "kind": "trade_closed", "dry_run": null, "ticker": "RTX", "sleeve": "A", "entry_date": "2026-09-14", "exit_date": "2026-09-16", "entry_px": 194.7, "exit_px": 195.26, "qty": 29.8954, "ret": 0.0029, "pnl": 16.74}
+{"ts": "2026-09-17T13:20:21", "kind": "position_closed", "ticker": "RTX", "sleeve": "A", "entry_date": "2026-09-14", "entry_px": 194.7}
+{"ts": "2026-09-17T13:20:21", "kind": "position_adopted", "ticker": "DINO", "sleeve": "H", "entry_date": "2026-09-16", "entry_px": 111.019}
+{"ts": "2026-09-17T13:20:21", "kind": "position_adopted", "ticker": "MPC", "sleeve": "H", "entry_date": "2026-09-16", "entry_px": 408.5608}
+{"ts": "2026-09-17T13:20:21", "kind": "position_adopted", "ticker": "MS", "sleeve": "A", "entry_date": "2026-09-16", "entry_px": 202.1524}
+{"ts": "2026-09-17T13:20:21", "kind": "position_adopted", "ticker": "SWKS", "sleeve": "H", "entry_date": "2026-09-16", "entry_px": 87.65}
+{"ts": "2026-09-17T13:20:22", "kind": "run_start", "mode": "morning", "equity": 97773.27, "hwm": 100432.77, "drawdown": -0.0265, "dry_run": false}
+{"ts": "2026-09-17T13:21:30", "kind": "data_asof", "signal_date": "2026-09-16", "trade_date": "2026-09-17", "sessions": 310}
+{"ts": "2026-09-17T13:21:30", "kind": "submit_window", "target": "09:30", "waited_s": 509.5, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-09-17T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "STX", "side": "sell", "qty": 7.5627, "order_type": "market", "limit_price": null, "client_order_id": "A-STX-20260917-sell"}
+{"ts": "2026-09-17T13:30:00", "kind": "exit_reason", "ticker": "STX", "sleeve": "A", "days_held": 2, "signal_date": "2026-09-16", "reason": "first up-close", "trigger_close": 783.18, "prior_close": 771.81, "trigger_session": "2026-09-16"}
+{"ts": "2026-09-17T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMZN", "side": "buy", "qty": 24.2826, "order_type": "limit", "limit_price": 241.59, "client_order_id": "A-AMZN-20260917-buy"}
+{"ts": "2026-09-17T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMAT", "side": "buy", "qty": 14.6454, "order_type": "limit", "limit_price": 400.56, "client_order_id": "A-AMAT-20260917-buy"}
+{"ts": "2026-09-17T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "BAC", "side": "buy", "qty": 103.2616, "order_type": "limit", "limit_price": 56.81, "client_order_id": "A-BAC-20260917-buy"}
+{"ts": "2026-09-17T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "SMCI", "side": "buy", "qty": 167.045, "order_type": "limit", "limit_price": 35.12, "client_order_id": "A-SMCI-20260917-buy"}
+{"ts": "2026-09-17T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMGN", "side": "buy", "qty": 15.9145, "order_type": "limit", "limit_price": 368.62, "client_order_id": "A-AMGN-20260917-buy"}
+{"ts": "2026-09-17T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "NEM", "side": "buy", "qty": 49.5399, "order_type": "limit", "limit_price": 118.42, "client_order_id": "A-NEM-20260917-buy"}
+{"ts": "2026-09-17T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "APH", "side": "buy", "qty": 78.0802, "order_type": "limit", "limit_price": 75.13, "client_order_id": "A-APH-20260917-buy"}
+{"ts": "2026-09-17T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "DASH", "reason": "sleeve full"}
+{"ts": "2026-09-17T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "UNP", "reason": "sleeve full"}
+{"ts": "2026-09-17T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "F", "reason": "sleeve full"}
+{"ts": "2026-09-17T13:30:01", "kind": "order_submitted", "sleeve": "H", "ticker": "NTRA", "side": "sell", "qty": 11.4275, "order_type": "market", "limit_price": null, "client_order_id": "H-NTRA-20260917-sell"}
+{"ts": "2026-09-17T13:30:01", "kind": "exit_reason", "ticker": "NTRA", "sleeve": "H", "days_held": 15, "signal_date": "2026-09-16", "reason": "15d time stop"}
+{"ts": "2026-09-17T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "AVTR", "reason": "sleeve full"}
+{"ts": "2026-09-17T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "ILMN", "reason": "sleeve full"}
+{"ts": "2026-09-17T13:30:01", "kind": "run_end", "mode": "morning"}
