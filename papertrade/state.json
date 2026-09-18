@@ -1,10 +1,5 @@
 {
   "positions": {
-    "NTRA": {
-      "sleeve": "H",
-      "entry_date": "2026-08-26",
-      "entry_px": 337.3545
-    },
     "OKTA": {
       "sleeve": "H",
       "entry_date": "2026-08-28",
@@ -39,11 +34,6 @@
       "sleeve": "H",
       "entry_date": "2026-09-14",
       "entry_px": 393.4514
-    },
-    "STX": {
-      "sleeve": "A",
-      "entry_date": "2026-09-15",
-      "entry_px": 766.79
     },
     "DINO": {
       "sleeve": "H",

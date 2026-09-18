@@ -97,3 +97,5 @@
 {"ticker": "SWKS", "sleeve": "H", "entry_date": "2026-09-11", "exit_date": "2026-09-15", "entry_px": 85.3217, "exit_px": 80.44, "qty": 45.8639, "ret": -0.0572, "pnl": -223.89}
 {"ticker": "MU", "sleeve": "A", "entry_date": "2026-09-14", "exit_date": "2026-09-16", "entry_px": 911.7538, "exit_px": 931.28, "qty": 6.1973, "ret": 0.0214, "pnl": 121.01}
 {"ticker": "RTX", "sleeve": "A", "entry_date": "2026-09-14", "exit_date": "2026-09-16", "entry_px": 194.7, "exit_px": 195.26, "qty": 29.8954, "ret": 0.0029, "pnl": 16.74}
+{"ticker": "NTRA", "sleeve": "H", "entry_date": "2026-08-26", "exit_date": "2026-09-17", "entry_px": 337.3545, "exit_px": 347.01, "qty": 11.4275, "ret": 0.0286, "pnl": 110.34}
+{"ticker": "STX", "sleeve": "A", "entry_date": "2026-09-15", "exit_date": "2026-09-17", "entry_px": 766.79, "exit_px": 804.63, "qty": 7.5627, "ret": 0.0493, "pnl": 286.17}
