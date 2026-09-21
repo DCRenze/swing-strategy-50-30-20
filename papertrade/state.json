@@ -25,11 +25,6 @@
       "entry_date": "2026-09-14",
       "entry_px": 56.34
     },
-    "SNDK": {
-      "sleeve": "A",
-      "entry_date": "2026-09-14",
-      "entry_px": 1528.0695
-    },
     "VLO": {
       "sleeve": "H",
       "entry_date": "2026-09-14",
@@ -45,15 +40,20 @@
       "entry_date": "2026-09-16",
       "entry_px": 408.5608
     },
-    "MS": {
-      "sleeve": "A",
-      "entry_date": "2026-09-16",
-      "entry_px": 202.1524
-    },
     "SWKS": {
       "sleeve": "H",
       "entry_date": "2026-09-16",
       "entry_px": 87.65
+    },
+    "CRWD": {
+      "sleeve": "H",
+      "entry_date": "2026-09-18",
+      "entry_px": 242.1879
+    },
+    "CVS": {
+      "sleeve": "A",
+      "entry_date": "2026-09-18",
+      "entry_px": 88.5
     }
   },
   "hwm": 100432.77
