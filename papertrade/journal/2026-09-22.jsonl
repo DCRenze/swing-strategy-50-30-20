@@ -1,0 +1,27 @@
+{"ts": "2026-09-22T13:20:29", "kind": "trade_closed", "dry_run": null, "ticker": "OKTA", "sleeve": "H", "entry_date": "2026-08-28", "exit_date": "2026-09-21", "entry_px": 170.6211, "exit_px": 182.9405, "qty": 22.2931, "ret": 0.0722, "pnl": 274.64}
+{"ts": "2026-09-22T13:20:29", "kind": "position_closed", "ticker": "OKTA", "sleeve": "H", "entry_date": "2026-08-28", "entry_px": 170.6211}
+{"ts": "2026-09-22T13:20:29", "kind": "position_adopted", "ticker": "XOM", "sleeve": "A", "entry_date": "2026-09-21", "entry_px": 160.5257}
+{"ts": "2026-09-22T13:20:29", "kind": "run_start", "mode": "morning", "equity": 97351.32, "hwm": 100432.77, "drawdown": -0.0307, "dry_run": false}
+{"ts": "2026-09-22T13:21:48", "kind": "data_asof", "signal_date": "2026-09-21", "trade_date": "2026-09-22", "sessions": 309}
+{"ts": "2026-09-22T13:21:48", "kind": "submit_window", "target": "09:30", "waited_s": 491.1, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-09-22T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "CRM", "side": "buy", "qty": 25.4429, "order_type": "limit", "limit_price": 229.58, "client_order_id": "A-CRM-20260922-buy"}
+{"ts": "2026-09-22T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "XOM", "reason": "already held"}
+{"ts": "2026-09-22T13:30:00", "kind": "order_error", "error": "{\"code\":42210000,\"message\":\"asset \\\"BRK-B\\\" not found\"}", "sleeve": "A", "ticker": "BRK-B", "side": "buy", "qty": 11.7523, "order_type": "limit", "limit_price": 497.02, "client_order_id": "A-BRK-B-20260922-buy"}
+{"ts": "2026-09-22T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "CVX", "reason": "already held"}
+{"ts": "2026-09-22T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MDT", "side": "buy", "qty": 64.7271, "order_type": "limit", "limit_price": 90.24, "client_order_id": "A-MDT-20260922-buy"}
+{"ts": "2026-09-22T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "DASH", "side": "buy", "qty": 30.964, "order_type": "limit", "limit_price": 188.64, "client_order_id": "A-DASH-20260922-buy"}
+{"ts": "2026-09-22T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "ABNB", "side": "buy", "qty": 35.7302, "order_type": "limit", "limit_price": 163.48, "client_order_id": "A-ABNB-20260922-buy"}
+{"ts": "2026-09-22T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "SPOT", "side": "buy", "qty": 11.6368, "order_type": "limit", "limit_price": 501.95, "client_order_id": "A-SPOT-20260922-buy"}
+{"ts": "2026-09-22T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "PM", "side": "buy", "qty": 31.7117, "order_type": "limit", "limit_price": 184.19, "client_order_id": "A-PM-20260922-buy"}
+{"ts": "2026-09-22T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "UNP", "side": "buy", "qty": 22.0244, "order_type": "limit", "limit_price": 265.21, "client_order_id": "A-UNP-20260922-buy"}
+{"ts": "2026-09-22T13:30:01", "kind": "order_submitted", "sleeve": "H", "ticker": "AMD", "side": "buy", "qty": 6.3264, "order_type": "market", "limit_price": null, "client_order_id": "H-AMD-20260922-buy"}
+{"ts": "2026-09-22T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "OKTA", "reason": "sleeve full"}
+{"ts": "2026-09-22T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "CRWD", "reason": "sleeve full"}
+{"ts": "2026-09-22T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "RBRK", "reason": "sleeve full"}
+{"ts": "2026-09-22T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "TWLO", "reason": "sleeve full"}
+{"ts": "2026-09-22T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "NET", "reason": "sleeve full"}
+{"ts": "2026-09-22T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "FFIV", "reason": "sleeve full"}
+{"ts": "2026-09-22T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "DT", "reason": "sleeve full"}
+{"ts": "2026-09-22T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "A", "reason": "sleeve full"}
+{"ts": "2026-09-22T13:30:01", "kind": "skip", "sleeve": "H", "ticker": "TECH", "reason": "sleeve full"}
+{"ts": "2026-09-22T13:30:01", "kind": "run_end", "mode": "morning"}

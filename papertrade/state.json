@@ -1,10 +1,5 @@
 {
   "positions": {
-    "OKTA": {
-      "sleeve": "H",
-      "entry_date": "2026-08-28",
-      "entry_px": 170.6211
-    },
     "CVX": {
       "sleeve": "H",
       "entry_date": "2026-09-02",
@@ -54,6 +49,11 @@
       "sleeve": "A",
       "entry_date": "2026-09-18",
       "entry_px": 88.5
+    },
+    "XOM": {
+      "sleeve": "A",
+      "entry_date": "2026-09-21",
+      "entry_px": 160.5257
     }
   },
   "hwm": 100432.77
