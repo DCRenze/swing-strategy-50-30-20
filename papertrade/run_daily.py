@@ -1,11 +1,11 @@
-"""Alpaca paper-trading runner for the 60/40 A/H ensemble (fractional shares).
+"""Alpaca paper-trading runner for Sleeve A at 100% of equity (fractional shares).
 
 Single daily checkpoint, started BEFORE the open (~9:20 am ET). Signals are
 computed from yesterday's completed daily bar and acted on at today's open, which
 matches the backtest's timing exactly. Because nothing reads today's bar, the whole
 computation runs pre-open and --submit-at holds the orders until the bell, so fills
 land at 9:30 rather than several minutes into the session. Fractional shares let a small ($1-2k)
-account hold the full 20-position book, so every order is a DAY order.
+account hold the full 10-position book, so every order is a DAY order.
 
 Fractional order constraints, VERIFIED against the live paper API on 2026-09-14
 (results/ALPACA_ORDER_CONSTRAINTS.md - the earlier claim here that only market and
@@ -28,10 +28,10 @@ Usage (venv python, from project root):
   python -m papertrade.run_daily status               # account + tracked positions
 
 Sleeves:
-  A three_lower_lows (60%) - limit DAY buys at close-0.75*ATR; sell at open on
-                             first up-close or 15-day time stop. No stop loss.
-  H momentum         (40%) - 52-week-high breakouts, market DAY buys at the open
-                             when SPY>SMA(100); 5% stop loss or 15-day time stop.
+  A three_lower_lows (100%, 10 x ~10%) - limit DAY buys at close-0.75*ATR; sell at
+                             open on first up-close, 5% close stop, or 15-day time stop.
+  H momentum (RETIRED 2026-09-24) - no new entries; leftover H positions still exit
+                             on their 5% stop or 15-day time stop.
 
 Risk: an account high-water-mark lives in state.json. Drawdown <= -15% halts
 Sleeve A entries (the knife-catcher); <= -20% halts all new entries. Exits always
@@ -411,7 +411,7 @@ def drawdown_gate(state: dict, equity: float, journal: Journal):
                     msg=f"Account drawdown {dd:.1%} <= {DRAWDOWN_HALT_ALL:.0%}: ALL new entries halted (exits only).")
     elif halt_a:
         journal.log("action_needed",
-                    msg=f"Account drawdown {dd:.1%} <= {DRAWDOWN_HALT_A:.0%}: Sleeve A entries halted (momentum + exits continue).")
+                    msg=f"Account drawdown {dd:.1%} <= {DRAWDOWN_HALT_A:.0%}: Sleeve A entries halted (exits continue).")
     return dd, halt_a, halt_all
 
 
@@ -521,8 +521,8 @@ def run_morning(client, dry: bool, submit_at: str | None = None,
                          qty=order["qty"], order_type="limit", limit_price=order["limit_price"])
             slots -= 1
 
-    # ---- Sleeve H exits (market sell at open): 5% stop (any completed close since
-    # ---- entry, measured against the real fill) or time stop
+    # ---- Legacy Sleeve H exits (sleeve retired 2026-09-24; winds down open H positions):
+    # ---- 5% stop (any completed close since entry, vs the real fill) or time stop
     for ticker, meta in list(state["positions"].items()):
         if meta["sleeve"] != "H" or ticker not in held:
             continue
@@ -549,30 +549,6 @@ def run_morning(client, dry: bool, submit_at: str | None = None,
             journal.log("exit_reason", ticker=ticker, sleeve="H", days_held=days_held,
                         signal_date=signal_date,
                         **(stop_sig or {"reason": "15d time stop"}))
-
-    # ---- Sleeve H entries (market DAY buys at open; SPY>SMA100 gate)
-    hsig = signals["sleeves"]["H_momentum"]
-    h_held = [t for t, m in state["positions"].items() if m["sleeve"] == "H"]
-    slots_h = scr.SLEEVES["H_momentum"]["max_positions"] - len(h_held)
-    if not hsig["active"]:
-        journal.log("skip", sleeve="H", reason=hsig.get("reason_inactive") or "momentum gate off")
-    elif halt_all:
-        journal.log("skip", sleeve="H", reason=f"drawdown halt-all ({dd:.1%})")
-    else:
-        for order in hsig["orders"]:
-            t = order["ticker"]
-            if slots_h <= 0:
-                journal.log("skip", sleeve="H", ticker=t, reason="sleeve full")
-                continue
-            if t in h_held or t in held:
-                journal.log("skip", sleeve="H", ticker=t, reason="already held")
-                continue
-            if order["qty"] * order["last_close"] < MIN_NOTIONAL:
-                journal.log("skip", sleeve="H", ticker=t, reason="notional < $1")
-                continue
-            submit_order(client, journal, dry, sleeve="H", ticker=t, side="buy",
-                         qty=order["qty"], order_type="market")
-            slots_h -= 1
 
     if dry:
         journal.log("dry_run_end", note="state.json and trades.jsonl left untouched")

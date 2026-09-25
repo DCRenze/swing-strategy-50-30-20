@@ -57,7 +57,7 @@ DISCORD_LIMIT = 1990
 SLEEVE_NAMES = {"A": "A · dip-buyer (mean-reversion)", "H": "H · momentum"}
 TIME_STOP = {"A": 15, "H": 15}   # trading-day time stops per sleeve
 NEAR_STOP = 13                   # flag positions this many trading days in
-MAX_POSITIONS = 20               # 10 per sleeve
+MAX_POSITIONS = 10               # Sleeve A only
 
 
 def load_state() -> dict:
@@ -97,9 +97,7 @@ def market_snapshot() -> list[str]:
         lines.append(f"- VIX: {vix.iloc[-1]:.2f}")
     spy = close["SPY"].dropna()
     above200 = spy.iloc[-1] > spy.rolling(200).mean().iloc[-1]
-    above100 = spy.iloc[-1] > spy.rolling(100).mean().iloc[-1]
-    lines.append(f"- Regime: SPY {'above' if above200 else 'below'} 200-day avg; "
-                 f"momentum sleeve {'ON' if above100 else 'OFF'}")
+    lines.append(f"- Regime: SPY {'above' if above200 else 'below'} 200-day avg")
     return lines
 
 
@@ -157,7 +155,7 @@ def account_and_risk(acct, positions, state) -> list[str]:
     if equity:
         lines.append(f"- Capital by sleeve: A {by.get('A', 0) / equity * 100:.0f}% · "
                      f"H {by.get('H', 0) / equity * 100:.0f}% "
-                     f"(target A 60 / H 40)")
+                     f"(target A 100; H winding down)")
     lines.append(f"- Open positions: {len(positions)} / {MAX_POSITIONS} cap")
     return lines
 
