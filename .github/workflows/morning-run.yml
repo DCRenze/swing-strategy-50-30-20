@@ -1,8 +1,8 @@
 name: Morning Trade Run
 
 # Runs once every trading day (Mon-Fri) shortly after the open.
-# Runs Sleeve A at 100% of equity (limit entries + exits), exits for any leftover
-# Sleeve H positions (H retired 2026-09-24), plus the account drawdown circuit breaker. Signals are
+# Handles the full A/H 60/40 ensemble: Sleeve A limit entries + exits and Sleeve H
+# momentum entries + exits, plus the account drawdown circuit breaker. Signals are
 # computed from yesterday's completed bar and executed at today's open (fractional
 # DAY orders), matching the backtest timing.
 #
