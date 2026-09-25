@@ -102,3 +102,6 @@
 {"ticker": "SNDK", "sleeve": "A", "entry_date": "2026-09-14", "exit_date": "2026-09-18", "entry_px": 1528.0695, "exit_px": 1631.76, "qty": 3.7533, "ret": 0.0679, "pnl": 389.18}
 {"ticker": "MS", "sleeve": "A", "entry_date": "2026-09-16", "exit_date": "2026-09-18", "entry_px": 202.1524, "exit_px": 201.99, "qty": 28.9095, "ret": -0.0008, "pnl": -4.69}
 {"ticker": "OKTA", "sleeve": "H", "entry_date": "2026-08-28", "exit_date": "2026-09-21", "entry_px": 170.6211, "exit_px": 182.9405, "qty": 22.2931, "ret": 0.0722, "pnl": 274.64}
+{"ticker": "CVX", "sleeve": "H", "entry_date": "2026-09-02", "exit_date": "2026-09-24", "entry_px": 211.49, "exit_px": 205.8377, "qty": 18.0639, "ret": -0.0267, "pnl": -102.1}
+{"ticker": "XOM", "sleeve": "A", "entry_date": "2026-09-21", "exit_date": "2026-09-24", "entry_px": 160.5257, "exit_px": 162.58, "qty": 36.6896, "ret": 0.0128, "pnl": 75.37}
+{"ticker": "ABNB", "sleeve": "A", "entry_date": "2026-09-22", "exit_date": "2026-09-24", "entry_px": 163.48, "exit_px": 152.5404, "qty": 35.7302, "ret": -0.0669, "pnl": -390.87}
