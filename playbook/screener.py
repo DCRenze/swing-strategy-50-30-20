@@ -1,11 +1,7 @@
-"""Daily signal screener for the validated 60/40 A/H ensemble.
+"""Daily signal screener for Sleeve A only (100% of the account).
 
-Produces today's orders for the two sleeves:
-  A. three_lower_lows  (60%) - next-day limit buys + exit checks (mean reversion)
-  H. momentum          (40%) - 52-week-high breakouts, next-open buys (momentum)
-
-Both sleeves act at/around the next OPEN, so the daily evening run drives
-everything; there is no near-close MOC checkpoint anymore.
+  A. three_lower_lows (100%, 10 x 10% positions) - next-day limit buys + exit checks
+     (mean reversion). Sleeve H (momentum) was retired 2026-09-24.
 
 Usage (from the project root, venv python):
   python -m playbook.screener --refresh     # download fresh bars first (1-2 min)
@@ -43,14 +39,14 @@ LOOKBACK_CAL_DAYS = 450
 # ---- ensemble parameters (validated in Phase 4 - do not change casually; ----
 # ---- any change invalidates the backtest evidence in results/ ) ----
 SLEEVES = {
-    "A_three_lower_lows": {"weight": 0.60, "max_positions": 10},
-    "H_momentum": {"weight": 0.40, "max_positions": 10},
+    "A_three_lower_lows": {"weight": 1.00, "max_positions": 10},  # 10% of equity per position
 }
 A_STRETCH = 0.75          # limit = close - 0.75 * ATR(10)
 A_TREND_SMA = 200
 A_MIN_DOLLAR_VOL = 10e6
 A_MIN_PRICE = 1.0
 A_TIME_STOP = 15
+<<<<<<< Updated upstream
 A_STOP_FRAC = 0.05       # stop: a completed close <= entry x 0.95 -> sell next open.
                          # Re-selected Sep 2026 on an aggregate-tail criterion after the first
                          # pass (15%) was found to buy almost no protection - results/PHASE7_STOP.md.
@@ -59,6 +55,10 @@ A_STOP_FRAC = 0.05       # stop: a completed close <= entry x 0.95 -> sell next 
 # Sleeve H - 52-week-high momentum breakout (high52_breakout, spy100 regime).
 # Only ~0.26-correlated with A, so it diversifies the dip-buyer; carries its own
 # 5% stop and market-health gate. Validated: OOS profit factor 1.49 (gauntlet).
+=======
+# Sleeve H (momentum) is RETIRED as of 2026-09-24: no new entries. These constants
+# remain only so run_daily can exit any H positions still open under their rules.
+>>>>>>> Stashed changes
 H_LOOKBACK = 252          # new 252-day (52-week) closing high
 H_TREND_SMA = 100         # SPY > SMA(100) regime gate (trade only in healthy market)
 H_HOLD_DAYS = 15          # time stop (trading days)
@@ -274,40 +274,6 @@ def screen(equity: float, ref_et: dt.datetime | None = None) -> dict:
         "warnings": warnings,
     }
 
-    # ---------- Sleeve H: 52-week-high momentum breakout ----------
-    h_size = equity * SLEEVES["H_momentum"]["weight"] / SLEEVES["H_momentum"]["max_positions"]
-    spy_above_100 = bool(spy.iloc[-1] > spy.rolling(H_TREND_SMA).mean().iloc[-1])
-    out["spy_above_100dma"] = spy_above_100
-    h_orders = []
-    if spy_above_100:
-        hh = c.rolling(H_LOOKBACK, min_periods=H_LOOKBACK).max()
-        new_high = (c >= hh) & (c.shift(1) < hh.shift(1))
-        vol_ok = v > sma(v, 50)
-        liq_h = (raw_c > H_MIN_PRICE) & (dv > H_MIN_DOLLAR_VOL)
-        sig_h = (new_high & vol_ok & liq_h).iloc[-1]
-        mom = (c / c.shift(H_MOM_LOOKBACK) - 1.0).iloc[-1]
-        cands = []
-        for t in sig_h.index[sig_h.fillna(False)]:
-            if t in ("SPY", "QQQ", "^VIX") or not np.isfinite(mom.get(t, np.nan)):
-                continue
-            last_close = float(raw_c[t].iloc[-1])
-            cands.append({"ticker": t, "momentum_6m": round(float(mom[t]), 4),
-                          "last_close": round(last_close, 2),
-                          "qty": round(float(h_size / last_close), 4)})  # fractional shares
-        cands.sort(key=lambda x: -x["momentum_6m"])  # strongest momentum first
-        keep = set(dedupe_share_classes([x["ticker"] for x in cands]))
-        cands = [x for x in cands if x["ticker"] in keep]
-        h_orders = cands[: SLEEVES["H_momentum"]["max_positions"]]
-    out["sleeves"]["H_momentum"] = {
-        "active": spy_above_100,
-        "reason_inactive": None if spy_above_100 else
-            "SPY below 100dma - momentum gate off (no new entries; manage exits only)",
-        "orders": h_orders,
-        "order_type": "MARKET buy at the OPEN (fractional DAY order)",
-        "position_size_usd": round(h_size, 2),
-        "exit_rules": f"Sell at the OPEN once a daily close is < entry x {1 - H_STOP_FRAC:.2f} "
-                      f"(-{H_STOP_FRAC:.0%} stop) OR after {H_HOLD_DAYS} trading days (whichever first).",
-    }
     return out
 
 

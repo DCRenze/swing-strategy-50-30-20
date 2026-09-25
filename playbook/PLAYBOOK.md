@@ -1,4 +1,11 @@
-# ENSEMBLE PLAYBOOK — Long-Only US Stock Swing Strategy (A/H 60/40)
+# ENSEMBLE PLAYBOOK — Long-Only US Stock Swing Strategy (Sleeve A 100%)
+
+> **CURRENT CONFIG (2026-09-24): Sleeve A only, 100% of equity — max 10 positions at
+> ~10% of equity each.** Sleeve H (momentum) is retired: no new H entries; any H
+> positions still open exit under their original rules (5% stop / 15-day time stop).
+> This matches the standalone `3ll_refined` backtest (10 slots × equity/10): full CAGR
+> 16.7%, Sharpe 1.10, OOS MaxDD −15.1%, MC p95 DD −18.4% (results/REFINEMENT.md).
+> H-related sections below are kept for history only.
 
 **Audience: a Claude agent (or human) executing trades in David's Alpaca account.**
 This document is the complete operating specification. Follow it exactly. Do not
@@ -113,7 +120,7 @@ stale — the run acts on old signals; investigate per §5.
 
 ## 5. Risk guardrails and stand-down rules
 
-- **Per-position caps:** ~6% (A) / ~4% (H) of equity, recomputed daily. Max 10 per sleeve.
+- **Per-position caps:** ~10% of equity (Sleeve A), recomputed daily. Max 10 positions.
 - **Account drawdown circuit breaker (now enforced in code, not just prose):** a
   high-water mark is stored in `papertrade/state.json`; each run computes drawdown =
   equity ÷ HWM − 1.
