@@ -1,7 +1,7 @@
 """Generate a self-contained weekly portfolio HTML report (no LLM) and, optionally,
 post it to Discord as a file attachment.
 
-A professional-PM analyst dashboard for the 60/40 A/H ensemble: a KPI hero row,
+A professional-PM analyst dashboard for Sleeve A (100%; H retired 2026-09-24): a KPI hero row,
 equity curve + underwater drawdown, an allocation donut, per-sleeve ("per-strategy")
 cards with win-rate bars and profit-factor gauges vs the backtest benchmark, a
 cumulative realized-P/L-by-sleeve chart, the week's activity, open positions, and the
@@ -71,8 +71,8 @@ TRADES_PATH = HERE / "trades.jsonl"
 BASELINE_DATE = "2026-08-11"
 DEFAULT_OUT_DIR = ROOT / "reports" / "weekly"
 
-MAX_POSITIONS = 20
-TARGET_WEIGHTS = {"A": 0.60, "H": 0.40}
+MAX_POSITIONS = 10
+TARGET_WEIGHTS = {"A": 1.00, "H": 0.00}  # H retired 2026-09-24; kept for its history
 # Backtest profit-factor benchmarks for the decay watch (PLAYBOOK §8 / REFINEMENT.md).
 PF_BENCHMARK = {"A": {"full": 1.30, "oos": 1.19}, "H": {"oos": 1.37}}
 DD_HALT_A, DD_HALT_ALL = -0.15, -0.20
@@ -466,7 +466,7 @@ def cumulative_pl_chart(trades: list[dict]) -> str | None:
 
 
 def allocation_donut(sleeve_cap_pct: dict, invested_pct: float | None) -> str | None:
-    """Donut of live capital A/H/cash; falls back to the 60/40 target when no
+    """Donut of live capital A/H/cash; falls back to the A 100% target when no
     live positions are available."""
     fig, plt = _new_fig(3.5, 3.2)
     ax = fig.add_subplot(111)
@@ -479,10 +479,10 @@ def allocation_donut(sleeve_cap_pct: dict, invested_pct: float | None) -> str | 
         labels = [f"A {a:.0f}%", f"H {h:.0f}%", f"Cash {cash:.0f}%"]
         center = f"{invested_pct:.0f}%\ninvested"
     else:
-        vals = [60, 40]
-        cols = [C["A"], C["H"]]
-        labels = ["A 60%", "H 40%"]
-        center = "target\n60 / 40"
+        vals = [100]
+        cols = [C["A"]]
+        labels = ["A 100%"]
+        center = "target\nA 100%"
     wedges, _ = ax.pie(vals, colors=cols, startangle=90,
                        wedgeprops=dict(width=0.42, edgecolor=C["surface"], linewidth=2))
     ax.text(0, 0, center, ha="center", va="center", color=C["ink"],
@@ -654,7 +654,7 @@ def _auto_commentary(ctx: dict) -> str:
     for sk in ("A", "H"):
         a, wk = sl[sk]["all"], sl[sk]["week"]
         bench = PF_BENCHMARK[sk].get("oos") or PF_BENCHMARK[sk].get("full")
-        name = "Sleeve A (mean-reversion)" if sk == "A" else "Sleeve H (momentum)"
+        name = "Sleeve A (mean-reversion)" if sk == "A" else "Sleeve H (momentum, retired)"
         wk_txt = (f"{_money0(wk['net'], signed=True)} on {wk['n']} closed ({wk['wr']:.0f}% wins)"
                   if wk["n"] else "no positions closed")
         if a["pf"] is None:
@@ -935,7 +935,7 @@ footer{{margin-top:40px;color:var(--muted);font-size:12px;border-top:1px solid v
 <body><div class="wrap">
 <header>
 <h1>📊 Weekly Portfolio Report</h1>
-<p class="sub">60/40 A/H swing ensemble · trading week {week} · generated {generated}</p>
+<p class="sub">Sleeve A swing strategy (100%) · trading week {week} · generated {generated}</p>
 </header>
 <div class="kpis">{kpis}</div>
 
@@ -973,7 +973,7 @@ footer{{margin-top:40px;color:var(--muted);font-size:12px;border-top:1px solid v
 <ul class="plain">{alerts}</ul>
 
 <footer>
-Paper trading on Alpaca. Long-only 60/40 A/H ensemble (see <code>playbook/PLAYBOOK.md</code>).
+Paper trading on Alpaca. Long-only Sleeve A at 100% of equity; Sleeve H retired 2026-09-24 (see <code>playbook/PLAYBOOK.md</code>).
 Backtest carries survivorship bias; past performance does not guarantee future results.
 This is an automated internal report, not investment advice.
 </footer>
