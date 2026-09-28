@@ -105,3 +105,13 @@
 {"ticker": "CVX", "sleeve": "H", "entry_date": "2026-09-02", "exit_date": "2026-09-24", "entry_px": 211.49, "exit_px": 205.8377, "qty": 18.0639, "ret": -0.0267, "pnl": -102.1}
 {"ticker": "XOM", "sleeve": "A", "entry_date": "2026-09-21", "exit_date": "2026-09-24", "entry_px": 160.5257, "exit_px": 162.58, "qty": 36.6896, "ret": 0.0128, "pnl": 75.37}
 {"ticker": "ABNB", "sleeve": "A", "entry_date": "2026-09-22", "exit_date": "2026-09-24", "entry_px": 163.48, "exit_px": 152.5404, "qty": 35.7302, "ret": -0.0669, "pnl": -390.87}
+{"ticker": "DELL", "sleeve": "H", "entry_date": "2026-09-04", "exit_date": "2026-09-25", "entry_px": 518.454, "exit_px": 543.6, "qty": 7.4443, "ret": 0.0485, "pnl": 187.19}
+{"ticker": "HPQ", "sleeve": "H", "entry_date": "2026-09-10", "exit_date": "2026-09-25", "entry_px": 31.94, "exit_px": 31.368, "qty": 118.7281, "ret": -0.0179, "pnl": -67.92}
+{"ticker": "HPE", "sleeve": "H", "entry_date": "2026-09-14", "exit_date": "2026-09-25", "entry_px": 56.34, "exit_px": 63.4004, "qty": 62.5094, "ret": 0.1253, "pnl": 441.34}
+{"ticker": "VLO", "sleeve": "H", "entry_date": "2026-09-14", "exit_date": "2026-09-25", "entry_px": 393.4514, "exit_px": 376.0, "qty": 9.9411, "ret": -0.0444, "pnl": -173.49}
+{"ticker": "DINO", "sleeve": "H", "entry_date": "2026-09-16", "exit_date": "2026-09-25", "entry_px": 111.019, "exit_px": 104.3712, "qty": 34.72, "ret": -0.0599, "pnl": -230.81}
+{"ticker": "MPC", "sleeve": "H", "entry_date": "2026-09-16", "exit_date": "2026-09-25", "entry_px": 408.5608, "exit_px": 384.8, "qty": 9.4862, "ret": -0.0582, "pnl": -225.4}
+{"ticker": "SWKS", "sleeve": "H", "entry_date": "2026-09-16", "exit_date": "2026-09-25", "entry_px": 87.65, "exit_px": 87.28, "qty": 43.3035, "ret": -0.0042, "pnl": -16.02}
+{"ticker": "CRWD", "sleeve": "H", "entry_date": "2026-09-18", "exit_date": "2026-09-25", "entry_px": 242.1879, "exit_px": 258.3291, "qty": 16.1307, "ret": 0.0666, "pnl": 260.37}
+{"ticker": "AMD", "sleeve": "H", "entry_date": "2026-09-22", "exit_date": "2026-09-25", "entry_px": 611.4594, "exit_px": 634.61, "qty": 6.3264, "ret": 0.0379, "pnl": 146.46}
+{"ticker": "SPOT", "sleeve": "A", "entry_date": "2026-09-22", "exit_date": "2026-09-25", "entry_px": 501.933, "exit_px": 508.8581, "qty": 11.6368, "ret": 0.0138, "pnl": 80.59}
