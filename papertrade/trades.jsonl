@@ -115,3 +115,6 @@
 {"ticker": "CRWD", "sleeve": "H", "entry_date": "2026-09-18", "exit_date": "2026-09-25", "entry_px": 242.1879, "exit_px": 258.3291, "qty": 16.1307, "ret": 0.0666, "pnl": 260.37}
 {"ticker": "AMD", "sleeve": "H", "entry_date": "2026-09-22", "exit_date": "2026-09-25", "entry_px": 611.4594, "exit_px": 634.61, "qty": 6.3264, "ret": 0.0379, "pnl": 146.46}
 {"ticker": "SPOT", "sleeve": "A", "entry_date": "2026-09-22", "exit_date": "2026-09-25", "entry_px": 501.933, "exit_px": 508.8581, "qty": 11.6368, "ret": 0.0138, "pnl": 80.59}
+{"ticker": "CVS", "sleeve": "A", "entry_date": "2026-09-18", "exit_date": "2026-09-28", "entry_px": 88.5, "exit_px": 89.1546, "qty": 67.1543, "ret": 0.0074, "pnl": 43.96}
+{"ticker": "DASH", "sleeve": "A", "entry_date": "2026-09-23", "exit_date": "2026-09-28", "entry_px": 187.74, "exit_px": 186.4297, "qty": 30.9398, "ret": -0.007, "pnl": -40.54}
+{"ticker": "MDT", "sleeve": "A", "entry_date": "2026-09-23", "exit_date": "2026-09-28", "entry_px": 90.24, "exit_px": 88.0419, "qty": 64.6765, "ret": -0.0244, "pnl": -142.17}
