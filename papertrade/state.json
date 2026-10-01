@@ -5,15 +5,15 @@
       "entry_date": "2026-09-25",
       "entry_px": 88.0
     },
-    "NEM": {
-      "sleeve": "A",
-      "entry_date": "2026-09-28",
-      "entry_px": 116.13
-    },
     "SLB": {
       "sleeve": "A",
       "entry_date": "2026-09-29",
       "entry_px": 49.9832
+    },
+    "MS": {
+      "sleeve": "A",
+      "entry_date": "2026-09-30",
+      "entry_px": 189.269
     }
   },
   "hwm": 100432.77
