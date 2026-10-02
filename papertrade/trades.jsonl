@@ -119,3 +119,4 @@
 {"ticker": "DASH", "sleeve": "A", "entry_date": "2026-09-23", "exit_date": "2026-09-28", "entry_px": 187.74, "exit_px": 186.4297, "qty": 30.9398, "ret": -0.007, "pnl": -40.54}
 {"ticker": "MDT", "sleeve": "A", "entry_date": "2026-09-23", "exit_date": "2026-09-28", "entry_px": 90.24, "exit_px": 88.0419, "qty": 64.6765, "ret": -0.0244, "pnl": -142.17}
 {"ticker": "NEM", "sleeve": "A", "entry_date": "2026-09-28", "exit_date": "2026-09-30", "entry_px": 116.13, "exit_px": 117.1824, "qty": 81.9992, "ret": 0.0091, "pnl": 86.3}
+{"ticker": "CRCL", "sleeve": "A", "entry_date": "2026-09-25", "exit_date": "2026-10-01", "entry_px": 88.0, "exit_px": 82.0671, "qty": 110.1552, "ret": -0.0674, "pnl": -653.54}
