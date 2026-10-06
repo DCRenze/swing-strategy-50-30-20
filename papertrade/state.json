@@ -1,14 +1,9 @@
 {
   "positions": {
-    "SLB": {
+    "MRK": {
       "sleeve": "A",
-      "entry_date": "2026-09-29",
-      "entry_px": 49.9832
-    },
-    "MS": {
-      "sleeve": "A",
-      "entry_date": "2026-09-30",
-      "entry_px": 189.269
+      "entry_date": "2026-10-05",
+      "entry_px": 141.83
     }
   },
   "hwm": 100432.77
