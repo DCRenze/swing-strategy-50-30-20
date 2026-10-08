@@ -122,3 +122,4 @@
 {"ticker": "CRCL", "sleeve": "A", "entry_date": "2026-09-25", "exit_date": "2026-10-01", "entry_px": 88.0, "exit_px": 82.0671, "qty": 110.1552, "ret": -0.0674, "pnl": -653.54}
 {"ticker": "SLB", "sleeve": "A", "entry_date": "2026-09-29", "exit_date": "2026-10-05", "entry_px": 49.9832, "exit_px": 49.39, "qty": 193.1083, "ret": -0.0119, "pnl": -114.55}
 {"ticker": "MS", "sleeve": "A", "entry_date": "2026-09-30", "exit_date": "2026-10-05", "entry_px": 189.269, "exit_px": 189.2786, "qty": 51.1812, "ret": 0.0001, "pnl": 0.49}
+{"ticker": "MRK", "sleeve": "A", "entry_date": "2026-10-05", "exit_date": "2026-10-07", "entry_px": 141.83, "exit_px": 141.6166, "qty": 67.7979, "ret": -0.0015, "pnl": -14.47}

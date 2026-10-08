@@ -1,14 +1,14 @@
 {
   "positions": {
-    "MRK": {
-      "sleeve": "A",
-      "entry_date": "2026-10-05",
-      "entry_px": 141.83
-    },
     "SWKS": {
       "sleeve": "A",
       "entry_date": "2026-10-06",
       "entry_px": 80.54
+    },
+    "WELL": {
+      "sleeve": "A",
+      "entry_date": "2026-10-07",
+      "entry_px": 222.16
     }
   },
   "hwm": 100432.77
