@@ -1,14 +1,34 @@
 {
   "positions": {
-    "SWKS": {
-      "sleeve": "A",
-      "entry_date": "2026-10-06",
-      "entry_px": 80.54
-    },
     "WELL": {
       "sleeve": "A",
       "entry_date": "2026-10-07",
       "entry_px": 222.16
+    },
+    "AMAT": {
+      "sleeve": "A",
+      "entry_date": "2026-10-08",
+      "entry_px": 507.0286
+    },
+    "INTC": {
+      "sleeve": "A",
+      "entry_date": "2026-10-08",
+      "entry_px": 108.78
+    },
+    "LRCX": {
+      "sleeve": "A",
+      "entry_date": "2026-10-08",
+      "entry_px": 319.73
+    },
+    "QCOM": {
+      "sleeve": "A",
+      "entry_date": "2026-10-08",
+      "entry_px": 171.5196
+    },
+    "SNDK": {
+      "sleeve": "A",
+      "entry_date": "2026-10-08",
+      "entry_px": 1624.42
     }
   },
   "hwm": 100432.77
