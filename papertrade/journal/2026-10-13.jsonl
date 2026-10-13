@@ -1,0 +1,22 @@
+{"ts": "2026-10-13T13:20:25", "kind": "position_adopted", "ticker": "ALAB", "sleeve": "A", "entry_date": "2026-10-12", "entry_px": 322.7702}
+{"ts": "2026-10-13T13:20:25", "kind": "position_adopted", "ticker": "NVDA", "sleeve": "A", "entry_date": "2026-10-12", "entry_px": 225.1071}
+{"ts": "2026-10-13T13:20:25", "kind": "position_adopted", "ticker": "SMCI", "sleeve": "A", "entry_date": "2026-10-12", "entry_px": 39.7723}
+{"ts": "2026-10-13T13:20:25", "kind": "position_adopted", "ticker": "TXN", "sleeve": "A", "entry_date": "2026-10-12", "entry_px": 277.58}
+{"ts": "2026-10-13T13:20:25", "kind": "run_start", "mode": "morning", "equity": 92832.63, "hwm": 100432.77, "drawdown": -0.0757, "dry_run": false}
+{"ts": "2026-10-13T13:21:38", "kind": "data_asof", "signal_date": "2026-10-12", "trade_date": "2026-10-13", "sessions": 310}
+{"ts": "2026-10-13T13:21:38", "kind": "submit_window", "target": "09:30", "waited_s": 501.8, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-10-13T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "INTC", "side": "sell", "qty": 88.7295, "order_type": "market", "limit_price": null, "client_order_id": "A-INTC-20261013-sell"}
+{"ts": "2026-10-13T13:30:00", "kind": "exit_reason", "ticker": "INTC", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-12", "reason": "5% stop", "trigger_close": 101.35, "stop_level": 103.341, "trigger_session": "2026-10-12"}
+{"ts": "2026-10-13T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "SNDK", "side": "sell", "qty": 5.942, "order_type": "market", "limit_price": null, "client_order_id": "A-SNDK-20261013-sell"}
+{"ts": "2026-10-13T13:30:00", "kind": "exit_reason", "ticker": "SNDK", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-12", "reason": "5% stop", "trigger_close": 1487.33, "stop_level": 1543.199, "trigger_session": "2026-10-12"}
+{"ts": "2026-10-13T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "NVDA", "reason": "already held"}
+{"ts": "2026-10-13T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "SNDK", "reason": "already held"}
+{"ts": "2026-10-13T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMD", "side": "buy", "qty": 16.0979, "order_type": "limit", "limit_price": 576.67, "client_order_id": "A-AMD-20261013-buy"}
+{"ts": "2026-10-13T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "INTC", "reason": "sleeve full"}
+{"ts": "2026-10-13T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "STX", "reason": "sleeve full"}
+{"ts": "2026-10-13T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "LRCX", "reason": "sleeve full"}
+{"ts": "2026-10-13T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "TXN", "reason": "sleeve full"}
+{"ts": "2026-10-13T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "ALAB", "reason": "sleeve full"}
+{"ts": "2026-10-13T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "SMCI", "reason": "sleeve full"}
+{"ts": "2026-10-13T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "DE", "reason": "sleeve full"}
+{"ts": "2026-10-13T13:30:00", "kind": "run_end", "mode": "morning"}

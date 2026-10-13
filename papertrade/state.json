@@ -24,6 +24,26 @@
       "sleeve": "A",
       "entry_date": "2026-10-08",
       "entry_px": 1624.42
+    },
+    "ALAB": {
+      "sleeve": "A",
+      "entry_date": "2026-10-12",
+      "entry_px": 322.7702
+    },
+    "NVDA": {
+      "sleeve": "A",
+      "entry_date": "2026-10-12",
+      "entry_px": 225.1071
+    },
+    "SMCI": {
+      "sleeve": "A",
+      "entry_date": "2026-10-12",
+      "entry_px": 39.7723
+    },
+    "TXN": {
+      "sleeve": "A",
+      "entry_date": "2026-10-12",
+      "entry_px": 277.58
     }
   },
   "hwm": 100432.77
