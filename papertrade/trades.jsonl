@@ -125,3 +125,5 @@
 {"ticker": "MRK", "sleeve": "A", "entry_date": "2026-10-05", "exit_date": "2026-10-07", "entry_px": 141.83, "exit_px": 141.6166, "qty": 67.7979, "ret": -0.0015, "pnl": -14.47}
 {"ticker": "SWKS", "sleeve": "A", "entry_date": "2026-10-06", "exit_date": "2026-10-08", "entry_px": 80.54, "exit_px": 80.7687, "qty": 119.3636, "ret": 0.0028, "pnl": 27.3}
 {"ticker": "WELL", "sleeve": "A", "entry_date": "2026-10-07", "exit_date": "2026-10-09", "entry_px": 222.16, "exit_px": 223.2023, "qty": 43.3453, "ret": 0.0047, "pnl": 45.18}
+{"ticker": "INTC", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-13", "entry_px": 108.78, "exit_px": 98.6959, "qty": 88.7295, "ret": -0.0927, "pnl": -894.75}
+{"ticker": "SNDK", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-13", "entry_px": 1624.42, "exit_px": 1424.3613, "qty": 5.942, "ret": -0.1232, "pnl": -1188.75}

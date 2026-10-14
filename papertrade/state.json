@@ -5,11 +5,6 @@
       "entry_date": "2026-10-08",
       "entry_px": 507.0286
     },
-    "INTC": {
-      "sleeve": "A",
-      "entry_date": "2026-10-08",
-      "entry_px": 108.78
-    },
     "LRCX": {
       "sleeve": "A",
       "entry_date": "2026-10-08",
@@ -19,11 +14,6 @@
       "sleeve": "A",
       "entry_date": "2026-10-08",
       "entry_px": 171.5196
-    },
-    "SNDK": {
-      "sleeve": "A",
-      "entry_date": "2026-10-08",
-      "entry_px": 1624.42
     },
     "ALAB": {
       "sleeve": "A",
@@ -44,6 +34,11 @@
       "sleeve": "A",
       "entry_date": "2026-10-12",
       "entry_px": 277.58
+    },
+    "AMD": {
+      "sleeve": "A",
+      "entry_date": "2026-10-13",
+      "entry_px": 573.1984
     }
   },
   "hwm": 100432.77
