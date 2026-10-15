@@ -1,0 +1,30 @@
+{"ts": "2026-10-15T13:20:29", "kind": "trade_closed", "dry_run": null, "ticker": "AMAT", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-14", "entry_px": 507.0286, "exit_px": 453.49, "qty": 19.0281, "ret": -0.1056, "pnl": -1018.74}
+{"ts": "2026-10-15T13:20:29", "kind": "position_closed", "ticker": "AMAT", "sleeve": "A", "entry_date": "2026-10-08", "entry_px": 507.0286}
+{"ts": "2026-10-15T13:20:29", "kind": "trade_closed", "dry_run": null, "ticker": "LRCX", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-14", "entry_px": 319.73, "exit_px": 292.72, "qty": 30.1886, "ret": -0.0845, "pnl": -815.39}
+{"ts": "2026-10-15T13:20:29", "kind": "position_closed", "ticker": "LRCX", "sleeve": "A", "entry_date": "2026-10-08", "entry_px": 319.73}
+{"ts": "2026-10-15T13:20:29", "kind": "trade_closed", "dry_run": null, "ticker": "QCOM", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-14", "entry_px": 171.5196, "exit_px": 173.97, "qty": 56.2704, "ret": 0.0143, "pnl": 137.88}
+{"ts": "2026-10-15T13:20:29", "kind": "position_closed", "ticker": "QCOM", "sleeve": "A", "entry_date": "2026-10-08", "entry_px": 171.5196}
+{"ts": "2026-10-15T13:20:29", "kind": "trade_closed", "dry_run": null, "ticker": "ALAB", "sleeve": "A", "entry_date": "2026-10-12", "exit_date": "2026-10-14", "entry_px": 322.7702, "exit_px": 314.8542, "qty": 29.494, "ret": -0.0245, "pnl": -233.47}
+{"ts": "2026-10-15T13:20:29", "kind": "position_closed", "ticker": "ALAB", "sleeve": "A", "entry_date": "2026-10-12", "entry_px": 322.7702}
+{"ts": "2026-10-15T13:20:29", "kind": "trade_closed", "dry_run": null, "ticker": "NVDA", "sleeve": "A", "entry_date": "2026-10-12", "exit_date": "2026-10-14", "entry_px": 225.1071, "exit_px": 225.2842, "qty": 42.3667, "ret": 0.0008, "pnl": 7.5}
+{"ts": "2026-10-15T13:20:29", "kind": "position_closed", "ticker": "NVDA", "sleeve": "A", "entry_date": "2026-10-12", "entry_px": 225.1071}
+{"ts": "2026-10-15T13:20:29", "kind": "trade_closed", "dry_run": null, "ticker": "TXN", "sleeve": "A", "entry_date": "2026-10-12", "exit_date": "2026-10-14", "entry_px": 277.58, "exit_px": 279.6327, "qty": 34.353, "ret": 0.0074, "pnl": 70.51}
+{"ts": "2026-10-15T13:20:29", "kind": "position_closed", "ticker": "TXN", "sleeve": "A", "entry_date": "2026-10-12", "entry_px": 277.58}
+{"ts": "2026-10-15T13:20:29", "kind": "position_adopted", "ticker": "MU", "sleeve": "A", "entry_date": "2026-10-14", "entry_px": 917.9}
+{"ts": "2026-10-15T13:20:29", "kind": "position_adopted", "ticker": "SNDK", "sleeve": "A", "entry_date": "2026-10-14", "entry_px": 1413.09}
+{"ts": "2026-10-15T13:20:29", "kind": "run_start", "mode": "morning", "equity": 89548.49, "hwm": 100432.77, "drawdown": -0.1084, "dry_run": false}
+{"ts": "2026-10-15T13:21:44", "kind": "data_asof", "signal_date": "2026-10-14", "trade_date": "2026-10-15", "sessions": 311}
+{"ts": "2026-10-15T13:21:44", "kind": "submit_window", "target": "09:30", "waited_s": 495.1, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-10-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "SMCI", "side": "sell", "qty": 237.9941, "order_type": "market", "limit_price": null, "client_order_id": "A-SMCI-20261015-sell"}
+{"ts": "2026-10-15T13:30:00", "kind": "exit_reason", "ticker": "SMCI", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-14", "reason": "5% stop", "trigger_close": 35.78, "stop_level": 37.7837, "trigger_session": "2026-10-14"}
+{"ts": "2026-10-15T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "MU", "reason": "already held"}
+{"ts": "2026-10-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "NVDA", "side": "buy", "qty": 41.2699, "order_type": "limit", "limit_price": 216.98, "client_order_id": "A-NVDA-20261015-buy"}
+{"ts": "2026-10-15T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "AMD", "reason": "already held"}
+{"ts": "2026-10-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "INTC", "side": "buy", "qty": 95.2742, "order_type": "limit", "limit_price": 93.99, "client_order_id": "A-INTC-20261015-buy"}
+{"ts": "2026-10-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MRVL", "side": "buy", "qty": 38.4305, "order_type": "limit", "limit_price": 233.01, "client_order_id": "A-MRVL-20261015-buy"}
+{"ts": "2026-10-15T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "LITE", "side": "buy", "qty": 10.6355, "order_type": "limit", "limit_price": 841.98, "client_order_id": "A-LITE-20261015-buy"}
+{"ts": "2026-10-15T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "DELL", "side": "buy", "qty": 18.4815, "order_type": "limit", "limit_price": 484.53, "client_order_id": "A-DELL-20261015-buy"}
+{"ts": "2026-10-15T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "AMAT", "side": "buy", "qty": 20.7505, "order_type": "limit", "limit_price": 431.55, "client_order_id": "A-AMAT-20261015-buy"}
+{"ts": "2026-10-15T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "LRCX", "reason": "sleeve full"}
+{"ts": "2026-10-15T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "CRWD", "reason": "sleeve full"}
+{"ts": "2026-10-15T13:30:01", "kind": "run_end", "mode": "morning"}

@@ -1,44 +1,24 @@
 {
   "positions": {
-    "AMAT": {
-      "sleeve": "A",
-      "entry_date": "2026-10-08",
-      "entry_px": 507.0286
-    },
-    "LRCX": {
-      "sleeve": "A",
-      "entry_date": "2026-10-08",
-      "entry_px": 319.73
-    },
-    "QCOM": {
-      "sleeve": "A",
-      "entry_date": "2026-10-08",
-      "entry_px": 171.5196
-    },
-    "ALAB": {
-      "sleeve": "A",
-      "entry_date": "2026-10-12",
-      "entry_px": 322.7702
-    },
-    "NVDA": {
-      "sleeve": "A",
-      "entry_date": "2026-10-12",
-      "entry_px": 225.1071
-    },
     "SMCI": {
       "sleeve": "A",
       "entry_date": "2026-10-12",
       "entry_px": 39.7723
     },
-    "TXN": {
-      "sleeve": "A",
-      "entry_date": "2026-10-12",
-      "entry_px": 277.58
-    },
     "AMD": {
       "sleeve": "A",
       "entry_date": "2026-10-13",
       "entry_px": 573.1984
+    },
+    "MU": {
+      "sleeve": "A",
+      "entry_date": "2026-10-14",
+      "entry_px": 917.9
+    },
+    "SNDK": {
+      "sleeve": "A",
+      "entry_date": "2026-10-14",
+      "entry_px": 1413.09
     }
   },
   "hwm": 100432.77

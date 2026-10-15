@@ -127,3 +127,9 @@
 {"ticker": "WELL", "sleeve": "A", "entry_date": "2026-10-07", "exit_date": "2026-10-09", "entry_px": 222.16, "exit_px": 223.2023, "qty": 43.3453, "ret": 0.0047, "pnl": 45.18}
 {"ticker": "INTC", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-13", "entry_px": 108.78, "exit_px": 98.6959, "qty": 88.7295, "ret": -0.0927, "pnl": -894.75}
 {"ticker": "SNDK", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-13", "entry_px": 1624.42, "exit_px": 1424.3613, "qty": 5.942, "ret": -0.1232, "pnl": -1188.75}
+{"ticker": "AMAT", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-14", "entry_px": 507.0286, "exit_px": 453.49, "qty": 19.0281, "ret": -0.1056, "pnl": -1018.74}
+{"ticker": "LRCX", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-14", "entry_px": 319.73, "exit_px": 292.72, "qty": 30.1886, "ret": -0.0845, "pnl": -815.39}
+{"ticker": "QCOM", "sleeve": "A", "entry_date": "2026-10-08", "exit_date": "2026-10-14", "entry_px": 171.5196, "exit_px": 173.97, "qty": 56.2704, "ret": 0.0143, "pnl": 137.88}
+{"ticker": "ALAB", "sleeve": "A", "entry_date": "2026-10-12", "exit_date": "2026-10-14", "entry_px": 322.7702, "exit_px": 314.8542, "qty": 29.494, "ret": -0.0245, "pnl": -233.47}
+{"ticker": "NVDA", "sleeve": "A", "entry_date": "2026-10-12", "exit_date": "2026-10-14", "entry_px": 225.1071, "exit_px": 225.2842, "qty": 42.3667, "ret": 0.0008, "pnl": 7.5}
+{"ticker": "TXN", "sleeve": "A", "entry_date": "2026-10-12", "exit_date": "2026-10-14", "entry_px": 277.58, "exit_px": 279.6327, "qty": 34.353, "ret": 0.0074, "pnl": 70.51}
