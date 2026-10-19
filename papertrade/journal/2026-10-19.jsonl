@@ -1,0 +1,21 @@
+{"ts": "2026-10-19T13:20:31", "kind": "trade_closed", "dry_run": null, "ticker": "MU", "sleeve": "A", "entry_date": "2026-10-14", "exit_date": "2026-10-16", "entry_px": 917.9, "exit_px": 899.4, "qty": 10.0646, "ret": -0.0202, "pnl": -186.2}
+{"ts": "2026-10-19T13:20:31", "kind": "position_closed", "ticker": "MU", "sleeve": "A", "entry_date": "2026-10-14", "entry_px": 917.9}
+{"ts": "2026-10-19T13:20:31", "kind": "position_adopted", "ticker": "AMZN", "sleeve": "A", "entry_date": "2026-10-16", "entry_px": 250.36}
+{"ts": "2026-10-19T13:20:31", "kind": "run_start", "mode": "morning", "equity": 91154.91, "hwm": 100432.77, "drawdown": -0.0924, "dry_run": false}
+{"ts": "2026-10-19T13:21:31", "kind": "data_asof", "signal_date": "2026-10-16", "trade_date": "2026-10-19", "sessions": 309}
+{"ts": "2026-10-19T13:21:31", "kind": "submit_window", "target": "09:30", "waited_s": 508.2, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-10-19T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMD", "side": "sell", "qty": 16.0979, "order_type": "market", "limit_price": null, "client_order_id": "A-AMD-20261019-sell"}
+{"ts": "2026-10-19T13:30:00", "kind": "exit_reason", "ticker": "AMD", "sleeve": "A", "days_held": 4, "signal_date": "2026-10-16", "reason": "5% stop", "trigger_close": 528.75, "stop_level": 544.5385, "trigger_session": "2026-10-16"}
+{"ts": "2026-10-19T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "SNDK", "side": "sell", "qty": 6.5364, "order_type": "market", "limit_price": null, "client_order_id": "A-SNDK-20261019-sell"}
+{"ts": "2026-10-19T13:30:00", "kind": "exit_reason", "ticker": "SNDK", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-16", "reason": "5% stop", "trigger_close": 1299.3, "stop_level": 1342.4355, "trigger_session": "2026-10-16"}
+{"ts": "2026-10-19T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "META", "side": "buy", "qty": 13.211, "order_type": "limit", "limit_price": 689.99, "client_order_id": "A-META-20261019-buy"}
+{"ts": "2026-10-19T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "AMD", "reason": "sleeve full"}
+{"ts": "2026-10-19T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "INTC", "reason": "sleeve full"}
+{"ts": "2026-10-19T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "MSFT", "reason": "sleeve full"}
+{"ts": "2026-10-19T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "AMZN", "reason": "sleeve full"}
+{"ts": "2026-10-19T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "GOOGL", "reason": "sleeve full"}
+{"ts": "2026-10-19T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "MRVL", "reason": "sleeve full"}
+{"ts": "2026-10-19T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "PLTR", "reason": "sleeve full"}
+{"ts": "2026-10-19T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "DELL", "reason": "sleeve full"}
+{"ts": "2026-10-19T13:30:00", "kind": "skip", "sleeve": "A", "ticker": "MSTR", "reason": "sleeve full"}
+{"ts": "2026-10-19T13:30:00", "kind": "run_end", "mode": "morning"}

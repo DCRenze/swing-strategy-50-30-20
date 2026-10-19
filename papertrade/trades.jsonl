@@ -134,3 +134,4 @@
 {"ticker": "NVDA", "sleeve": "A", "entry_date": "2026-10-12", "exit_date": "2026-10-14", "entry_px": 225.1071, "exit_px": 225.2842, "qty": 42.3667, "ret": 0.0008, "pnl": 7.5}
 {"ticker": "TXN", "sleeve": "A", "entry_date": "2026-10-12", "exit_date": "2026-10-14", "entry_px": 277.58, "exit_px": 279.6327, "qty": 34.353, "ret": 0.0074, "pnl": 70.51}
 {"ticker": "SMCI", "sleeve": "A", "entry_date": "2026-10-12", "exit_date": "2026-10-15", "entry_px": 39.7723, "exit_px": 33.2987, "qty": 237.9941, "ret": -0.1628, "pnl": -1540.68}
+{"ticker": "MU", "sleeve": "A", "entry_date": "2026-10-14", "exit_date": "2026-10-16", "entry_px": 917.9, "exit_px": 899.4, "qty": 10.0646, "ret": -0.0202, "pnl": -186.2}
