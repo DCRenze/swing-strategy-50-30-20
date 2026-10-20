@@ -1,0 +1,32 @@
+{"ts": "2026-10-20T13:20:22", "kind": "trade_closed", "dry_run": null, "ticker": "AMD", "sleeve": "A", "entry_date": "2026-10-13", "exit_date": "2026-10-19", "entry_px": 573.1984, "exit_px": 546.11, "qty": 16.0979, "ret": -0.0473, "pnl": -436.07}
+{"ts": "2026-10-20T13:20:22", "kind": "position_closed", "ticker": "AMD", "sleeve": "A", "entry_date": "2026-10-13", "entry_px": 573.1984}
+{"ts": "2026-10-20T13:20:22", "kind": "trade_closed", "dry_run": null, "ticker": "SNDK", "sleeve": "A", "entry_date": "2026-10-14", "exit_date": "2026-10-19", "entry_px": 1413.09, "exit_px": 1380.1844, "qty": 6.5364, "ret": -0.0233, "pnl": -215.08}
+{"ts": "2026-10-20T13:20:22", "kind": "position_closed", "ticker": "SNDK", "sleeve": "A", "entry_date": "2026-10-14", "entry_px": 1413.09}
+{"ts": "2026-10-20T13:20:22", "kind": "run_start", "mode": "morning", "equity": 89571.69, "hwm": 100432.77, "drawdown": -0.1081, "dry_run": false}
+{"ts": "2026-10-20T13:21:45", "kind": "data_asof", "signal_date": "2026-10-19", "trade_date": "2026-10-20", "sessions": 310}
+{"ts": "2026-10-20T13:21:45", "kind": "submit_window", "target": "09:30", "waited_s": 494.7, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-10-20T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "AMAT", "side": "sell", "qty": 20.7505, "order_type": "market", "limit_price": null, "client_order_id": "A-AMAT-20261020-sell"}
+{"ts": "2026-10-20T13:30:00", "kind": "exit_reason", "ticker": "AMAT", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-19", "reason": "first up-close", "trigger_close": 413.11, "prior_close": 409.29, "trigger_session": "2026-10-19"}
+{"ts": "2026-10-20T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "DELL", "side": "sell", "qty": 18.4815, "order_type": "market", "limit_price": null, "client_order_id": "A-DELL-20261020-sell"}
+{"ts": "2026-10-20T13:30:00", "kind": "exit_reason", "ticker": "DELL", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-19", "reason": "first up-close", "trigger_close": 455.44, "prior_close": 451.71, "trigger_session": "2026-10-19"}
+{"ts": "2026-10-20T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "INTC", "side": "sell", "qty": 95.2742, "order_type": "market", "limit_price": null, "client_order_id": "A-INTC-20261020-sell"}
+{"ts": "2026-10-20T13:30:00", "kind": "exit_reason", "ticker": "INTC", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-19", "reason": "first up-close", "trigger_close": 92.03, "prior_close": 89.85, "trigger_session": "2026-10-19"}
+{"ts": "2026-10-20T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "LITE", "side": "sell", "qty": 10.6355, "order_type": "market", "limit_price": null, "client_order_id": "A-LITE-20261020-sell"}
+{"ts": "2026-10-20T13:30:00", "kind": "exit_reason", "ticker": "LITE", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-19", "reason": "first up-close", "trigger_close": 834.51, "prior_close": 824.13, "trigger_session": "2026-10-19"}
+{"ts": "2026-10-20T13:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MRVL", "side": "sell", "qty": 38.4305, "order_type": "market", "limit_price": null, "client_order_id": "A-MRVL-20261020-sell"}
+{"ts": "2026-10-20T13:30:00", "kind": "exit_reason", "ticker": "MRVL", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-19", "reason": "first up-close", "trigger_close": 237.09, "prior_close": 227.83, "trigger_session": "2026-10-19"}
+{"ts": "2026-10-20T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "NVDA", "side": "sell", "qty": 41.2699, "order_type": "market", "limit_price": null, "client_order_id": "A-NVDA-20261020-sell"}
+{"ts": "2026-10-20T13:30:01", "kind": "exit_reason", "ticker": "NVDA", "sleeve": "A", "days_held": 3, "signal_date": "2026-10-19", "reason": "first up-close", "trigger_close": 217.09, "prior_close": 214.13, "trigger_session": "2026-10-19"}
+{"ts": "2026-10-20T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "AMZN", "side": "sell", "qty": 36.2281, "order_type": "market", "limit_price": null, "client_order_id": "A-AMZN-20261020-sell"}
+{"ts": "2026-10-20T13:30:01", "kind": "exit_reason", "ticker": "AMZN", "sleeve": "A", "days_held": 2, "signal_date": "2026-10-19", "reason": "first up-close", "trigger_close": 262.45, "prior_close": 250.0, "trigger_session": "2026-10-19"}
+{"ts": "2026-10-20T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "META", "side": "buy", "qty": 13.0405, "order_type": "limit", "limit_price": 686.88, "client_order_id": "A-META-20261020-buy"}
+{"ts": "2026-10-20T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "DELL", "reason": "already held"}
+{"ts": "2026-10-20T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "CRWD", "side": "buy", "qty": 40.9401, "order_type": "limit", "limit_price": 218.79, "client_order_id": "A-CRWD-20261020-buy"}
+{"ts": "2026-10-20T13:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "CSCO", "side": "buy", "qty": 85.9867, "order_type": "limit", "limit_price": 104.17, "client_order_id": "A-CSCO-20261020-buy"}
+{"ts": "2026-10-20T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "CZR", "reason": "sleeve full"}
+{"ts": "2026-10-20T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "CNH", "reason": "sleeve full"}
+{"ts": "2026-10-20T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "IEX", "reason": "sleeve full"}
+{"ts": "2026-10-20T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "DAR", "reason": "sleeve full"}
+{"ts": "2026-10-20T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "REXR", "reason": "sleeve full"}
+{"ts": "2026-10-20T13:30:01", "kind": "skip", "sleeve": "A", "ticker": "MSM", "reason": "sleeve full"}
+{"ts": "2026-10-20T13:30:01", "kind": "run_end", "mode": "morning"}
