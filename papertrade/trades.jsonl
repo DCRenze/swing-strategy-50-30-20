@@ -137,3 +137,10 @@
 {"ticker": "MU", "sleeve": "A", "entry_date": "2026-10-14", "exit_date": "2026-10-16", "entry_px": 917.9, "exit_px": 899.4, "qty": 10.0646, "ret": -0.0202, "pnl": -186.2}
 {"ticker": "AMD", "sleeve": "A", "entry_date": "2026-10-13", "exit_date": "2026-10-19", "entry_px": 573.1984, "exit_px": 546.11, "qty": 16.0979, "ret": -0.0473, "pnl": -436.07}
 {"ticker": "SNDK", "sleeve": "A", "entry_date": "2026-10-14", "exit_date": "2026-10-19", "entry_px": 1413.09, "exit_px": 1380.1844, "qty": 6.5364, "ret": -0.0233, "pnl": -215.08}
+{"ticker": "AMAT", "sleeve": "A", "entry_date": "2026-10-15", "exit_date": "2026-10-20", "entry_px": 428.9675, "exit_px": 404.7325, "qty": 20.7505, "ret": -0.0565, "pnl": -502.89}
+{"ticker": "DELL", "sleeve": "A", "entry_date": "2026-10-15", "exit_date": "2026-10-20", "entry_px": 465.4947, "exit_px": 443.3082, "qty": 18.4815, "ret": -0.0477, "pnl": -410.04}
+{"ticker": "INTC", "sleeve": "A", "entry_date": "2026-10-15", "exit_date": "2026-10-20", "entry_px": 92.8369, "exit_px": 89.5603, "qty": 95.2742, "ret": -0.0353, "pnl": -312.18}
+{"ticker": "LITE", "sleeve": "A", "entry_date": "2026-10-15", "exit_date": "2026-10-20", "entry_px": 826.43, "exit_px": 800.8279, "qty": 10.6355, "ret": -0.031, "pnl": -272.29}
+{"ticker": "MRVL", "sleeve": "A", "entry_date": "2026-10-15", "exit_date": "2026-10-20", "entry_px": 230.7877, "exit_px": 232.71, "qty": 38.4305, "ret": 0.0083, "pnl": 73.87}
+{"ticker": "NVDA", "sleeve": "A", "entry_date": "2026-10-15", "exit_date": "2026-10-20", "entry_px": 215.0881, "exit_px": 215.28, "qty": 41.2699, "ret": 0.0009, "pnl": 7.92}
+{"ticker": "AMZN", "sleeve": "A", "entry_date": "2026-10-16", "exit_date": "2026-10-20", "entry_px": 250.36, "exit_px": 263.4003, "qty": 36.2281, "ret": 0.0521, "pnl": 472.43}

@@ -1,39 +1,9 @@
 {
   "positions": {
-    "AMAT": {
+    "META": {
       "sleeve": "A",
-      "entry_date": "2026-10-15",
-      "entry_px": 428.9675
-    },
-    "DELL": {
-      "sleeve": "A",
-      "entry_date": "2026-10-15",
-      "entry_px": 465.4947
-    },
-    "INTC": {
-      "sleeve": "A",
-      "entry_date": "2026-10-15",
-      "entry_px": 92.8369
-    },
-    "LITE": {
-      "sleeve": "A",
-      "entry_date": "2026-10-15",
-      "entry_px": 826.43
-    },
-    "MRVL": {
-      "sleeve": "A",
-      "entry_date": "2026-10-15",
-      "entry_px": 230.7877
-    },
-    "NVDA": {
-      "sleeve": "A",
-      "entry_date": "2026-10-15",
-      "entry_px": 215.0881
-    },
-    "AMZN": {
-      "sleeve": "A",
-      "entry_date": "2026-10-16",
-      "entry_px": 250.36
+      "entry_date": "2026-10-20",
+      "entry_px": 686.7877
     }
   },
   "hwm": 100432.77
