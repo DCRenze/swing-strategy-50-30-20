@@ -1,9 +1,24 @@
 {
   "positions": {
-    "META": {
+    "DXCM": {
       "sleeve": "A",
-      "entry_date": "2026-10-20",
-      "entry_px": 686.7877
+      "entry_date": "2026-10-22",
+      "entry_px": 78.19
+    },
+    "FCX": {
+      "sleeve": "A",
+      "entry_date": "2026-10-22",
+      "entry_px": 65.6098
+    },
+    "SCCO": {
+      "sleeve": "A",
+      "entry_date": "2026-10-22",
+      "entry_px": 188.4254
+    },
+    "VLO": {
+      "sleeve": "A",
+      "entry_date": "2026-10-22",
+      "entry_px": 423.97
     }
   },
   "hwm": 100432.77
