@@ -145,3 +145,5 @@
 {"ticker": "NVDA", "sleeve": "A", "entry_date": "2026-10-15", "exit_date": "2026-10-20", "entry_px": 215.0881, "exit_px": 215.28, "qty": 41.2699, "ret": 0.0009, "pnl": 7.92}
 {"ticker": "AMZN", "sleeve": "A", "entry_date": "2026-10-16", "exit_date": "2026-10-20", "entry_px": 250.36, "exit_px": 263.4003, "qty": 36.2281, "ret": 0.0521, "pnl": 472.43}
 {"ticker": "META", "sleeve": "A", "entry_date": "2026-10-20", "exit_date": "2026-10-22", "entry_px": 686.7877, "exit_px": 661.4669, "qty": 13.0405, "ret": -0.0369, "pnl": -330.2}
+{"ticker": "FCX", "sleeve": "A", "entry_date": "2026-10-22", "exit_date": "2026-10-26", "entry_px": 65.6098, "exit_px": 65.03, "qty": 132.6602, "ret": -0.0088, "pnl": -76.92}
+{"ticker": "SCCO", "sleeve": "A", "entry_date": "2026-10-22", "exit_date": "2026-10-26", "entry_px": 188.4254, "exit_px": 184.0904, "qty": 46.2848, "ret": -0.023, "pnl": -200.65}
