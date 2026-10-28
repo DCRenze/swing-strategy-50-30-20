@@ -1,14 +1,14 @@
 {
   "positions": {
-    "DXCM": {
+    "ABNB": {
       "sleeve": "A",
-      "entry_date": "2026-10-22",
-      "entry_px": 78.19
+      "entry_date": "2026-10-27",
+      "entry_px": 167.76
     },
-    "VLO": {
+    "HLT": {
       "sleeve": "A",
-      "entry_date": "2026-10-22",
-      "entry_px": 423.97
+      "entry_date": "2026-10-27",
+      "entry_px": 344.0
     }
   },
   "hwm": 100432.77

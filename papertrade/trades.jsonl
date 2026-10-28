@@ -147,3 +147,5 @@
 {"ticker": "META", "sleeve": "A", "entry_date": "2026-10-20", "exit_date": "2026-10-22", "entry_px": 686.7877, "exit_px": 661.4669, "qty": 13.0405, "ret": -0.0369, "pnl": -330.2}
 {"ticker": "FCX", "sleeve": "A", "entry_date": "2026-10-22", "exit_date": "2026-10-26", "entry_px": 65.6098, "exit_px": 65.03, "qty": 132.6602, "ret": -0.0088, "pnl": -76.92}
 {"ticker": "SCCO", "sleeve": "A", "entry_date": "2026-10-22", "exit_date": "2026-10-26", "entry_px": 188.4254, "exit_px": 184.0904, "qty": 46.2848, "ret": -0.023, "pnl": -200.65}
+{"ticker": "DXCM", "sleeve": "A", "entry_date": "2026-10-22", "exit_date": "2026-10-27", "entry_px": 78.19, "exit_px": 78.3, "qty": 113.6909, "ret": 0.0014, "pnl": 12.51}
+{"ticker": "VLO", "sleeve": "A", "entry_date": "2026-10-22", "exit_date": "2026-10-27", "entry_px": 423.97, "exit_px": 419.1148, "qty": 20.9686, "ret": -0.0115, "pnl": -101.81}
