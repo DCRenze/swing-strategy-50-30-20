@@ -150,3 +150,5 @@
 {"ticker": "DXCM", "sleeve": "A", "entry_date": "2026-10-22", "exit_date": "2026-10-27", "entry_px": 78.19, "exit_px": 78.3, "qty": 113.6909, "ret": 0.0014, "pnl": 12.51}
 {"ticker": "VLO", "sleeve": "A", "entry_date": "2026-10-22", "exit_date": "2026-10-27", "entry_px": 423.97, "exit_px": 419.1148, "qty": 20.9686, "ret": -0.0115, "pnl": -101.81}
 {"ticker": "HLT", "sleeve": "A", "entry_date": "2026-10-27", "exit_date": "2026-10-29", "entry_px": 344.0, "exit_px": 356.1851, "qty": 25.5563, "ret": 0.0354, "pnl": 311.41}
+{"ticker": "ABNB", "sleeve": "A", "entry_date": "2026-10-27", "exit_date": "2026-10-30", "entry_px": 167.76, "exit_px": 165.6698, "qty": 52.7348, "ret": -0.0125, "pnl": -110.23}
+{"ticker": "PFE", "sleeve": "A", "entry_date": "2026-10-28", "exit_date": "2026-10-30", "entry_px": 29.39, "exit_px": 30.56, "qty": 300.8907, "ret": 0.0398, "pnl": 352.04}
