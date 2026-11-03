@@ -9,6 +9,31 @@
       "sleeve": "A",
       "entry_date": "2026-10-30",
       "entry_px": 186.4802
+    },
+    "CSCO": {
+      "sleeve": "A",
+      "entry_date": "2026-11-02",
+      "entry_px": 102.1
+    },
+    "DT": {
+      "sleeve": "A",
+      "entry_date": "2026-11-02",
+      "entry_px": 55.9394
+    },
+    "MSFT": {
+      "sleeve": "A",
+      "entry_date": "2026-11-02",
+      "entry_px": 512.8
+    },
+    "NET": {
+      "sleeve": "A",
+      "entry_date": "2026-11-02",
+      "entry_px": 265.34
+    },
+    "NTAP": {
+      "sleeve": "A",
+      "entry_date": "2026-11-02",
+      "entry_px": 191.33
     }
   },
   "hwm": 100432.77
