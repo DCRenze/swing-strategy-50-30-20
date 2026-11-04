@@ -5,11 +5,6 @@
       "entry_date": "2026-10-30",
       "entry_px": 196.24
     },
-    "TWLO": {
-      "sleeve": "A",
-      "entry_date": "2026-10-30",
-      "entry_px": 186.4802
-    },
     "CSCO": {
       "sleeve": "A",
       "entry_date": "2026-11-02",
@@ -34,6 +29,11 @@
       "sleeve": "A",
       "entry_date": "2026-11-02",
       "entry_px": 191.33
+    },
+    "PLTR": {
+      "sleeve": "A",
+      "entry_date": "2026-11-03",
+      "entry_px": 168.77
     }
   },
   "hwm": 100432.77
