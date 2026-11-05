@@ -153,3 +153,9 @@
 {"ticker": "ABNB", "sleeve": "A", "entry_date": "2026-10-27", "exit_date": "2026-10-30", "entry_px": 167.76, "exit_px": 165.6698, "qty": 52.7348, "ret": -0.0125, "pnl": -110.23}
 {"ticker": "PFE", "sleeve": "A", "entry_date": "2026-10-28", "exit_date": "2026-10-30", "entry_px": 29.39, "exit_px": 30.56, "qty": 300.8907, "ret": 0.0398, "pnl": 352.04}
 {"ticker": "TWLO", "sleeve": "A", "entry_date": "2026-10-30", "exit_date": "2026-11-03", "entry_px": 186.4802, "exit_px": 206.1003, "qty": 38.5778, "ret": 0.1052, "pnl": 756.9}
+{"ticker": "TEAM", "sleeve": "A", "entry_date": "2026-10-30", "exit_date": "2026-11-04", "entry_px": 196.24, "exit_px": 189.29, "qty": 45.2414, "ret": -0.0354, "pnl": -314.43}
+{"ticker": "CSCO", "sleeve": "A", "entry_date": "2026-11-02", "exit_date": "2026-11-04", "entry_px": 102.1, "exit_px": 103.75, "qty": 87.5292, "ret": 0.0162, "pnl": 144.42}
+{"ticker": "DT", "sleeve": "A", "entry_date": "2026-11-02", "exit_date": "2026-11-04", "entry_px": 55.9394, "exit_px": 46.8047, "qty": 159.6416, "ret": -0.1633, "pnl": -1458.28}
+{"ticker": "MSFT", "sleeve": "A", "entry_date": "2026-11-02", "exit_date": "2026-11-04", "entry_px": 512.8, "exit_px": 544.7162, "qty": 17.4253, "ret": 0.0622, "pnl": 556.15}
+{"ticker": "NET", "sleeve": "A", "entry_date": "2026-11-02", "exit_date": "2026-11-04", "entry_px": 265.34, "exit_px": 267.9511, "qty": 33.673, "ret": 0.0098, "pnl": 87.92}
+{"ticker": "NTAP", "sleeve": "A", "entry_date": "2026-11-02", "exit_date": "2026-11-04", "entry_px": 191.33, "exit_px": 188.2663, "qty": 46.6993, "ret": -0.016, "pnl": -143.07}
