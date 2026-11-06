@@ -4,6 +4,36 @@
       "sleeve": "A",
       "entry_date": "2026-11-03",
       "entry_px": 168.77
+    },
+    "CVX": {
+      "sleeve": "A",
+      "entry_date": "2026-11-05",
+      "entry_px": 212.91
+    },
+    "LNG": {
+      "sleeve": "A",
+      "entry_date": "2026-11-05",
+      "entry_px": 282.99
+    },
+    "PANW": {
+      "sleeve": "A",
+      "entry_date": "2026-11-05",
+      "entry_px": 326.6911
+    },
+    "PSX": {
+      "sleeve": "A",
+      "entry_date": "2026-11-05",
+      "entry_px": 251.2324
+    },
+    "SLB": {
+      "sleeve": "A",
+      "entry_date": "2026-11-05",
+      "entry_px": 50.3179
+    },
+    "XOM": {
+      "sleeve": "A",
+      "entry_date": "2026-11-05",
+      "entry_px": 165.6098
     }
   },
   "hwm": 100432.77
