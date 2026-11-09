@@ -159,3 +159,4 @@
 {"ticker": "MSFT", "sleeve": "A", "entry_date": "2026-11-02", "exit_date": "2026-11-04", "entry_px": 512.8, "exit_px": 544.7162, "qty": 17.4253, "ret": 0.0622, "pnl": 556.15}
 {"ticker": "NET", "sleeve": "A", "entry_date": "2026-11-02", "exit_date": "2026-11-04", "entry_px": 265.34, "exit_px": 267.9511, "qty": 33.673, "ret": 0.0098, "pnl": 87.92}
 {"ticker": "NTAP", "sleeve": "A", "entry_date": "2026-11-02", "exit_date": "2026-11-04", "entry_px": 191.33, "exit_px": 188.2663, "qty": 46.6993, "ret": -0.016, "pnl": -143.07}
+{"ticker": "PLTR", "sleeve": "A", "entry_date": "2026-11-03", "exit_date": "2026-11-06", "entry_px": 168.77, "exit_px": 158.44, "qty": 50.9769, "ret": -0.0612, "pnl": -526.59}
