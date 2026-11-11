@@ -162,3 +162,7 @@
 {"ticker": "PLTR", "sleeve": "A", "entry_date": "2026-11-03", "exit_date": "2026-11-06", "entry_px": 168.77, "exit_px": 158.44, "qty": 50.9769, "ret": -0.0612, "pnl": -526.59}
 {"ticker": "SLB", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-09", "entry_px": 50.3179, "exit_px": 49.56, "qty": 175.7654, "ret": -0.0151, "pnl": -133.21}
 {"ticker": "XOM", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-09", "entry_px": 165.6098, "exit_px": 163.45, "qty": 53.3977, "ret": -0.013, "pnl": -115.33}
+{"ticker": "LNG", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-10", "entry_px": 282.99, "exit_px": 281.4844, "qty": 31.2505, "ret": -0.0053, "pnl": -47.05}
+{"ticker": "PANW", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-10", "entry_px": 326.6911, "exit_px": 318.9313, "qty": 26.5169, "ret": -0.0238, "pnl": -205.76}
+{"ticker": "PSX", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-10", "entry_px": 251.2324, "exit_px": 246.0253, "qty": 35.1853, "ret": -0.0207, "pnl": -183.21}
+{"ticker": "UNP", "sleeve": "A", "entry_date": "2026-11-06", "exit_date": "2026-11-10", "entry_px": 292.43, "exit_px": 296.1848, "qty": 29.9246, "ret": 0.0128, "pnl": 112.36}

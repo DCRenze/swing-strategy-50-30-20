@@ -1,0 +1,26 @@
+{"ts": "2026-11-11T14:20:53", "kind": "trade_closed", "dry_run": null, "ticker": "LNG", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-10", "entry_px": 282.99, "exit_px": 281.4844, "qty": 31.2505, "ret": -0.0053, "pnl": -47.05}
+{"ts": "2026-11-11T14:20:53", "kind": "position_closed", "ticker": "LNG", "sleeve": "A", "entry_date": "2026-11-05", "entry_px": 282.99}
+{"ts": "2026-11-11T14:20:53", "kind": "trade_closed", "dry_run": null, "ticker": "PANW", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-10", "entry_px": 326.6911, "exit_px": 318.9313, "qty": 26.5169, "ret": -0.0238, "pnl": -205.76}
+{"ts": "2026-11-11T14:20:53", "kind": "position_closed", "ticker": "PANW", "sleeve": "A", "entry_date": "2026-11-05", "entry_px": 326.6911}
+{"ts": "2026-11-11T14:20:53", "kind": "trade_closed", "dry_run": null, "ticker": "PSX", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-10", "entry_px": 251.2324, "exit_px": 246.0253, "qty": 35.1853, "ret": -0.0207, "pnl": -183.21}
+{"ts": "2026-11-11T14:20:53", "kind": "position_closed", "ticker": "PSX", "sleeve": "A", "entry_date": "2026-11-05", "entry_px": 251.2324}
+{"ts": "2026-11-11T14:20:53", "kind": "trade_closed", "dry_run": null, "ticker": "UNP", "sleeve": "A", "entry_date": "2026-11-06", "exit_date": "2026-11-10", "entry_px": 292.43, "exit_px": 296.1848, "qty": 29.9246, "ret": 0.0128, "pnl": 112.36}
+{"ts": "2026-11-11T14:20:53", "kind": "position_closed", "ticker": "UNP", "sleeve": "A", "entry_date": "2026-11-06", "entry_px": 292.43}
+{"ts": "2026-11-11T14:20:53", "kind": "position_adopted", "ticker": "TEAM", "sleeve": "A", "entry_date": "2026-11-10", "entry_px": 145.9995}
+{"ts": "2026-11-11T14:20:53", "kind": "position_adopted", "ticker": "XOM", "sleeve": "A", "entry_date": "2026-11-10", "entry_px": 160.7996}
+{"ts": "2026-11-11T14:20:53", "kind": "run_start", "mode": "morning", "equity": 87951.99, "hwm": 100432.77, "drawdown": -0.1243, "dry_run": false}
+{"ts": "2026-11-11T14:21:58", "kind": "data_asof", "signal_date": "2026-11-10", "trade_date": "2026-11-11", "sessions": 311}
+{"ts": "2026-11-11T14:21:58", "kind": "submit_window", "target": "09:30", "waited_s": 481.2, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-11-11T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "CVX", "side": "sell", "qty": 41.5345, "order_type": "market", "limit_price": null, "client_order_id": "A-CVX-20261111-sell"}
+{"ts": "2026-11-11T14:30:00", "kind": "exit_reason", "ticker": "CVX", "sleeve": "A", "days_held": 4, "signal_date": "2026-11-10", "reason": "first up-close", "trigger_close": 211.22, "prior_close": 210.78, "trigger_session": "2026-11-10"}
+{"ts": "2026-11-11T14:30:00", "kind": "skip", "sleeve": "A", "ticker": "XOM", "reason": "already held"}
+{"ts": "2026-11-11T14:30:00", "kind": "skip", "sleeve": "A", "ticker": "CVX", "reason": "already held"}
+{"ts": "2026-11-11T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "ACN", "side": "buy", "qty": 35.0998, "order_type": "limit", "limit_price": 250.58, "client_order_id": "A-ACN-20261111-buy"}
+{"ts": "2026-11-11T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "VLO", "side": "buy", "qty": 26.1299, "order_type": "limit", "limit_price": 336.6, "client_order_id": "A-VLO-20261111-buy"}
+{"ts": "2026-11-11T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "COP", "side": "buy", "qty": 66.5056, "order_type": "limit", "limit_price": 132.25, "client_order_id": "A-COP-20261111-buy"}
+{"ts": "2026-11-11T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "ABT", "side": "buy", "qty": 81.3511, "order_type": "limit", "limit_price": 108.11, "client_order_id": "A-ABT-20261111-buy"}
+{"ts": "2026-11-11T14:30:01", "kind": "skip", "sleeve": "A", "ticker": "TEAM", "reason": "already held"}
+{"ts": "2026-11-11T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "AMT", "side": "buy", "qty": 47.2107, "order_type": "limit", "limit_price": 186.3, "client_order_id": "A-AMT-20261111-buy"}
+{"ts": "2026-11-11T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "ZS", "side": "buy", "qty": 47.4899, "order_type": "limit", "limit_price": 185.2, "client_order_id": "A-ZS-20261111-buy"}
+{"ts": "2026-11-11T14:30:02", "kind": "order_submitted", "sleeve": "A", "ticker": "ROP", "side": "buy", "qty": 18.9752, "order_type": "limit", "limit_price": 463.51, "client_order_id": "A-ROP-20261111-buy"}
+{"ts": "2026-11-11T14:30:02", "kind": "run_end", "mode": "morning"}

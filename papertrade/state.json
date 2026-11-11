@@ -5,25 +5,15 @@
       "entry_date": "2026-11-05",
       "entry_px": 212.91
     },
-    "LNG": {
+    "TEAM": {
       "sleeve": "A",
-      "entry_date": "2026-11-05",
-      "entry_px": 282.99
+      "entry_date": "2026-11-10",
+      "entry_px": 145.9995
     },
-    "PANW": {
+    "XOM": {
       "sleeve": "A",
-      "entry_date": "2026-11-05",
-      "entry_px": 326.6911
-    },
-    "PSX": {
-      "sleeve": "A",
-      "entry_date": "2026-11-05",
-      "entry_px": 251.2324
-    },
-    "UNP": {
-      "sleeve": "A",
-      "entry_date": "2026-11-06",
-      "entry_px": 292.43
+      "entry_date": "2026-11-10",
+      "entry_px": 160.7996
     }
   },
   "hwm": 100432.77
