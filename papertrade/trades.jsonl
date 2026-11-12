@@ -166,3 +166,4 @@
 {"ticker": "PANW", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-10", "entry_px": 326.6911, "exit_px": 318.9313, "qty": 26.5169, "ret": -0.0238, "pnl": -205.76}
 {"ticker": "PSX", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-10", "entry_px": 251.2324, "exit_px": 246.0253, "qty": 35.1853, "ret": -0.0207, "pnl": -183.21}
 {"ticker": "UNP", "sleeve": "A", "entry_date": "2026-11-06", "exit_date": "2026-11-10", "entry_px": 292.43, "exit_px": 296.1848, "qty": 29.9246, "ret": 0.0128, "pnl": 112.36}
+{"ticker": "CVX", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-11", "entry_px": 212.91, "exit_px": 211.42, "qty": 41.5345, "ret": -0.007, "pnl": -61.89}
