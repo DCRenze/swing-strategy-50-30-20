@@ -167,3 +167,5 @@
 {"ticker": "PSX", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-10", "entry_px": 251.2324, "exit_px": 246.0253, "qty": 35.1853, "ret": -0.0207, "pnl": -183.21}
 {"ticker": "UNP", "sleeve": "A", "entry_date": "2026-11-06", "exit_date": "2026-11-10", "entry_px": 292.43, "exit_px": 296.1848, "qty": 29.9246, "ret": 0.0128, "pnl": 112.36}
 {"ticker": "CVX", "sleeve": "A", "entry_date": "2026-11-05", "exit_date": "2026-11-11", "entry_px": 212.91, "exit_px": 211.42, "qty": 41.5345, "ret": -0.007, "pnl": -61.89}
+{"ticker": "TEAM", "sleeve": "A", "entry_date": "2026-11-10", "exit_date": "2026-11-12", "entry_px": 145.9995, "exit_px": 148.08, "qty": 59.9195, "ret": 0.0143, "pnl": 124.66}
+{"ticker": "XOM", "sleeve": "A", "entry_date": "2026-11-10", "exit_date": "2026-11-12", "entry_px": 160.7996, "exit_px": 167.9254, "qty": 54.3014, "ret": 0.0443, "pnl": 386.94}

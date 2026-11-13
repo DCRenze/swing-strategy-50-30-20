@@ -1,14 +1,9 @@
 {
   "positions": {
-    "TEAM": {
+    "DVA": {
       "sleeve": "A",
-      "entry_date": "2026-11-10",
-      "entry_px": 145.9995
-    },
-    "XOM": {
-      "sleeve": "A",
-      "entry_date": "2026-11-10",
-      "entry_px": 160.7996
+      "entry_date": "2026-11-12",
+      "entry_px": 177.7613
     }
   },
   "hwm": 100432.77
