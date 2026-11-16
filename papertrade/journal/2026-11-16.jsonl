@@ -1,0 +1,16 @@
+{"ts": "2026-11-16T14:20:23", "kind": "run_start", "mode": "morning", "equity": 87832.85, "hwm": 100432.77, "drawdown": -0.1255, "dry_run": false}
+{"ts": "2026-11-16T14:21:11", "kind": "data_asof", "signal_date": "2026-11-13", "trade_date": "2026-11-16", "sessions": 309}
+{"ts": "2026-11-16T14:21:11", "kind": "submit_window", "target": "09:30", "waited_s": 528.0, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-11-16T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "DVA", "side": "sell", "qty": 49.5764, "order_type": "market", "limit_price": null, "client_order_id": "A-DVA-20261116-sell"}
+{"ts": "2026-11-16T14:30:00", "kind": "exit_reason", "ticker": "DVA", "sleeve": "A", "days_held": 2, "signal_date": "2026-11-13", "reason": "first up-close", "trigger_close": 174.56, "prior_close": 174.07, "trigger_session": "2026-11-13"}
+{"ts": "2026-11-16T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MRNA", "side": "buy", "qty": 42.137, "order_type": "limit", "limit_price": 208.45, "client_order_id": "A-MRNA-20261116-buy"}
+{"ts": "2026-11-16T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "NEM", "side": "buy", "qty": 80.1323, "order_type": "limit", "limit_price": 109.61, "client_order_id": "A-NEM-20261116-buy"}
+{"ts": "2026-11-16T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "GM", "side": "buy", "qty": 104.654, "order_type": "limit", "limit_price": 83.93, "client_order_id": "A-GM-20261116-buy"}
+{"ts": "2026-11-16T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "UAL", "side": "buy", "qty": 83.3981, "order_type": "limit", "limit_price": 105.32, "client_order_id": "A-UAL-20261116-buy"}
+{"ts": "2026-11-16T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "RVMD", "side": "buy", "qty": 53.3838, "order_type": "limit", "limit_price": 164.53, "client_order_id": "A-RVMD-20261116-buy"}
+{"ts": "2026-11-16T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "JHX", "side": "buy", "qty": 326.3467, "order_type": "limit", "limit_price": 26.91, "client_order_id": "A-JHX-20261116-buy"}
+{"ts": "2026-11-16T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "VMC", "side": "buy", "qty": 32.2506, "order_type": "limit", "limit_price": 272.34, "client_order_id": "A-VMC-20261116-buy"}
+{"ts": "2026-11-16T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "A", "side": "buy", "qty": 51.6325, "order_type": "limit", "limit_price": 170.11, "client_order_id": "A-A-20261116-buy"}
+{"ts": "2026-11-16T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "ARES", "side": "buy", "qty": 67.0576, "order_type": "limit", "limit_price": 130.98, "client_order_id": "A-ARES-20261116-buy"}
+{"ts": "2026-11-16T14:30:01", "kind": "skip", "sleeve": "A", "ticker": "LUV", "reason": "sleeve full"}
+{"ts": "2026-11-16T14:30:01", "kind": "run_end", "mode": "morning"}
