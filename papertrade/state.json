@@ -9,6 +9,21 @@
       "sleeve": "A",
       "entry_date": "2026-11-16",
       "entry_px": 83.91
+    },
+    "ACN": {
+      "sleeve": "A",
+      "entry_date": "2026-11-17",
+      "entry_px": 240.6388
+    },
+    "NET": {
+      "sleeve": "A",
+      "entry_date": "2026-11-17",
+      "entry_px": 277.4
+    },
+    "SNOW": {
+      "sleeve": "A",
+      "entry_date": "2026-11-17",
+      "entry_px": 268.6345
     }
   },
   "hwm": 100432.77
