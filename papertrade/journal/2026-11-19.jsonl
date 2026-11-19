@@ -1,0 +1,24 @@
+{"ts": "2026-11-19T14:20:25", "kind": "trade_closed", "dry_run": null, "ticker": "GM", "sleeve": "A", "entry_date": "2026-11-16", "exit_date": "2026-11-18", "entry_px": 83.91, "exit_px": 83.9184, "qty": 104.654, "ret": 0.0001, "pnl": 0.87}
+{"ts": "2026-11-19T14:20:25", "kind": "position_closed", "ticker": "GM", "sleeve": "A", "entry_date": "2026-11-16", "entry_px": 83.91}
+{"ts": "2026-11-19T14:20:25", "kind": "run_start", "mode": "morning", "equity": 88746.03, "hwm": 100432.77, "drawdown": -0.1164, "dry_run": false}
+{"ts": "2026-11-19T14:21:57", "kind": "data_asof", "signal_date": "2026-11-18", "trade_date": "2026-11-19", "sessions": 311}
+{"ts": "2026-11-19T14:21:57", "kind": "submit_window", "target": "09:30", "waited_s": 482.6, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-11-19T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "ARES", "side": "sell", "qty": 67.0576, "order_type": "market", "limit_price": null, "client_order_id": "A-ARES-20261119-sell"}
+{"ts": "2026-11-19T14:30:00", "kind": "exit_reason", "ticker": "ARES", "sleeve": "A", "days_held": 3, "signal_date": "2026-11-18", "reason": "first up-close", "trigger_close": 127.98, "prior_close": 127.74, "trigger_session": "2026-11-18"}
+{"ts": "2026-11-19T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "ACN", "side": "sell", "qty": 36.4069, "order_type": "market", "limit_price": null, "client_order_id": "A-ACN-20261119-sell"}
+{"ts": "2026-11-19T14:30:00", "kind": "exit_reason", "ticker": "ACN", "sleeve": "A", "days_held": 2, "signal_date": "2026-11-18", "reason": "5% stop", "trigger_close": 227.49, "stop_level": 228.6069, "trigger_session": "2026-11-18"}
+{"ts": "2026-11-19T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "NET", "side": "sell", "qty": 31.5882, "order_type": "market", "limit_price": null, "client_order_id": "A-NET-20261119-sell"}
+{"ts": "2026-11-19T14:30:00", "kind": "exit_reason", "ticker": "NET", "sleeve": "A", "days_held": 2, "signal_date": "2026-11-18", "reason": "first up-close", "trigger_close": 300.91, "prior_close": 284.8, "trigger_session": "2026-11-18"}
+{"ts": "2026-11-19T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "SNOW", "side": "sell", "qty": 32.617, "order_type": "market", "limit_price": null, "client_order_id": "A-SNOW-20261119-sell"}
+{"ts": "2026-11-19T14:30:00", "kind": "exit_reason", "ticker": "SNOW", "sleeve": "A", "days_held": 2, "signal_date": "2026-11-18", "reason": "first up-close", "trigger_close": 279.62, "prior_close": 272.94, "trigger_session": "2026-11-18"}
+{"ts": "2026-11-19T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "PLTR", "side": "buy", "qty": 59.0586, "order_type": "limit", "limit_price": 150.27, "client_order_id": "A-PLTR-20261119-buy"}
+{"ts": "2026-11-19T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "MRNA", "side": "buy", "qty": 48.4731, "order_type": "limit", "limit_price": 183.08, "client_order_id": "A-MRNA-20261119-buy"}
+{"ts": "2026-11-19T14:30:01", "kind": "order_error", "error": "{\"code\":42210000,\"message\":\"asset \\\"BRK-B\\\" not found\"}", "sleeve": "A", "ticker": "BRK-B", "side": "buy", "qty": 15.6506, "order_type": "limit", "limit_price": 567.04, "client_order_id": "A-BRK-B-20261119-buy"}
+{"ts": "2026-11-19T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "XOM", "side": "buy", "qty": 56.4284, "order_type": "limit", "limit_price": 157.27, "client_order_id": "A-XOM-20261119-buy"}
+{"ts": "2026-11-19T14:30:02", "kind": "order_submitted", "sleeve": "A", "ticker": "JPM", "side": "buy", "qty": 27.8653, "order_type": "limit", "limit_price": 318.48, "client_order_id": "A-JPM-20261119-buy"}
+{"ts": "2026-11-19T14:30:02", "kind": "order_submitted", "sleeve": "A", "ticker": "ADI", "side": "buy", "qty": 24.1223, "order_type": "limit", "limit_price": 367.9, "client_order_id": "A-ADI-20261119-buy"}
+{"ts": "2026-11-19T14:30:02", "kind": "skip", "sleeve": "A", "ticker": "CVX", "reason": "sleeve full"}
+{"ts": "2026-11-19T14:30:02", "kind": "skip", "sleeve": "A", "ticker": "ANET", "reason": "sleeve full"}
+{"ts": "2026-11-19T14:30:02", "kind": "skip", "sleeve": "A", "ticker": "TMO", "reason": "sleeve full"}
+{"ts": "2026-11-19T14:30:02", "kind": "skip", "sleeve": "A", "ticker": "MRK", "reason": "sleeve full"}
+{"ts": "2026-11-19T14:30:02", "kind": "run_end", "mode": "morning"}

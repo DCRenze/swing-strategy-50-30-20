@@ -170,3 +170,4 @@
 {"ticker": "TEAM", "sleeve": "A", "entry_date": "2026-11-10", "exit_date": "2026-11-12", "entry_px": 145.9995, "exit_px": 148.08, "qty": 59.9195, "ret": 0.0143, "pnl": 124.66}
 {"ticker": "XOM", "sleeve": "A", "entry_date": "2026-11-10", "exit_date": "2026-11-12", "entry_px": 160.7996, "exit_px": 167.9254, "qty": 54.3014, "ret": 0.0443, "pnl": 386.94}
 {"ticker": "DVA", "sleeve": "A", "entry_date": "2026-11-12", "exit_date": "2026-11-16", "entry_px": 177.7613, "exit_px": 172.04, "qty": 49.5764, "ret": -0.0322, "pnl": -283.64}
+{"ticker": "GM", "sleeve": "A", "entry_date": "2026-11-16", "exit_date": "2026-11-18", "entry_px": 83.91, "exit_px": 83.9184, "qty": 104.654, "ret": 0.0001, "pnl": 0.87}
