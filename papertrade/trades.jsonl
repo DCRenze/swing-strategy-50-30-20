@@ -171,3 +171,7 @@
 {"ticker": "XOM", "sleeve": "A", "entry_date": "2026-11-10", "exit_date": "2026-11-12", "entry_px": 160.7996, "exit_px": 167.9254, "qty": 54.3014, "ret": 0.0443, "pnl": 386.94}
 {"ticker": "DVA", "sleeve": "A", "entry_date": "2026-11-12", "exit_date": "2026-11-16", "entry_px": 177.7613, "exit_px": 172.04, "qty": 49.5764, "ret": -0.0322, "pnl": -283.64}
 {"ticker": "GM", "sleeve": "A", "entry_date": "2026-11-16", "exit_date": "2026-11-18", "entry_px": 83.91, "exit_px": 83.9184, "qty": 104.654, "ret": 0.0001, "pnl": 0.87}
+{"ticker": "ARES", "sleeve": "A", "entry_date": "2026-11-16", "exit_date": "2026-11-19", "entry_px": 130.8758, "exit_px": 127.5268, "qty": 67.0576, "ret": -0.0256, "pnl": -224.58}
+{"ticker": "ACN", "sleeve": "A", "entry_date": "2026-11-17", "exit_date": "2026-11-19", "entry_px": 240.6388, "exit_px": 229.02, "qty": 36.4069, "ret": -0.0483, "pnl": -423.0}
+{"ticker": "NET", "sleeve": "A", "entry_date": "2026-11-17", "exit_date": "2026-11-19", "entry_px": 277.4, "exit_px": 314.3006, "qty": 31.5882, "ret": 0.133, "pnl": 1165.62}
+{"ticker": "SNOW", "sleeve": "A", "entry_date": "2026-11-17", "exit_date": "2026-11-19", "entry_px": 268.6345, "exit_px": 289.71, "qty": 32.617, "ret": 0.0785, "pnl": 687.42}
