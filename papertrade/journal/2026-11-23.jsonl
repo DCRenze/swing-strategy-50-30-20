@@ -1,0 +1,15 @@
+{"ts": "2026-11-23T14:20:38", "kind": "position_adopted", "ticker": "ADI", "sleeve": "A", "entry_date": "2026-11-20", "entry_px": 362.74}
+{"ts": "2026-11-23T14:20:38", "kind": "run_start", "mode": "morning", "equity": 89479.43, "hwm": 100432.77, "drawdown": -0.1091, "dry_run": false}
+{"ts": "2026-11-23T14:21:17", "kind": "data_asof", "signal_date": "2026-11-20", "trade_date": "2026-11-23", "sessions": 309}
+{"ts": "2026-11-23T14:21:17", "kind": "submit_window", "target": "09:30", "waited_s": 522.5, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-11-23T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MA", "side": "buy", "qty": 14.5548, "order_type": "limit", "limit_price": 614.78, "client_order_id": "A-MA-20261123-buy"}
+{"ts": "2026-11-23T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "VLO", "side": "buy", "qty": 27.7821, "order_type": "limit", "limit_price": 322.08, "client_order_id": "A-VLO-20261123-buy"}
+{"ts": "2026-11-23T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "PFE", "side": "buy", "qty": 332.56, "order_type": "limit", "limit_price": 26.91, "client_order_id": "A-PFE-20261123-buy"}
+{"ts": "2026-11-23T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "PM", "side": "buy", "qty": 49.7261, "order_type": "limit", "limit_price": 179.94, "client_order_id": "A-PM-20261123-buy"}
+{"ts": "2026-11-23T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MPC", "side": "buy", "qty": 25.3041, "order_type": "limit", "limit_price": 353.62, "client_order_id": "A-MPC-20261123-buy"}
+{"ts": "2026-11-23T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "REGN", "side": "buy", "qty": 9.9691, "order_type": "limit", "limit_price": 897.57, "client_order_id": "A-REGN-20261123-buy"}
+{"ts": "2026-11-23T14:30:01", "kind": "order_submitted", "sleeve": "A", "ticker": "PSX", "side": "buy", "qty": 38.5628, "order_type": "limit", "limit_price": 232.04, "client_order_id": "A-PSX-20261123-buy"}
+{"ts": "2026-11-23T14:30:02", "kind": "order_submitted", "sleeve": "A", "ticker": "SPOT", "side": "buy", "qty": 15.9377, "order_type": "limit", "limit_price": 561.43, "client_order_id": "A-SPOT-20261123-buy"}
+{"ts": "2026-11-23T14:30:02", "kind": "skip", "sleeve": "A", "ticker": "ABNB", "reason": "sleeve full"}
+{"ts": "2026-11-23T14:30:02", "kind": "skip", "sleeve": "A", "ticker": "LMT", "reason": "sleeve full"}
+{"ts": "2026-11-23T14:30:02", "kind": "run_end", "mode": "morning"}
