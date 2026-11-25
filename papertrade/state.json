@@ -1,15 +1,4 @@
 {
-  "positions": {
-    "JPM": {
-      "sleeve": "A",
-      "entry_date": "2026-11-19",
-      "entry_px": 318.3849
-    },
-    "ADI": {
-      "sleeve": "A",
-      "entry_date": "2026-11-20",
-      "entry_px": 362.74
-    }
-  },
+  "positions": {},
   "hwm": 100432.77
 }

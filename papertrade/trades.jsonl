@@ -175,3 +175,5 @@
 {"ticker": "ACN", "sleeve": "A", "entry_date": "2026-11-17", "exit_date": "2026-11-19", "entry_px": 240.6388, "exit_px": 229.02, "qty": 36.4069, "ret": -0.0483, "pnl": -423.0}
 {"ticker": "NET", "sleeve": "A", "entry_date": "2026-11-17", "exit_date": "2026-11-19", "entry_px": 277.4, "exit_px": 314.3006, "qty": 31.5882, "ret": 0.133, "pnl": 1165.62}
 {"ticker": "SNOW", "sleeve": "A", "entry_date": "2026-11-17", "exit_date": "2026-11-19", "entry_px": 268.6345, "exit_px": 289.71, "qty": 32.617, "ret": 0.0785, "pnl": 687.42}
+{"ticker": "JPM", "sleeve": "A", "entry_date": "2026-11-19", "exit_date": "2026-11-24", "entry_px": 318.3849, "exit_px": 315.7003, "qty": 27.8653, "ret": -0.0084, "pnl": -74.81}
+{"ticker": "ADI", "sleeve": "A", "entry_date": "2026-11-20", "exit_date": "2026-11-24", "entry_px": 362.74, "exit_px": 324.6705, "qty": 24.4679, "ret": -0.1049, "pnl": -931.48}
