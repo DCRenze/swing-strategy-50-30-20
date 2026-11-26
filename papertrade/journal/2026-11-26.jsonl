@@ -1,0 +1,10 @@
+{"ts": "2026-11-26T14:20:33", "kind": "position_adopted", "ticker": "MPC", "sleeve": "A", "entry_date": "2026-11-25", "entry_px": 341.97}
+{"ts": "2026-11-26T14:20:33", "kind": "run_start", "mode": "morning", "equity": 87946.99, "hwm": 100432.77, "drawdown": -0.1243, "dry_run": false}
+{"ts": "2026-11-26T14:21:20", "kind": "data_asof", "signal_date": "2026-11-25", "trade_date": "2026-11-26", "sessions": 312}
+{"ts": "2026-11-26T14:21:20", "kind": "submit_window", "target": "09:30", "waited_s": 519.7, "note": "orders computed pre-open; holding until the bell"}
+{"ts": "2026-11-26T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "VLO", "side": "buy", "qty": 28.1975, "order_type": "limit", "limit_price": 311.9, "client_order_id": "A-VLO-20261126-buy"}
+{"ts": "2026-11-26T14:30:00", "kind": "skip", "sleeve": "A", "ticker": "MPC", "reason": "already held"}
+{"ts": "2026-11-26T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "PSX", "side": "buy", "qty": 38.3441, "order_type": "limit", "limit_price": 229.36, "client_order_id": "A-PSX-20261126-buy"}
+{"ts": "2026-11-26T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "MDT", "side": "buy", "qty": 93.5963, "order_type": "limit", "limit_price": 93.96, "client_order_id": "A-MDT-20261126-buy"}
+{"ts": "2026-11-26T14:30:00", "kind": "order_submitted", "sleeve": "A", "ticker": "DINO", "side": "buy", "qty": 106.4705, "order_type": "limit", "limit_price": 82.6, "client_order_id": "A-DINO-20261126-buy"}
+{"ts": "2026-11-26T14:30:00", "kind": "run_end", "mode": "morning"}

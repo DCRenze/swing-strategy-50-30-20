@@ -1,4 +1,10 @@
 {
-  "positions": {},
+  "positions": {
+    "MPC": {
+      "sleeve": "A",
+      "entry_date": "2026-11-25",
+      "entry_px": 341.97
+    }
+  },
   "hwm": 100432.77
 }
